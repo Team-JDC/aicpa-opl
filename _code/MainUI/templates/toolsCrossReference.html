@@ -1,0 +1,112 @@
+﻿{#template MAIN}
+      <div class="tool-container-cr" align="center">
+            <table cellpadding="0" cellspacing="5" style="font-size:12px">
+                <tr>
+                    <td colspan="5" align="left"><h4 class="nopad">Cross Reference</h4></td>
+                </tr>
+                <tr>
+                    <td colspan="5" align="left">Find the location of legacy content in the Codification</td>
+                </tr>
+                <tr>
+                    <td colspan="5" height="5px" align="left">&nbsp;</td>
+                </tr>
+
+                <tr>
+                	<td colspan="2">
+                    	<table cellpadding="0" cellspacing="5">
+                            <tr>
+                                <td valign="top" width="250" class="cr-title" colspan="2" align="left">By Standard</td>
+                            </tr>
+                            <tr>
+                                <td id="standardPrompt" width="60px" align="left">Type:</td>
+                                <td align="left">
+                                 <select id="standard" onchange="getCrossReferenceLink($('#standard').val(), '', '');">
+                                   <option value="">Select Value</option>
+                                    {#foreach $T.d.Standards as string}                       
+                                         {#if $T.d.SelectedStandard == $T.string}                       
+                                            <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                        {#else}
+                                            <option value="{$T.string}">{$T.string}</option>
+                                        {#/if}
+                                     {#/for}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Number:</td>
+                                <td align="left">
+                                    <select id="number">
+                                       {#foreach $T.d.StandardNumbers as string}                       
+                                        <option value="{$T.string}">{$T.string}</option>
+                                     {#/for}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left" height="20">&nbsp;</td>
+                                <td align="left"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td  align="left" width="65"><b> &nbsp;&nbsp; OR</b></td>
+                    <td colspan="2">
+                    	<table cellpadding="0" cellspacing="5">
+                            <tr>
+                                <td valign="top" width="250" class="cr-title" colspan="2" align="left">By Codification</td>
+                            </tr>
+                            <tr>
+                                <td id="topicPrompt" width="60px" align="left">Topic:</td>
+                                <td align="left">
+                                    <select id="topic" onchange="getCrossReferenceLink('',$('#topic').val(), '');">
+                                        <option value="">Select Value</option>
+                                        {#foreach $T.d.CrossReferenceTopics as string}
+                                        {#if $T.d.SelectedTopic == $T.string}                       
+                                            <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                        {#else}
+                                            <option value="{$T.string}">{$T.string}</option>
+                                        {#/if}
+                                     {#/for}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Subtopic:</td>
+                                <td align="left">
+                                    <select id="subtopic"  onchange="getCrossReferenceLink('',$('#topic').val(), $('#subtopic').val());">
+                                        {#foreach $T.d.SubTopics as string}                       
+                                         {#if $T.d.SelectedSubTopic == $T.string}                       
+                                            <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                        {#else}
+                                            <option value="{$T.string}">{$T.string}</option>
+                                        {#/if}
+                                     {#/for}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">Section:</td>
+                                <td align="left">
+                                    <select id="section">                        
+                                        {#foreach $T.d.Sections as string}                       
+                                           <option value="{$T.string}">{$T.string}</option>
+                                        {#/for}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" height="5px" align="left">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="padding-top:8px; border-top:1px solid #999;" align="right">
+                        <div class="float" id="crossRefInputError" style="color:Red; display:none">Please select either a Type or a Topic!</div>
+                        <a href="#" onclick="getCrossReferenceResults(IsNull($('#standard').val()), IsNull($('#number').val()), IsNull($('#topic').val()), IsNull($('#subtopic').val()), IsNull($('#section').val()));">
+                        <img src="images/btn-generate-report.gif" alt="Generate Report" border="0"/></a>
+                    </td>
+                </tr>                
+            </table>        
+        </div>
+        <div id="cross-ref-results"></div>
+{#/template MAIN}

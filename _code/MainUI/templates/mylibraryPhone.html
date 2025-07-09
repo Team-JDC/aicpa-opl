@@ -1,0 +1,13 @@
+﻿{#template MAIN}
+{*  My Library section in the new ODPRD 2015 Project *}
+
+<a>
+    <span id="libraryBtn">My Library <i class="fa fa-angle-down"></i></span>
+</a>
+<ul class="submenu">
+    {#foreach $T.d as book}
+        <li><a href="/content/link/{$T.book.TargetDoc}/{$T.book.TargetPointer}"><span>{$T.book.Title}<img src="/elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+    {#/for}                                             
+</ul>
+
+{#/template MAIN}

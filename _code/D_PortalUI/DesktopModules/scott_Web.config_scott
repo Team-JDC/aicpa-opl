@@ -1,0 +1,186 @@
+<configuration>
+	<configSections>
+		<section name="eventlog" type="AICPA.Destroyer.Shared.XmlNodeConfigurationHandler, DestroyerAPI"/>
+	</configSections>
+    <!-- application specific settings -->
+    <appSettings>
+		<add key="ConnectionString" value="Password=Kn0wlys1s;Persist Security Info=True;User ID=sa;Initial Catalog=Portal;Data Source=FafStaging" />
+        <add key="configFile" value="~/PortalCfg.xml" />
+
+		<!-- *** BEGIN DESTROYER PORTAL SETTINGS *** -->
+		<!-- <add key="PortalApp_SiteStatus" value="Staging"/> -->
+		<add key="PortalApp_SiteStatus" value="Staging"/>  
+		<add key="User_SecurityBypassDomain" value="ps;fasb"/>
+		<!-- *** END DESTROYER PORTAL SETTINGS *** -->
+
+		<!-- *** BEGIN DESTROYER API SETTINGS *** -->		
+		<add key="DbConnectionString" value="Password=Kn0wlys1s;Persist Security Info=True;User ID=sa;Initial Catalog=DestroyerStaging52008;Data Source=FafStaging" />
+		<add key="C2bConnectionString" value="Password=Kn0wlys1s;Persist Security Info=True;User ID=sa;Initial Catalog=C2BImposter;Data Source=FafStaging" />
+		<add key="SessionIdCheckTimeInSeconds" value="30" />	
+		<add key="ApiSessionTimeoutInSeconds" value="600" />
+		<add key="DefaultActionPermission" value="1024" />
+		<add key="Book_ContentFolder" value="\\FafStaging\C$\Destroyer_Content_Indexing\books" />
+		<add key="Book_ResourceFolder" value="resources" />
+		<add key="Book_MakefileSchemaPath" value="\\destroyer\Destroyer_Content_Indexing\D_Makefile.xsd" />
+		<add key="c2bWebReferenceUrl" value="https://66.243.40.84/C2BSubscriptionService/SubscriptionService.asmx" />
+		<!-- *** NUMBER OF AAG/ARA TITLES OR CHK TITLES TO DISPLAY BEFORE HIDING THE ROLLUP TABLE *** -->
+		<add key="RollUp_Count" value="3" />
+		<!--<add key="c2bWebReferenceUrl" value="https://Demo1.cpa2biz.com/C2BSubscriptionService/SubscriptionService.asmx" />-->
+		
+		
+		<!--  GAPP Functionality -->
+		<add key="Site_Archive_Book_Id_List" value="faf-assets;faf-broadTransactions;faf-equity;faf-expenses;faf-industry;faf-liabilities;faf-masterGlossary;faf-noticeToConstituents;faf-presentation;faf-revenue"/>
+		<add key="Site_Referencing_Links_Book_Id_List" value="faf-assets;faf-broadTransactions;faf-equity;faf-expenses;faf-industry;faf-liabilities;faf-masterGlossary;faf-noticeToConstituents;faf-presentation;faf-revenue"/>
+		<add key="Site_Xref_Book_Id_List" value="faf-assets;faf-broadTransactions;faf-equity;faf-expenses;faf-industry;faf-liabilities;faf-masterGlossary;faf-noticeToConstituents;faf-presentation;faf-revenue"/>
+		<add key="Site_JSection_Book_Id_List" value="faf-assets;faf-broadTransactions;faf-equity;faf-expenses;faf-industry;faf-liabilities;faf-masterGlossary;faf-noticeToConstituents;faf-presentation;faf-revenue"/>
+		<add key="Site_Join_Topics_list" value="'faf-assets','faf-broadTransactions','faf-equity','faf-expenses','faf-industry','faf-liabilities','faf-presentation','faf-revenue'"/>
+		
+		
+		
+
+		<!-- Site XML filename used as input for Endeca builds -->
+		<add key="SiteIndex_SiteXmlFilename" value="Destroyer_Site.xml" />
+
+		<!-- Endeca project folders -->
+		<add key="SiteIndex_EndecaTemplateProjectFolder" value="\\Endeca\Destroyer_Content_Indexing\template_project" />
+		<add key="SiteIndex_EndecaStagingProjectFolder" value="\\Endeca\Destroyer_Content_Indexing\staging_project" />
+		<add key="SiteIndex_EndecaProductionProjectFolder" value="\\Endeca\Destroyer_Content_Indexing\production_project" />
+
+		<!-- Endeca relative file paths -->
+		<add key="SiteIndex_EndecaPipelineRelativePath" value="data\forge_input\Pipeline.epx" />
+		
+		<!-- Endeca navigation engine connection information -->
+		<add key="SiteIndex_EndecaStagingHostname" value="action_desk" />
+		<add key="SiteIndex_EndecaStagingPort" value="8000" />
+		<add key="SiteIndex_EndecaProductionHostname" value="lobojr" />
+		<add key="SiteIndex_EndecaProductionPort" value="8000" />
+		
+		<!-- Endeca site indexing service connection information -->
+		<add key="SiteIndex_EndecaStagingDataIndexingServiceUrl" value="http://action_desk:8888/services/DataIndexing" />
+		<add key="SiteIndex_EndecaProductionDataIndexingServiceUrl" value="http://lobojr:8888/services/DataIndexing" />
+		
+		<!-- Endeca site indexing service credentials (set in Endeca's tomcat-users.xml) -->
+		<add key="SiteIndex_EndecaProductionDataIndexingServiceUsername" value="webservices" />
+		<add key="SiteIndex_EndecaStagingDataIndexingServiceUsername" value="webservices" />
+		<add key="SiteIndex_EndecaProductionDataIndexingServicePassword" value="webservices" />
+		<add key="SiteIndex_EndecaStagingDataIndexingServicePassword" value="webservices" />
+		<!-- *** END DESTROYER API SETTINGS *** -->	
+		
+		<!-- Quick Find XML Location -->
+		<add key="TaxonomyXmlLocation" value="~/xml/taxonomy.xml" />
+		<!-- ** Quick Find XML Location ** -->	
+
+    </appSettings>
+
+    <system.web>
+    
+		<customErrors mode="Off" defaultRedirect="error.aspx">
+			<error statusCode="500" redirect="error.aspx?errorType=500"/>
+			<error statusCode="404" redirect="error.aspx?errorType=404"/>
+			<error statusCode="403" redirect="error.aspx?errorType=403"/>
+		</customErrors>
+		
+		<!-- this is a temporary setting to allow for remote storage of document content; this should not be used in production -->
+		<identity impersonate="true" userName="knowlysis\Destroyer" password="Kn0wlys1s" />
+
+        <!-- set debugmode to false for running application -->
+        <compilation debug="true" />
+
+        <!--The Portal Starter Kit supports either Forms authentication (Internet)
+            or Windows authentication (for intranets).  Forms Authentication is
+            the default.  To change to Windows authentication, comment the 
+            <authentication mode="Forms"> section below, and uncomment the 
+            <authentication mode="Windows"> section. -->
+            
+        <authentication mode="Forms">
+            <forms name=".ASPXAUTH" protection="All" timeout="60" />
+        </authentication>
+        
+        <!--<authentication mode="Windows" />
+        <authorization>
+            <deny users="?" />
+        </authorization>-->
+        
+        <httpRuntime useFullyQualifiedRedirectUrl="true" />
+         <globalization fileEncoding="utf-8" requestEncoding="utf-8" responseEncoding="utf-8"/>
+        <!-- Adapter configuration for mobile controls used in the portal -->
+        <mobileControls>
+            <device name="PortalHtmlDeviceAdapters" inheritsFrom="HtmlDeviceAdapters">
+                <control name="AICPA.Destroyer.UI.Portal.MobileControls.TabbedPanel, ASPNETPortal" adapter="AICPA.Destroyer.UI.Portal.MobileControls.HtmlTabbedPanelAdapter,ASPNETPortal" />
+                <control name="AICPA.Destroyer.UI.Portal.MobileControls.LinkCommand, ASPNETPortal" adapter="AICPA.Destroyer.UI.Portal.MobileControls.HtmlLinkCommandAdapter,ASPNETPortal" />
+			</device>
+            <device name="PortalChtmlDeviceAdapters" inheritsFrom="ChtmlDeviceAdapters">
+                <control name="AICPA.Destroyer.UI.Portal.MobileControls.TabbedPanel, ASPNETPortal" adapter="AICPA.Destroyer.UI.Portal.MobileControls.ChtmlTabbedPanelAdapter,ASPNETPortal" />
+            </device>
+            <device name="PortalWmlDeviceAdapters" inheritsFrom="WmlDeviceAdapters">
+                <control name="AICPA.Destroyer.UI.Portal.MobileControls.TabbedPanel, ASPNETPortal" adapter="AICPA.Destroyer.UI.Portal.MobileControls.WmlTabbedPanelAdapter,ASPNETPortal" />
+            </device>
+        </mobileControls>
+        
+        <!-- Mobile device filters used for customizing portal -->
+        <deviceFilters>
+            <filter name="isJScript" compare="javascript" argument="true" />
+            <filter name="isPocketIE" compare="browser" argument="Pocket IE" />
+            <filter name="isHTML32" compare="preferredRenderingType" argument="html32" />
+        </deviceFilters>
+        <pages validateRequest="true" /> 
+    </system.web>
+    	<!--
+
+	***Configuring the Applications EventLog***
+	 
+	The application will log events to the Database EventLog table according to the 
+	severity level of the event log being written. If the severity level's integer value
+	is less than or equal to to the configured log level for the method, module, or event
+	type than the event will be logged to the database.
+
+	The EventLog will support logging three different types of events.
+		1. Error: Events that occured because of a runtime execution error.
+		2. Usage: Events that are used to determine how the application is being used.
+		3. Info: "Trace-like" detailed events that are useful for debugging.
+		
+	Logging Configuration Order of Precedence:
+		1. Is there a method logging rule that matches the method writing the log?
+		2. Is there a module logging rule that matches the module writing the log?
+		3. Is there a default rule applied to the event type?
+
+	Examples:
+		1. Setting '<method name="GetContent" level="4"/>' will instruct the application to
+		log all 'GetContent' events of severity 1-4.
+		2. If there is not a rule for the method, the module's log-level is used. Setting
+		'<module name="Document" level="5">' will instruct the application to log all
+		loggable events occuring within 'Document' that have a severity of 1-5.
+		3. Setting '<event type="Usage" level="6">' will log all events of type Usage that don't have a
+		more granular module/method log-level configuration.
+		
+	-->
+	<eventlog>
+		<event type="Error" level="5">
+			<module name="Book" level="5">
+				<method name="BookBuild" level="8"/>
+			</module>
+			<module name="Site" level="5">
+				<method name="SiteBuild" level="8"/>
+			</module>
+			<module name="SiteIndex" level="5">
+				<method name="SiteIndexBuild" level="8"/>
+			</module>						
+		</event>
+		<event type="Info" level="5"/>
+		<event type="Usage" level="6">
+			<module name="Document" level="4">
+				<method name="GetContent" level="10"/>
+			</module>
+			<module name="Site" level="4">
+				<method name="GetBook" level="8"/>
+			</module>
+			<!-- used by the D_UnitTester do not remove or test cases will fail -->
+			<module name="CreateEvent" level="5">
+				<method name="LogEvent_SpecificMethodSetting" level="10"/>
+				<method name="LogEvent_SpecificMethodSettingWithUser" level="10"/>
+				<method name="DO_NOT_LogEvent_SpecificMethodSetting" level="1"/>
+				<method name="DO_NOT_LogEvent_SpecificMethodSettingWithUser" level="1"/>
+			</module>
+		</event>
+	</eventlog>
+</configuration>

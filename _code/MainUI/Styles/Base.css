@@ -1,0 +1,15 @@
+a
+{
+	color: #0e82c7;
+	text-decoration: none;
+	font-weight: inherit;
+	cursor: pointer;
+}
+
+a:hover
+{
+	text-decoration: none;
+	color:#ff6700;
+}
+
+

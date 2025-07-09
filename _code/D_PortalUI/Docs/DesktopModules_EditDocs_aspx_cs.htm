@@ -1,0 +1,213 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.IO;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> EditDocs : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox NameField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox CategoryField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox PathField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBox Upload;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton updateButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton cancelButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton deleteButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label CreatedBy;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label CreatedDate;
+<font color= "blue">        protected </font>System.Web.UI.HtmlControls.HtmlInputFile FileUpload;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBox storeInDatabase;
+<font color= "blue">    </font>
+<font color= "blue">        </font>int itemId = 0;
+<font color= "blue">        </font>int moduleId = 0;
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load event on this Page is used to obtain the ModuleId</font>
+<font color= "green">        // and ItemId of the document to edit.</font>
+<font color= "green">        //</font>
+<font color= "green">        // It then uses the AICPA.Destroyer.UI.Portal.DocumentDB() data component</font>
+<font color= "green">        // to populate the page's edit controls with the document details.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Determine ModuleId of Announcements Portal Module</font>
+<font color= "blue">            </font>moduleId = Int32.Parse(Request.Params["Mid"]);
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to edit this module</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.HasEditPermissions(moduleId) == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Determine ItemId of Document to Update</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["ItemId"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>itemId = Int32.Parse(Request.Params["ItemId"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If the page is being requested the first time, determine if an</font>
+<font color= "green">            // document itemId value is specified, and if so populate page</font>
+<font color= "green">            // contents with the document details</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(itemId != 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // Obtain a single row of document information</font>
+<font color= "blue">                    </font>AICPA.Destroyer.UI.Portal.DocumentDB documents = new AICPA.Destroyer.UI.Portal.DocumentDB();
+<font color= "blue">                    </font>SqlDataReader dr = documents.GetSingleDocument(itemId);
+<font color= "blue">                </font>
+<font color= "green">                    // Load first row into Datareader</font>
+<font color= "blue">                    </font>dr.Read();
+<font color= "blue"></font>
+<font color= "green">                    // Security check.  verify that itemid is within the module.</font>
+<font color= "blue">                    </font>int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+<font color= "blue"></font><font color= "blue">                    if </font>(dbModuleID != moduleId)<font color= "blue"></font>
+<font color= "blue">                    </font>{
+<font color= "blue">                        </font>dr.Close();
+<font color= "blue">                        </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">                    </font>}
+<font color= "blue"></font>
+<font color= "blue">                    </font>NameField.Text = (String) dr["FileFriendlyName"];
+<font color= "blue">                    </font>PathField.Text = (String) dr["FileNameUrl"];
+<font color= "blue">                    </font>CategoryField.Text = (String) dr["Category"];
+<font color= "blue">                    </font>CreatedBy.Text = (String) dr["CreatedByUser"];
+<font color= "blue">                    </font>CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+<font color= "blue">                </font>
+<font color= "blue">                    </font>dr.Close();
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "green">                // Store URL Referrer to return to portal</font>
+<font color= "blue">                </font>ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateBtn_Click event handler on this Page is used to either</font>
+<font color= "green">        // create or update an document.  It  uses the AICPA.Destroyer.UI.Portal.DocumentDB()</font>
+<font color= "green">        // data component to encapsulate all data functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UpdateBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Only Update if Input Data is Valid</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsValid == true) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Create an instance of the Document DB component</font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.DocumentDB documents = new AICPA.Destroyer.UI.Portal.DocumentDB();
+<font color= "blue"></font>
+<font color= "green">                // Determine whether a file was uploaded</font>
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>((storeInDatabase.Checked == true) && (FileUpload.PostedFile != null)) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // for web farm support</font>
+<font color= "blue">                    </font>int length = (int) FileUpload.PostedFile.InputStream.Length;
+<font color= "blue">                    </font>String contentType = FileUpload.PostedFile.ContentType;
+<font color= "blue">                    </font>byte[] content = new byte[length];
+<font color= "blue"></font>
+<font color= "blue">                    </font>FileUpload.PostedFile.InputStream.Read(content, 0, length);
+<font color= "blue">        </font>
+<font color= "green">                    // Update the document within the Documents table</font>
+<font color= "blue">                    </font>documents.UpdateDocument( moduleId, itemId, Context.User.Identity.Name, NameField.Text, PathField.Text, CategoryField.Text, content, length, contentType );        
+<font color= "blue">                </font>}
+<font color= "blue"></font><font color= "blue">                else </font>{<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                    if </font>((Upload.Checked == true) && (FileUpload.PostedFile != null)) {<font color= "blue"></font>
+<font color= "blue">                </font>
+<font color= "green">                        // Calculate virtualPath of the newly uploaded file</font>
+<font color= "blue">                        </font>String virtualPath = "~/uploads/" + Path.GetFileName(FileUpload.PostedFile.FileName);
+<font color= "blue"></font>
+<font color= "green">                        // Calculate physical path of the newly uploaded file</font>
+<font color= "blue">                        </font>String phyiscalPath = Server.MapPath(virtualPath);
+<font color= "blue"></font>
+<font color= "green">                        // Save file to uploads directory</font>
+<font color= "blue">                        </font>FileUpload.PostedFile.SaveAs(phyiscalPath);
+<font color= "blue"></font>
+<font color= "green">                        // Update PathFile with uploaded virtual file location</font>
+<font color= "blue">                        </font>PathField.Text = virtualPath;
+<font color= "blue">                    </font>}
+<font color= "blue">                    </font>documents.UpdateDocument( moduleId, itemId, Context.User.Identity.Name, NameField.Text, PathField.Text, CategoryField.Text, new byte[0], 0, "" );
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "green">                // Redirect back to the portal home page</font>
+<font color= "blue">                </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">    </font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteBtn_Click event handler on this Page is used to delete an</font>
+<font color= "green">        // a document.  It  uses the AICPA.Destroyer.UI.Portal.DocumentsDB()</font>
+<font color= "green">        // data component to encapsulate all data functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> DeleteBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Only attempt to delete the item if it is an existing item</font>
+<font color= "green">            // (new items will have "ItemId" of 0)</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(itemId != 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.DocumentDB documents = new AICPA.Destroyer.UI.Portal.DocumentDB();
+<font color= "blue">                </font>documents.DeleteDocument(itemId);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Redirect back to the portal home page</font>
+<font color= "blue">            </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The CancelBtn_Click event handler on this Page is used to cancel</font>
+<font color= "green">        // out of the page, and return the user back to the portal home</font>
+<font color= "green">        // page.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> CancelBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Redirect back to the portal home page</font>
+<font color= "blue">            </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>EditDocs() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue">            </font>this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
+<font color= "blue">            </font>this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
+<font color= "blue">            </font>this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue"></font>
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

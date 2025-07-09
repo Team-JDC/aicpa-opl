@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Endeca.Logging</name>
+    </assembly>
+    <members>
+        <member name="T:Endeca.Logging.LogConnection">
+            <summary>
+            This class is used to create an HTTP connection to the Log Server, where 
+            LogEntry objects can be sent and recorded. The LogConnection contains the 
+            hostname and port of the Log Server.
+            </summary>
+        </member>
+        <member name="M:Endeca.Logging.LogConnection.#ctor(System.String,System.Int32)">
+            <summary>
+            Initialize a LogConnection.
+            </summary>
+            <param name="host">The hostname of the log server</param>
+            <param name="port">The port used to connect to the log server</param>
+        </member>
+        <member name="M:Endeca.Logging.LogConnection.#ctor(System.String,System.String)">
+            <summary>
+            Initialize a LogConnection.
+            </summary>
+            <param name="host">The hostname of the log server</param>
+            <param name="port">The port used to connect to the log server</param>
+        </member>
+        <member name="M:Endeca.Logging.LogConnection.log(Endeca.Logging.LogEntry)">
+            <summary>
+            Sends a log request to the Log Server without waiting for a response. 
+            Using this method instead of LogAndWait() can improve performance,
+            because the extra step of insuring the Log Server received the
+            request is not performed.
+            </summary>
+            <param name="entry">The LogEntry object to send to the server</param>
+        </member>
+        <member name="M:Endeca.Logging.LogConnection.logAndWait(Endeca.Logging.LogEntry)">
+            <summary>
+            Sends a log request to the server, and reads the response
+            </summary>
+            <param name="entry">The LogEntry object to send to the server</param>
+            <returns>True if the entry was successfully logged.</returns>
+        </member>
+        <member name="T:Endeca.Logging.LogEntry">
+            <summary>
+            This class contains the logging information sent from the application 
+            to the Log Server. Each LogEntry stores data about the current query 
+            in key/value pairs. Examples of the kind of data that can be recorded 
+            in a LogEntry include the session ID, the number of records in the 
+            current navigation state, and the active sort key.
+            </summary>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.#ctor">
+            <summary>
+            Construct an empty LogEntry
+            </summary>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.#ctor(System.Collections.IDictionary)">
+            <summary>
+            Construct a LogEntry with the given key-value pairs.
+            </summary>
+            <param name="keyValuePairs">
+            <see cref="T:System.Collections.IDictionary"/> used to initialize this LogEntry
+            </param>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.AddString(System.String,System.String)">
+            <summary>
+            Set the given key to the given string value.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to add.
+            </param>
+            <param name="value">
+            The <see cref="T:System.String"/> to use as the value of the element to add.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            An element with the same key already exists 
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.GetString(System.String)">
+            <summary>
+            Get the value associated with the given key.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to get.
+            </param>
+            <returns><c>null</c> if no value is associated with the given key.</returns>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.AddInt(System.String,System.Int32)">
+            <summary>
+            Set the given key to the given integer value.  The number will
+            be stored as a String in decimal representation.   Therefore, you 
+            can retrieve the value later by calling either by getInt(),
+            getDouble(), or getString().
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to set.
+            </param>
+            <param name="value">
+            The int to use as the value of the element to add.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            An element with the same key already exists 
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.GetInt(System.String)">
+            <summary>
+            Get the integer value associated with the given key.  If the value
+            was originally set via setString(), then this method will still 
+            succeed as long as the value is a valid decimal integer.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to get.
+            </param>
+            <returns>
+            Returns the integer value associated with the given key.
+            </returns>
+            <exception cref="T:System.FormatException">
+            If the value is not numeric.
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+            if no value is associated with the given key
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.AddDouble(System.String,System.Double)">
+            <summary>
+            Set the given key to the given double value.  The number will
+            be stored as a <see cref="T:System.String"/> in decimal representation.
+            Therefore, you can retrieve the value later by calling either 
+            by getDouble() or getString().
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to set.
+            </param>
+            <param name="value">
+            The int to use as the value of the element to add.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            An element with the same key already exists 
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.GetDouble(System.String)">
+            <summary>
+            Get the value associated with the given key.  If the value
+            was originally set via setInt() or setString(), then this method 
+            will still succeed as long as the value is a valid decimal number.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to get.
+            </param>
+            <returns>
+            Returns the value associated with the given key.
+            </returns>
+            <exception cref="T:System.FormatException">
+            If the value is not numeric.
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+            if no value is associated with the given key
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.AddList(System.String,System.Collections.IList)">
+            <summary>
+            Set the given key to the list value.  Note that the values in the
+            list will all be converted to strings, so getList will return a
+            list of Strings.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to set.
+            </param>
+            <param name="value">
+            The <see cref="T:System.Collections.IList"/> to use as the value of the element to add.
+            </param>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.GetList(System.String)">
+            <summary>
+            Get the given list value associated with a given key. If the value
+            was not originally set using setList, this method will return
+            a list with a single item containing the string representation
+            of the original value.
+            
+            Any changes made to the <see cref="T:System.Collections.IList"/> object after
+            calling getList will not be reflected in the LogEntry's value.
+            
+            In order to change the value of the list contents, setList() must
+            be used.
+            </summary>
+            <param name="key">
+            The <see cref="T:System.String"/> to use as the key of the element to get.
+            </param>
+            <returns>
+            Returns the list value associated with the given key.
+            </returns>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the entire <see cref="T:Endeca.Logging.LogEntry"/> to a compatible one-dimensional 
+            <see cref="T:System.Array"/>, starting at the specified index of the target array.
+            </summary>
+            <param name="array">
+            The one-dimensional <see cref="T:System.Array"/> that is the destination of the <see cref="T:System.Collections.DictionaryEntry"/> 
+            objects copied from <see cref="T:Endeca.Logging.LogEntry"/>. The <c>Array</c> must have zero-based indexing. 
+            </param>
+            <param name="arrayIndex">
+            The zero-based index in <paramref name="array"/> at which copying begins. 
+            </param>
+            <remarks>
+            The specified array must be of a compatible type.
+            <para>This method uses <see cref="M:System.Array.Copy(System.Array,System.Array,System.Int32)"/> to copy the elements.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="array"/> is a <c>null</c> reference.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="arrayIndex"/> is less than zero.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="array"/> is multidimensional.
+            <para>-or-</para>
+            <para>
+            <paramref name="arrayIndex"/> is equal to or greater than the length of <paramref name="array"/>.
+            </para>
+            <para>-or-</para>
+            <para>
+            The number of elements in the source <see cref="T:Endeca.Logging.LogEntry"/> is greater than the available
+            space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.
+            </para>
+            </exception>
+            <exception cref="T:System.InvalidCastException">
+            The type of the source <see cref="T:Endeca.Logging.LogEntry"/> be cast automatically
+            to the type of the destination <paramref name="array"/>.
+            </exception>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.Add(System.Object,System.Object)">
+            <summary>
+            Adds a key/value pair to this LogEntry object. 
+            </summary>
+            <param name="key">
+            The <see cref="T:System.Object"/> to use as the key of the element to add.
+            </param>
+            <param name="value">
+            The <see cref="T:System.Object"/> to use as the value of the element to add.
+            </param>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.Clear">
+            <summary>
+            Clears the contents of this <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.Contains(System.Object)">
+            <summary>
+            Determines whether the <see cref="T:Endeca.Logging.LogEntry"/> contains
+            an element with the specified key.
+            </summary>
+            <param name="key">
+            They key to locate in the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </param>
+            <returns>
+            <c>true</c> if the <see cref="T:Endeca.Logging.LogEntry"/> contains an element
+            with they key; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.GetEnumerator">
+            <summary>
+            Returns an <see cref="T:System.Collections.IDictionaryEnumerator"/> 
+            for the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IDictionaryEnumerator"/> for the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </returns>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.Remove(System.Object)">
+            <summary>
+            Removes the item with the specified key
+            </summary>
+            <param name="key">
+            The key of the element to remove.
+            </param>
+        </member>
+        <member name="M:Endeca.Logging.LogEntry.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator for the entire <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> for the entire <see cref="T:Endeca.Logging.LogEntry"/>
+            </returns>
+            <remarks>
+            Enumerators only allow reading the data in the collection. Enumerators cannot 
+            be used to modify the underlying collection.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.Count">
+            <summary>
+            Gets the number of elements actually contained in the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+            <value>
+            The number of elements actually contained in the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to the <see cref="T:Endeca.Logging.LogEntry"/>
+            is synchronized (thread-safe).
+            </summary>
+            <value>
+            <c>true</c> if access to the <see cref="T:Endeca.Logging.LogEntry"/> is synchronized
+             (thread-safe); otherwise, <c>false</c>. The default is <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.SyncRoot">
+            <summary>
+            This operation is not supported.
+            </summary>
+            <value>
+            An object that can be used to synchronize access to the <see cref="T:Endeca.Logging.LogEntry"/>.
+            </value>
+            <exception cref="T:System.NotSupportedException">
+            Always.
+            </exception>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.IsFixedSize">
+            <summary>
+            Gets a value indicating whether the 
+            <see cref="T:Endeca.Logging.LogEntry"/> has a fixed size.
+            </summary>
+            <value>
+            <c>true</c> if the <see cref="T:Endeca.Logging.LogEntry"/> is a fixed size;
+            otherwise, <c>false</c>.  The default is <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the 
+            <see cref="T:Endeca.Logging.LogEntry"/> is read-only.
+            </summary>
+            <value>
+            <c>true</c> if the <see cref="T:Endeca.Logging.LogEntry"/> is read-only;
+            otherwise, <c>false</c>.  The default is <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.Item(System.Object)">
+            <summary>
+            Gets or sets an element with the specified key.
+            </summary>
+            <param name="key">
+            The key of the element to get.
+            </param>
+            <value>
+            An element with the specified key.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.Keys">
+            <summary>
+            Gets an <see cref="T:System.Collections.ICollection"/> containing the 
+            keys of this <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+            <value>
+            An <see cref="T:System.Collections.ICollection"/> containing the 
+            keys of this <see cref="T:Endeca.Logging.LogEntry"/>.
+            </value>
+        </member>
+        <member name="P:Endeca.Logging.LogEntry.Values">
+            <summary>
+            Gets an <see cref="T:System.Collections.ICollection"/> containing the 
+            values of this <see cref="T:Endeca.Logging.LogEntry"/>.
+            </summary>
+            <value>
+            An <see cref="T:System.Collections.ICollection"/> containing the 
+            values of this <see cref="T:Endeca.Logging.LogEntry"/>.
+            </value>
+        </member>
+        <member name="T:Endeca.Logging.LogException">
+            <summary>
+            Represents an exception that may arise from trying to submit a 
+            LogEntry to the logging server.
+            </summary>
+        </member>
+        <member name="M:Endeca.Logging.LogException.#ctor(System.String)">
+            <summary>
+            Represents an exception that may arise from trying to submit a 
+            LogEntry to the logging server. Includes a message describing
+            the exception.
+            </summary>
+            <param name="s">A message describing the exception.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1283 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Content.aspx.cs" Inherits="D_ODPPortalUI.Content" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphMainContainer" runat="server">
+
+
+
+          <div id="" class="tab_content2 coda-slider-wrapper">
+                <div class="coda-slider preload" id="coda-slider-1">
+                    <div class="panel" align="center">
+                    <div class="panel-wrapper">
+                    	<img class="top50 bot20" src="images/tier3-1.gif">
+                        <p class="ps_box_-_guide">PREPARED BY THE ASSESSING AND RESPONDING
+                        TO AUDIT RISK IN A FINANCIAL STATEMENT AUDIT GUIDE TASK FORCE</p>
+                        <p class="ps_center">
+                        <span class="italic"><span class="bold"><b>Assessing and Responding to Audit Risk in a Financial Statement Audit</b></span></span>
+                        </p>
+                        <p class="ps_center">
+                        <span class="bold"><b>(Revised edition
+                        as of October 1, 2009)</b></span>
+                        </p>
+                    </div>
+                    </div>
+                    
+                    <div class="panel">
+                    <div class="panel-wrapper">
+                        <h3>Chapter 1</h3>
+                        
+                        
+                        <p class="section-title"><i>Overview of Applying the Audit RiskStandards</i></p>
+                       
+                        <br />
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        <h3 class="title">Observations
+                        and Suggestions</h3>
+                        <p class="ps_sub_heading">
+                        <span class="bold"><b>Illustration 1&ndash;1<BR />Overview
+                        of Applying the Audit Risk Model</b></span>
+                        </p>
+                        </div>
+                        </div>
+                        <br />
+                        <div align="center">
+                            <p class="ps_center">
+                            <span class="inlinemediaobject">
+                            <div onClick="javascript:showLarge('images_img1-1')" id="images_img1-1-small">
+                            <p class="small">Click to enlarge</p>
+                            <img border="1" height="160" width="160" src="resources/img1-1.gif"></div>
+                            <div style="display:none;" onClick="javascript:showSmall('images_img1-1')" id="images_img1-1-large">
+                            <p class="small">Click to shrink</p>
+                            <img src="resources/img1-1.gif" width="750"></div>
+                            </span>&nbsp;</p>
+                        </div>
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        
+                        <p class="ps_indent_0">This illustration describes a high-level
+                        approach to the process that you follow to apply the audit risk standards
+                        to your audits by (1) assessing the risks of material misstatement,
+                        (2) using this risk assessment to plan and perform further audit procedures,
+                        and (3) evaluating the results of your procedures and reaching conclusions
+                        about the financial statements. </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>An Iterative Process. </b></span>Although
+                        the flowchart may indicate
+                        to some a linear audit process, an audit is, in fact, an iterative
+                        process in which you may repeat as the audit progresses the steps
+                        described in the flowchart as a result of new information obtained.
+                        In the flowchart, the dotted line connecting later steps in the process
+                        to earlier steps illustrates the potential iterative nature of the
+                        audit process.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic">As indicated by the
+                        dotted line, the results of further audit procedures provide you with
+                        information that you use to confirm or modify your original risk assessment,
+                        which in turn, may lead to additional audit procedures or to a conclusion.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Perform Risk Assessment Procedures to Gain an Understanding of the
+                        Entity.</b></span>
+                        The first step in the process is to perform </span>
+                        risk assessment procedures (<span class="italic">for example,
+                        inquiry, observation, or review of documents) to gather information
+                        and gain an understanding of your client and its environment, including
+                        its internal control.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Gain an Understanding of the Entity and Its Environment, Including
+                        Internal Control.</b></span>
+                        You are required to gain an understanding
+                        of the entity and its environment, including internal control to identify
+                        and assess risks of material misstatement and to design further audit
+                        procedures. As you gather information about your client, you will
+                        begin to form an understanding of its business and the environment
+                        in which it operates. An important part of this understanding is your
+                        evaluation of the design of internal control and a determination of
+                        whether controls have been implemented (that is, placed in operation).
+                        This knowledge of the client, including the design of its internal
+                        control, may prompt you to seek additional information until you are
+                        satisfied with your level of understanding. Specifically, this knowledge
+                        and understanding of the client will enable you to assess whether
+                        there are risks of material misstatement in the financial statements
+                        that you are auditing. These risks should be expressed in terms of
+                        what can go wrong in specific accounts and disclosures and their related
+                        assertions.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Materiality.</b></span>
+                        As you gather information and perform risk
+                        assessment procedures, you will want to have a materiality threshold
+                        in mind. Your risk assessment is responsive to judgments about financial
+                        statement materiality. Materiality is a critical judgment that affects
+                        all steps in the audit process. Because this judgment is not clearly
+                        associated with a specific phase, and is responsive to some information
+                        you will be gathering before assessing the risks of material misstatement,
+                        it is not separately depicted in the illustration.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Assess the Risks of Material Misstatement.</b></span>
+                        After identifying
+                        risks you will (1) relate them to what can go wrong in preparing the
+                        financial statements and (2) assess the likelihood and significance
+                        of the risk. When making these risk assessments, consider that</span>
+                        </p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">the </span>
+                        risks of material
+                        misstatement <span class="italic">can be a combination of inherent
+                        and control risk. This guide, consistent with the underlying auditing
+                        standards, describes a combined inherent and control risk assessment.
+                        However, you are not required to perform a combined risk assessment,
+                        and you may choose to make separate assessments of inherent and control
+                        risk.</span>
+                        </p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">risks of material misstatement
+                        can reside at either the financial statement level or the assertion
+                        level for specific accounts. For example, a risk relating to the regulatory
+                        environment in which your client operates is a pervasive risk that
+                        affects many of the financial statement assertions in many accounts.
+                        On the other hand, a risk related to the valuation of inventory is
+                        restricted to that account and assertion and the related determination
+                        of cost of sales. Understanding the differences between the two types
+                        of risks is important because these differences drive your audit response.
+                        You will perform different procedures to understand and respond to
+                        financial statement level risks than you will need to understand and
+                        respond to assertion level risks.</span>
+                        </p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">your assessment of risk at
+                        the assertion level should be specific to the unique circumstances
+                        of the entity. For example, assessing the risk relating to the existence
+                        assertion of an account to be </span>
+                        high <span class="italic">generally would not be sufficient to design effective further audit
+                        procedures. Instead, in this example, your assessment of risk should
+                        describe how the existence assertion could contain a material misstatement,
+                        given the specific business processes, information processing, and
+                        controls in use at the particular client. It is common to use standard
+                        audit programs and example audit practice aids to complete your engagement.
+                        However, when using these standard programs and examples, you should
+                        consider carefully whether they appropriately reflect the unique circumstances
+                        of your client.</span>
+                        </p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">your risk assessments should
+                        be supported by sufficient appropriate audit evidence. It is not appropriate
+                        to simply designate a risk to be at a given level without any support
+                        for the risk assessment.</span>
+                        </p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">to the extent possible, even
+                        risks that reside at the financial statement level should be related
+                        to what can go wrong at the assertion level.</span>
+                        </p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Design Further Audit Procedures to Respond to Assessed Risks.</b></span>
+                        Once you have assessed the risks of material misstatement, you will
+                        design </span>
+                        further audit procedures <span class="italic">in response to these risks. There are two types of</span>
+                        further
+                        audit procedures<span class="italic">: tests of controls and substantive
+                        procedures. Often, you will perform a combination of these two types
+                        of procedures. Of critical importance in performing an effective audit
+                        is to develop a clear link between the identified risks, the assessment
+                        of those risks, and the further audit procedures performed in response
+                        to the assessed risks. By relating risks of material misstatement
+                        to specific assertions, you will be able to establish this necessary
+                        linkage.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic"><span class="bold"><b>Evaluate Audit Findings and Evidence. </b></span>At
+                        the conclusion
+                        of the audit, you must evaluate the results of your audit procedures
+                        and reach a conclusion concerning whether the financial statements
+                        are free of material misstatement. You also should determine whether
+                        you have obtained sufficient appropriate audit evidence to support
+                        your audit opinion at a high level of assurance. Finally, you must
+                        evaluate identified control deficiencies and determine whether these
+                        deficiencies, individually or in combination, are significant deficiencies
+                        or material weaknesses. </span>
+                        </p>
+                        </div>
+                        </div>
+                        <br />
+                        <p class="ps_indent_0">
+                        <span class="italic">On every audit you
+                        are required to assess the risks that individual financial statement
+                        assertions are materially misstated. This assessment of risk then
+                        serves as the basis for the design of further audit procedures. This
+                        chapter provides an overview of this process, beginning with the information
+                        about the client and its environment that is necessary for you to
+                        identify risks, how you use that information to assess risk at the
+                        assertion level, and how that risk assessment helps you determine
+                        further audit procedures.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic">This chapter provides
+                        only a summary of the risk assessment process. Subsequent chapters
+                        provide additional detail, as well as examples and illustrations of
+                        how the general guidance described here might be applied. Please refer
+                        to subsequent chapters for those details.</span>
+                        </p>
+                    </div>  
+                    </div>
+                    
+                    <div class="panel">
+                    <div class="panel-wrapper">
+                    	<h3>Summary</h3>
+                        <div style="margin-left:40px;">
+                            <p class="section-title">1.42</p>
+                            
+                            <p class="ps_para_number">
+                            <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Illustration&#32;1-2
+                            summarizes the
+                            guidance provided in this chapter.</p>
+                            <p class="ps_indent_0">
+                            <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Chapters&#32;3&ndash;6
+                            of this guide provide more detailed guidance,
+                            examples, and illustrations of the overview material described in
+                            this chapter. To apply this guidance on your audit, you will need
+                            to have a working knowledge of key risk assessments and terms. The
+                            next chapter of this guide provides you with this knowledge.</p>
+                        </div>
+                        <br />
+                        <p class="ps_sub_heading">
+                        <span class="bold"><b>Illustration 1-2</b></span><BR /><span class="bold"><b>Summary
+                        of the Risk Assessment Process</b></span>
+                        </p>
+                        <div align="center">
+                            <p class="ps_center">
+                            <span class="inlinemediaobject">
+                            <div onClick="javascript:showLarge('images_Illustration-1-2-(1)')" id="images_Illustration-1-2-(1)-small">
+                            <p class="small">Click to enlarge</p>
+                            <img border="1" height="160" width="160" src="resources/Illustration-1-2-(1).gif"></div>
+                            <div style="display:none;" onClick="javascript:showSmall('images_Illustration-1-2-(1)')" id="images_Illustration-1-2-(1)-large">
+                            <p class="small">Click to shrink</p>
+                            <img src="resources/Illustration-1-2-(1).gif" width="750"></div>
+                            </span>&nbsp;</p>
+                            <p class="ps_center">
+                            <span class="inlinemediaobject">
+                            <div onClick="javascript:showLarge('images_Illustration-1-2-(2)')" id="images_Illustration-1-2-(2)-small">
+                            <p class="small">Click to enlarge</p>
+                            <img border="1" height="160" width="160" src="resources/Illustration-1-2-(2).gif"></div>
+                            <div style="display:none;" onClick="javascript:showSmall('images_Illustration-1-2-(2)')" id="images_Illustration-1-2-(2)-large">
+                            <p class="small">Click to shrink</p>
+                            <img src="resources/Illustration-1-2-(2).gif" width="750"></div>
+                            </span>&nbsp;</p>
+                        </div>
+                    </div>  
+                    </div>
+                    
+                    <div class="panel">
+                    <div class="panel-wrapper">
+                    	<h3 > Assessing the Risks of Material Misstatement</h3>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.06</span><a href="#"><img src="images/icon-hot.gif" alt="Hot Topic" border="0" /></a>
+                        </p>
+                        
+                        <p class="ps_para_number">The risks of material misstatement are
+                        the client&rsquo;s risks, that is, they exist independently of your audit.
+                        Many factors affect the risks of material misstatement, including
+                        the following:</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s industry, its regulatory environment,
+                        and other external factors</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        nature of the entity, for example its operations,
+                        ownership, and financing</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s objectives, strategies, and related business
+                        risks</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>How
+                        client management measures and reviews the company&rsquo;s
+                        financial performance</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s internal control</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">Thus, the first step in assessing the risks
+                        of material misstatement is to gather information and gain an understanding
+                        of these and other items that create those risks.</p>
+                        <p class="ps_indent_0">(AU sec. 314 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.21)</p>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.07<a href="javascript:ReverseDisplay('note')"><img src="images/icon-note.gif" alt="Note" border="0" /></a></span>
+                        <div id="note" style="display:none;">
+                        	<b>Note Title</b>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula tincidunt purus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin a nisl arcu. Proin venenatis congue felis, nec sagittis nibh ultricies sit amet. Phasellus ut dui enim, a varius ante. Suspendisse potenti. Pellentesque ipsum massa, vulputate ac pulvinar non, varius ut sapien.</p>
+                            <p>Proin ornare arcu eget mi vestibulum malesuada. Sed euismod, quam sed euismod cursus, nisl libero aliquet sapien, eget tincidunt diam sem sed arcu. Etiam vehicula faucibus sem sit amet porta. Maecenas commodo sem a libero posuere iaculis. Praesent aliquam venenatis faucibus. Nullam eget ligula leo. Fusce euismod nisi id sapien lobortis ultricies. </p>
+                        </div>
+                        </p>
+                        
+                        <p class="ps_para_number">Risks of material misstatement may reside
+                        at either the financial statement level or the assertion level.</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">Financial statement level
+                        risks</span>
+                        potentially affect many different assertions. For
+                        example, a lack of qualified personnel in financial reporting roles
+                        (an element of the client&rsquo;s control environment) may affect many different
+                        accounts and several assertions. (AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.15)</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">Assertion-level risks</span>
+                        are limited to one or more specific assertions in an account or
+                        in several accounts, for example, the valuation of inventory or the
+                        occurrence of sales.</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="section-title">
+                        <span class="ps_para_number">2.08</span>
+                        </p>
+                        
+                        <p class="ps_para_number">Your specific response to assessed risk
+                        may differ depending on whether they reside at the financial statement
+                        or assertion level.</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>Financial
+                        statement-level risk typically require an
+                        overall response, such as providing more supervision to the engagement
+                        team or incorporating additional elements of unpredictability in the
+                        selection of your audit procedures. (AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.15)</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>Assertion-level
+                        risk is addressed by the nature, timing,
+                        and extent of further audit procedures, which may include substantive
+                        tests or a combination of tests of controls and substantive tests.</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">For this reason, you should assess the risks
+                        of material misstatement at both the financial statement and the assertion
+                        level. (AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.
+                        .12)</p>
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        <h3 class="title">Observations
+                        and Suggestions</h3>
+                        <p class="ps_indent_0">In many instances, it may be possible to
+                        relate financial statement level risk to an individual assertion or
+                        small group of assertions. For example, the selection and application
+                        of accounting policies typically is thought of as a financial statement
+                        level risk because it has the potential to affect the financial statements
+                        taken as a whole. However, at your client, you may determine that
+                        the selection and application of accounting policies is a risk only
+                        for revenue recognition, as all other accounting policies that are
+                        relevant to the client (for example, depreciation policies) do not
+                        pose a risk.</p>
+                        <p class="ps_indent_0">To the extent possible, you will want to
+                        relate financial statement level risk to individual assertions, as
+                        this will help you design more effective further audit procedures.</p>
+                        <p class="ps_indent_0">As mentioned previously, building unpredictability
+                        into audit procedures is a way to respond to some risks. Unpredictability
+                        can be achieved by varying the nature, extent, and timing of the audit
+                        procedures applied to various accounts, even when risks appear to
+                        be consistent from period to period. Inventory test counts present
+                        significant opportunities for applying this concept when inventories
+                        are significant to operations. Payroll tests may also be varied to
+                        reduce predictability.</p>
+                        </div>
+                        </div>
+                        
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.09</span>
+                        </p>
+                       
+                        <p class="ps_para_number">Your assessment of the risks of material
+                        misstatement (at both the financial statement and the assertion level)
+                        should be directly linked to your overall audit response and to the
+                        design and performance of further audit procedures. For example, if
+                        your understanding of the client, its environment, and its internal
+                        control leads you to assess that there is a significant risk that
+                        inventory quantities are overstated, you would design further audit
+                        procedures to specifically respond to that risk.</p>
+                        
+                       
+                        <h4 class="title">
+                        <span class="ps_subsub_heading italic">Risks of Material Misstatement at
+                        the Assertion Level</span>
+                        </h4>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.10</span>
+                        </p>
+                       
+                        <p class="ps_para_number">The risks of material misstatement consist
+                        of two components:</p>
+                        <p class="ps_indent_hang_2">
+                        <span class="italic">a</span>.<span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="italic">Inherent risk (IR</span>),
+                        which
+                        is the susceptibility of an assertion to a material misstatement,
+                        assuming that there are no related controls. Inherent risk is greater
+                        for some assertions and related account balances, classes of transactions,
+                        and disclosures than for others. <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Table&#32;2-1
+                        provides examples of
+                        some factors that affect inherent risk.</p>
+                        <p class="ps_indent_hang_2">
+                        <span class="italic">b</span>.<span class="tab">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="italic">Control risk (CR)</span>,
+                        which
+                        is the risk that a material misstatement that could occur in an assertion
+                        will not be prevented or detected on a timely basis by the client&rsquo;s
+                        internal control. Control risk is a function of the effectiveness
+                        of the design and operation of the client&rsquo;s internal control.</p>
+                        <p class="ps_indent_0">(AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.21)</p>
+                        <p class="ps_sub_heading">
+                        <span class="bold"><b>Table 2-1<BR />Inherent
+                        Risk Factors</b></span>
+                        </p>
+                        <div class="table">
+                        
+                        <div onClick="javascript:showLarge('aag-arr2_table1')" id="aag-arr2_table1-small">
+                        	<p class="small">Click to enlarge</p>
+                            <img border="1" height="160" width="160" src="resources/tableThumbnail.gif"></div>
+                        <div style="display:none;" id="aag-arr2_table1-large">
+                            <p class="small">Click to shrink</p>
+                            <img onClick="javascript:showSmall('aag-arr2_table1')" src="resources/table-minus.gif"><div class="ps_table_center">
+                                                    <table cellspacing="0" cellpadding="1" border="0" style="border-collapse: collapse;border-top: 0.5pt solid black; border-bottom: 0.5pt solid black; ">
+                        <colgroup>
+                        <col align="center" width="209">
+                        <col align="left" width="24">
+                        <col align="left" width="284">
+                        <col align="left" width="25">
+                        <col align="left" width="211">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                        <td style="border-bottom: 1px solid black; " align="center" valign="top">
+                        <p>
+                        <span class="emphasis"><em>Factor</em></span>
+                        </p>
+                        </td><td style="" align="center" valign="top">&nbsp;</td><td style="border-bottom: 1px solid black; " align="center" valign="top">
+                        <p>
+                        <span class="emphasis"><em>Comments</em></span>
+                        </p>
+                        </td><td style="" align="center" valign="top">&nbsp;</td><td style="border-bottom: 1px solid black; " align="center" valign="top">
+                        <p>
+                        <span class="emphasis"><em>Example</em></span>
+                        </p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>Volume</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Voluminous
+                        transactions may increase the risk of misstatement.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>High
+                        volume may create a strain on most processing systems.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>&nbsp;</p>
+                        <p>Complexity
+                        </p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Complex
+                        calculations used to determine the account balance or
+                        disclosure are more likely to be misstated than simple calculations.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>The
+                        accuracy assertion of a sales transaction that involves
+                        a stated number of items at a set price is less likely to be misstated
+                        than the same assertion for gain on the sale of a loan that requires
+                        present value calculations of variable cash flow streams.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>Susceptibility
+                        of the asset to theft</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Accounts
+                        that report the balance of assets that are highly susceptible
+                        to theft or misappropriation are more likely to be misstated than
+                        other accounts.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>The
+                        existence assertion related to an office building is less
+                        likely to be materially misstated because of theft than the existence
+                        of inventory items that are small and easily transportable, such as
+                        microprocessors.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>Estimates</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Accounts
+                        consisting of amounts derived from accounting estimates
+                        that are subject to significant measurement uncertainty pose a greater
+                        risk than do accounts consisting of relatively routine, factual data.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>The
+                        valuation assertion related to fixed assets such as a building
+                        is less likely to be materially misstated than the valuation assertion
+                        for technology-sensitive inventory.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>Industry
+                        circumstances</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Industry
+                        or general economic conditions may create risks of
+                        material misstatement.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Technological
+                        developments, changes in processes, or regulatory
+                        action might make a particular product obsolete, thereby increasing
+                        the inherent risk related to the valuation assertion of inventory.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="" align="center" valign="top">
+                        <p>Other
+                        external circumstances</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Factors
+                        in the entity and its environment that relate to several
+                        or all of the classes of transactions, account balances, or disclosures
+                        may influence the inherent risk related to a specific relevant assertion.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>For
+                        example, a company that provides goods to a declining industry
+                        characterized by a large number of business failures may have increased
+                        inherent risk related to the valuation assertion of accounts receivable.</p>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        </div></div></div>
+                        <h4 class="title">
+                        <span class="ps_subsub_heading italic">The Primary Direction of Inherent
+                        Risk</span>
+                        </h4>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.11</span>
+                        </p>
+                        
+                        <p class="ps_para_number">Your evaluation of inherent risk also
+                        might indicate the primary direction of the risk, that is, whether
+                        an account will most likely be overstated or understated. For example,
+                        you may determine that inherent risk for inventory is related primarily
+                        to overstatement, while the risk for accounts payable is understatement.
+                        Understanding the direction of inherent risk for an account or a class
+                        of transactions can help you evaluate control design and plan and
+                        perform further audit procedures.</p>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.12</span>
+                        </p>
+                        
+                        <p class="ps_para_number">Inadvertent, random errors rarely favor
+                        one direction or another. However, in most audits, there is a primary
+                        direction of overall inherent risk resulting principally from factors
+                        that tend to influence management's judgments with regard to selecting
+                        accounting policies or making estimates. (Since the financial statements
+                        are often used by investors and lenders to evaluate performance, the
+                        primary direction is usually, but not always overstatement of assets
+                        and income.) The possibility of management or employee fraud causes
+                        other factors to influence the direction of risk.</p>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.13</span>
+                        </p>
+                        
+                        <p class="ps_para_number">To determine the primary direction of
+                        inherent risk you may wish to consider factors such as</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>how
+                        the financial statements are likely to be used.
+                        For example, the owners of a privately held company often are concerned
+                        with tax savings, particularly when profitable and in strong financial
+                        condition, which indicates the potential for understatement of income.</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>management's
+                        business or financing plans or other
+                        objectives. For example, substantial management bonuses based on earnings
+                        or the need to present a strong financial position to obtain financing
+                        both indicate greater probability of overstatement of income.</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>your
+                        prior experience with the client. You may consider
+                        the predominant direction of misstatements found in prior audits,
+                        and whether they were consistent with the primary direction of your
+                        auditing in those years, as a possible predictor of what you can expect
+                        to find this year.</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">In combination with the assessment of the
+                        risk of misstatement and an assessment of the magnitude of possible
+                        exposure, the primary direction of the misstatement risk can be used
+                        to guide you in the selection of efficient and effective procedures
+                        when determining their nature, timing, and extent. </p>
+                    </div>  
+                    </div>
+                    
+                    <div class="panel">
+                    <div class="panel-wrapper">
+                    	<h3>
+                        <span class="ps_main_heading">Financial Statement Assertions</span>
+                        </h3>
+                        
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        <h3 class="title">Observations
+                        and Suggestions</h3>
+                        <p class="ps_indent_0">Your audit results in an opinion on the financial
+                        statements <span class="italic">taken as a whole</span>,
+                        and
+                        audit risk is expressed as a risk that relates to the entire financial
+                        statements. However, to reach this opinion on the financial statements,
+                        most of your audit procedures should be directed at a much more detailed
+                        level, the assertion level.</p>
+                        <p class="ps_indent_0">Put another way, you can view the financial
+                        statements as an accumulation of a large number of individual assertions.
+                        Individual assertions may be aggregated to form an account or disclosure
+                        item, and several accounts or disclosure items may then be aggregated
+                        to form a line item on the financial statements or a disclosure. Many
+                        of your audit procedures are performed not on the financial statements
+                        as a whole nor even at the account or disclosure level, but rather,
+                        they are directed at individual assertions.</p>
+                        <p class="ps_indent_0">Relating identified risks of material misstatement
+                        to misstatements that might occur at the assertion level is necessary
+                        for you to properly link assessed risk to your tests of controls and
+                        substantive audit procedures.</p>
+                        <p class="ps_indent_0">
+                        <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Appendix&#32;G,
+                        "Illustrative Financial
+                        Statement Assertions and Examples of Substantive Procedures," of this
+                        guide may be helpful to you in illustrating the linking of assertions
+                        to specific substantive procedures designed to address them.</p>
+                        </div>
+                        </div>
+                       
+                        <p class="section-title">
+                        <span class="ps_para_number">2.27</span>
+                        </p>
+                        
+                        <p class="ps_para_number">An assertion is a declaration or a positive
+                        statement. In presenting their financial statements, management makes
+                        implicit or explicit assertions about the information presented. For
+                        example, by presenting the information "Cash....$XXX" in the financial
+                        statements, management makes the following assertions:</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        cash truly exists and company has the right to
+                        use it (existence).</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        amount presented represents <span class="italic">all</span>
+                        the company&rsquo;s cash (completeness).</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        amount presented is accurate (accuracy).</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">(AU sec. 326 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.14)</p>
+                        
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.28</span>
+                        </p>
+                       
+                        <p class="ps_para_number">In general, assertions relate to the way
+                        in which financial statement information is</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>recognized,</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>measured,</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>presented,
+                        and</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>disclosed.</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">(AU sec. 326 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.14)</p>
+                       
+                        <p class="section-title">
+                        <span class="ps_para_number">2.29</span>
+                        </p>
+                        
+                        <p class="ps_para_number">
+                        <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Table&#32;2-3
+                        provides a summary
+                        of how assertions might be grouped into various categories. You may
+                        express these assertions differently, as long as your descriptions
+                        encompass all of the aspects described in <img alt="locked content" class="aag-arr" border="0" src="images/portal/main-lock_small.gif" style="display:none;">Table&#32;2-3.
+                        (AU sec. 326 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.16)</p>
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        <h3 class="title">Observations
+                        and Suggestions</h3>
+                        <p class="ps_indent_0">For example, some auditors may call rights
+                        and obligations "ownership" and others may subsume the rights and
+                        obligations assertion within the existence assertion. Some may treat
+                        cut-off as either an existence or a completeness issue and not identify
+                        it as a separate assertion. In any case, as long as the assertions
+                        used cover the risks, there is no requirement to use one specific
+                        convention for naming assertions. </p>
+                        </div>
+                        </div>
+                        <p class="ps_sub_heading">
+                        <span class="bold"><b>Table 2-3<BR />Categories
+                        of Assertions</b></span>
+                        </p>
+                        <div class="table">
+                        
+                        <div onClick="javascript:showLarge('aag-arr2_table3')" id="aag-arr2_table3-small">
+                        	<p class="small">Click to enlarge</p>
+                            <img border="1" height="160" width="160" src="resources/tableThumbnail.gif"></div>
+                        <div style="display:none;" id="aag-arr2_table3-large">
+                        	<p class="small">Click to shrink</p>
+                            <img onClick="javascript:showSmall('aag-arr2_table3')" src="resources/table-minus.gif"><div class="ps_table_center">
+                        <table cellspacing="0" cellpadding="1" border="0" style="border-collapse: collapse;border-top: 0.5pt solid black; border-bottom: 0.5pt solid black; ">
+                        <colgroup>
+                        <col align="left" width="210">
+                        <col align="left" width="22">
+                        <col align="left" width="180">
+                        <col align="left" width="21">
+                        <col align="left" width="173">
+                        <col align="left" width="24">
+                        <col align="left" width="159">
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                        <td class="shade" style="" rowspan="2" align="center" valign="top">&nbsp;</td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td class="shade" style="border-bottom: 1px solid black; " colspan="5" align="center" valign="top">
+                        <p>
+                        <span class="emphasis"><em>Description
+                        of Assertions</em></span>
+                        </p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">&nbsp;</td><td class="shade" style="border-bottom: 1px solid black; " align="center" valign="bottom">
+                        <p>
+                        <span class="emphasis"><em>Classes
+                        of Transactions and Events During the Period</em></span>
+                        </p>
+                        </td><td class="shade" style="" align="center" valign="bottom">&nbsp;</td><td class="shade" style="border-bottom: 1px solid black; " align="center" valign="bottom">
+                        <p>
+                        <span class="emphasis"><em>Account
+                        Balances<BR />at
+                        the End of the Period</em></span>
+                        </p>
+                        </td><td class="shade" style="" align="center" valign="bottom">&nbsp;</td><td class="shade" style="border-bottom: 1px solid black; " align="center" valign="bottom">
+                        <p>
+                        <span class="emphasis"><em>Presentation
+                        and Disclosur</em></span>e</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Occurrence/Existence</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Transactions
+                        and events that have been recorded have occurred
+                        and pertain to the entity.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Assets,
+                        liabilities, and equity interests exist.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Disclosed
+                        events and transactions have occurred and pertain
+                        to the entity.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Rights
+                        and Obligations</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td class="shade" style="" align="center" valign="top">
+                        <p>&mdash;</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>The
+                        entity holds or controls the rights to assets, and liabilities
+                        are the obligations of the entity.</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="center" valign="top">
+                        <p>&mdash;</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Completeness</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>All
+                        transactions and events that should have been recorded have
+                        been recorded.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>All
+                        assets, liabilities, and equity interests that should have
+                        been recorded have been recorded.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>All
+                        disclosures that should have been included in the financial
+                        statements have been included.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Accuracy/Valuation
+                        and Allocation</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>Amounts
+                        and other data relating to recorded transactions and
+                        events have been recorded appropriately.</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>Assets,
+                        liabilities, and equity interests are included in the
+                        financial statements at appropriate amounts and any resulting valuation
+                        or allocation adjustments are recorded appropriately.</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>Financial
+                        and other information is disclosed fairly and at appropriate
+                        amounts.</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Cut-off</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td style="" align="left" valign="top">
+                        <p>Transactions
+                        and events have been recorded in the correct accounting
+                        period.</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="center" valign="top">
+                        <p>&mdash;</p>
+                        </td><td style="" align="left" valign="top">&nbsp;</td><td style="" align="center" valign="top">
+                        <p>&mdash;</p>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td class="shade" style="" align="center" valign="top">
+                        <p>Classification
+                        and Understandability</p>
+                        </td><td class="shade" style="" align="center" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>Transactions
+                        and events have been recorded in the proper accounts.</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="center" valign="top">
+                        <p>&mdash;</p>
+                        </td><td class="shade" style="" align="left" valign="top">&nbsp;</td><td class="shade" style="" align="left" valign="top">
+                        <p>Financial
+                        information is appropriately presented and described
+                        and information in disclosures is expressed clearly.</p>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                        </div></div></div>
+                        <div class="note_wrapper">
+                        <div class="note_observations_and_suggestions" style="margin-left: 0.5in; margin-right: 0.5in;">
+                        <h4 class="title">Observations
+                        and Suggestions</h4>
+                        <p class="ps_indent_0">It is common for auditors to think in terms
+                        of understatement and overstatement of an account balance or class
+                        of transactions, and this framework can be related to the concept
+                        of assertions. For example, you may consider the risk that a liability
+                        is understated (completeness) or that inventory may be overstated
+                        as a result of obsolescence (valuation). (AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.19)</p>
+                        </div>
+                        </div>
+                    </div>  
+                    </div>
+                    
+                    <div class="panel">
+                    <div class="panel-wrapper">
+                        <h3 class="title">
+<span class="ps_section_heading">Chapter 2</span>
+</h3>
+                        <p class="section-title">
+                        <span class="ps_section_title">Key Concepts Underlying the Auditor&rsquo;s
+                        Risk Assessment Process</span></p>
+                        
+                        <p class="ps_indent_0">
+                        <span class="italic">This guide describes
+                        how the audit risk standards are applied in practice. It describes
+                        a process to gather information, assess and respond to identified
+                        risks, and evaluate evidence on your audits.</span>
+                        </p>
+                        <p class="ps_indent_0">
+                        <span class="italic">To appropriately
+                        apply this process to your audits, you will need to have a working
+                        knowledge of the key concepts upon which the process is built. The
+                        purpose of this chapter is to provide working definitions of those
+                        key concepts.</span>
+                        </p>
+                    </div> 
+                    </div>   
+                    
+            	</div> 
+            </div>
+            
+            <div id="TOC" class="tab_content2">
+            	<h1>Table of Contents</h1>
+                <div id="wrapper">
+                    <div class="accordionButton"><ul><li class="arrow"><a href="#">AICPA Literature</a></li></ul></div>
+                    <div class="accordionContent">
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">Audit and Accounting Guides</li></ul></a></div>
+						<div class="accordionContent2">
+                        	<div class="accordionButton3"><ul><li class="arrow"><a href="#">AAG Audit Risk Assessment</a></li></ul></div>  
+                            <div class="accordionContent3">
+                            	<ul class="">
+                                	<li class="end"><a href="content-1.html">Title Page</a></li>
+                                    <li class="end"><a href="content-2.html">Chapter 1 - Overview of Applying the Audit Risk Standards</a></li>
+                                    <li class="end"><a href="content-3.html">Chapter 1 - Summary</a></li>
+                                    <li class="end"><a href="content-4.html">Chapter 2 - Assessing the Risks of Material Misstatement</a></li>
+                                    <li class="end"><a href="content-5.html">Chapter 2 - Financial Statement Assertions</a></li>
+                                    <li class="end"><a href="content-6.html">Chapter 2 - Key Concepts Underlying the Auditor's Risk Assessment Process</a></li>
+                                </ul>
+                            
+                            </div>
+                            <div class="accordionButton3"><ul><li class="arrow"><a href="#">AICPA Audit and Accounting Guides</a></li></ul></div>
+                            <div class="accordionContent3"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /><br /><br /><br /><br /></div>
+                            
+                            <div class="accordionButton3"><ul><li class="arrow"><a href="#">AAG Airlines</a></li></ul></div>
+                            <div class="accordionContent3"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /><br /><br /><br /><br /></div>
+                            
+                            <div class="accordionButton3"><ul><li class="arrow"><a href="#">AAG Analytical Procedures</a></li></ul></div>
+                            <div class="accordionContent3"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /><br /><br /><br /><br /></div>
+                            
+                            <div class="accordionButton3"><ul><li class="arrow"><a href="#">AAG Audit Sampling</a></li></ul></div>
+                            <div class="accordionContent3"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /><br /><br /><br /><br /></div>
+                            <div class="accordionButton3"><ul><li class="arrow"><a href="#">AAG Auditing Revenue in Certain Industries</a></li></ul></div>
+                            <div class="accordionContent3"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /><br /><br /><br /><br /></div>
+                            
+                        </div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">Audit and Accounting Manual</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">AICPA Accounting Trends and Techniques 2009 Edition</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">AICPA Accounting Trends and Techniques 2008 Edition</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">AICPA Accounting Trends and Techniques 2007 Edition</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">AICPA Accounting Professional Standards</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">PCAOB Stabdards and Related Rules</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        <div class="accordionButton2"><a href="#"><ul><li class="arrow">AICPA Technical Practice Aids</li></ul></a></div>
+                        <div class="accordionContent2"><ul><li class="arrow"><a href="#">Content Item</a></li></ul><br /></div>
+                        
+                        
+                    </div>
+                           
+                    
+                    <div class="accordionButton"><ul><li class="arrow"><a href="#">FASB Accounting Standards Codification</a></li></ul></div>
+                    <div class="accordionContent"><ul><li class="arrow"><a href="#">Content 2</a></li></ul><br /><br /><br /><br /><br /></div>
+                    
+                    <div class="accordionButton"><ul><li class="arrow"><a href="#">GASB Literature</a></li></ul></div>
+                    <div class="accordionContent"><ul><li class="arrow"><a href="#">Content 3</a></li></ul><br /><br /><br /><br /><br /><br /><br /></div>
+                    
+                    <div class="accordionButton"><ul><li class="arrow"><a href="#">Archive Library</a></li></ul></div>
+                    <div class="accordionContent"><ul><li class="arrow"><a href="#">Content 4</a></li></ul><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+                    
+                    <div class="accordionButton"><ul><li class="arrow"><a href="#">AMBonline</a></li></ul></div>
+                    <div class="accordionContent"><ul><li class="arrow"><a href="#">Content 5</a></li></ul><br /><br /><br /><br /><br /><br /><br /><br /></div>
+                </div>
+            </div>
+            
+            <div id="Help" class="tab_content2 padtop25">
+            	<p>This section provides information on using the various
+                features and functions of this site, including: searching, navigation,
+                printing, finding the document you need, copying information to your word
+                processing program, and common error messages. If you need additional
+                assistance or would like to provide us with feedback, please send us an email
+                at <a href="mailto:service@aicpa.org">service@aicpa.org</a>.</p>
+                
+                <h3>AICPA Toolbar</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Documents</a></li>
+                    <li><a href="#">Tools:</a>
+                        <ul>
+                            <li><a href="#">Table of COntents</a></li>
+                            <li><a href="#">Quick Find</a></li>
+                            <li><a href="#">Source</a></li>
+                            <li><a href="#">Print</a></li>
+                            <li><a href="#">Search</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Preferences</a></li>
+                </ul>
+                
+                <h3>Additional Help Topics</h3>
+                
+                <ul>
+                    <li><a href="#">Bread Crumb (main navigation)</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Not Subscribed content</a></li>
+                    <li><a href="#">Copy/Paste</a></li>
+                    <li><a href="#">Common Error Messages</a></li>
+                    <li><a href="#">Customer Service</a></li>
+                </ul>
+
+            </div>
+            
+            <div id="Find" class="tab_content2">
+            	<h3>Quick Find Tool</h3>
+            	<table>
+      			<tr>
+       			<td>
+          		<div style="width:300px;height:100%">
+           		<ul id="navigation">
+                	<li>DOCUMENT TYPE</li><ul>
+                    <li style="cursor:hand" onClick="javascript:displayID('attestation_standards')">Attestation Standards<textarea style="display:none" id="attestation_standards"><a href="aag-arr.html">SSAE 10     Attest Engagements </a><br><a href="aag-arr.html">SSAE 10     Agreed-Upon Procedures Engagements</a><br><a href="aag-arr.html">SSAE 10     Compliance Attestation</a><br><a href="aag-arr.html">SSAE 10     Financial Forecasts and Projections</a><br><a href="aag-arr.html">SSAE 10     Management's Discussion and Analysis</a><br><a href="aag-arr.html">SSAE 10     Reporting on Pro Forma Financial Information</a><br><a href="aag-arr.html">SSAE 10     Reporting on an Entity's Internal Control Over Financial Reporting</a><br><a href="aag-arr.html">SSAE 11     Attest Documentation</a><br><a href="aag-arr.html">SSAE 12     Amendment to Statement on Standards for Attestation Engagements No. 10, Attestation Standards: Revision and Recodification</a><br><a href="aag-arr.html">SSAE 13     Defining Professional Requirements in Statements on Standards for Attestation Engagements</a><br><a href="aag-arr.html">SSAE 14     SSAE Hierarchy</a><br><a href="aag-arr.html">SSAE 15     An Examination of an Entity's Internal Control Over Financial Reporting That Is Integrated With an Audit of Its Financial Statements</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('audit_andaccountingguides')">Audit and Accounting Guides<textarea style="display:none" id="audit_andaccountingguides"><a href="aag-arr.html">Agricultural Producers and Agricultural Cooperatives     </a><br><a href="aag-arr.html">Airlines     </a><br><a href="aag-arr.html">Analytical Procedures     </a><br><a href="aag-arr.html">Assessing and Responding to Audit Risk in a Financial Statement Audit     </a><br><a href="aag-arr.html">Auditing Derivative Instruments, Hedging Activities, and Investments in Securities     </a><br><a href="aag-arr.html">Auditing Revenue in Certain Industries     </a><br><a href="aag-arr.html">Audit Sampling     </a><br><a href="aag-arr.html">Brokers and Dealers in Securities     </a><br><a href="aag-arr.html">Casinos     </a><br><a href="aag-arr.html">Common Interest Realty Associations     </a><br><a href="aag-arr.html">Construction Contractors     </a><br><a href="aag-arr.html">Depository and Lending Institutions: Banks and Savings Institutions, Credit Unions, Finance Companies and Mortgage Companies     </a><br><a href="aag-arr.html">Employee Benefit Plans     </a><br><a href="aag-arr.html">Entities With Oil and Gas Producing Activities     </a><br><a href="aag-arr.html">Federal Government Contractors     </a><br><a href="aag-arr.html">Government Auditing Standards and Circular A-133 Audits     </a><br><a href="aag-arr.html">Health Care Organizations     </a><br><a href="aag-arr.html">Investment Companies     </a><br><a href="aag-arr.html">Life and Health Insurance Entities     </a><br><a href="aag-arr.html">Not-for-Profit Entities     </a><br><a href="aag-arr.html">Personal Financial Statements Guide     </a><br><a href="aag-arr.html">Property and Liability Insurance Entities     </a><br><a href="aag-arr.html">Prospective Financial Information     </a><br><a href="aag-arr.html">Service Organizations: Applying SAS No. 70, as Amended     </a><br><a href="aag-arr.html">State and Local Governments     </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('audit_riskalerts')">Audit Risk Alerts<textarea style="display:none" id="audit_riskalerts"><a href="aag-arr.html">Compilation and Review Alert      </a><br><a href="aag-arr.html">Construction Contractors Industry Developments      </a><br><a href="aag-arr.html">Current Economic Instability: Accounting and Auditing Considerations     </a><br><a href="aag-arr.html">Employee Benefit Plans Industry Developments      </a><br><a href="aag-arr.html">Financial Institutions Industry Developments: Including Depository and Lending Institutions and Brokers and Dealers in Securities     </a><br><a href="aag-arr.html">Government Auditing Standards and Circular A-133 Developments     </a><br><a href="aag-arr.html">Health Care Organizations Industry Developments      </a><br><a href="aag-arr.html">Independence and Ethics Alert     </a><br><a href="aag-arr.html">Insurance Industry Developments      </a><br><a href="aag-arr.html">Investment Companies Industry Developments     </a><br><a href="aag-arr.html">Not-for-Profit Entities Industry Developments      </a><br><a href="aag-arr.html">State and Local Governmental Developments      </a><br><a href="aag-arr.html">Understanding the New Auditing Standards Related to Risk Assessment     </a><br><a href="aag-arr.html">Communicating Internal Control Related Matters in an Audit-Understanding SAS No. 115      </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('auditing_standards')">Auditing Standards<textarea style="display:none" id="auditing_standards"><a href="aag-arr.html">AS 1     References in Auditors'Reports to the Standards of the Public Company Accounting Oversight Board </a><br><a href="aag-arr.html">AS 3     Audit Documentation </a><br><a href="aag-arr.html">AS 4     Reporting on Whether a Previously Reported Material Weakness Continues to Exist </a><br><a href="aag-arr.html">AS 5     An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements </a><br><a href="aag-arr.html">AS 6     Evaluating Consistency of Financial Statements </a><br><a href="aag-arr.html">SAS 1     Responsibilities and Functions of the Independent Auditor </a><br><a href="aag-arr.html">SAS 1     Nature of the General Standards </a><br><a href="aag-arr.html">SAS 1     Training and Proficiency of the Independent Auditor </a><br><a href="aag-arr.html">SAS 1     Independence </a><br><a href="aag-arr.html">SAS 1     Due Professional Care in the Performance of Work </a><br><a href="aag-arr.html">SAS 1     Inventories </a><br><a href="aag-arr.html">SAS 1     Adherence to Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Consistency of Application of Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Dating of the Independent Auditor's Report </a><br><a href="aag-arr.html">SAS 1     Part of Audit Performed by Other Independent Auditors </a><br><a href="aag-arr.html">SAS 1     Lack of Conformity With Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Subsequent Events </a><br><a href="aag-arr.html">SAS 1     Subsequent Discovery of Facts Existing at the Date of the Auditor's Report </a><br><a href="aag-arr.html">SAS 1     Public Warehouses-Controls and Auditing Procedures for Goods Held </a><br><a href="aag-arr.html">SAS 8     Other Information in Documents Containing Audited Financial Statements</a><br><a href="aag-arr.html">SAS 12     Inquiry of a Client's Lawyer Concerning Litigation, Claims, and Assessments</a><br><a href="aag-arr.html">SAS 25     The Relationship of Generally Accepted Auditing Standards to Quality Control Standards</a><br><a href="aag-arr.html">SAS 26     Association With Financial Statements</a><br><a href="aag-arr.html">SAS 29     Reporting on Information Accompanying the Basic Financial Statements in Auditor-Submitted Documents</a><br><a href="aag-arr.html">SAS 32     Adequacy of Disclosure of Financial Statements</a><br><a href="aag-arr.html">SAS 37     Filings Under Federal Securities Statutes</a><br><a href="aag-arr.html">SAS 39     Audit Sampling</a><br><a href="aag-arr.html">SAS 42     Reporting on Condensed Financial Statements and Selected Financial Data</a><br><a href="aag-arr.html">SAS 43     AU 331.14, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 350.46, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 420.16, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 901.01, .24, and .28, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 45     Substantive Tests Prior to the Balance Sheet Date</a><br><a href="aag-arr.html">SAS 45     Related Parties</a><br><a href="aag-arr.html">SAS 46     Consideration of Omitted Procedures After the Report Date</a><br><a href="aag-arr.html">SAS 50     Reports on the Application of Accounting Principles </a><br><a href="aag-arr.html">SAS 51     Reporting on Financial Statements Prepared for Use in Other Countries </a><br><a href="aag-arr.html">SAS 52     Omnibus Statement on Auditing Standards-1987 </a><br><a href="aag-arr.html">SAS 52     Required Supplementary Information </a><br><a href="aag-arr.html">SAS 54     Illegal Acts by Clients </a><br><a href="aag-arr.html">SAS 56     Analytical Procedures </a><br><a href="aag-arr.html">SAS 57     Auditing Accounting Estimates </a><br><a href="aag-arr.html">SAS 58     Reports on Audited Financial Statements </a><br><a href="aag-arr.html">SAS 59     The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern </a><br><a href="aag-arr.html">SAS 62     Special Reports </a><br><a href="aag-arr.html">SAS 64     AU 341.12, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 64     AU 508.74, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 64     AU 543.16, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 65     The Auditor's Consideration of the Internal Audit Function in an Audit of Financial Statements </a><br><a href="aag-arr.html">SAS 67     The Confirmation Process </a><br><a href="aag-arr.html">SAS 70     Service Organizations </a><br><a href="aag-arr.html">SAS 72     Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 73     Using the Work of a Specialist </a><br><a href="aag-arr.html">SAS 74     Compliance Auditing Considerations in Audits of Governmental Entities and Recipients of Governmental Financial Assistance </a><br><a href="aag-arr.html">SAS 76     Amendments to Statement on Auditing Standards No. 72, Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 77     AU 341.13, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 77     AU 544.02 and .04, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 77     AU 623.05 and .08, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 78     Consideration of Internal Control in a Financial Statement Audit: An Amendment to Statement on Auditing Standards No. 55 </a><br><a href="aag-arr.html">SAS 79     Amendment to Statement on Auditing Standards No. 58, Reports on Audited Financial Statements </a><br><a href="aag-arr.html">SAS 83     Establishing an Understanding With the Client </a><br><a href="aag-arr.html">SAS 84     Communications Between Predecessor and Successor Auditors </a><br><a href="aag-arr.html">SAS 85     Management Representations (as amended by SAS 99) </a><br><a href="aag-arr.html">SAS 86     Amendment to Statement on Auditing Standards No. 72,  Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 87     Restricting the Use of an Auditor's Report </a><br><a href="aag-arr.html">SAS 88     AU 324.03 and .06-.10, Service Organizations and Reporting on Consistency </a><br><a href="aag-arr.html">SAS 88     AU 420.07-.11, Service Organizations and Reporting on Consistency </a><br><a href="aag-arr.html">SAS 89     AU 310.06, Audit Adjustments </a><br><a href="aag-arr.html">SAS 89     AU 333.06 and .16, Audit Adjustments </a><br><a href="aag-arr.html">SAS 92     Derivative Instruments, Hedging Activities, and Investments in Securities </a><br><a href="aag-arr.html">SAS 93     AU 315.02 and .12, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 93     AU 508.08, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 93     AU 622, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 94     The Effect of Information Technology on the Auditor's Consideration of Internal Control in a Financial Statement Audit </a><br><a href="aag-arr.html">SAS 95     Generally Accepted Auditing Standards </a><br><a href="aag-arr.html">SAS 97     Amendment to Statement on Auditing Standards No. 50, Reports on the Application of Accounting Principles </a><br><a href="aag-arr.html">SAS 98     AU 150.05, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 161.02 and .03, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 324.57-.61, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 508.65, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 530.03-.05, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 550.07, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 551.12, .15, and .16, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 558.02 and .08-.11, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 560.01, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 561.01-.03, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 99     Consideration of Fraud in a Financial Statement Audit </a><br><a href="aag-arr.html">SAS 100     Interim Financial Information </a><br><a href="aag-arr.html">SAS 101     Auditing Fair Value Measurements and Disclosures </a><br><a href="aag-arr.html">SAS 102     Defining Professional Requirements in Statements on Auditing Standards</a><br><a href="aag-arr.html">SAS 103     Audit Documentation</a><br><a href="aag-arr.html">SAS 104     Amendment to Statement on Auditing Standards No. 1, Codification of Auditing Standards and Procedures ("Due Professional Care in the Performance of Work")</a><br><a href="aag-arr.html">SAS 105     Amendment to Statement on Auditing Standards No. 95, Generally Accepted Auditing Standards</a><br><a href="aag-arr.html">SAS 106     Audit Evidence</a><br><a href="aag-arr.html">SAS 107     Audit Risk and Materiality in Conducting an Audit</a><br><a href="aag-arr.html">SAS 108     Planning and Supervision</a><br><a href="aag-arr.html">SAS 109     Understanding the Entity and Its Environment and Assessing the Risks of Material Misstatement (Redrafted)</a><br><a href="aag-arr.html">SAS 110     Performing Audit Procedures in Response to Assessed Risks and Evaluating the Audit Evidence Obtained</a><br><a href="aag-arr.html">SAS 111     Amendment to Statement on Auditing Standards No. 39, Audit Sampling</a><br><a href="aag-arr.html">SAS 112     Communicating Internal Control Related Matters Identified in an Audit</a><br><a href="aag-arr.html">SAS 113     AU 150.02 and .04, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 316.36 and .45, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 328.41, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 333.09, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 341.02, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 342.10 and .13, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 560.12, Omnibus--2006</a><br><a href="aag-arr.html">SAS 114     The Auditor’s Communication With Those Charged With Governance</a><br><a href="aag-arr.html">SAS 115     Communicating Internal Control Related Matters Identified in an Audit</a><br><a href="aag-arr.html">SAS 116     Interim Financial Information</a><br><a href="aag-arr.html">SAS 117     Compliance Audits</a><br><a href="aag-arr.html">     Auditing Standards Board - Clarity Project Memorandum</a><br><a href="aag-arr.html">     Clarity Project Preface - Principles Underlying an Audit Conducted in Accordance With Generally Accepted Auditing Standards</a><br><a href="aag-arr.html">     Clarity Standard - Planning an Audit </a><br><a href="aag-arr.html">     Clarity Standard - Materiality in Planning and Performing an Audit </a><br><a href="aag-arr.html">     Clarity Standard - Evaluation of Misstatements Identified During the Audit </a><br><a href="aag-arr.html">     Clarity Standard - Understanding the Entity and Its Environment and Assessing the Risks of Material Misstatement (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - Performing Audit Procedures in Response to Assessed Risks and Evaluating the Audit Evidence Obtained (Redrafted) </a><br><a href="aag-arr.html">     Clarity Standard - Audit Evidence (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - Audit Documentation (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - The Auditor's Communication With Those Charged With Governance (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - Overall Objectives of the Independent Auditor and the Conduct of an Audit in Accordance With Generally Accepted Auditing Standards</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('bylaws_oftheaicpa')">ByLaws of the AICPA<textarea style="display:none" id="bylaws_oftheaicpa"><a href="aag-arr.html">Bylaw 1     Name and Purpose</a><br><a href="aag-arr.html">Bylaw 2.1     Members</a><br><a href="aag-arr.html">Bylaw 2.2     Requirements for Admission to Membership</a><br><a href="aag-arr.html">Bylaw 2.3     Requirements for Retention of Membership</a><br><a href="aag-arr.html">Bylaw 2.4     Certificate of Membership</a><br><a href="aag-arr.html">Bylaw 2.5     Right of Members to Describe Themselves as Such</a><br><a href="aag-arr.html">Bylaw 2.6     International Associates</a><br><a href="aag-arr.html">Bylaw 3.1     Organization and Procedure--General</a><br><a href="aag-arr.html">Bylaw 3.2     Membership</a><br><a href="aag-arr.html">Bylaw 3.3     Council</a><br><a href="aag-arr.html">Bylaw 3.4     Board of Directors</a><br><a href="aag-arr.html">Bylaw 3.5     Officers Elected by Council</a><br><a href="aag-arr.html">Bylaw 3.6     Committees</a><br><a href="aag-arr.html">Bylaw 4     Financial Management and Controls</a><br><a href="aag-arr.html">Bylaw 4.1     Audit</a><br><a href="aag-arr.html">Bylaw 4.2     Committee on Audit</a><br><a href="aag-arr.html">Bylaw 4.3     Execution of Instruments on Behalf of the Institute</a><br><a href="aag-arr.html">Bylaw 4.4     Indemnification</a><br><a href="aag-arr.html">Bylaw 4.5     Dues</a><br><a href="aag-arr.html">Bylaw 4.6     Fiscal Year</a><br><a href="aag-arr.html">Bylaw 5     Meetings of the Institute and the Council </a><br><a href="aag-arr.html">Bylaw 5.1     Meetings of the Institute</a><br><a href="aag-arr.html">Bylaw 5.2     Meetings of Council</a><br><a href="aag-arr.html">Bylaw 5.3     General Provisions Governing Meetings</a><br><a href="aag-arr.html">Bylaw 6     Election of Council, Board of Directors, and Officers of the Institute</a><br><a href="aag-arr.html">Bylaw 6.1     Members of Council Directly Elected by Members of the Institute</a><br><a href="aag-arr.html">Bylaw 6.2     Selection of Members of Council to Represent State Societies</a><br><a href="aag-arr.html">Bylaw 6.3     Election of Members-at-Large of Council, Board of Directors, Chairman of the Board, and Vice Chairman of the Board</a><br><a href="aag-arr.html">Bylaw 6.4     Forfeiture of Office for Nonattendance</a><br><a href="aag-arr.html">Bylaw 6.5     Vacancies</a><br><a href="aag-arr.html">Bylaw 6.6     Election Meeting of Council</a><br><a href="aag-arr.html">Bylaw 6.7     Term Limit</a><br><a href="aag-arr.html">Bylaw 7     Termination of Membership and Disciplinary Sanctions</a><br><a href="aag-arr.html">Bylaw 7.1     Resignation of Membership</a><br><a href="aag-arr.html">Bylaw 7.2     Termination of Membership for Nonpayment of Financial Obligation or for Failure to Comply With Membership-Retention Requirements</a><br><a href="aag-arr.html">Bylaw 7.3     Disciplinary Suspension and Termination of Membership Without a Hearing</a><br><a href="aag-arr.html">Bylaw 7.4     Disciplining of Member by Trial Board</a><br><a href="aag-arr.html">Bylaw 7.5     Reinstatement</a><br><a href="aag-arr.html">Bylaw 7.6     Publication of Disciplinary Action</a><br><a href="aag-arr.html">Bylaw 7.7     Disciplinary Sections Not to Be Applied Retroactively</a><br><a href="aag-arr.html">Bylaw 8     Amendments</a><br><a href="aag-arr.html">Bylaw 8.1     Proposals to Amend the Bylaws</a><br><a href="aag-arr.html">Bylaw 8.2     Proposals to Amend the Code of Professional Conduct</a><br><a href="aag-arr.html">Bylaw 8.3     Submission to Council via Board of Directors</a><br><a href="aag-arr.html">Bylaw 8.4     Submission to Membership by Mail Ballot</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('code_ofconduct')">Code of Conduct<textarea style="display:none" id="code_ofconduct"><a href="aag-arr.html">     Principles of Professional Conduct</a><br><a href="aag-arr.html">     Applicability and Definitions of Ethics Rules</a><br><a href="aag-arr.html">     Conceptual Framework for AICPA Independence Standards</a><br><a href="aag-arr.html">Ethics Rule 101     Independence</a><br><a href="aag-arr.html">Ethics Rule 102     Integrity and Objectivity</a><br><a href="aag-arr.html">Ethics Rule 201     General Standards</a><br><a href="aag-arr.html">Ethics Rule 202     Compliance With Standards</a><br><a href="aag-arr.html">Ethics Rule 203     Accounting Principles</a><br><a href="aag-arr.html">Ethics Rule 301     Confidential Client Information</a><br><a href="aag-arr.html">Ethics Rule 302     Contingent Fees</a><br><a href="aag-arr.html">Ethics Rule 501     Acts Discreditable</a><br><a href="aag-arr.html">Ethics Rule 502     Advertising and Other Forms of Solicitation</a><br><a href="aag-arr.html">Ethics Rule 503     Commissions and Referral Fees</a><br><a href="aag-arr.html">Ethics Rule 505     Form of Organization and Name</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('consulting_services')">Consulting Services<textarea style="display:none" id="consulting_services"><a href="aag-arr.html">SSCS 1     Consulting Services: Definitions and Standards</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('cpe_standards')">CPE standards<textarea style="display:none" id="cpe_standards"><a href="aag-arr.html">Policies for the CPE Membership Requirement     </a><br><a href="aag-arr.html">Preamble     </a><br><a href="aag-arr.html">Standards for CPAs     </a><br><a href="aag-arr.html">Standards for CPE Program Sponsors     </a><br><a href="aag-arr.html">Glossary     </a><br></textarea></li>
+                    
+                    <li style="cursor:hand" onClick="javascript:displayID('pfp_statements')">PFP Statements<textarea style="display:none" id="pfp_statements"><a href="aag-arr.html">SRPFP 1     Basic Personal Financial Planning Engagement Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 2     Working With Other Advisers</a><br><a href="aag-arr.html">SRPFP 3     Implementation Engagement Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 4     Monitoring and Updating Engagements-Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 5     Developing a Basis for Recommendations</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('practice_alerts')">Practice Alerts<textarea style="display:none" id="practice_alerts"><a href="aag-arr.html">PA 94-1     Dealing With Audit Differences</a><br><a href="aag-arr.html">PA 94-2     Auditing Inventories-Physical Observations</a><br><a href="aag-arr.html">PA 96-1     The Private Securities Litigation Reform Act of 1995</a><br><a href="aag-arr.html">PA 97-1     Financial Statements on the Internet</a><br><a href="aag-arr.html">PA 97-2     Audits of Employee Benefit Plans</a><br><a href="aag-arr.html">PA 97-3     Changes in Auditors and Related Topics</a><br><a href="aag-arr.html">PA 98-1     The Auditor's Use of Analytical Procedures</a><br><a href="aag-arr.html">PA 98-2     Professional Skepticism and Related Topics</a><br><a href="aag-arr.html">PA 98-3     Revenue Recognition Issues</a><br><a href="aag-arr.html">PA 99-1     Guidance for Independence Discussions With Audit Committees</a><br><a href="aag-arr.html">PA 99-2     How the Use of a Service Organization Affects Internal Control Considerations</a><br><a href="aag-arr.html">PA 00-1     Accounting for Certain Equity Transactions</a><br><a href="aag-arr.html">PA 00-2     Guidance for Communication With Audit Committees Regarding Alternative Treatments of Financial Information Within Generally Accepted Accounting Principles</a><br><a href="aag-arr.html">PA 00-3     Auditing Construction Contracts</a><br><a href="aag-arr.html">PA 01-1     Common Peer Review Recommendations</a><br><a href="aag-arr.html">PA 01-2     Audit Considerations in Times of Economic Uncertainty</a><br><a href="aag-arr.html">PA 02-2     Use of Specialists</a><br><a href="aag-arr.html">PA 02-3     Reauditing Financial Statements</a><br><a href="aag-arr.html">PA 03-1     Audit Confirmations</a><br><a href="aag-arr.html">PA 03-2     Journal Entries and Other Adjustments</a><br><a href="aag-arr.html">PA 03-3     Acceptance and Continuance of Clients and Engagements</a><br><a href="aag-arr.html">PA 04-1     Illegal Acts</a><br><a href="aag-arr.html">PA 05-1     Auditing Procedures With Respect to Variable Interest Entities</a><br><a href="aag-arr.html">PA 07-1     Dating of the Auditor's Report and Related Practical Guidance</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('practice_bulletins')">Practice Bulletins<textarea style="display:none" id="practice_bulletins"><a href="aag-arr.html">     NOTE: Practice Bulletins are now part of the FASB Accounting Standards Codification (ASC). To access the contents of a particular bulletin, use the cross reference tool in the FASB ASC.</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('peer_reviewstandards')">Peer Review Standards<textarea style="display:none" id="peer_reviewstandards"><a href="aag-arr.html">Standards for Performing and Reporting on Peer Reviews     </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('quality_controlstandards')">Quality Control Standards<textarea style="display:none" id="quality_controlstandards"><a href="aag-arr.html">SQCS 7     A Firm's System of Quality Control</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('standards_foraccountingandreviewservices')">Standards for Accounting and Review Services<textarea style="display:none" id="standards_foraccountingandreviewservices"><a href="aag-arr.html">SSARS 1     Compilation and Review of Financial Statements</a><br><a href="aag-arr.html">SSARS 2     Reporting on Comparative Financial Statements</a><br><a href="aag-arr.html">SSARS 3     Compilation Reports on Financial Statements Included in Certain Prescribed Forms</a><br><a href="aag-arr.html">SSARS 4     Communications Between Predecessor and Successor Accountants</a><br><a href="aag-arr.html">SSARS 6     Reporting on Personal Financial Statements Included in Written Personal Financial Plans</a><br><a href="aag-arr.html">SSARS 7     AR 100, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 200, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 300, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 400, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 8     Amendment to Statement on Standards for Accounting and Review Services No. 1, Compilation and Review of Financial Statements</a><br><a href="aag-arr.html">SSARS 9     AR 100, Omnibus Statement on Standards for Accounting and Review Services-2002</a><br><a href="aag-arr.html">SSARS 9     AR 400, Omnibus Statement on Standards for Accounting and Review Services-2002</a><br><a href="aag-arr.html">SSARS 10     Performance of Review Engagements</a><br><a href="aag-arr.html">SSARS 11     Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 12     AR 100, Omnibus Statement on Standards for Accounting and Review Services-2005</a><br><a href="aag-arr.html">SSARS 12     AR 200, Omnibus Statement on Standards for Accounting and Review Services-2005</a><br><a href="aag-arr.html">SSARS 13     Compilation of Specified Elements, Accounts, or Items of a Financial Statement</a><br><a href="aag-arr.html">SSARS 14     Compilation of Pro Forma Financial Information</a><br><a href="aag-arr.html">SSARS 15     AR 100, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 200.05, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 300.01, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 400.09, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 16     Defining Professional Requirements in Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 17     AR 100, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 200, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 300.01-.03 Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 400.01, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 18     Applicability of Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 19      AR 60, Compilation and Review Engagements </a><br><a href="aag-arr.html">SSARS 19      AR 80, Compilation and Review Engagements </a><br><a href="aag-arr.html">SSARS 19      AR 90, Compilation and Review Engagements </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('statements_ofposition')">Statements of Position<textarea style="display:none" id="statements_ofposition"><a href="aag-arr.html">     NOTE: Accounting SOPs are now part of the FASB Accounting Standards Codification (ASC). To access the contents of a particular SOP, use the cross reference tool in the FASB ASC.</a><br><a href="aag-arr.html">SOP 92-8     Auditing Property/Casualty Insurance Entities' Statutory Financial Statements- Applying Certain Requirements of the NAIC Annual Statement Instructions</a><br><a href="aag-arr.html">SOP 98-2     Accounting for Costs of Activities of Not-for-Profit Organizations and State and Local Governmental Entities That Include Fund Raising</a><br><a href="aag-arr.html">SOP 99-1     Guidance to Practitioners in Conducting and Reporting on an Agreed-Upon Procedures Engagement to Assist Management in Evaluating the Effectiveness of Its Corporate Compliance Program</a><br><a href="aag-arr.html">SOP 00-1     Auditing Health Care Third-Party Revenues and Related Receivables</a><br><a href="aag-arr.html">SOP 01-3     Performing Agreed-Upon Procedures Engagements That Address Internal Control Over Derivative Transactions as Required by the New York State Insurance Law</a><br><a href="aag-arr.html">SOP 02-1     Performing Agreed-Upon Procedures Engagements That Address Annual Claims Prompt Payment Reports as Required by the New Jersey Administrative Code</a><br><a href="aag-arr.html">SOP 03-2     Attest Engagements on Greenhouse Gas Emissions Information</a><br><a href="aag-arr.html">SOP 04-1     Auditing the Statement of Social Insurance</a><br><a href="aag-arr.html">SOP 06-1     Reporting Pursuant to the Global Investment Performance Standards</a><br><a href="aag-arr.html">SOP 07-2     Attestation Engagements That Address Specified Compliance Control Objectives and Related Controls at Entities That Provide Services to Investment Companies, Investment Advisers, or Other Service Providers</a><br><a href="aag-arr.html">SOP 09-1     Performing Agreed-Upon Procedures Engagements That Address the Completeness, Accuracy, or Consistency of XBRL-Tagged Data</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('tax_standards')">Tax Standards<textarea style="display:none" id="tax_standards"><a href="aag-arr.html">SSTS 1     Tax Return Positions</a><br><a href="aag-arr.html">SSTS 2     Answers to Questions on Returns</a><br><a href="aag-arr.html">SSTS 3     Certain Procedural Aspects of Preparing Returns</a><br><a href="aag-arr.html">SSTS 4     Use of Estimates</a><br><a href="aag-arr.html">SSTS 5     Departure From a Position Previously Concluded in an Administrative Proceeding or Court Decision</a><br><a href="aag-arr.html">SSTS 6     Knowledge of Error: Return Preparation and Administrative Proceedings</a><br><a href="aag-arr.html">SSTS 7     Form and Content of Advice to Taxpayers</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('trust_services')">Trust Services<textarea style="display:none" id="trust_services"><a href="aag-arr.html">Trust Services Principles, Criteria and Illustrations for Security, Availability, Processing Integrity, Confidentiality, and Privacy     </a><br><a href="aag-arr.html">Trust Services Principles, Criteria and Illustrations for WebTrust® for Certification Authorities     </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('valuation_services')">Valuation Services<textarea style="display:none" id="valuation_services"><a href="aag-arr.html">SSVS 1     Valuation of a Business, Business Ownership Interest, Security, or Intangible Asset</a><br></textarea></li>
+                </ul>
+                <li>SUBJECT MATTER</li><ul>
+                    <li>Accounting<ul><li style="cursor:hand" onClick="javascript:displayID('audit_andaccountingguides_child')">Audit and Accounting Guides<textarea style="display:none" id="audit_andaccountingguides_child"><a href="aag-arr.html">Agricultural Producers and Agricultural Cooperatives     </a><br><a href="aag-arr.html">Airlines     </a><br><a href="aag-arr.html">Brokers and Dealers in Securities      </a><br><a href="aag-arr.html">Casinos      </a><br><a href="aag-arr.html">Common Interest Realty Associations      </a><br><a href="aag-arr.html">Construction Contractors      </a><br><a href="aag-arr.html">Depository and Lending Institutions: Banks and Savings Institutions, Credit Unions, Finance Companies and Mortgage Companies     </a><br><a href="aag-arr.html">Employee Benefit Plans     </a><br><a href="aag-arr.html">Entities With Oil and Gas Producing Activities      </a><br><a href="aag-arr.html">Federal Government Contractors      </a><br><a href="aag-arr.html">Health Care Organizations      </a><br><a href="aag-arr.html">Investment Companies      </a><br><a href="aag-arr.html">Life and Health Insurance Entities      </a><br><a href="aag-arr.html">Not-for-Profit Entities     </a><br><a href="aag-arr.html">Property and Liability Insurance Entities      </a><br><a href="aag-arr.html">State and Local Governments     </a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('audit_riskalerts_child')">Audit Risk Alerts<textarea style="display:none" id="audit_riskalerts_child"><a href="aag-arr.html">Construction Contractors Industry Developments      </a><br><a href="aag-arr.html">Current Economic Instability: Accounting and Auditing Considerations     </a><br><a href="aag-arr.html">Employee Benefit Plans Industry Developments      </a><br><a href="aag-arr.html">Financial Institutions Industry Developments: Including Depository and Lending Institutions and Brokers and Dealers in Securities     </a><br><a href="aag-arr.html">Health Care Organizations Industry Developments      </a><br><a href="aag-arr.html">Insurance Industry Developments      </a><br><a href="aag-arr.html">Investment Companies Industry Developments     </a><br><a href="aag-arr.html">Not-for-Profit Entities Industry Developments     </a><br><a href="aag-arr.html">State and Local Governmental Developments      </a><br><a href="aag-arr.html">Understanding the New Auditing Standards Related to Risk Assessment     </a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('practice_bulletins_child')">Practice Bulletins<textarea style="display:none" id="practice_bulletins_child"><a href="aag-arr.html">     NOTE: Practice Bulletins are now part of the FASB Accounting Standards Codification (ASC). To access the contents of a particular bulletin, use the cross reference tool in the FASB ASC.</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('statements_ofposition_child')">Statements of Position<textarea style="display:none" id="statements_ofposition_child"><a href="aag-arr.html">     NOTE: Accounting SOPs are now part of the FASB Accounting Standards Codification (ASC). To access the contents of a particular SOP, use the cross reference tool in the FASB ASC.</a><br><a href="aag-arr.html">SOP 98-2     Accounting for Costs of Activities of Not-for-Profit Organizations and State and Local Governmental Entities That Include Fund Raising</a><br></textarea></li></ul><textarea style="display:none" id="accounting"></textarea></li>
+                    <li>Auditing and Attestation<ul><li style="cursor:hand" onClick="javascript:displayID('audit_andaccountingguides_child2')">Audit and Accounting Guides<textarea style="display:none" id="audit_andaccountingguides_child2"><a href="aag-arr.html">Agricultural Producers and Agricultural Cooperatives     </a><br><a href="aag-arr.html">Analytical Procedures     </a><br><a href="aag-arr.html">Assessing and Responding to Audit Risk in a Financial Statement Audit     </a><br><a href="aag-arr.html">Audit Sampling     </a><br><a href="aag-arr.html">Auditing Derivative Instruments, Hedging Activities, and Investments in Securities     </a><br><a href="aag-arr.html">Auditing Revenue in Certain Industries     </a><br><a href="aag-arr.html">Brokers and Dealers in Securities     </a><br><a href="aag-arr.html">Casinos     </a><br><a href="aag-arr.html">Common Interest Realty Associations     </a><br><a href="aag-arr.html">Construction Contractors     </a><br><a href="aag-arr.html">Depository and Lending Institutions: Banks and Savings Institutions, Credit Unions, Finance Companies and Mortgage Companies     </a><br><a href="aag-arr.html">Employee Benefit Plans     </a><br><a href="aag-arr.html">Entities With Oil and Gas Producing Activities     </a><br><a href="aag-arr.html">Federal Government Contractors     </a><br><a href="aag-arr.html">Government Auditing Standards and Circular A-133 Audits     </a><br><a href="aag-arr.html">Health Care Organizations     </a><br><a href="aag-arr.html">Investment Companies     </a><br><a href="aag-arr.html">Life and Health Insurance Entities     </a><br><a href="aag-arr.html">Not-for-Profit Entities     </a><br><a href="aag-arr.html">Personal Financial Statements Guide     </a><br><a href="aag-arr.html">Property and Liability Insurance Entities     </a><br><a href="aag-arr.html">Service Organizations: Applying SAS No. 70, as Amended     </a><br><a href="aag-arr.html">State and Local Governments     </a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('audit_riskalerts_child2')">Audit Risk Alerts<textarea style="display:none" id="audit_riskalerts_child2"><a href="aag-arr.html">Construction Contractors Industry Developments     </a><br><a href="aag-arr.html">Current Economic Instability: Accounting and Auditing Considerations     </a><br><a href="aag-arr.html">Employee Benefit Plans Industry Developments     </a><br><a href="aag-arr.html">Financial Institutions Industry Developments: Including Depository and Lending Institutions and Brokers and Dealers in Securities     </a><br><a href="aag-arr.html">Government Auditing Standards and Circular A-133 Developments     </a><br><a href="aag-arr.html">Health Care Organizations Industry Developments     </a><br><a href="aag-arr.html">Insurance Industry Developments     </a><br><a href="aag-arr.html">Investment Companies Industry Developments     </a><br><a href="aag-arr.html">Not-for-Profit Entities Industry Developments     </a><br><a href="aag-arr.html">State and Local Governmental Developments     </a><br><a href="aag-arr.html">Understanding the New Auditing Standards Related to Risk Assessment     </a><br><a href="aag-arr.html">Communicating Internal Control Related Matters in an Audit-Understanding SAS No. 115      </a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('practice_alerts_child')">Practice Alerts<textarea style="display:none" id="practice_alerts_child"><a href="aag-arr.html">PA 94-1     Dealing With Audit Differences</a><br><a href="aag-arr.html">PA 94-2     Auditing Inventories-Physical Observations</a><br><a href="aag-arr.html">PA 96-1     The Private Securities Litigation Reform Act of 1995</a><br><a href="aag-arr.html">PA 97-1     Financial Statements on the Internet</a><br><a href="aag-arr.html">PA 97-2     Audits of Employee Benefit Plans</a><br><a href="aag-arr.html">PA 97-3     Changes in Auditors and Related Topics</a><br><a href="aag-arr.html">PA 98-1     The Auditor's Use of Analytical Procedures</a><br><a href="aag-arr.html">PA 98-2     Professional Skepticism and Related Topics</a><br><a href="aag-arr.html">PA 98-3     Revenue Recognition Issues</a><br><a href="aag-arr.html">PA 99-1     Guidance for Independence Discussions With Audit Committees</a><br><a href="aag-arr.html">PA 99-2     How the Use of a Service Organization Affects Internal Control Considerations</a><br><a href="aag-arr.html">PA 00-1     Accounting for Certain Equity Transactions</a><br><a href="aag-arr.html">PA 00-2     Guidance for Communication With Audit Committees Regarding Alternative Treatments of Financial Information Within Generally Accepted Accounting Principles</a><br><a href="aag-arr.html">PA 00-3     Auditing Construction Contracts</a><br><a href="aag-arr.html">PA 01-1     Common Peer Review Recommendations</a><br><a href="aag-arr.html">PA 01-2     Audit Considerations in Times of Economic Uncertainty</a><br><a href="aag-arr.html">PA 02-2     Use of Specialists</a><br><a href="aag-arr.html">PA 02-3     Reauditing Financial Statements</a><br><a href="aag-arr.html">PA 03-1     Audit Confirmations</a><br><a href="aag-arr.html">PA 03-2     Journal Entries and Other Adjustments</a><br><a href="aag-arr.html">PA 04-1     Illegal Acts</a><br><a href="aag-arr.html">PA 05-1     Auditing Procedures With Respect to Variable Interest Entities</a><br><a href="aag-arr.html">PA 07-1     Dating of the Auditor's Report and Related Practical Guidance</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('statements_on_auditing_standards')">Auditing Standards<textarea style="display:none" id="statements_on_auditing_standards"><a href="aag-arr.html">AS 1     References in Auditors' Reports to the Standards of the Public Company Accounting Oversight Board </a><br><a href="aag-arr.html">AS 3     Audit Documentation </a><br><a href="aag-arr.html">AS 4     Reporting on Whether a Previously Reported Material Weakness Continues to Exist </a><br><a href="aag-arr.html">AS 5     An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements </a><br><a href="aag-arr.html">AS 6     Evaluating Consistency of Financial Statements </a><br><a href="aag-arr.html">SAS 1     Responsibilities and Functions of the Independent Auditor </a><br><a href="aag-arr.html">SAS 1     Nature of the General Standards </a><br><a href="aag-arr.html">SAS 1     Training and Proficiency of the Independent Auditor </a><br><a href="aag-arr.html">SAS 1     Independence </a><br><a href="aag-arr.html">SAS 1     Due Professional Care in the Performance of Work </a><br><a href="aag-arr.html">SAS 1     Inventories </a><br><a href="aag-arr.html">SAS 1     Adherence to Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Consistency of Application of Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Dating of the Independent Auditor's Report </a><br><a href="aag-arr.html">SAS 1     Part of Audit Performed by Other Independent Auditors </a><br><a href="aag-arr.html">SAS 1     Lack of Conformity With Generally Accepted Accounting Principles </a><br><a href="aag-arr.html">SAS 1     Subsequent Events </a><br><a href="aag-arr.html">SAS 1     Subsequent Discovery of Facts Existing at the Date of the Auditor's Report </a><br><a href="aag-arr.html">SAS 1     Public Warehouses-Controls and Auditing Procedures for Goods Held </a><br><a href="aag-arr.html">SAS 8     Other Information in Documents Containing Audited Financial Statements</a><br><a href="aag-arr.html">SAS 12     Inquiry of a Client's Lawyer Concerning Litigation, Claims, and Assessments</a><br><a href="aag-arr.html">SAS 25     The Relationship of Generally Accepted Auditing Standards to Quality Control Standards</a><br><a href="aag-arr.html">SAS 26     Association With Financial Statements</a><br><a href="aag-arr.html">SAS 29     Reporting on Information Accompanying the Basic Financial Statements in Auditor-Submitted Documents</a><br><a href="aag-arr.html">SAS 32     Adequacy of Disclosure of Financial Statements</a><br><a href="aag-arr.html">SAS 37     Filings Under Federal Securities Statutes</a><br><a href="aag-arr.html">SAS 39     Audit Sampling</a><br><a href="aag-arr.html">SAS 42     Reporting on Condensed Financial Statements and Selected Financial Data</a><br><a href="aag-arr.html">SAS 43     AU 331.14, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 350.46, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 420.16, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 43     AU 901.01, .24, and .28, Omnibus Statement on Auditing Standards</a><br><a href="aag-arr.html">SAS 45     Substantive Tests Prior to the Balance Sheet Date</a><br><a href="aag-arr.html">SAS 45     Related Parties</a><br><a href="aag-arr.html">SAS 46     Consideration of Omitted Procedures After the Report Date</a><br><a href="aag-arr.html">SAS 50     Reports on the Application of Accounting Principles </a><br><a href="aag-arr.html">SAS 51     Reporting on Financial Statements Prepared for Use in Other Countries </a><br><a href="aag-arr.html">SAS 52     Omnibus Statement on Auditing Standards-1987 </a><br><a href="aag-arr.html">SAS 52     Required Supplementary Information </a><br><a href="aag-arr.html">SAS 54     Illegal Acts by Clients </a><br><a href="aag-arr.html">SAS 56     Analytical Procedures </a><br><a href="aag-arr.html">SAS 57     Auditing Accounting Estimates </a><br><a href="aag-arr.html">SAS 58     Reports on Audited Financial Statements </a><br><a href="aag-arr.html">SAS 59     The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern </a><br><a href="aag-arr.html">SAS 62     Special Reports </a><br><a href="aag-arr.html">SAS 64     AU 341.12, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 64     AU 508.74, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 64     AU 543.16, Omnibus Statement on Auditing Standards-1990 </a><br><a href="aag-arr.html">SAS 65     The Auditor's Consideration of the Internal Audit Function in an Audit of Financial Statements </a><br><a href="aag-arr.html">SAS 67     The Confirmation Process </a><br><a href="aag-arr.html">SAS 70     Service Organizations </a><br><a href="aag-arr.html">SAS 72     Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 73     Using the Work of a Specialist </a><br><a href="aag-arr.html">SAS 74     Compliance Auditing Considerations in Audits of Governmental Entities and Recipients of Governmental Financial Assistance </a><br><a href="aag-arr.html">SAS 76     Amendments to Statement on Auditing Standards No. 72, Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 77     AU 341.13, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 77     AU 544.02 and .04, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 77     AU 623.05 and .08, Amendments to Statements on Auditing Standards No. 22, Planning and Supervision, No. 59, The Auditor's Consideration of an Entity's Ability to Continue as a Going Concern, and No. 62, Special Reports </a><br><a href="aag-arr.html">SAS 78     Consideration of Internal Control in a Financial Statement Audit: An Amendment to Statement on Auditing Standards No. 55 </a><br><a href="aag-arr.html">SAS 79     Amendment to Statement on Auditing Standards No. 58, Reports on Audited Financial Statements </a><br><a href="aag-arr.html">SAS 83     Establishing an Understanding With the Client </a><br><a href="aag-arr.html">SAS 84     Communications Between Predecessor and Successor Auditors </a><br><a href="aag-arr.html">SAS 85     Management Representations (as amended by SAS 99) </a><br><a href="aag-arr.html">SAS 86     Amendment to Statement on Auditing Standards No. 72,  Letters for Underwriters and Certain Other Requesting Parties </a><br><a href="aag-arr.html">SAS 87     Restricting the Use of an Auditor's Report </a><br><a href="aag-arr.html">SAS 88     AU 324.03 and .06-.10, Service Organizations and Reporting on Consistency </a><br><a href="aag-arr.html">SAS 88     AU 420.07-.11, Service Organizations and Reporting on Consistency </a><br><a href="aag-arr.html">SAS 89     AU 310.06, Audit Adjustments </a><br><a href="aag-arr.html">SAS 89     AU 333.06 and .16, Audit Adjustments </a><br><a href="aag-arr.html">SAS 92     Derivative Instruments, Hedging Activities, and Investments in Securities </a><br><a href="aag-arr.html">SAS 93     AU 315.02 and .12, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 93     AU 508.08, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 93     AU 622, Omnibus Statement on Auditing Standards-2000 </a><br><a href="aag-arr.html">SAS 94     The Effect of Information Technology on the Auditor's Consideration of Internal Control in a Financial Statement Audit </a><br><a href="aag-arr.html">SAS 95     Generally Accepted Auditing Standards </a><br><a href="aag-arr.html">SAS 97     Amendment to Statement on Auditing Standards No. 50, Reports on the Application of Accounting Principles </a><br><a href="aag-arr.html">SAS 98     AU 150.05, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 161.02 and .03, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 324.57-.61, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 508.65, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 530.03-.05, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 550.07, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 551.12, .15, and .16, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 558.02 and .08-.11, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 560.01, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 98     AU 561.01-.03, Omnibus Statement on Auditing Standards-2002 </a><br><a href="aag-arr.html">SAS 99     Consideration of Fraud in a Financial Statement Audit </a><br><a href="aag-arr.html">SAS 100     Interim Financial Information </a><br><a href="aag-arr.html">SAS 101     Auditing Fair Value Measurements and Disclosures </a><br><a href="aag-arr.html">SAS 102     Defining Professional Requirements in Statements on Auditing Standards</a><br><a href="aag-arr.html">SAS 103     Audit Documentation</a><br><a href="aag-arr.html">SAS 104     Amendment to Statement on Auditing Standards No. 1, Codification of Auditing Standards and Procedures ("Due Professional Care in the Performance of Work")</a><br><a href="aag-arr.html">SAS 105     Amendment to Statement on Auditing Standards No. 95, Generally Accepted Auditing Standards</a><br><a href="aag-arr.html">SAS 106     Audit Evidence</a><br><a href="aag-arr.html">SAS 107     Audit Risk and Materiality in Conducting an Audit</a><br><a href="aag-arr.html">SAS 108     Planning and Supervision</a><br><a href="aag-arr.html">SAS 109     Understanding the Entity and Its Environment and Assessing the Risks of Material Misstatement</a><br><a href="aag-arr.html">SAS 110     Performing Audit Procedures in Response to Assessed Risks and Evaluating the Audit Evidence Obtained</a><br><a href="aag-arr.html">SAS 111     Amendment to Statement on Auditing Standards No. 39, Audit Sampling</a><br><a href="aag-arr.html">SAS 112     Communicating Internal Control Related Matters Identified in an Audit</a><br><a href="aag-arr.html">SAS 113     AU 150.02 and .04, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 316.36 and .45, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 328.41, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 333.09, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 341.02, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 342.10 and .13, Omnibus--2006</a><br><a href="aag-arr.html">SAS 113     AU 560.12, Omnibus--2006</a><br><a href="aag-arr.html">SAS 114     The Auditor’s Communication With Those Charged With Governance</a><br><a href="aag-arr.html">SAS 115     Communicating Internal Control Related Matters Identified in an Audit</a><br><a href="aag-arr.html">SAS 116     Interim Financial Information</a><br><a href="aag-arr.html">SAS 117     Compliance Audits</a><br><a href="aag-arr.html">     Auditing Standards Board - Clarity Project Memorandum</a><br><a href="aag-arr.html">     Clarity Project Preface - Principles Underlying an Audit Conducted in Accordance With Generally Accepted Auditing Standards</a><br><a href="aag-arr.html">     Clarity Standard - Planning an Audit </a><br><a href="aag-arr.html">     Clarity Standard - Materiality in Planning and Performing an Audit </a><br><a href="aag-arr.html">     Clarity Standard - Evaluation of Misstatements Identified During the Audit </a><br><a href="aag-arr.html">     Clarity Standard - Understanding the Entity and Its Environment and Assessing the Risks of Material Misstatement </a><br><a href="aag-arr.html">     Clarity Standard - Performing Audit Procedures in Response to Assessed Risks and Evaluating the Audit Evidence Obtained (Redrafted) </a><br><a href="aag-arr.html">     Clarity Standard - Audit Evidence (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - Audit Documentation (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - The Auditor's Communication With Those Charged With Governance (Redrafted)</a><br><a href="aag-arr.html">     Clarity Standard - Overall Objectives of the Independent Auditor and the Conduct of an Audit in Accordance With Generally Accepted Auditing Standards</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('statements_ofposition_child2')">Statements of Position<textarea style="display:none" id="statements_ofposition_child2"><a href="aag-arr.html">SOP 92-8     Auditing Property/Casualty Insurance Entities' Statutory Financial Statements- Applying Certain Requirements of the NAIC Annual Statement Instructions</a><br><a href="aag-arr.html">SOP 99-1     Guidance to Practitioners in Conducting and Reporting on an Agreed-Upon Procedures Engagement to Assist Management in Evaluating the Effectiveness of Its Corporate Compliance Program</a><br><a href="aag-arr.html">SOP 00-1     Auditing Health Care Third-Party Revenues and Related Receivables</a><br><a href="aag-arr.html">SOP 01-3     Performing Agreed-Upon Procedures Engagements That Address Internal Control Over Derivative Transactions as Required by the New York State Insurance Law</a><br><a href="aag-arr.html">SOP 02-1     Performing Agreed-Upon Procedures Engagements That Address Annual Claims Prompt Payment Reports as Required by the New Jersey Administrative Code</a><br><a href="aag-arr.html">SOP 03-2     Attest Engagements on Greenhouse Gas Emissions Information</a><br><a href="aag-arr.html">SOP 04-1     Auditing the Statement of Social Insurance</a><br><a href="aag-arr.html">SOP 06-1     Reporting Pursuant to the Global Investment Performance Standards</a><br><a href="aag-arr.html">SOP 07-2     Attestation Engagements That Address Specified Compliance Control Objectives and Related Controls at Entities That Provide Services to Investment Companies, Investment Advisers, or Other Service Providers</a><br><a href="aag-arr.html">SOP 09-1     Performing Agreed-Upon Procedures Engagements That Address the Completeness, Accuracy, or Consistency of XBRL-Tagged Data</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('statements_on_standards_for_attestation_standards')">Statements on Standards for Attestation Engagements<textarea style="display:none" id="statements_on_standards_for_attestation_standards"><a href="aag-arr.html">SSAE 10     Attest Engagements </a><br><a href="aag-arr.html">SSAE 10     Agreed-Upon Procedures Engagements</a><br><a href="aag-arr.html">SSAE 10     Compliance Attestation</a><br><a href="aag-arr.html">SSAE 10     Financial Forecasts and Projections</a><br><a href="aag-arr.html">SSAE 10     Management's Discussion and Analysis</a><br><a href="aag-arr.html">SSAE 10     Reporting on Pro Forma Financial Information</a><br><a href="aag-arr.html">SSAE 10     Reporting on an Entity's Internal Control Over Financial Reporting</a><br><a href="aag-arr.html">SSAE 11     Attest Documentation</a><br><a href="aag-arr.html">SSAE 12     Amendment to Statement on Standards for Attestation Engagements No. 10, Attestation Standards: Revision and Recodification</a><br><a href="aag-arr.html">SSAE 13     Defining Professional Requirements in Statements on Standards for Attestation Engagements</a><br><a href="aag-arr.html">SSAE 14     SSAE Hierarchy</a><br><a href="aag-arr.html">SSAE 15     An Examination of an Entity's Internal Control Over Financial Reporting That Is Integrated With an Audit of Its Financial Statements</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('trust_service')">Trust Services<textarea style="display:none" id="trust_service"><a href="aag-arr.html">Trust Services Principles, Criteria and Illustrations for Security, Availability, Processing Integrity, Confidentiality, and Privacy     </a><br><a href="aag-arr.html">Trust Services Principles, Criteria and Illustrations for WebTrust® for Certification Authorities     </a><br></textarea></li></ul><textarea style="display:none" id="auditing_and_attestation"></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('bylaws')">ByLaws<textarea style="display:none" id="bylaws"><a href="aag-arr.html">Bylaw 1     Name and Purpose</a><br><a href="aag-arr.html">Bylaw 2.1     Members</a><br><a href="aag-arr.html">Bylaw 2.2     Requirements for Admission to Membership</a><br><a href="aag-arr.html">Bylaw 2.3     Requirements for Retention of Membership</a><br><a href="aag-arr.html">Bylaw 2.4     Certificate of Membership</a><br><a href="aag-arr.html">Bylaw 2.5     Right of Members to Describe Themselves as Such</a><br><a href="aag-arr.html">Bylaw 2.6     International Associates</a><br><a href="aag-arr.html">Bylaw 3.1     Organization and Procedure--General</a><br><a href="aag-arr.html">Bylaw 3.2     Membership</a><br><a href="aag-arr.html">Bylaw 3.3     Council</a><br><a href="aag-arr.html">Bylaw 3.4     Board of Directors</a><br><a href="aag-arr.html">Bylaw 3.5     Officers Elected by Council</a><br><a href="aag-arr.html">Bylaw 3.6     Committees</a><br><a href="aag-arr.html">Bylaw 4     Financial Management and Controls</a><br><a href="aag-arr.html">Bylaw 4.1     Audit</a><br><a href="aag-arr.html">Bylaw 4.2     Committee on Audit</a><br><a href="aag-arr.html">Bylaw 4.3     Execution of Instruments on Behalf of the Institute</a><br><a href="aag-arr.html">Bylaw 4.4     Indemnification</a><br><a href="aag-arr.html">Bylaw 4.5     Dues</a><br><a href="aag-arr.html">Bylaw 4.6     Fiscal Year</a><br><a href="aag-arr.html">Bylaw 5     Meetings of the Institute and the Council </a><br><a href="aag-arr.html">Bylaw 5.1     Meetings of the Institute</a><br><a href="aag-arr.html">Bylaw 5.2     Meetings of Council</a><br><a href="aag-arr.html">Bylaw 5.3     General Provisions Governing Meetings</a><br><a href="aag-arr.html">Bylaw 6     Election of Council, Board of Directors, and Officers of the Institute</a><br><a href="aag-arr.html">Bylaw 6.1     Members of Council Directly Elected by Members of the Institute</a><br><a href="aag-arr.html">Bylaw 6.2     Selection of Members of Council to Represent State Societies</a><br><a href="aag-arr.html">Bylaw 6.3     Election of Members-at-Large of Council, Board of Directors, Chairman of the Board, and Vice Chairman of the Board</a><br><a href="aag-arr.html">Bylaw 6.4     Forfeiture of Office for Nonattendance</a><br><a href="aag-arr.html">Bylaw 6.5     Vacancies</a><br><a href="aag-arr.html">Bylaw 6.6     Election Meeting of Council</a><br><a href="aag-arr.html">Bylaw 6.7     Term Limit</a><br><a href="aag-arr.html">Bylaw 7     Termination of Membership and Disciplinary Sanctions</a><br><a href="aag-arr.html">Bylaw 7.1     Resignation of Membership</a><br><a href="aag-arr.html">Bylaw 7.2     Termination of Membership for Nonpayment of Financial Obligation or for Failure to Comply With Membership-Retention Requirements</a><br><a href="aag-arr.html">Bylaw 7.3     Disciplinary Suspension and Termination of Membership Without a Hearing</a><br><a href="aag-arr.html">Bylaw 7.4     Disciplining of Member by Trial Board</a><br><a href="aag-arr.html">Bylaw 7.5     Reinstatement</a><br><a href="aag-arr.html">Bylaw 7.6     Publication of Disciplinary Action</a><br><a href="aag-arr.html">Bylaw 7.7     Disciplinary Sections Not to Be Applied Retroactively</a><br><a href="aag-arr.html">Bylaw 8     Amendments</a><br><a href="aag-arr.html">Bylaw 8.1     Proposals to Amend the Bylaws</a><br><a href="aag-arr.html">Bylaw 8.2     Proposals to Amend the Code of Professional Conduct</a><br><a href="aag-arr.html">Bylaw 8.3     Submission to Council via Board of Directors</a><br><a href="aag-arr.html">Bylaw 8.4     Submission to Membership by Mail Ballot</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('code_ofconduct/ethicsrules')">Code of Conduct/Ethics Rules<textarea style="display:none" id="code_ofconduct/ethicsrules"><a href="aag-arr.html">     Principles of Professional Conduct</a><br><a href="aag-arr.html">     Applicability and Definitions of Ethics Rules</a><br><a href="aag-arr.html">     Conceptual Framework for AICPA Independence Standards</a><br><a href="aag-arr.html">Ethics Rule 101     Independence</a><br><a href="aag-arr.html">Ethics Rule 102     Integrity and Objectivity</a><br><a href="aag-arr.html">Ethics Rule 201     General Standards</a><br><a href="aag-arr.html">Ethics Rule 202     Compliance With Standards</a><br><a href="aag-arr.html">Ethics Rule 203     Accounting Principles</a><br><a href="aag-arr.html">Ethics Rule 301     Confidential Client Information</a><br><a href="aag-arr.html">Ethics Rule 302     Contingent Fees</a><br><a href="aag-arr.html">Ethics Rule 501     Acts Discreditable</a><br><a href="aag-arr.html">Ethics Rule 502     Advertising and Other Forms of Solicitation</a><br><a href="aag-arr.html">Ethics Rule 503     Commissions and Referral Fees</a><br><a href="aag-arr.html">Ethics Rule 505     Form of Organization and Name</a><br><a href="aag-arr.html">     Independence and Ethics Alert</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('compilation_and_review')">Compilation &amp; Review<textarea style="display:none" id="compilation_and_review"><a href="aag-arr.html">SSARS 1     Compilation and Review of Financial Statements</a><br><a href="aag-arr.html">SSARS 2     Reporting on Comparative Financial Statements</a><br><a href="aag-arr.html">SSARS 3     Compilation Reports on Financial Statements Included in Certain Prescribed Forms</a><br><a href="aag-arr.html">SSARS 4     Communications Between Predecessor and Successor Accountants</a><br><a href="aag-arr.html">SSARS 6     Reporting on Personal Financial Statements Included in Written Personal Financial Plans</a><br><a href="aag-arr.html">SSARS 7     AR 100, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 200, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 300, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 7     AR 400, Omnibus Statement on Standards for Accounting and Review Services-1992</a><br><a href="aag-arr.html">SSARS 8     Amendment to Statement on Standards for Accounting and Review Services No. 1, Compilation and Review of Financial Statements</a><br><a href="aag-arr.html">SSARS 9     AR 100, Omnibus Statement on Standards for Accounting and Review Services-2002</a><br><a href="aag-arr.html">SSARS 10     Performance of Review Engagements</a><br><a href="aag-arr.html">SSARS 11     Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 12     AR 100, Omnibus Statement on Standards for Accounting and Review Services-2005</a><br><a href="aag-arr.html">SSARS 12     AR 200, Omnibus Statement on Standards for Accounting and Review Services-2005</a><br><a href="aag-arr.html">SSARS 13     Compilation of Specified Elements, Accounts, or Items of a Financial Statement</a><br><a href="aag-arr.html">SSARS 14     Compilation of Pro Forma Financial Information</a><br><a href="aag-arr.html">SSARS 15     AR 100, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 200.05, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 300.01, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 15     AR 400.09, Elimination of Certain References to Statements on Auditing Standards and Incorporation of Appropriate Guidance Into Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 16     Defining Professional Requirements in Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 17     AR 100, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 200, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 300.01-.03 Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 17     AR 400.01, Omnibus Statement on Standards for Accounting and Review Services 2008</a><br><a href="aag-arr.html">SSARS 18     Applicability of Statements on Standards for Accounting and Review Services</a><br><a href="aag-arr.html">SSARS 19      AR 60, Compilation and Review Engagements </a><br><a href="aag-arr.html">SSARS 19      AR 80, Compilation and Review Engagements </a><br><a href="aag-arr.html">SSARS 19      AR 90, Compilation and Review Engagements </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('consulting')">Consulting<textarea style="display:none" id="consulting"><a href="aag-arr.html">SSCS 1     Consulting Services: Definitions and Standards</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('cpe_standards_child')">CPE Standards<textarea style="display:none" id="cpe_standards_child"><a href="aag-arr.html">Policies for the CPE Membership Requirement     </a><br><a href="aag-arr.html">Preamble     </a><br><a href="aag-arr.html">Standards for CPAs     </a><br><a href="aag-arr.html">Standards for CPE Program Sponsors     </a><br><a href="aag-arr.html">Glossary     </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('peer_review')">Peer Review<textarea style="display:none" id="peer_review"><a href="aag-arr.html">Standards for Performing and Reporting on Peer Reviews     </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('pfp')">PFP<textarea style="display:none" id="pfp"><a href="aag-arr.html">SRPFP 1     Basic Personal Financial Planning Engagement Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 2     Working With Other Advisers</a><br><a href="aag-arr.html">SRPFP 3     Implementation Engagement Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 4     Monitoring and Updating Engagements-Functions and Responsibilities</a><br><a href="aag-arr.html">SRPFP 5     Developing a Basis for Recommendations</a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('quality_control')">Quality Control<textarea style="display:none" id="quality_control"><a href="aag-arr.html">SQCS 7     A Firm's System of Quality Control </a><br></textarea></li>
+                    <li style="cursor:hand" onClick="javascript:displayID('tax')">Tax<textarea style="display:none" id="tax"><a href="aag-arr.html">SSTS 1     Tax Return Positions</a><br><a href="aag-arr.html">SSTS 2     Answers to Questions on Returns</a><br><a href="aag-arr.html">SSTS 3     Certain Procedural Aspects of Preparing Returns</a><br><a href="aag-arr.html">SSTS 4     Use of Estimates</a><br><a href="aag-arr.html">SSTS 5     Departure From a Position Previously Concluded in an Administrative Proceeding or Court Decision</a><br><a href="aag-arr.html">SSTS 6     Knowledge of Error: Return Preparation and Administrative Proceedings</a><br><a href="aag-arr.html">SSTS 7     Form and Content of Advice to Taxpayers</a><br></textarea></li>  
+                    <li style="cursor:hand" onClick="javascript:displayID('valuation_services')">Valuation Services<textarea style="display:none" id="valuation_services"><a href="aag-arr.html">SSVS 1     Valuation of a Business, Business Ownership Interest, Security, or Intangible Asset</a><br></textarea></li>  	
+                    <li>Practice Management<ul><li style="cursor:hand" onClick="javascript:displayID('exhibits_part_1_developing_an_accounting_practic')">Exhibits Part 1 Developing an Accounting Practice<textarea style="display:none" id="exhibits_part_1_developing_an_accounting_practic"><a href="aag-arr.html">102-1     Start-up Costs for a Sole Practitioner</a><br><a href="aag-arr.html">102-2     Fees Based on Hours and Standard Rates</a><br><a href="aag-arr.html">102-3     Projected Income Statement</a><br><a href="aag-arr.html">102-4     Cash Flow Statement</a><br><a href="aag-arr.html">103-1     Sample Assignment of Functions by Firm Size</a><br><a href="aag-arr.html">103-2     Sample Job Description for a Managing Partner</a><br><a href="aag-arr.html">103-3     Sample Job Description for a Firm Administrator</a><br><a href="aag-arr.html">103-4     Sample Job Description for a Marketing Coordinator</a><br><a href="aag-arr.html">103-5     Sample Job Description for a Marketing Director</a><br><a href="aag-arr.html">103-6     Sample Job Description for a Tax Director</a><br><a href="aag-arr.html">103-7     Sample Job Description for a Senior Tax Manager</a><br><a href="aag-arr.html">103-8     Sample Job Description for a Tax Manager</a><br><a href="aag-arr.html">103-9     Sample Job Description for a Tax Supervisor</a><br><a href="aag-arr.html">103-10     Sample Job Description for a Tax Senior</a><br><a href="aag-arr.html">103-11     Sample Job Description for an In-Charge Tax Accountant</a><br><a href="aag-arr.html">103-12     Sample Job Description for a Tax Preparer</a><br><a href="aag-arr.html">103-13     Sample Job Description for a Staff Tax Accountant</a><br><a href="aag-arr.html">103-14     Sample Job Description for a Staff Tax Accountant Intern</a><br><a href="aag-arr.html">103-15     Sample Job Description for an Accounting and Auditing Manager</a><br><a href="aag-arr.html">103-16     Sample Job Description for a Senior Accountant</a><br><a href="aag-arr.html">103-17     Sample Job Description for a Staff Accountant</a><br><a href="aag-arr.html">103-18     Sample Job Description for a Paraprofessional</a><br><a href="aag-arr.html">103-19     Sample Job Description for a Bookkeeper</a><br><a href="aag-arr.html">103-20     Sample Job Description for a Data Entry Clerk</a><br><a href="aag-arr.html">103-21     Sample Job Description for a File Clerk/Messenger</a><br><a href="aag-arr.html">103-22     Sample Job Description for a Network Administrator</a><br><a href="aag-arr.html">103-23     Sample Job Description for a Receptionist</a><br><a href="aag-arr.html">103-24     Sample Job Description for a Tax Administrative Assistant</a><br><a href="aag-arr.html">103-25     Sample Job Description for an Office Supervisor</a><br><a href="aag-arr.html">103-26     Sample Organization Chart—Firm A</a><br><a href="aag-arr.html">103-27     Sample Organization Chart—Firm B</a><br><a href="aag-arr.html">103-28     Sample Organization Chart—Firm C</a><br><a href="aag-arr.html">103-29     Sample Organization Chart—Firm D</a><br><a href="aag-arr.html">103-30     Sample Organization Chart—Firm E</a><br><a href="aag-arr.html">103-31     Functional Organization Chart For A Sole Practitioner</a><br><a href="aag-arr.html">104-1     Sample Staff Survey</a><br><a href="aag-arr.html">104-2     Sample Client Survey</a><br><a href="aag-arr.html">104-3     Sample Strategic Planning Meeting Agenda/span&gt;</a><br><a href="aag-arr.html">105-1     Current Marketing Situation Evaluation</a><br><a href="aag-arr.html">105-2     Practice Development History Log</a><br><a href="aag-arr.html">105-3     Service Capability Analysis</a><br><a href="aag-arr.html">105-4     Service Growth Analysis</a><br><a href="aag-arr.html">105-5     Client Service Analysis</a><br><a href="aag-arr.html">105-6     Referral Analysis</a><br><a href="aag-arr.html">105-7     Competition Analysis</a><br><a href="aag-arr.html">105-8     Client Loss Analysis</a><br><a href="aag-arr.html">105-9     Organizational Coverage Analysis</a><br><a href="aag-arr.html">105-10     Summary of Current Situation Evaluation</a><br><a href="aag-arr.html">105-11     Strategies Selection - Retaining Existing Clients</a><br><a href="aag-arr.html">105-12     Strategy Selection—Increasing Client Services and Referrals</a><br><a href="aag-arr.html">105-13     Strategy Selection—Gaining New Clients</a><br><a href="aag-arr.html">105-14     New Client Model</a><br><a href="aag-arr.html">105-15     Detailed Marketing Plan—Part I</a><br><a href="aag-arr.html">105-16     Detailed Marketing Plan—Part II</a><br><a href="aag-arr.html">105-17     Assignment of Marketing Tasks</a><br><a href="aag-arr.html">105-18     Marketing Coordinator (Level I) and Marketing Director (Level II) Position Description</a><br><a href="aag-arr.html">105-19     Marketing Director Evaluation Form</a><br><a href="aag-arr.html">105-20     Personal Marketing Plan Goals Worksheet</a><br><a href="aag-arr.html">105-21     Timeline for Implementation</a><br><a href="aag-arr.html">105-22     Client Service Matrix</a><br><a href="aag-arr.html">105-23     Client Satisfaction Survey 1 How Do We Rate with You?</a><br><a href="aag-arr.html">105-24     Client Satisfaction Survey 2 XYZ Company</a><br><a href="aag-arr.html">105-25     Newsletter Guidelines</a><br><a href="aag-arr.html">105-26     Seminar Announcement Flyer</a><br><a href="aag-arr.html">105-27     Seminar Announcement Follow-Up Letter</a><br><a href="aag-arr.html">105-28     Seminar Evaluatin Form</a><br><a href="aag-arr.html">105-29     Checklist for Preparing Seminars</a><br><a href="aag-arr.html">105-30     Budget Summary for Public Relations</a><br><a href="aag-arr.html">105-31     Detailed Budget for a Specific PR Activity</a><br><a href="aag-arr.html">105-32     News Release</a><br><a href="aag-arr.html">105-33     Presentation Guidelines</a><br><a href="aag-arr.html">105-34     Panelist Guidelines</a><br><a href="aag-arr.html">105-35     Announcement Cards</a><br><a href="aag-arr.html">106-1     Sample Proposal Overview</a><br><a href="aag-arr.html">106-2     Sample Letter of Agreement</a><br><a href="aag-arr.html">107-1     Sample Practice Continuation Agreement Outline</a><br><a href="aag-arr.html">107-2     Sample Mutual Confidentiality Agreement</a><br><a href="aag-arr.html">107-3     Sample Merger Meeting Planning Schedule</a><br><a href="aag-arr.html">107-4     Sample Due Diligence Checklist</a><br><a href="aag-arr.html">107-5     Sample Transfer Agreement</a><br><a href="aag-arr.html">107-6     Sample Client Notification Letter</a><br><a href="aag-arr.html">108-1A     A General Review—Step 1</a><br><a href="aag-arr.html">108-1B     Detail Review—Step 2</a><br><a href="aag-arr.html">108-1C     Final Review—Step 3</a><br><a href="aag-arr.html">108-2     Merger Agreement</a><br><a href="aag-arr.html">108-3     Sample Due Diligence Checklist</a><br><a href="aag-arr.html">108-4     Sample Post-agreement Activities Checklist</a><br><a href="aag-arr.html">109-1     Comparison of Types of Practice</a><br><a href="aag-arr.html">109-2     Entity Formation Checklist</a><br><a href="aag-arr.html">109-3     Sample Articles of Organization of a Domestic LLC</a><br><a href="aag-arr.html">109-4     Sample Operating Agreement</a><br><a href="aag-arr.html">109-5     Sample Statement of Registration as a Domestic Registered LLP</a><br><a href="aag-arr.html">109-6     Sample Articles of Incorporation</a><br><a href="aag-arr.html">109-7     Sample Corporate Bylaws</a><br><a href="aag-arr.html">109-8     Sample Agreement of Shareholders of a Professional Organization</a><br><a href="aag-arr.html">109-9     Sample Partnership Agreement</a><br><a href="aag-arr.html">109-10     Sample Employment Contract</a><br><a href="aag-arr.html">109-11     Sample Buy-Sell Agreement</a><br><a href="aag-arr.html">110-1     New Office Checklist</a><br><a href="aag-arr.html">111-1     Associations of CPA Firms</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('exhibits_part_2_administration')">Exhibits Part 2 Administration<textarea style="display:none" id="exhibits_part_2_administration"><a href="aag-arr.html">201-1     Sample Chart of Accounts and Explanation of Account Classification</a><br><a href="aag-arr.html">201-2     Sample Partner-specific Executive Report</a><br><a href="aag-arr.html">202-1     Comparison of Standard Billing Rate Methods</a><br><a href="aag-arr.html">202-2     Weekly Time Sheet</a><br><a href="aag-arr.html">202-3     Instructions for Preparing Time Reports</a><br><a href="aag-arr.html">203-1     Glossary</a><br><a href="aag-arr.html">203-2     Profile Firm E Chargeout Multiples </a><br><a href="aag-arr.html">203-3     Fair Market Value of Owners' Salaries</a><br><a href="aag-arr.html">203-4     Imputed Interest on Owners' Capital</a><br><a href="aag-arr.html">203-5     Convert Net Sales to Standard Revenue</a><br><a href="aag-arr.html">203-6     Chargeout Multiple of Sales</a><br><a href="aag-arr.html">203-7     Overhead and Direct Salaries</a><br><a href="aag-arr.html">203-8     Target Markup</a><br><a href="aag-arr.html">203-9     Standard Chargeout Rate Increase</a><br><a href="aag-arr.html">203-10     Alternate Calculation of Increase Necessary to Achieve Target Sales</a><br><a href="aag-arr.html">203-11     Sample Fixed-Price Agreement Letter</a><br><a href="aag-arr.html">203-12     Sample Value-Pricing Statement</a><br><a href="aag-arr.html">203-13     Sample Client Service Contract</a><br><a href="aag-arr.html">203-14     Sample Payment Language for Engagement Letters</a><br><a href="aag-arr.html">203-15     Sample Change Order</a><br><a href="aag-arr.html">203-16     Sample Change Order for Scope Change</a><br><a href="aag-arr.html">203-17     Sample Cost-Effective Service/Work Codes</a><br><a href="aag-arr.html">203-18     Sample Text for Invoicing</a><br><a href="aag-arr.html">203-19     Sample Invoice Worksheet</a><br><a href="aag-arr.html">203-20     Sample Pricing and Invoice Review System With Finance Committee </a><br><a href="aag-arr.html">203-21     Sample Client Termination Letter </a><br><a href="aag-arr.html">204-1     Sample Notice That Request for Proposal Was Received Form</a><br><a href="aag-arr.html">204-2     Sample Proposal Information Form</a><br><a href="aag-arr.html">204-3     Sample Questions for Proposal Evaluation Checklist
+                        —Cost Accounting</a><br><a href="aag-arr.html">204-4     Sample Proposal Letter for Cost Accounting Consulting Engagement</a><br><a href="aag-arr.html">204-5     Sample Engagement Letter—Meeting to Discuss an Ongoing Divorce</a><br><a href="aag-arr.html">204-6     Sample Engagement Letter—Business Valuation Preceded by an Initial Consultation</a><br><a href="aag-arr.html">204-7     Sample Letter Expressing Regret When Not Selected for an Engagement</a><br><a href="aag-arr.html">204-8     Sample Engagement Letter—Audit Services</a><br><a href="aag-arr.html">204-9     Sample Engagement Letter—Compilation of Financial Statements and Tax Services</a><br><a href="aag-arr.html">204-10     Sample Engagement Letter—Review of Financial Statements and Tax Services</a><br><a href="aag-arr.html">204-11     Sample Engagement Letter—Technology Implementation Services</a><br><a href="aag-arr.html">204-12     Sample Engagement Letter—Business Valuation Services</a><br><a href="aag-arr.html">204-13     Sample Engagement Letter—Consulting Services</a><br><a href="aag-arr.html">204-14     Sample Engagement Letter—Individual Tax Services</a><br><a href="aag-arr.html">204-15     Sample Engagement Letter—Partnership Tax Services</a><br><a href="aag-arr.html">204-16     Sample Engagement Letter—SEC Services: Initial Registration, Form S-1</a><br><a href="aag-arr.html">204-17     Sample Engagement Letter—SEC Services: Form 10-K and Annual Report to Shareholders</a><br><a href="aag-arr.html">204-18     Sample Engagement Letter—Litigation Support</a><br><a href="aag-arr.html">204-19     Sample Engagement Letter—Financial Planning</a><br><a href="aag-arr.html">204-20     Sample Engagement Letter—Estate Planning</a><br><a href="aag-arr.html">204-21     Sample Engagement Letter—Second Opinion Review for an Individual</a><br><a href="aag-arr.html">204-22     Sample Engagement Letter—One Person Professional Corporation</a><br><a href="aag-arr.html">204-23     Sample Changes in Circumstances Letter</a><br><a href="aag-arr.html">204-24     Sample Client Data Sheet</a><br><a href="aag-arr.html">204-25     Sample Client Master Record Form</a><br><a href="aag-arr.html">204-26     Sample Client Evaluation Form—Example 1</a><br><a href="aag-arr.html">204-27     Sample Client Evaluation Form—Example 2</a><br><a href="aag-arr.html">204-28     Sample Client Evaluation Form—Example 3</a><br><a href="aag-arr.html">204-29     Sample Checklist for Consultation With Predecessor Auditor</a><br><a href="aag-arr.html">204-30     Sample Client Termination Letter—Example 1</a><br><a href="aag-arr.html">204-31     Sample Client Termination Letter—Example 2</a><br><a href="aag-arr.html">204-32     Sample Attachment for Engagement Letter Where Accounting Firm Data Will Be Kept in a "Paperless" Environment </a><br><a href="aag-arr.html">204-33     QC Survey Sent With Tax Returns and Financial Statements </a><br><a href="aag-arr.html">204-34     Sample Proposal </a><br><a href="aag-arr.html">205-1     Sample Change of Services Order Form</a><br><a href="aag-arr.html">205-2     Sample Business Client Data Form</a><br><a href="aag-arr.html">205-3     Sample Individual Data Form</a><br><a href="aag-arr.html">205-4     Sample Two-Week Schedule Form</a><br><a href="aag-arr.html">205-5     Sample After-Tax Season Staff Feedback Survey</a><br><a href="aag-arr.html">205-6     Sample Individual Income Tax Docket</a><br><a href="aag-arr.html">205-7     Sample Individual Income Tax Return Checklist</a><br><a href="aag-arr.html">205-8     Sample Client Information Form</a><br><a href="aag-arr.html">206-1     Sample Review and Approval Checklist — Audit Engagement</a><br><a href="aag-arr.html">206-2     Sample Review Checklist — Compilation Engagement</a><br><a href="aag-arr.html">206-3     Sample Review Checklist — Management-Use-Only Compilation Engagement</a><br><a href="aag-arr.html">206-4     Sample Review Checklist — Review Engagement</a><br><a href="aag-arr.html">206-5     Sample Front of File Checklist</a><br><a href="aag-arr.html">207-1     Steps in Preparing Financial Graphics</a><br><a href="aag-arr.html">207-2     Selecting an Appropriate Chart Form</a><br><a href="aag-arr.html">207-3     Financial Report Control Form</a><br><a href="aag-arr.html">208-1     Selected Bibliography of Books on Writing and Usage</a><br><a href="aag-arr.html">208-2     Sample Writing Worksheet</a><br><a href="aag-arr.html">208-3     Sample Punctuation Guidelines</a><br><a href="aag-arr.html">209-1     Sample Numerical File Log</a><br><a href="aag-arr.html">209-2     Sample Client File Card</a><br><a href="aag-arr.html">209-3     Sample Out Slip</a><br><a href="aag-arr.html">209-4     Sample Out Card</a><br><a href="aag-arr.html">209-5     Sample Standard Numerical Index for Administrative Files</a><br><a href="aag-arr.html">209-6     Sample Client Records Retention Schedule</a><br><a href="aag-arr.html">209-7     Sample Firm Records Retention Schedule</a><br><a href="aag-arr.html">210-1     Sample Factors to Consider When Selecting Office Location and Site</a><br><a href="aag-arr.html">210-2     Sample Square Foot Recommendations</a><br><a href="aag-arr.html">210-3     Sample Lease Review Checklist</a><br><a href="aag-arr.html">210-4     Sample Checklist for Reviewing Moving Company Bids</a><br><a href="aag-arr.html">210-5     Sample Questions for Moving Company Interview</a><br><a href="aag-arr.html">210-6     Sample Office Relocation Checklist</a><br><a href="aag-arr.html">210-7     Sample Home Office Equipment Costs</a><br><a href="aag-arr.html">210-8     Sample Checklist for an Office at Home</a><br><a href="aag-arr.html">210-9     Sample List of Copier Features</a><br><a href="aag-arr.html">210-10     Sample Copier Product Information Checklist</a><br><a href="aag-arr.html">210-11     Sample Copier Equipment Comparison Chart</a><br><a href="aag-arr.html">210-12     Sample Facsimile Machine Features</a><br><a href="aag-arr.html">210-13     Sample Telephone Needs Questionnaire</a><br><a href="aag-arr.html">210-14     Sample Form for Projecting Future Telephone Needs</a><br><a href="aag-arr.html">210-15     Sample Telephone System Configuration for a Small Firm</a><br><a href="aag-arr.html">210-16     Sample Request for Proposal for Telecommunications System</a><br><a href="aag-arr.html">210-17     Sample Voice Mail Decision Tree</a><br><a href="aag-arr.html">210-18     Sample Performance Record</a><br><a href="aag-arr.html">211-1     Sample Routing Slips Macro</a><br><a href="aag-arr.html">211-2     Sample Engagement Letter Routing Form With Sample Engagement Letter</a><br><a href="aag-arr.html">211-3     Sample Receptionist Procedures During Tax Season</a><br><a href="aag-arr.html">211-4     Sample Telephone Procedures</a><br><a href="aag-arr.html">211-5     Sample Client’s Telephone Memo</a><br><a href="aag-arr.html">211-6     Sample Electronic Engagement File</a><br><a href="aag-arr.html">211-7     Position Description Office Manager</a><br><a href="aag-arr.html">211-8     Position Description Firm Administrator</a><br><a href="aag-arr.html">211-9     Firm Administrator Evaluation</a><br><a href="aag-arr.html">212-1     Sample Technology Planning Checklist</a><br><a href="aag-arr.html">212-2     Sample Software Application Needs Assessment Worksheet</a><br><a href="aag-arr.html">212-3     Sample Data Loss Prevention Evaluation</a><br><a href="aag-arr.html">212-4     Sample Computer Support List</a><br><a href="aag-arr.html">212-5     Security Breach Notification Laws by State</a><br><a href="aag-arr.html">213-1     Sample Voice Mail, Telephone, E-mail, and Computer Acceptable Use Policy</a><br><a href="aag-arr.html">213-2     Sample Accounting Sites</a><br><a href="aag-arr.html">214-1     Sample Deposition Guidelines</a><br><a href="aag-arr.html">214-2     Sample Privacy Policy</a><br><a href="aag-arr.html">214-3     Illegal and Legal Interview Questions</a><br><a href="aag-arr.html">214-4     Examples of Steps to Remove Barriers</a><br><a href="aag-arr.html">214-5     Sample Disclosure Notice</a><br><a href="aag-arr.html">215-1     Disaster Recovery Resources</a><br><a href="aag-arr.html">215-2     Sample Outline of a Disaster Recovery Plan</a><br><a href="aag-arr.html">215-3     Emergency Supplies</a><br><a href="aag-arr.html">216-1     Sample List of Subject Classifications</a><br><a href="aag-arr.html">216-2     Sample List of Useful Web Sites</a><br><a href="aag-arr.html">216-3     Sample List of Suggested Firm Library Resources</a><br><a href="aag-arr.html">217-1     Sample Pre-Tax Season Checklist</a><br><a href="aag-arr.html">217-2     Sample Prospective Client/Engagement Screening Checklist</a><br><a href="aag-arr.html">217-3     Sample Client Inquiry Sheet</a><br><a href="aag-arr.html">217-4     AICPA Professional Liability Program</a><br><a href="aag-arr.html">218-1     Comparison of Data Repositories</a><br><a href="aag-arr.html">218-2     Knowledge Management Resources</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('exhibits_part_3_personnel')">Exhibits Part 3 Personnel<textarea style="display:none" id="exhibits_part_3_personnel"><a href="aag-arr.html">301-1     Sample Replacement Summary</a><br><a href="aag-arr.html">301-2     Job Analysis Questionnaire</a><br><a href="aag-arr.html">302-1     Sample Recruitment Letter</a><br><a href="aag-arr.html">302-2     Sample Log of Campus Recruiting</a><br><a href="aag-arr.html">302-3     Sample Invitation Letter to the Firm's Office</a><br><a href="aag-arr.html">302-4     Sample Rejection Letter</a><br><a href="aag-arr.html">302-5     Sample Letter Announcing a Position Opening</a><br><a href="aag-arr.html">302-6     Sample Entry- Level Interview Form</a><br><a href="aag-arr.html">302-7     Sample Letter Offering a Position With the Firm</a><br><a href="aag-arr.html">302-8     Sample Outline for a Recruiting Brochure</a><br><a href="aag-arr.html">303-1     Sample Employee Referral Program</a><br><a href="aag-arr.html">303-2     Sample Personnel Requisition</a><br><a href="aag-arr.html">303-3     Classification of Professional Personnel</a><br><a href="aag-arr.html">303-4     Sample Position Description</a><br><a href="aag-arr.html">303-5     Suggested Interview Questions for Professional Staff Candidates</a><br><a href="aag-arr.html">303-6     Sample Interview Evaluation</a><br><a href="aag-arr.html">303-7     Sample Background Check Waiver Form</a><br><a href="aag-arr.html">303-8     Sample Telephone Reference Check</a><br><a href="aag-arr.html">303-9     Sample Offer of Employment</a><br><a href="aag-arr.html">303-10     Sample Rejection Letter</a><br><a href="aag-arr.html">304-1     Sample Interview Questions for Support Staff Candidates</a><br><a href="aag-arr.html">304-2     Sample Annual Performance Appraisal Form for Administrative Personnel (Evaluatee)</a><br><a href="aag-arr.html">304-3     Sample Annual Performance Appraisal Form for Administrative Personnel (Evaluator)</a><br><a href="aag-arr.html">305-1     Sample Orientation Checklist</a><br><a href="aag-arr.html">305-2     Sample Independence Memorandum</a><br><a href="aag-arr.html">305-3     Sample Controller-Required Forms Checklist</a><br><a href="aag-arr.html">305-4     Sample Software Orientation Checklist</a><br><a href="aag-arr.html">305-5     Sample Follow-Up Questionnaire for New Hires</a><br><a href="aag-arr.html">305-6     Sample Steps in Establishing a Mentoring System</a><br><a href="aag-arr.html">306-1     Sample CPA Credential Policy</a><br><a href="aag-arr.html">306-2     Sample CPA Credential Policy</a><br><a href="aag-arr.html">306-3     Sample Form For Tracking CPA Exam Candidate</a><br><a href="aag-arr.html">306-4     Sample Curriculum for Professional Staff</a><br><a href="aag-arr.html">306-5     Sample Annual Training Summary-In Hours</a><br><a href="aag-arr.html">306-6     Sample Annual Training Summary-In Dollars</a><br><a href="aag-arr.html">306-7     Sample Attendees' List for In-House Training</a><br><a href="aag-arr.html">306-8     Sample Attendees' List for Outside Training</a><br><a href="aag-arr.html">306-9     Sample Training Summary-By Individual</a><br><a href="aag-arr.html">306-10     Sample Training Evaluation Form</a><br><a href="aag-arr.html">306-11     Sample Career-Planning Preparatory Statement</a><br><a href="aag-arr.html">306-12     Sample Record of Career Planning Discussion</a><br><a href="aag-arr.html">307-1     Sample Engagement Performance Evaluation</a><br><a href="aag-arr.html">307-1a     Sample Individual Job Evaluation</a><br><a href="aag-arr.html">307-2     Sample Job Evaluation Report</a><br><a href="aag-arr.html">307-3     Sample Performance Evaluation Questionnaire</a><br><a href="aag-arr.html">307-4     Sample Performance Evaluation—Audit</a><br><a href="aag-arr.html">307-5     Sample Performance Evaluation—Tax</a><br><a href="aag-arr.html">307-6     Sample Phases in Staff Evaluation, Appraisal, and Counseling</a><br><a href="aag-arr.html">307-7     Sample Staff Performance Evaluation and Review Systems Calendar</a><br><a href="aag-arr.html">307-8     Sample Performance Evaluation</a><br><a href="aag-arr.html">307-8a     Sample End of Year Performance Summary</a><br><a href="aag-arr.html">307-9     Sample Practice Development Section of a Manager’s Performance Evaluation Form</a><br><a href="aag-arr.html">307-10     Sample Performance Evaluation—Management Group</a><br><a href="aag-arr.html">307-11     Sample Annual Responsibilities/Target Statement</a><br><a href="aag-arr.html">307-12     Sample Summary Evaluation Assessment Form</a><br><a href="aag-arr.html">307-13     Sample Knowledge and Skill Form</a><br><a href="aag-arr.html">307-14     Sample Staff Pre-Evaluation Questionnaire</a><br><a href="aag-arr.html">307-15     Sample Final Review—Joint Summary Form</a><br><a href="aag-arr.html">307-15a     Sample Personal Plan</a><br><a href="aag-arr.html">307-16     Sample Upward Evaluation Report</a><br><a href="aag-arr.html">307-17     Sample Implementation Action Plan</a><br><a href="aag-arr.html">308-1     Sample Questionnaire for Measuring Firm Motivational Climate</a><br><a href="aag-arr.html">308-2     Sample Questionnaire for Measuring the Firm Employee Needs</a><br><a href="aag-arr.html">308-3     Sample Questionnaire for Measuring Satisfiers and Dissatisfiers</a><br><a href="aag-arr.html">308-4     Sample Questionnaire for Measuring Quality of Supervision</a><br><a href="aag-arr.html">309-1     Sample Salary Range</a><br><a href="aag-arr.html">309-2     Sample Annual Benefits Statement</a><br><a href="aag-arr.html">310-1     Sample Equal Employment Opportunity Policy</a><br><a href="aag-arr.html">310-2     Sample Employment Agreement</a><br><a href="aag-arr.html">310-3     Sample Regular Part-Time (21 Hours a Week or Over) Request Form</a><br><a href="aag-arr.html">310-4     Sample Regular Part-Time (Under 21 Hours Per Week) Request Form</a><br><a href="aag-arr.html">310-5     Sample Flexplace-Request Form</a><br><a href="aag-arr.html">310-6     Sample Flextime Request Form</a><br><a href="aag-arr.html">310-7     Sample Compressed Workweek Request Form for Exempt Staff</a><br><a href="aag-arr.html">310-8     Sample Moonlighting Policy</a><br><a href="aag-arr.html">310-9     Sample Smoking Policy One</a><br><a href="aag-arr.html">310-10     Sample Smoking Policy Two</a><br><a href="aag-arr.html">310-11     Sample Dress Code Policy</a><br><a href="aag-arr.html">310-12     Sample Employee Consulting Report</a><br><a href="aag-arr.html">310-13     Sample Separation Checklist</a><br><a href="aag-arr.html">310-14     Sample Employee Separation Report</a><br><a href="aag-arr.html">310-15     Sample Employment Exit Interview</a><br><a href="aag-arr.html">310-16     Sample Alumni Record</a><br><a href="aag-arr.html">310-17     Sample Employee Record</a><br><a href="aag-arr.html">310-18     Sample Payroll Data and Authorization Form</a><br><a href="aag-arr.html">311-1     Sample Retreat Agenda and Schedule of Events</a><br><a href="aag-arr.html">311-2     Sample Discussion Guides for Retreats</a><br><a href="aag-arr.html">311-3     Sample Retreat Follow-Up Action List</a><br><a href="aag-arr.html">311-4     Sample Staff Attitude Feedback Questionnaires</a><br><a href="aag-arr.html">312-1     Sample Alcohol and Substance Abuse Policy</a><br><a href="aag-arr.html">312-2     Sample Sexual Harassment Policy</a><br><a href="aag-arr.html">313-1     Sample Acknowledgment for Receipt of Employee Handbook</a><br><a href="aag-arr.html">313-2     Sample Employee Handbook</a><br><a href="aag-arr.html">313-3     Important Cases Concerning Employee Handbooks</a><br><a href="aag-arr.html">314-1     Core Competencies Achievable Through Student Internships</a><br><a href="aag-arr.html">315-1     Hallmarks of Businesses With Great Corporate Cultures</a><br><a href="aag-arr.html">315-2     Evaluating Your Firm's Culture</a><br><a href="aag-arr.html">315-3     Q&amp;A With Nancy Meech: Fun and Client Service Merge at Heinfeld, Meech &amp; Co., P.C.</a><br><a href="aag-arr.html">315-4     Firm Profile: Kirkland Albrecht &amp; Frederickson, P.C.</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('exhibits_part_4_owner_ssues')">Exhibits Part 4 Owner Issues<textarea style="display:none" id="exhibits_part_4_owner_ssues"><a href="aag-arr.html">401-1     Firm-Wide Leadership Development: A Case Study</a><br><a href="aag-arr.html">401-2     Questions for Reflection</a><br><a href="aag-arr.html">403-1     Tier I: Salaries</a><br><a href="aag-arr.html">403-2     Tier II:
+                        Points Analysis and Allocation</a><br><a href="aag-arr.html">403-3     Tier IV:
+                        Equal Distribution Pools</a><br><a href="aag-arr.html">403-4     Combining Four Tiers to Calculate Total Compensation</a><br><a href="aag-arr.html">403-5     Owner Evaluation: Five-Year Statistical Summary</a><br><a href="aag-arr.html">403-6     Owner Peer Evaluation Form</a><br><a href="aag-arr.html">404-1     Policy on Firm Automobiles</a><br><a href="aag-arr.html">404-2     Monthly Mileage Recap Form</a><br><a href="aag-arr.html">404-3     Mileage Record Form</a><br><a href="aag-arr.html">406-1     Sample Checklist for Admitting a Partner</a><br><a href="aag-arr.html">407-1     Performance Evaluation Program Elements</a><br><a href="aag-arr.html">407-2     Categories of Goal Measures</a><br><a href="aag-arr.html">407-3     Sample Strategy Map</a><br><a href="aag-arr.html">407-4     Sample Scorecard Template</a><br><a href="aag-arr.html">407-5     Sample Goal Form</a><br><a href="aag-arr.html">407-6     Sample Upward Evaluation</a><br><a href="aag-arr.html">407-7     Sample Part-Time Owner Proposal</a><br><a href="aag-arr.html">408-1     Sample Notice of Separation</a><br><a href="aag-arr.html">408-2     Sample Request to Transfer Client Records</a><br><a href="aag-arr.html">408-3     Sample Planning Checklist</a><br></textarea></li><li style="cursor:hand" onClick="javascript:displayID('exhibits_part_5_management_data')">Exhibits Part 5 Management Data<textarea style="display:none" id="exhibits_part_5_management_data"><a href="aag-arr.html">501-1     Selected Statistics from the 2008 Rosenberg MAP Survey</a><br><a href="aag-arr.html">502-1     Accounting and Other Publications Relevant to Our Industry</a><br><a href="aag-arr.html">502-2     Canned Newsletter Publishers</a><br><a href="aag-arr.html">502-3     Consultants</a><br><a href="aag-arr.html">502-4     Internet Addresses</a><br><a href="aag-arr.html">502-5     Management Methods, Personnel Operations and Other Resources</a><br><a href="aag-arr.html">503-1     Firm Background – Region and Size</a><br><a href="aag-arr.html">503-2     Firm Background – Firm Types, Changes in Gross Fees, and Firm Tenure</a><br><a href="aag-arr.html">503-3     Firm Background – Year-End Date, Memberships, Type of Location</a><br><a href="aag-arr.html">503-4     Financial Information</a><br><a href="aag-arr.html">503-5     Financial Information as a Percentage of Net Client Fees</a><br><a href="aag-arr.html">503-6     Billing and Collections</a><br><a href="aag-arr.html">503-7     Proportion of Services</a><br><a href="aag-arr.html">503-8     Professional Staff – Full Time</a><br><a href="aag-arr.html">503-9     Professional Staff – Part Time</a><br><a href="aag-arr.html">503-10     Nonprofessional Staff – Full Time</a><br><a href="aag-arr.html">503-11     Nonprofessional Staff – Part Time</a><br><a href="aag-arr.html">503-12     Miscellaneous</a><br><a href="aag-arr.html">503-13     Benefits Offered</a><br><a href="aag-arr.html">503-14     Management Initiatives</a><br><a href="aag-arr.html">503-15     Definition of Terms</a><br><a href="aag-arr.html">504-1     Balance Sheet—Profile Firm A</a><br><a href="aag-arr.html">504-2     Income Statement—Profile Firm A</a><br><a href="aag-arr.html">504-3     Analysis of Fees—Profile Firm A</a><br><a href="aag-arr.html">504-3a     Analysis of Fees—Your Firm</a><br><a href="aag-arr.html">504-4     Detail of Indirect Expenses—Profile Firm A</a><br><a href="aag-arr.html">504-5     Control Statistics—Profile Firm A</a><br><a href="aag-arr.html">504-6     Balance Sheet—Profile Firm B</a><br><a href="aag-arr.html">504-7     Income Statement—Profile Firm B</a><br><a href="aag-arr.html">504-8     Analysis of Fees—Profile Firm B</a><br><a href="aag-arr.html">504-8a     Analysis of Fees—Profile Firm B</a><br><a href="aag-arr.html">504-9     Detail of Indirect Expenses—Profile Firm B</a><br><a href="aag-arr.html">504-10     Control Statistics—Profile Firm B</a><br><a href="aag-arr.html">504-11     Balance Sheet—Profile Firm C</a><br><a href="aag-arr.html">504-12     Income Statement—Profile Firm C</a><br><a href="aag-arr.html">504-13     Analysis of Fees—Profile Firm C</a><br><a href="aag-arr.html">504-13a     Analysis of Fees—Profile Firm C</a><br><a href="aag-arr.html">504-14     Detail of Indirect Expenses—Profile Firm C</a><br><a href="aag-arr.html">504-15     Control Statistics—Profile Firm C</a><br><a href="aag-arr.html">504-16     Balance Sheet—Profile Firm D</a><br><a href="aag-arr.html">504-17     Income Statement—Profile Firm D</a><br><a href="aag-arr.html">504-18     Analysis of Fees—Profile Firm D</a><br><a href="aag-arr.html">504-18a     Analysis of Fees—Profile Firm D</a><br><a href="aag-arr.html">504-19     Detail of Indirect Expenses—Profile Firm D</a><br><a href="aag-arr.html">504-20     Control Statistics—Profile Firm D</a><br><a href="aag-arr.html">504-21     Balance Sheet—Profile Firm E</a><br><a href="aag-arr.html">504-22     Income Statement—Profile Firm E</a><br><a href="aag-arr.html">504-23     Analysis of Fees—Profile Firm E</a><br><a href="aag-arr.html">504-23a     Analysis of Fees—Profile Firm E</a><br><a href="aag-arr.html">504-24     Detail of Indirect Expenses—Profile Firm E</a><br><a href="aag-arr.html">504-25     Control Statistics—Profile Firm E</a><br></textarea></li></ul><textarea style="display:none" id="practice_management"></textarea></li>	
+                </ul>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <div style="width:724px;height:100%" id="second">
+ 
+</div>
+        </td>
+      </tr>
+    </table>
+            </div>
+            
+            <div id="Source" class="tab_content2">
+            	<h3 > Assessing the Risks of Material Misstatement</h3>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.06</span><a href="#"><img src="images/icon-hot.gif" alt="Hot Topic" border="0" /></a>
+                        </p>
+                        
+                        <p class="ps_para_number">The risks of material misstatement are
+                        the client&rsquo;s risks, that is, they exist independently of your audit.
+                        Many factors affect the risks of material misstatement, including
+                        the following:</p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s industry, its regulatory environment,
+                        and other external factors <span class="red">Source: AICPA sec 22.3</span></p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        nature of the entity, for example its operations,
+                        ownership, and financing</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s objectives, strategies, and related business
+                        risks<span class="red">Source: AICPA sec 24.4</span></p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>How
+                        client management measures and reviews the company&rsquo;s
+                        financial performance</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>The
+                        client&rsquo;s internal control</p>
+                        </li>
+                        </ul>
+                        </div>
+                        <p class="ps_indent_0">Thus, the first step in assessing the risks
+                        of material misstatement is to gather information and gain an understanding
+                        of these and other items that create those risks.<span class="red">Source: AICPA sec 21.9</span></p>
+                        <p class="ps_indent_0">(AU sec. 314 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.21)</p>
+                        
+                        <p class="section-title">
+                        <span class="ps_para_number">2.07</span>
+                        </p>
+                        
+                        <p class="ps_para_number">Risks of material misstatement may reside
+                        at either the financial statement level or the assertion level.<span class="red">Source: AICPA sec 2.3</span></p>
+                        <div class="itemizedlist">
+                        <ul class="ps_indent_2" type="bullet">
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">Financial statement level
+                        risks</span>
+                        potentially affect many different assertions. For
+                        example, a lack of qualified personnel in financial reporting roles
+                        (an element of the client&rsquo;s control environment) may affect many different
+                        accounts and several assertions. (AU sec. 312 <img alt="locked content" class="ps" border="0" src="images/portal/main-lock_small.gif" style="display:none;">par.&#32;.15)</p>
+                        </li>
+                        <li style="list-style-type: disc; list-style-image: none;">
+                        <p>
+                        <span class="italic">Assertion-level risks</span>
+                        are limited to one or more specific assertions in an account or
+                        in several accounts, for example, the valuation of inventory or the
+                        occurrence of sales.<span class="red">Source: AICPA sec 19.1/span></p>
+                        </li>
+                        </ul>
+                        </div>
+            </div>
+            
+            <div id="Favs" class="tab_content2">
+            	<h3>My Favorties</h3>
+                <p class="section-title"><b>AICPA Documents</b></p>
+                <ul>
+                    <li><a href="content-1.html">AAG Audit Risk Assessment </a></li>
+                    <li><a href="content-2.html">Overview of Applying the Audit RiskStandards</a></li>
+                    <li><a href="content-4.html">Assessing the Risks of Material Misstatement </a></li>
+                    <li><a href="content-5.html">Financial Statement Assertions </a></li>
+                </ul>
+                
+                <p class="section-title"><b>FASB Documents</b></p>
+                <ul>
+                    <li><a href="#">Favorite Document #1 </a></li>
+                    <li><a href="#">Favorite Document #2 </a></li>
+                    <li><a href="#">Favorite Document #3 </a></li>
+                    <li><a href="#">Favorite Document #4 </a></li>
+                </ul>
+                
+                <p class="section-title"><b>GASB Documents</b></p>
+                <ul>
+                    <li><a href="#">Favorite Document #1 </a></li>
+                    <li><a href="#">Favorite Document #2 </a></li>                
+                </ul>
+            </div>
+            
+            <div id="results" class="tab_content2">
+            	<h2>Search Results for <b>"Audit Risk Assessment"</b></h2>
+                <span class="results small orange">Results 1-10 of 52</span>
+                <ol class="search ">
+                    <li>
+                    	<a href="content-1.html" ><b>AAG Audit Risk Assessment</b><br />
+                         <span>Prepared by the Assessing and Reporting to Audit Risk in a Finanical Statement Audit Guide Task. Assessing and Responding to Audit Risk in a Financial Statement Audit (Revised edition as of October 1, 2009) </span></a>
+                    </li>
+                    <li>
+                    	<a href="content-2.html" ><b>Overview of Applying the Audit RiskStandards</b></a><br />
+                         <span>An Iterative Process. Although the flowchart may indicate to some a linear audit process, an audit is, in fact, an iterative process in which you may repeat as the audit progresses the steps described in the flowchart as a result of new information obtained. In the flowchart, the dotted line connecting later steps in the process to earlier steps illustrates the potential iterative nature of the audit process. </span>
+                    </li>
+                    <li>
+                    	<a href="content-3.html" ><b>Summary of the Risk Assessment Process</b></a><br />
+                         <span>Chapters 3–6 of this guide provide more detailed guidance, examples, and illustrations of the overview material described in this chapter. To apply this guidance on your audit, you will need to have a working knowledge of key risk assessments and terms. The next chapter of this guide provides you with this knowledge. </span>
+                    </li>
+                    <li>
+                    	<a href="content-4.html" ><b>Assessing the Risks of Material Misstatement</b></a><br />
+                         <span>The risks of material misstatement are the client’s risks, that is, they exist independently of your audit. Many factors affect the risks of material misstatement, including the following:</span>
+                    </li>
+                    <li>
+                    	<a href="content-5.html" ><b>Financial Statement Assertions</b></a><br />
+                         <span>Your audit results in an opinion on the financial statements taken as a whole, and audit risk is expressed as a risk that relates to the entire financial statements. However, to reach this opinion on the financial statements, most of your audit procedures should be directed at a much more detailed level, the assertion level. </span>
+                    </li>
+                    <li>
+                    	<a href="content-6.html" ><b>Key Concepts Underlying the Auditor’s Risk Assessment Process</b></a><br />
+                         <span>This guide describes how the audit risk standards are applied in practice. It describes a process to gather information, assess and respond to identified risks, and evaluate evidence on your audits. </span>
+                    </li>
+                     <li>
+                    	<a href="content-1.html" ><b>AAG Audit Risk Assessment</b></a><br />
+                         <span>Assessing and Responding to Audit Risk in a Financial Statement Audit (Revised edition as of October 1, 2009)  </span>
+                    </li>
+                    <li>
+                    	<a href="content-2.html" ><b>Overview of Applying the Audit RiskStandards</b></a><br />
+                         <span>An Iterative Process. Although the flowchart may indicate to some a linear audit process, an audit is, in fact, an iterative process in which you may repeat as the audit progresses the steps described in the flowchart as a result of new information obtained. In the flowchart, the dotted line connecting later steps in the process to earlier steps illustrates the potential iterative nature of the audit process. </span>
+                    </li>
+                    <li>
+                    	<a href="content-3.html" ><b>Summary of the Risk Assessment Process</b></a><br />
+                         <span>Chapters 3–6 of this guide provide more detailed guidance, examples, and illustrations of the overview material described in this chapter. To apply this guidance on your audit, you will need to have a working knowledge of key risk assessments and terms. The next chapter of this guide provides you with this knowledge.</span>
+                    </li>
+                    <li>
+                    	<a href="content-4.html" ><b>Assessing the Risks of Material Misstatement</b></a><br />
+                         <span>Thus, the first step in assessing the risks of material misstatement is to gather information and gain an understanding of these and other items that create those risks</span>
+                    </li>
+                </ol>
+            </div>
+</asp:Content>

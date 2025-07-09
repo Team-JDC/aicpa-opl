@@ -1,0 +1,41 @@
+
+
+/* Most common stuff you'll need to change */
+
+	.coda-slider-wrapper { padding:0 0 0 0;   }
+	.coda-slider { background: #fff; width:100%; }
+	
+	/* Use this to keep the slider content contained in a box even when JavaScript is disabled */
+	.coda-slider-no-js .coda-slider { height: 200px; overflow: auto !important; padding-right: 20px }
+	
+	
+	
+	/* Arrow styling */
+	.coda-nav-left a { position:fixed; top:350px; left:0px;  width: 44px; height:65px;  background:url(../images/btn-back.gif) no-repeat;  z-index:999; }
+	.coda-nav-right a { position:fixed; top:350px; right:-3px; width: 44px;  height:65px; background:url(../images/btn-next.gif) no-repeat; z-index:999; }
+	
+	/* Tab nav */
+	.coda-nav ul li a.current { background: #39c }
+	
+	/* Panel padding */
+	.coda-slider .panel-wrapper {padding-right:10px;  }
+	
+	/* Preloader */
+	.coda-slider p.loading { padding: 20px; text-align: center }
+
+/* Don't change anything below here unless you know what you're doing */
+
+	/* Tabbed nav */
+	.coda-nav ul { clear: both; display:none; margin: auto; overflow: hidden }
+	.coda-nav ul li { display: inline }
+	.coda-nav ul li a { background: #000; color: #fff; display: block; float: left; margin-right: 1px; padding: 3px 6px; text-decoration: none }
+	
+	/* Miscellaneous */
+	.coda-slider-wrapper { clear: both; z-index:1; }
+	.coda-slider { float: left; overflow: hidden; position: relative; z-index:1; }
+	.coda-slider2 { float: left; overflow: hidden; position: relative }
+	.coda-slider .panel { display: block; float: left; height:auto; overflow-y:auto; overflow-x:hidden; z-index:1; }
+	.coda-slider .panel-container { position: relative;  }
+	.coda-nav-left, .coda-nav-right { float: left }
+	.coda-nav-left a, .coda-nav-right a { display: block; text-align: center; text-decoration: none }
+	

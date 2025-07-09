@@ -1,0 +1,267 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.IO;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // PortalModuleControl Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // The PortalModuleControl class defines a custom base class inherited by all</font>
+<font color= "green">    // desktop portal modules within the Portal.</font>
+<font color= "green">    // </font>
+<font color= "green">    // The PortalModuleControl class defines portal specific properties</font>
+<font color= "green">    // that are used by the portal framework to correctly display portal modules</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> PortalModuleControl : UserControl {
+<font color= "blue"></font>
+<font color= "green">        // Private field variables</font>
+<font color= "blue"></font>
+<font color= "blue">        private </font>ModuleSettings  _moduleConfiguration;
+<font color= "blue">        private </font>int             _isEditable = 0;
+<font color= "blue">        private </font>int             _portalId = 0;
+<font color= "blue">        private </font>Hashtable       _settings;
+<font color= "blue"></font>
+<font color= "green">        // Public property accessors</font>
+<font color= "blue"></font>
+<font color= "blue">        </font>[Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+<font color= "blue">        public </font>int ModuleId {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> (int) _moduleConfiguration.ModuleId;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}    
+<font color= "blue"></font>
+<font color= "blue">        </font>[Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+<font color= "blue">        public </font>int PortalId {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> _portalId;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> {
+<font color= "blue">                </font>_portalId = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        </font>[Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+<font color= "blue">        public </font>bool IsEditable {
+<font color= "blue">            </font>
+<font color= "blue">            get</font> {
+<font color= "blue"></font>
+<font color= "green">                // Perform tri-state switch check to avoid having to perform a security</font>
+<font color= "green">                // role lookup on every property access (instead caching the result)</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(_isEditable == 0) {<font color= "blue"></font>
+<font color= "blue">                    </font>
+<font color= "green">                    // Obtain PortalSettings from Current Context</font>
+<font color= "blue"></font>
+<font color= "blue">                    </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                    if </font>(portalSettings.AlwaysShowEditButton == true || PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles)) {<font color= "blue"></font>
+<font color= "blue">                        </font>_isEditable = 1;
+<font color= "blue">                    </font>}
+<font color= "blue"></font><font color= "blue">                    else </font>{<font color= "blue"></font>
+<font color= "blue">                        </font>_isEditable = 2;
+<font color= "blue">                    </font>}
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                return</font> (_isEditable == 1);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>[Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+<font color= "blue">        public </font>ModuleSettings ModuleConfiguration {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> _moduleConfiguration;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> {
+<font color= "blue">                </font>_moduleConfiguration = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>[Browsable(false),DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+<font color= "blue">        public </font>Hashtable Settings {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(_settings == null) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                    </font>_settings = Configuration.GetModuleSettings(ModuleId);
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                return</font> _settings;
+<font color= "blue">            </font>}
+<font color= "blue">         </font>}
+<font color= "blue">    </font>}
+<font color= "blue">    </font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // CachedPortalModuleControl Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // The CachedPortalModuleControl class is a custom server control that</font>
+<font color= "green">    // the Portal framework uses to optionally enable output caching of </font>
+<font color= "green">    // individual portal module's content.</font>
+<font color= "green">    //</font>
+<font color= "green">    // If a CacheTime value greater than 0 seconds is specified within the </font>
+<font color= "green">    // AICPA.Destroyer.UI.Portal.Config configuration file, then the CachePortalModuleControl</font>
+<font color= "green">    // will automatically capture the output of the Portal Module User Control</font>
+<font color= "green">    // it wraps.  It will then store this captured output within the ASP.NET</font>
+<font color= "green">    // Cache API.  On subsequent requests (either by the same browser -- or</font>
+<font color= "green">    // by other browsers visiting the same portal page), the CachedPortalModuleControl</font>
+<font color= "green">    // will attempt to resolve the cached output out of the cache.</font>
+<font color= "green">    //</font>
+<font color= "green">    // Note: In the event that previously cached output can't be found in the</font>
+<font color= "green">    // ASP.NET Cache, the CachedPortalModuleControl will automatically instatiate</font>
+<font color= "green">    // the appropriate portal module user control and place it within the</font>
+<font color= "green">    // portal page.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> CachedPortalModuleControl : Control {
+<font color= "blue"></font>
+<font color= "green">        // Private field variables</font>
+<font color= "blue"></font>
+<font color= "blue">        private </font>ModuleSettings  _moduleConfiguration;
+<font color= "blue">        private </font>String          _cachedOutput = "";
+<font color= "blue">        private </font>int             _portalId = 0;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        // Public property accessors</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>ModuleSettings ModuleConfiguration {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> _moduleConfiguration;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> {
+<font color= "blue">                </font>_moduleConfiguration = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>int ModuleId {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> _moduleConfiguration.ModuleId;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>int PortalId {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> _portalId;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> {
+<font color= "blue">                </font>_portalId = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // CacheKey Property</font>
+<font color= "green">        //</font>
+<font color= "green">        // The CacheKey property is used to calculate a "unique" cache key</font>
+<font color= "green">        // entry to be used to store/retrieve the portal module's content</font>
+<font color= "green">        // from the ASP.NET Cache.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>String CacheKey {
+<font color= "blue"></font>
+<font color= "blue">            get</font> {
+<font color= "blue">                return</font> "Key:" + this.GetType().ToString() + this.ModuleId + PortalSecurity.IsInRoles(_moduleConfiguration.AuthorizedEditRoles);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // CreateChildControls Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The CreateChildControls method is called when the ASP.NET Page Framework</font>
+<font color= "green">        // determines that it is time to instantiate a server control.</font>
+<font color= "green">        // </font>
+<font color= "green">        // The CachedPortalModuleControl control overrides this method and attempts</font>
+<font color= "green">        // to resolve any previously cached output of the portal module from the </font>
+<font color= "green">        // ASP.NET cache.  </font>
+<font color= "green">        //</font>
+<font color= "green">        // If it doesn't find cached output from a previous request, then the</font>
+<font color= "green">        // CachedPortalModuleControl will instantiate and add the portal module's</font>
+<font color= "green">        // User Control instance into the page tree.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>override void CreateChildControls() {
+<font color= "blue"></font>
+<font color= "green">            // Attempt to resolve previously cached content from the ASP.NET Cache</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_moduleConfiguration.CacheTime > 0) {<font color= "blue"></font>
+<font color= "blue">                </font>_cachedOutput = (String) Context.Cache[CacheKey];
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If no cached content is found, then instantiate and add the portal</font>
+<font color= "green">            // module user control into the portal's page server control tree</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_cachedOutput == null) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>base.CreateChildControls();
+<font color= "blue"></font>
+<font color= "blue">                </font>PortalModuleControl module = (PortalModuleControl) Page.LoadControl(_moduleConfiguration.DesktopSrc);
+<font color= "blue">                </font>
+<font color= "blue">                </font>module.ModuleConfiguration = this.ModuleConfiguration;
+<font color= "blue">                </font>module.PortalId = this.PortalId;
+<font color= "blue"></font>
+<font color= "blue">                </font>this.Controls.Add(module);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // Render Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Render method is called when the ASP.NET Page Framework</font>
+<font color= "green">        // determines that it is time to render content into the page output stream.</font>
+<font color= "green">        // </font>
+<font color= "green">        // The CachedPortalModuleControl control overrides this method and captures</font>
+<font color= "green">        // the output generated by the portal module user control.  It then </font>
+<font color= "green">        // adds this content into the ASP.NET Cache for future requests.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>override void Render(HtmlTextWriter output) {
+<font color= "blue"></font>
+<font color= "green">            // If no caching is specified, render the child tree and return </font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_moduleConfiguration.CacheTime == 0) {<font color= "blue"></font>
+<font color= "blue">                </font>base.Render(output);
+<font color= "blue">                </font>return;
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If no cached output was found from a previous request, render</font>
+<font color= "green">            // child controls into a TextWriter, and then cache the results</font>
+<font color= "green">            // in the ASP.NET Cache for future requests.</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_cachedOutput == null) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>TextWriter tempWriter = new StringWriter();
+<font color= "blue">                </font>base.Render(new HtmlTextWriter(tempWriter));
+<font color= "blue">                </font>_cachedOutput = tempWriter.ToString();
+<font color= "blue"></font>
+<font color= "blue">                </font>Context.Cache.Insert(CacheKey, _cachedOutput, null, DateTime.Now.AddSeconds(_moduleConfiguration.CacheTime), TimeSpan.Zero);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Output the user control's content</font>
+<font color= "blue"></font>
+<font color= "blue">            </font>output.Write(_cachedOutput);
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

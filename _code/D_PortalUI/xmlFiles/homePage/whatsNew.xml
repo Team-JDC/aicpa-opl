@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<news>
+    <NewsItem subscription="att~proflit~ps~proflit;fasb" position="top">
+        <NewsDate>
+			10/04/2005
+        </NewsDate>
+        <NewsText>
+			What's new in Professional Standards 
+        </NewsText>
+    </NewsItem>
+    <NewsItem subscription="att~proflit~tpa~proflit;fasb" position="bottom">
+        <NewsDate>
+			10/04/2005
+        </NewsDate>
+        <NewsText>
+			What's new in Technical Practice Aids
+        </NewsText>
+    </NewsItem>
+    <NewsItem subscription="att~proflit~aag~ara~proflit;fasb" position="top">
+        <NewsDate>
+			10/04/2005
+        </NewsDate>
+        <NewsText>
+			What's new in Audit and Accounting Guides 
+        </NewsText>
+    </NewsItem>
+    <NewsItem subscription="emap" position="bottom">
+        <NewsDate>
+			10/04/2005
+        </NewsDate>
+        <NewsText>
+			What's new in e-MAP 
+        </NewsText>
+    </NewsItem>            
+    <NewsItem subscription="att~fasb~proflit;fasb" position="top">
+        <NewsDate>
+			10/04/2005
+        </NewsDate>
+        <NewsText>
+			What's new in FASB 
+        </NewsText>      
+    </NewsItem>  
+</news>

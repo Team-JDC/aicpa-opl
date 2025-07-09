@@ -1,0 +1,102 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue">using</font> AICPA.Destroyer.UI.Portal;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // HtmlTextDB Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates all data logic necessary to add/query/delete</font>
+<font color= "green">    // HTML/text within the Portal database.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> HtmlTextDB {
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetHtmlText Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetHtmlText method returns a SqlDataReader containing details</font>
+<font color= "green">        // about a specific item from the HtmlText database table.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetHtmlText.htm" style="color:green">GetHtmlText Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetHtmlText(int moduleId) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetHtmlText", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleID.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateHtmlText Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateHtmlText method updates a specified item within</font>
+<font color= "green">        // the HtmlText database table.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="UpdateHtmlText.htm" style="color:green">UpdateHtmlText Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> UpdateHtmlText(int moduleId, String desktopHtml, String mobileSummary, String mobileDetails) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_UpdateHtmlText", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleID.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterDesktopHtml = new SqlParameter("@DesktopHtml", SqlDbType.NText);
+<font color= "blue">            </font>parameterDesktopHtml.Value = desktopHtml;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterDesktopHtml);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterMobileSummary = new SqlParameter("@MobileSummary", SqlDbType.NText);
+<font color= "blue">            </font>parameterMobileSummary.Value = mobileSummary;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterMobileSummary);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterMobileDetails = new SqlParameter("@MobileDetails", SqlDbType.NText);
+<font color= "blue">            </font>parameterMobileDetails.Value = mobileDetails;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterMobileDetails);
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+<font color= "blue"></font>
+</pre>

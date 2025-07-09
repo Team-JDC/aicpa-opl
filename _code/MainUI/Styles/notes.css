@@ -1,0 +1,112 @@
+﻿/**************************
+  ADD NOTE STYLES
+***************************/
+
+.addNoteDiv
+{
+    width:310px; 
+    position:absolute; 
+    background-color:#f2f3f2; 
+    border:1px solid #333333; 
+    padding: 10px 10px 10px 10px; 
+}
+
+.addNoteInnerDiv
+{
+    position: relative;
+}
+
+.addNoteHeader
+{
+    text-align:right;
+}
+
+.addNoteTextarea
+{
+     width:288px; 
+     height:240px; 
+     background-color:#d8e2e8; 
+     padding:5px;
+}
+
+.addNoteTextinput
+{
+    width:288px; 
+    background-color:#d8e2e8; 
+}
+
+/**************************
+  EDIT NOTE STYLES
+***************************/
+
+.editNoteDiv
+{
+    width:310px; 
+    height:377px; 
+    position:absolute; 
+    background-color:#f2f3f2; 
+    border:1px solid #333333; 
+    padding: 10px 10px 10px 10px; 
+}
+
+.editNoteInnerDiv
+{
+    position: relative;
+}
+
+.editNoteHeader
+{
+    text-align:right;
+}
+
+.editNoteTextarea
+{
+    width:288px; 
+    height:250px; 
+    background-color:#d8e2e8; 
+    padding:5px;
+}
+
+.editNoteTextinput
+{
+     width:288px; 
+    background-color:#d8e2e8; 
+}
+
+/**************************
+  MY NOTES STYLES
+***************************/
+
+.edit-div
+{
+    width:300px; 
+    /*height:300px; */
+    position:absolute; 
+    background-color:#f2f3f2; 
+    border:1px solid #333333; 
+    padding: 10px 10px 10px 10px; 
+    display: none; 
+    z-index: 100;
+}
+
+.edit-inner-div
+{
+    position: relative;
+}
+
+.edit-header
+{
+    text-align:right;
+}
+
+.edit-textarea
+{
+    width:298px; 
+    height:250px; 
+    background-color:#d8e2e8; 
+}
+.edit-textinput
+{
+    width:296px; 
+    background-color:#d8e2e8; 
+}

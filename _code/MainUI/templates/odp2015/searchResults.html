@@ -1,0 +1,135 @@
+﻿{#template MAIN}
+
+<script type="text/javascript">
+    {#if $T.d.DimensionId == 4293428807}
+    googleAnalytics('search', '{$T.d.SearchTerm}', 'General Search');
+    {#else}
+    googleAnalytics('filter_search', '{$T.d.SearchTerm}', 'Filter Search', '{$T.d.SelectedDimensionResults[$T.d.SelectedDimensionResults.length - 1].DimensionValue}', 'Article' );
+    {#/if}
+</script>
+
+<div class="leftcol_header">
+    <p>
+        Search results for:
+        <a href="" class="btn" data-toggle="modal" data-target="#mySaveNoteModal">Save this search</a>
+        <span>{$T.d.SearchTerm}</span>
+    </p>
+</div>
+<div class="leftcol_content">
+    <div class="results_header">
+        <div class="results_header_inner">
+            <p class="within">Search Filters: 
+                <br>                
+                {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}                                            
+                    <!--{$T.DimensionNavigationResult$index-1} --   --> 
+                    {#if $T.DimensionNavigationResult$index == 0}
+                    <a href="#" class="btn off"><i class="fa "></i>{$T.DimensionNavigationResult.DimensionValue}</a>                                                
+                    {#else}
+                    <a href="#{$T.d.SelectedDimensionResults[$T.DimensionNavigationResult$index - 1 ].DimensionName}" class="btn off" onclick="doAdvancedNavigationalSearch('{$T.d.SelectedDimensionResults[$T.DimensionNavigationResult$index - 1 ].DimensionName}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});"><i class="fa fa-times"></i>{$T.DimensionNavigationResult.DimensionValue}</a>                                                
+                    {#/if}
+                {#/for}
+            </p>
+            <div class="found_docs">
+                <p data-toggle="collapse"  href="#filters" aria-expanded="false" aria-controls="filters" id="triggerFilters" class="collapsed">
+                    <i class="fa fa-plus" id="expandFilters"></i>
+                    <i class="fa fa-minus" id="collapseFilters"></i> 
+                    Add Filter
+                </p>
+                <div id="filters" class="panel-collapse collapse clearfix">
+                    <ul class="col-sm-6">
+                    {#foreach $T.d.DimensionResults as DimensionNavigationResult}                        
+                        {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}                                                    
+                            {#if $T.DimensionNavigationResult$index < ($T.d.DimensionResults.length / 2)}
+                                <li>
+                                    <a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a>                                                                
+                                </li>
+                            {#/if}                                                    
+                        {#/if}
+                    {#/for}
+                    </ul>
+                                                
+                    <ul class="col-sm-6">
+                    {#foreach $T.d.DimensionResults as DimensionNavigationResult}                    
+                        {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}                                                    
+                            {#if $T.DimensionNavigationResult$index >= ($T.d.DimensionResults.length / 2)}
+                                <li>
+                                    <a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a>                                                                
+                                </li>                                                            
+                            {#/if}                                                    
+                        {#/if}
+                    {#/for}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="results">
+                                
+        <p class="total_results"><span>{$T.d.HitCount}</span> search results:</p>
+        <div class="clearfix">                                    
+            <div class="pages">Page<input type="text" name="pageOffset" value="{Math.ceil(($T.d.DisplayOffset + 1) / 10)}" />of <span>{Math.ceil(($T.d.HitCount / 10))}</span></div>
+            <div class="prev_next">
+                {#if $T.d.DisplayOffset >= 10}
+                    <a class="btn prev" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev Page</a>
+                {#/if}
+                {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                    <a class="btn next" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next Page</a>                                            
+                {#/if}
+            </div>
+        </div>
+        <hr />
+        <ol>
+        {#foreach $T.d.SearchResults as SearchResult}
+            {#if $T.SearchResult.InSubscription}
+            <li>
+                <a class="title" href="#" onclick="doSearchLink({$T.SearchResult.Id}, '{$T.SearchResult.Type}', false, {$T.d.DisplayOffset}, {$T.SearchResult.ResultEnumeration});return false;">{$T.SearchResult.Title}</a>
+                <p class="meta">Path: {$T.SearchResult.ReferencePath}</p>
+                <p class="summary">{unencodeHtml($T.SearchResult.Snippet)}</p>
+            </li>
+            {#else}
+            <li>
+                <img alt="locked content" src="/images/portal/main-lock_small.gif" border="0"/>
+                <a class="title" href="" onclick="gotoUpsellPage({$T.SearchResult.Id}, '{$T.SearchResult.Type}', 'search_results')">{$T.SearchResult.Title}</a>
+            </li>
+
+            {#/if}     
+        {#/for}
+        </ol>
+    </div>
+    <div class="clearfix">
+        <div class="prev_next">
+            {#if $T.d.DisplayOffset >= 10}
+                <a class="btn prev" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev Page</a>
+            {#/if}
+            {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                <a class="btn next" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next Page</a>                                            
+            {#/if}
+        </div>
+    </div>
+    <div class="modal fade" id="mySaveNoteModal" tabindex="-1" role="dialog" aria-labelledby="mySaveNoteModal" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Save Search</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Search Title*</label>
+                    <br>
+                    <input id="searchTitle" type="text" value="" />
+                </div>
+                <div class="modal-footer">
+                    <!-- DimensionId - '{$T.d.DimensionId}' -->
+                    {#if $T.d.DimensionId != ""}
+                    <button type="button" class="btn btn-primary aaaa" data-dismiss="modal" onclick="saveSearch({$T.d.DimensionId}, '{$T.d.SearchTerm}', {$T.d.SearchMode}, 100, 10, 0, {$T.d.Excerpts}, {$T.d.Unsubscribed});return false;">Save</button>
+                    {#else}
+                    <button type="button" class="btn btn-primary aaa" data-dismiss="modal" onclick="saveSearch(null, '{$T.d.SearchTerm}', {$T.d.SearchMode}, 100, 10, 0, {$T.d.Excerpts}, {$T.d.Unsubscribed});return false;">Save</button>
+                    {/#if}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- .leftcol_content -->
+                            
+{#/template MAIN}

@@ -1,0 +1,31 @@
+.TabLabelDefaultStyle
+{
+	font-family: Arial, "MS Sans Serif", sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	cursor:pointer;
+	text-align: center;
+}
+
+
+.TabLabelSelectedStyle
+{
+	font-family: Arial, "MS Sans Serif", sans-serif;
+	font-size: 11px;
+	color: black;
+	cursor:pointer;
+	color:#333333;
+	text-align: center;
+}
+
+.TabLabelSelectedInnerStyle { 
+	padding-top:4px;
+}
+.TabLabelDefaultInnerStyle {
+	padding-top:4px;
+}
+.line {
+	background-image:url(../Img/lineBg.gif);
+	background-repeat:repeat-x;
+	text-align:center;
+}

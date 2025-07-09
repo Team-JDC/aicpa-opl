@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema id="C2bUser" targetNamespace="http://tempuri.org/C2bUser.xsd" elementFormDefault="qualified"
+	xmlns="http://tempuri.org/C2bUser.xsd" xmlns:mstns="http://tempuri.org/C2bUser.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="C2bUser">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="User">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="UserID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" />
+							<xs:element name="UserSubscription" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Firm">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FirmID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="0" msdata:AutoIncrementStep="-1" type="xs:int" />
+							<xs:element name="ACA" type="xs:string" minOccurs="0" />
+							<xs:element name="Code" type="xs:string" minOccurs="0" />
+							<xs:element name="ConcurrentUsers" type="xs:int" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:unique name="DocumentKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:User" />
+			<xs:field xpath="mstns:UserID" />
+		</xs:unique>
+		<xs:unique name="C2bUserKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//mstns:Firm" />
+			<xs:field xpath="mstns:FirmID" />
+		</xs:unique>
+	</xs:element>
+</xs:schema>

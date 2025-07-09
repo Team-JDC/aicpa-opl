@@ -1,0 +1,30 @@
+﻿{#template MAIN}
+     <table class="cross-reference" cellpadding="5" cellspacing="0" align="center" >
+     <tr>
+        <th>Standard Type</th>
+        <th>Standard Number</th>
+        <th>Paragraph/Label</th>
+        <th>Topic</th>
+        <th>Subtopic</th>
+        <th>Section</th>
+        <th class="last">Paragraph</th>
+     </tr>
+         {#foreach $T.d.CrossReferenceResult as CrossReference}
+     <tr>
+        <td>{$T.CrossReference.Standard}</td>
+        <td>{$T.CrossReference.StandardNumber}</td>
+        <td>{$T.CrossReference.Paragraph}</td>
+        <td>{$T.CrossReference.TopicName}</td>
+        <td>{$T.CrossReference.SubTopicName}</td>
+        <td>{$T.CrossReference.SectionName}</td>
+        <td class="last">
+            <a href="#" onclick="doLink('{$T.CrossReference.TargetDocument}', '{$T.CrossReference.TargetPointer}', false);">{$T.CrossReference.LinkText}</a>
+            <a href="#" onclick="doLink('{$T.CrossReference.TargetDocument}', '{$T.CrossReference.TargetPointer}', true);" title="Open this link as a new document">
+                <img alt="Open this link as a new document" src="images/icon-open-new-doc.gif" style="border:none" />
+            </a>
+        </td>
+     </tr>
+          {#/for}
+     </table>        
+        
+{#/template MAIN}

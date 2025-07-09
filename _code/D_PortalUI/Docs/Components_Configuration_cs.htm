@@ -1,0 +1,1152 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Web.Caching;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> AICPA.Destroyer.UI.Portal;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal 
+<font color= "blue"></font>{
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // Configuration Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates all data logic necessary to add/query/delete</font>
+<font color= "green">    // tab configuration settings, module configuration settings and module </font>
+<font color= "green">    // definition configuration settings from the PortalCfg.xml file.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue">    public class</font> Configuration
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "green">        //</font>
+<font color= "green">        // PORTAL</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdatePortalInfo() Method <a name="UpdatePortalInfo"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdatePortalInfo method updates the name and access settings for the portal.</font>
+<font color= "green">        // These settings are stored in the Xml file PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdatePortalInfo (int portalId, String portalName, bool alwaysShow) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Get first record of the "Global" element </font>
+<font color= "blue">            </font>SiteConfiguration.GlobalRow globalRow = siteSettings.Global.FindByPortalId(portalId);
+<font color= "blue"></font>
+<font color= "green">            // Update the values</font>
+<font color= "blue">            </font>globalRow.PortalId = portalId;
+<font color= "blue">            </font>globalRow.PortalName = portalName;
+<font color= "blue">            </font>globalRow.AlwaysShowEditButton = alwaysShow;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "green">        //</font>
+<font color= "green">        // TABS</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddTab Method <a name="AddTab"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddTab method adds a new tab to the portal.  These settings are </font>
+<font color= "green">        // stored in the Xml file PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>int AddTab (int portalId, String tabName, int tabOrder) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Create a new TabRow from the Tab table</font>
+<font color= "blue">            </font>SiteConfiguration.TabRow newRow = siteSettings.Tab.NewTabRow();
+<font color= "blue"></font>
+<font color= "green">            // Set the properties on the new row</font>
+<font color= "blue">            </font>newRow.TabName = tabName;
+<font color= "blue">            </font>newRow.TabOrder = tabOrder;
+<font color= "blue">            </font>newRow.MobileTabName = String.Empty;
+<font color= "blue">            </font>newRow.ShowMobile = true;
+<font color= "blue">            </font>newRow.AccessRoles = "All Users;";
+<font color= "blue"></font>
+<font color= "green">            // Add the new TabRow to the Tab table</font>
+<font color= "blue">            </font>siteSettings.Tab.AddTabRow(newRow);
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue"></font>
+<font color= "green">            // Return the new TabID</font>
+<font color= "blue">            return</font> newRow.TabId;
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateTab Method <a name="UpdateTab"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateTab method updates the settings for the specified tab. </font>
+<font color= "green">        // These settings are stored in the Xml file PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdateTab (int portalId, int tabId, String tabName, int tabOrder, String authorizedRoles, String mobileTabName, bool showMobile) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate tab in the Tab table and set the properties</font>
+<font color= "blue">            </font>SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
+<font color= "blue"></font>
+<font color= "blue">            </font>tabRow.TabName = tabName;
+<font color= "blue">            </font>tabRow.TabOrder = tabOrder;
+<font color= "blue">            </font>tabRow.AccessRoles = authorizedRoles;
+<font color= "blue">            </font>tabRow.MobileTabName = mobileTabName;
+<font color= "blue">            </font>tabRow.ShowMobile = showMobile;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateTabOrder Method <a name="UpdateTabOrder"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateTabOrder method changes the position of the tab with respect</font>
+<font color= "green">        // to other tabs in the portal.  These settings are stored in the Xml </font>
+<font color= "green">        // file PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdateTabOrder (int tabId, int tabOrder) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate tab in the Tab table and set the property</font>
+<font color= "blue">            </font>SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
+<font color= "blue"></font>
+<font color= "blue">            </font>tabRow.TabOrder = tabOrder;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteTab Method <a name="DeleteTab"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteTab method deletes the selected tab and its modules from </font>
+<font color= "green">        // the settings which are stored in the Xml file PortalCfg.xml.  This </font>
+<font color= "green">        // method also deletes any data from the database associated with all </font>
+<font color= "green">        // modules within this tab.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //      + <a href="DeleteModule.htm" style="color:green">DeleteModule stored procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> DeleteTab(int tabId) 
+<font color= "blue">        </font>{
+<font color= "green">            //</font>
+<font color= "green">            // Delete the Tab in the XML file</font>
+<font color= "green">            //</font>
+<font color= "blue"></font>
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate tab in the Tab table</font>
+<font color= "blue">            </font>SiteConfiguration.TabDataTable tabTable = siteSettings.Tab;
+<font color= "blue">            </font>SiteConfiguration.TabRow tabRow = siteSettings.Tab.FindByTabId(tabId);
+<font color= "blue"></font>
+<font color= "green">            //</font>
+<font color= "green">            // Delete information in the Database relating to each Module being deleted</font>
+<font color= "green">            //</font>
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue"></font>
+<font color= "blue">            </font>foreach(SiteConfiguration.ModuleRow moduleRow in tabRow.GetModuleRows())
+<font color= "blue">            </font>{
+<font color= "blue">                </font>myCommand.Parameters.Clear();
+<font color= "blue">                </font>parameterModuleID.Value = moduleRow.ModuleId;
+<font color= "blue">                </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "green">                // Open the database connection and execute the command</font>
+<font color= "blue">                </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Close the connection</font>
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "green">            // Finish removing the Tab row from the Xml file</font>
+<font color= "blue">            </font>tabTable.RemoveTabRow(tabRow);
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">       </font>
+<font color= "green">        //</font>
+<font color= "green">        // MODULES</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateModuleOrder Method  <a name="UpdateModuleOrder"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateModuleOrder method updates the order in which the modules</font>
+<font color= "green">        // in a tab are displayed.  These settings are stored in the Xml file </font>
+<font color= "green">        // PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdateModuleOrder (int ModuleId, int ModuleOrder, String pane) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table and update the properties</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(ModuleId);
+<font color= "blue"></font>
+<font color= "blue">            </font>moduleRow.ModuleOrder = ModuleOrder;
+<font color= "blue">            </font>moduleRow.PaneName = pane;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddModule Method  <a name="AddModule"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddModule method adds Portal Settings for a new Module within</font>
+<font color= "green">        // a Tab.  These settings are stored in the Xml file PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>int AddModule(int tabId, int moduleOrder, String paneName, String title, int moduleDefId, int cacheTime, String editRoles, bool showMobile) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Create a new ModuleRow from the Module table</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleRow newModule = siteSettings.Module.NewModuleRow();
+<font color= "blue"></font>
+<font color= "green">            // Set the properties on the new Module</font>
+<font color= "blue">            </font>newModule.ModuleDefId = moduleDefId;
+<font color= "blue">            </font>newModule.ModuleOrder = moduleOrder;
+<font color= "blue">            </font>newModule.ModuleTitle = title;
+<font color= "blue">            </font>newModule.PaneName = paneName;
+<font color= "blue">            </font>newModule.EditRoles = editRoles;
+<font color= "blue">            </font>newModule.CacheTimeout = cacheTime;
+<font color= "blue">            </font>newModule.ShowMobile = showMobile;
+<font color= "blue">            </font>newModule.TabRow = siteSettings.Tab.FindByTabId(tabId);
+<font color= "blue"></font>
+<font color= "green">            // Add the new ModuleRow to the Module table</font>
+<font color= "blue">            </font>siteSettings.Module.AddModuleRow(newModule);
+<font color= "blue"></font>
+<font color= "green">            // Save the changes</font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue"></font>
+<font color= "green">            // Return the new Module ID</font>
+<font color= "blue">            return</font> newModule.ModuleId;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateModule Method  <a name="UpdateModule"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateModule method updates the Portal Settings for an existing </font>
+<font color= "green">        // Module within a Tab.  These settings are stored in the Xml file</font>
+<font color= "green">        // PortalCfg.xml.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>int UpdateModule(int moduleId, int moduleOrder, String paneName, String title, int cacheTime, String editRoles, bool showMobile) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table and update the properties</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+<font color= "blue"></font>
+<font color= "blue">            </font>moduleRow.ModuleOrder = moduleOrder;
+<font color= "blue">            </font>moduleRow.ModuleTitle = title;
+<font color= "blue">            </font>moduleRow.PaneName = paneName;
+<font color= "blue">            </font>moduleRow.CacheTimeout = cacheTime;
+<font color= "blue">            </font>moduleRow.EditRoles = editRoles;
+<font color= "blue">            </font>moduleRow.ShowMobile = showMobile;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue"></font>
+<font color= "green">            // Return the existing Module ID</font>
+<font color= "blue">            return</font> moduleId;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteModule Method  <a name="DeleteModule"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteModule method deletes a specified Module from the settings</font>
+<font color= "green">        // stored in the Xml file PortalCfg.xml.  This method also deletes any </font>
+<font color= "green">        // data from the database associated with this module.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //      + <a href="DeleteModule.htm" style="color:green">DeleteModule stored procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> DeleteModule(int moduleId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            //</font>
+<font color= "green">            // Delete information in the Database relating to Module being deleted</font>
+<font color= "green">            //</font>
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue"></font>
+<font color= "blue">            </font>parameterModuleID.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "green">            // Finish removing Module</font>
+<font color= "blue">            </font>siteSettings.Module.RemoveModuleRow(siteSettings.Module.FindByModuleId(moduleId));
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateModuleSetting Method  <a name="UpdateModuleSetting"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateModuleSetting Method updates a single module setting </font>
+<font color= "green">        // in the configuration file.  If the value passed in is String.Empty,</font>
+<font color= "green">        // the Setting element is deleted if it exists.  If not, either a </font>
+<font color= "green">        // matching Setting element is updated, or a new Setting element is </font>
+<font color= "green">        // created.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdateModuleSetting(int moduleId, String key, String val) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+<font color= "blue"></font>
+<font color= "green">            // Find the first (only) settings element</font>
+<font color= "blue">            </font>SiteConfiguration.SettingsRow settingsRow;
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if</font>(moduleRow.GetSettingsRows().Length > 0 )<font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "blue">                </font>settingsRow = moduleRow.GetSettingsRows()[0];
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else</font><font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "green">                // Add new settings element</font>
+<font color= "blue">                </font>settingsRow = siteSettings.Settings.NewSettingsRow();
+<font color= "blue"></font>
+<font color= "green">                // Set the parent relationship</font>
+<font color= "blue">                </font>settingsRow.ModuleRow = moduleRow;
+<font color= "blue"></font>
+<font color= "blue">                </font>siteSettings.Settings.AddSettingsRow(settingsRow);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Find the child setting elements</font>
+<font color= "blue">            </font>SiteConfiguration.SettingRow settingRow;
+<font color= "blue"></font>
+<font color= "blue">            </font>SiteConfiguration.SettingRow[] settingRows = settingsRow.GetSettingRows();
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if</font>(settingRows.Length == 0)<font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "green">                // If there are no Setting elements at all, add one with the new name and value,</font>
+<font color= "green">                // but only if the value is not empty</font>
+<font color= "blue"></font><font color= "blue">                if</font>(val != String.Empty)<font color= "blue"></font>
+<font color= "blue">                </font>{
+<font color= "blue">                    </font>settingRow = siteSettings.Setting.NewSettingRow();
+<font color= "blue"></font>
+<font color= "green">                    // Set the parent relationship and data</font>
+<font color= "blue">                    </font>settingRow.SettingsRow = settingsRow;
+<font color= "blue">                    </font>settingRow.Name = key;
+<font color= "blue">                    </font>settingRow.Setting_Text = val;
+<font color= "blue"></font>
+<font color= "blue">                    </font>siteSettings.Setting.AddSettingRow(settingRow);
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else</font><font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "green">                // Update existing setting element if it matches</font>
+<font color= "blue">                </font>bool found = false;
+<font color= "blue">                </font>Int32 i;
+<font color= "blue"></font>
+<font color= "green">                // Find which row matches the input parameter "key" and update the</font>
+<font color= "green">                // value.  If the value is String.Empty, however, delete the row.</font>
+<font color= "blue">                </font>for(i=0; i < settingRows.Length; i++)
+<font color= "blue">                </font>{
+<font color= "blue"></font><font color= "blue">                    if</font>(settingRows[i].Name == key)<font color= "blue"></font>
+<font color= "blue">                    </font>{
+<font color= "blue"></font><font color= "blue">                        if</font>(val == String.Empty)<font color= "blue"></font>
+<font color= "blue">                        </font>{
+<font color= "green">                            // Delete the row</font>
+<font color= "blue">                            </font>siteSettings.Setting.RemoveSettingRow(settingRows[i]);
+<font color= "blue">                        </font>}
+<font color= "blue"></font><font color= "blue">                        else</font><font color= "blue"></font>
+<font color= "blue">                        </font>{
+<font color= "green">                            // Update the value</font>
+<font color= "blue">                            </font>settingRows[i].Setting_Text = val;
+<font color= "blue">                        </font>}
+<font color= "blue"></font>
+<font color= "blue">                        </font>found = true;
+<font color= "blue">                    </font>}
+<font color= "blue">                </font>}
+<font color= "blue">                </font>
+<font color= "blue"></font><font color= "blue">                if</font>(found == false)<font color= "blue"></font>
+<font color= "blue">                </font>{
+<font color= "green">                    // Setting elements exist, however, there is no matching Setting element.</font>
+<font color= "green">                    // Add one with new name and value, but only if the value is not empty</font>
+<font color= "blue"></font><font color= "blue">                    if</font>(val != String.Empty)<font color= "blue"></font>
+<font color= "blue">                    </font>{
+<font color= "blue">                        </font>settingRow = siteSettings.Setting.NewSettingRow();
+<font color= "blue"></font>
+<font color= "green">                        // Set the parent relationship and data</font>
+<font color= "blue">                        </font>settingRow.SettingsRow = settingsRow;
+<font color= "blue">                        </font>settingRow.Name = key;
+<font color= "blue">                        </font>settingRow.Setting_Text = val;
+<font color= "blue"></font>
+<font color= "blue">                        </font>siteSettings.Setting.AddSettingRow(settingRow);
+<font color= "blue">                    </font>}
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetModuleSettings Method  <a name="GetModuleSettings"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetModuleSettings Method returns a hashtable of custom,</font>
+<font color= "green">        // module-specific settings from the configuration file.  This method is</font>
+<font color= "green">        // used by some user control modules (Xml, Image, etc) to access misc</font>
+<font color= "green">        // settings.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>static Hashtable GetModuleSettings(int moduleId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Create a new Hashtable</font>
+<font color= "blue">            </font>Hashtable _settingsHT = new Hashtable();
+<font color= "blue"></font>
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleRow moduleRow = siteSettings.Module.FindByModuleId(moduleId);
+<font color= "blue"></font>
+<font color= "green">            // Find the first (only) settings element</font>
+<font color= "blue"></font><font color= "blue">            if</font>(moduleRow.GetSettingsRows().Length > 0)<font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "blue">                </font>SiteConfiguration.SettingsRow settingsRow = moduleRow.GetSettingsRows()[0];
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if</font>(settingsRow != null)<font color= "blue"></font>
+<font color= "blue">                </font>{
+<font color= "green">                    // Find the child setting elements and add to the hashtable</font>
+<font color= "blue">                    </font>foreach(SiteConfiguration.SettingRow sRow in settingsRow.GetSettingRows())
+<font color= "blue">                    </font>{
+<font color= "blue">                        </font>_settingsHT[sRow.Name] = sRow.Setting_Text;
+<font color= "blue">                    </font>}
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue">            return</font> _settingsHT;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //</font>
+<font color= "green">        // MODULE DEFINITIONS</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetModuleDefinitions() Method <a name="GetModuleDefinitions"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetModuleDefinitions method returns a list of all module type </font>
+<font color= "green">        // definitions for the portal.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>DataRow[] GetModuleDefinitions(int portalId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table</font>
+<font color= "blue">            return</font> siteSettings.ModuleDefinition.Select();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddModuleDefinition() Method <a name="AddModuleDefinition"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddModuleDefinition add the definition for a new module type</font>
+<font color= "green">        // to the portal.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>int AddModuleDefinition(int portalId, String name, String desktopSrc, String mobileSrc) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Create new ModuleDefinitionRow</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleDefinitionRow newModuleDef = siteSettings.ModuleDefinition.NewModuleDefinitionRow();
+<font color= "blue"></font>
+<font color= "green">            // Set the parameter values</font>
+<font color= "blue">            </font>newModuleDef.FriendlyName = name;
+<font color= "blue">            </font>newModuleDef.DesktopSourceFile = desktopSrc;
+<font color= "blue">            </font>newModuleDef.MobileSourceFile = mobileSrc;
+<font color= "blue"></font>
+<font color= "green">            // Add the new ModuleDefinitionRow to the ModuleDefinition table</font>
+<font color= "blue">            </font>siteSettings.ModuleDefinition.AddModuleDefinitionRow(newModuleDef);
+<font color= "blue"></font>
+<font color= "green">            // Save the changes</font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue"></font>
+<font color= "green">            // Return the new ModuleDefID</font>
+<font color= "blue">            return</font> newModuleDef.ModuleDefId;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteModuleDefinition() Method <a name="DeleteModuleDefinition"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteModuleDefinition method deletes the specified module type </font>
+<font color= "green">        // definition from the portal.  Each module which is related to the</font>
+<font color= "green">        // ModuleDefinition is deleted from each tab in the configuration</font>
+<font color= "green">        // file, and all data relating to each module is deleted from the</font>
+<font color= "green">        // database.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //    + <a href="DeleteModule.htm" style="color:green">DeleteModule Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> DeleteModuleDefinition(int defId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            //</font>
+<font color= "green">            // Delete information in the Database relating to each Module being deleted</font>
+<font color= "green">            //</font>
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteModule", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue"></font>
+<font color= "blue">            </font>foreach(SiteConfiguration.ModuleRow moduleRow in siteSettings.Module.Select())
+<font color= "blue">            </font>{
+<font color= "blue"></font><font color= "blue">                if</font>(moduleRow.ModuleDefId == defId)<font color= "blue"></font>
+<font color= "blue">                </font>{
+<font color= "blue">                    </font>myCommand.Parameters.Clear();
+<font color= "blue">                    </font>parameterModuleID.Value = moduleRow.ModuleId;
+<font color= "blue">                    </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "green">                    // Delete the xml module associated with the ModuleDef</font>
+<font color= "green">                    // in the configuration file</font>
+<font color= "blue">                    </font>siteSettings.Module.RemoveModuleRow(moduleRow);
+<font color= "blue"></font>
+<font color= "green">                    // Open the database connection and execute the command</font>
+<font color= "blue">                    </font>myCommand.ExecuteNonQuery();
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "green">            // Finish removing Module Definition</font>
+<font color= "blue">            </font>siteSettings.ModuleDefinition.RemoveModuleDefinitionRow(siteSettings.ModuleDefinition.FindByModuleDefId(defId));
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue">       </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateModuleDefinition() Method <a name="UpdateModuleDefinition"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateModuleDefinition method updates the settings for the </font>
+<font color= "green">        // specified module type definition.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> UpdateModuleDefinition(int defId, String name, String desktopSrc, String mobileSrc) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table and update the properties</font>
+<font color= "blue">            </font>SiteConfiguration.ModuleDefinitionRow modDefRow = siteSettings.ModuleDefinition.FindByModuleDefId(defId);
+<font color= "blue"></font>
+<font color= "blue">            </font>modDefRow.FriendlyName = name;
+<font color= "blue">            </font>modDefRow.DesktopSourceFile = desktopSrc;
+<font color= "blue">            </font>modDefRow.MobileSourceFile = mobileSrc;
+<font color= "blue"></font>
+<font color= "green">            // Save the changes </font>
+<font color= "blue">            </font>SaveSiteSettings();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetSingleModuleDefinition Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetSingleModuleDefinition method returns a ModuleDefinitionRow</font>
+<font color= "green">        // object containing details about a specific module definition in the</font>
+<font color= "green">        // configuration file.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //    + <a href="#SaveSiteSettings" style="color:green">SaveSiteSettings() method</a></font>
+<font color= "green">        //      + <a href="PortalCfg.xml" style="color:green">PortalCfg.xml</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>SiteConfiguration.ModuleDefinitionRow GetSingleModuleDefinition(int defId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from Current Context</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Items["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Find the appropriate Module in the Module table</font>
+<font color= "blue">            return</font> siteSettings.ModuleDefinition.FindByModuleDefId(defId);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetSiteSettings Static Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Configuration.GetSiteSettings Method returns a typed</font>
+<font color= "green">        // dataset of the all of the site configuration settings from the</font>
+<font color= "green">        // XML configuration file.  This method is used in Global.asax to</font>
+<font color= "green">        // push the settings into the current HttpContext, so that all of the </font>
+<font color= "green">        // pages, content modules and classes throughout the rest of the request</font>
+<font color= "green">        // may access them.</font>
+<font color= "green">        //</font>
+<font color= "green">        // The SiteConfiguration object is cached using the ASP.NET Cache API,</font>
+<font color= "green">        // with a file-change dependency on the XML configuration file.  Normallly,</font>
+<font color= "green">        // this method just returns a copy of the object in the cache.  When the</font>
+<font color= "green">        // configuration is updated and changes are saved to the the XML file,</font>
+<font color= "green">        // the SiteConfiguration object is evicted from the cache.  The next time </font>
+<font color= "green">        // this method runs, it will read from the XML file again and insert a</font>
+<font color= "green">        // fresh copy of the SiteConfiguration into the cache.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public </font>static SiteConfiguration GetSiteSettings()
+<font color= "blue">        </font>{
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // If the SiteConfiguration isn't cached, load it from the XML file and add it into the cache.</font>
+<font color= "blue"></font><font color= "blue">            if</font>(siteSettings == null)<font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "green">                // Create the dataset</font>
+<font color= "blue">                </font>siteSettings = new SiteConfiguration();
+<font color= "blue"></font>
+<font color= "green">                // Retrieve the location of the XML configuration file</font>
+<font color= "blue">                </font>string configFile = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["configFile"]);
+<font color= "blue"></font>
+<font color= "green">                // Set the AutoIncrement property to true for easier adding of rows</font>
+<font color= "blue">                </font>siteSettings.Tab.TabIdColumn.AutoIncrement = true;
+<font color= "blue">                </font>siteSettings.Module.ModuleIdColumn.AutoIncrement = true;
+<font color= "blue">                </font>siteSettings.ModuleDefinition.ModuleDefIdColumn.AutoIncrement = true;
+<font color= "blue"></font>
+<font color= "green">                // Load the XML data into the DataSet</font>
+<font color= "blue">                </font>siteSettings.ReadXml(configFile);
+<font color= "blue">        </font>
+<font color= "green">                // Store the dataset in the cache</font>
+<font color= "blue">                </font>HttpContext.Current.Cache.Insert("SiteSettings", siteSettings, new CacheDependency(configFile));
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue">            return</font> siteSettings;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // SaveSiteSettings Method <a name="SaveSiteSettings"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The Configuration.SaveSiteSettings overwrites the the XML file with the</font>
+<font color= "green">        // settings in the SiteConfiguration object in context.  The object will in </font>
+<font color= "green">        // turn be evicted from the cache and be reloaded from the XML file the next</font>
+<font color= "green">        // time GetSiteSettings() is called.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue">        public void</font> SaveSiteSettings()
+<font color= "blue">        </font>{
+<font color= "green">            // Obtain SiteSettings from the Cache</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = (SiteConfiguration) HttpContext.Current.Cache["SiteSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Check the object</font>
+<font color= "blue"></font><font color= "blue">            if</font>(siteSettings == null)<font color= "blue"></font>
+<font color= "blue">            </font>{
+<font color= "green">                // If SaveSiteSettings() is called once, the cache is cleared.  If it is</font>
+<font color= "green">                // then called again before Global.Application_BeginRequest is called, </font>
+<font color= "green">                // which reloads the cache, the siteSettings object will be Null </font>
+<font color= "blue">                </font>siteSettings = GetSiteSettings();
+<font color= "blue">            </font>}
+<font color= "blue">            </font>string configFile = HttpContext.Current.Server.MapPath(ConfigurationSettings.AppSettings["configFile"]);
+<font color= "blue"></font>
+<font color= "green">            // Object is evicted from the Cache here.  </font>
+<font color= "blue">            </font>siteSettings.WriteXml(configFile);
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // PortalSettings Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // This class encapsulates all of the settings for the Portal, as well</font>
+<font color= "green">    // as the configuration settings required to execute the current tab</font>
+<font color= "green">    // view within the portal.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> PortalSettings 
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "blue">        public </font>int          PortalId;
+<font color= "blue">        public </font>String       PortalName;
+<font color= "blue">        public </font>bool         AlwaysShowEditButton;
+<font color= "blue">        public </font>ArrayList    DesktopTabs = new ArrayList();
+<font color= "blue">        public </font>ArrayList    MobileTabs = new ArrayList();
+<font color= "blue">        public </font>TabSettings  ActiveTab = new TabSettings();
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // PortalSettings Constructor</font>
+<font color= "green">        //</font>
+<font color= "green">        // The PortalSettings Constructor encapsulates all of the logic</font>
+<font color= "green">        // necessary to obtain configuration settings necessary to render</font>
+<font color= "green">        // a Portal Tab view for a given request.</font>
+<font color= "green">        //</font>
+<font color= "green">        // These Portal Settings are stored within PortalCFG.xml, and are</font>
+<font color= "green">        // fetched below by calling config.GetSiteSettings().</font>
+<font color= "green">        // The method config.GetSiteSettings() fills the SiteConfiguration</font>
+<font color= "green">        // class, derived from a DataSet, which PortalSettings accesses.</font>
+<font color= "green">        //       </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>PortalSettings(int tabIndex, int tabId) 
+<font color= "blue">        </font>{
+<font color= "green">            // Get the configuration data</font>
+<font color= "blue">            </font>SiteConfiguration siteSettings = Configuration.GetSiteSettings();
+<font color= "blue"></font>
+<font color= "green">            // Read the Desktop Tab Information, and sort by Tab Order</font>
+<font color= "blue">            </font>foreach(SiteConfiguration.TabRow tRow in siteSettings.Tab.Select("", "TabOrder"))
+<font color= "blue">            </font>{
+<font color= "blue">                </font>TabStripDetails tabDetails = new TabStripDetails();
+<font color= "blue"></font>
+<font color= "blue">                </font>tabDetails.TabId = tRow.TabId;
+<font color= "blue">                </font>tabDetails.TabName = tRow.TabName;
+<font color= "blue">                </font>tabDetails.TabOrder = tRow.TabOrder;
+<font color= "blue">                </font>tabDetails.AuthorizedRoles = tRow.AccessRoles;
+<font color= "blue"></font>
+<font color= "blue">                </font>this.DesktopTabs.Add(tabDetails);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If the PortalSettings.ActiveTab property is set to 0, change it to  </font>
+<font color= "green">            // the TabID of the first tab in the DesktopTabs collection</font>
+<font color= "blue"></font><font color= "blue">            if</font>(this.ActiveTab.TabId == 0)<font color= "blue"></font>
+<font color= "blue">                </font>this.ActiveTab.TabId = ((TabStripDetails)this.DesktopTabs[0]).TabId;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">            // Read the Mobile Tab Information, and sort by Tab Order</font>
+<font color= "blue">            </font>foreach(SiteConfiguration.TabRow mRow in siteSettings.Tab.Select("ShowMobile='true'", "TabOrder"))
+<font color= "blue">            </font>{
+<font color= "blue">                </font>TabStripDetails tabDetails = new TabStripDetails();
+<font color= "blue"></font>
+<font color= "blue">                </font>tabDetails.TabId = mRow.TabId;
+<font color= "blue">                </font>tabDetails.TabName = mRow.MobileTabName;
+<font color= "blue">                </font>tabDetails.AuthorizedRoles = mRow.AccessRoles;
+<font color= "blue">                </font>
+<font color= "blue">                </font>this.MobileTabs.Add(tabDetails);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Read the Module Information for the current (Active) tab</font>
+<font color= "blue">            </font>SiteConfiguration.TabRow activeTab = siteSettings.Tab.FindByTabId(tabId);
+<font color= "blue"></font>
+<font color= "green">            // Get Modules for this Tab based on the Data Relation</font>
+<font color= "blue">            </font>foreach(SiteConfiguration.ModuleRow moduleRow in activeTab.GetModuleRows())
+<font color= "blue">            </font>{
+<font color= "blue">                </font>ModuleSettings moduleSettings = new ModuleSettings();
+<font color= "blue"></font>
+<font color= "blue">                </font>moduleSettings.ModuleTitle = moduleRow.ModuleTitle;
+<font color= "blue">                </font>moduleSettings.ModuleId = moduleRow.ModuleId;
+<font color= "blue">                </font>moduleSettings.ModuleDefId = moduleRow.ModuleDefId;
+<font color= "blue">                </font>moduleSettings.ModuleOrder = moduleRow.ModuleOrder;
+<font color= "blue">                </font>moduleSettings.TabId = tabId;
+<font color= "blue">                </font>moduleSettings.PaneName = moduleRow.PaneName;
+<font color= "blue">                </font>moduleSettings.AuthorizedEditRoles = moduleRow.EditRoles;
+<font color= "blue">                </font>moduleSettings.CacheTime = moduleRow.CacheTimeout;
+<font color= "blue">                </font>moduleSettings.ShowMobile = moduleRow.ShowMobile;
+<font color= "blue"></font>
+<font color= "green">                // ModuleDefinition data</font>
+<font color= "blue">                </font>SiteConfiguration.ModuleDefinitionRow modDefRow = siteSettings.ModuleDefinition.FindByModuleDefId(moduleSettings.ModuleDefId);
+<font color= "blue"></font>
+<font color= "blue">                </font>moduleSettings.DesktopSrc = modDefRow.DesktopSourceFile;
+<font color= "blue">                </font>moduleSettings.MobileSrc = modDefRow.MobileSourceFile;
+<font color= "blue">                </font>
+<font color= "blue">                </font>this.ActiveTab.Modules.Add(moduleSettings);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Sort the modules in order of ModuleOrder</font>
+<font color= "blue">            </font>this.ActiveTab.Modules.Sort();
+<font color= "blue"></font>
+<font color= "green">            // Get the first row in the Global table</font>
+<font color= "blue">            </font>SiteConfiguration.GlobalRow globalSettings = (SiteConfiguration.GlobalRow) siteSettings.Global.Rows[0];
+<font color= "blue"></font>
+<font color= "green">            // Read Portal global settings </font>
+<font color= "blue">            </font>this.PortalId = globalSettings.PortalId;
+<font color= "blue">            </font>this.PortalName = globalSettings.PortalName;
+<font color= "blue">            </font>this.AlwaysShowEditButton = globalSettings.AlwaysShowEditButton;
+<font color= "blue">            </font>this.ActiveTab.TabIndex = tabIndex;
+<font color= "blue">            </font>this.ActiveTab.TabId = tabId;
+<font color= "blue">            </font>this.ActiveTab.TabOrder = activeTab.TabOrder;
+<font color= "blue">            </font>this.ActiveTab.MobileTabName = activeTab.MobileTabName;
+<font color= "blue">            </font>this.ActiveTab.AuthorizedRoles = activeTab.AccessRoles;
+<font color= "blue">            </font>this.ActiveTab.TabName = activeTab.TabName;
+<font color= "blue">            </font>this.ActiveTab.ShowMobile = activeTab.ShowMobile;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // TabStripDetails Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates the just the tabstrip details -- TabName, TabId and TabOrder </font>
+<font color= "green">    // -- for a specific Tab in the Portal</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> TabStripDetails 
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "blue">        public </font>int          TabId;
+<font color= "blue">        public </font>String       TabName;
+<font color= "blue">        public </font>int          TabOrder;
+<font color= "blue">        public </font>String       AuthorizedRoles;
+<font color= "blue">    </font>}
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // TabSettings Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates the detailed settings for a specific Tab </font>
+<font color= "green">    // in the Portal</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> TabSettings 
+<font color= "blue">    </font>{
+<font color= "blue">                           </font>
+<font color= "blue">        public </font>int          TabIndex;
+<font color= "blue">        public </font>int          TabId;
+<font color= "blue">        public </font>String       TabName;
+<font color= "blue">        public </font>int          TabOrder;
+<font color= "blue">        public </font>String       MobileTabName;
+<font color= "blue">        public </font>String       AuthorizedRoles;
+<font color= "blue">        public </font>bool         ShowMobile;
+<font color= "blue">        public </font>ArrayList    Modules = new ArrayList();
+<font color= "blue">    </font>}
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // ModuleSettings Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates the detailed settings for a specific Tab </font>
+<font color= "green">    // in the Portal.  ModuleSettings implements the IComparable interface </font>
+<font color= "green">    // so that an ArrayList of ModuleSettings objects may be sorted by</font>
+<font color= "green">    // ModuleOrder, using the ArrayList's Sort() method.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> ModuleSettings : IComparable 
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "blue">        public </font>int          ModuleId;
+<font color= "blue">        public </font>int          ModuleDefId;
+<font color= "blue">        public </font>int          TabId;
+<font color= "blue">        public </font>int          CacheTime;
+<font color= "blue">        public </font>int          ModuleOrder;
+<font color= "blue">        public </font>String       PaneName;
+<font color= "blue">        public </font>String       ModuleTitle;
+<font color= "blue">        public </font>String       AuthorizedEditRoles;
+<font color= "blue">        public </font>bool         ShowMobile;
+<font color= "blue">        public </font>String       DesktopSrc;
+<font color= "blue">        public </font>String       MobileSrc;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>int CompareTo(object value) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(value == null) return 1;<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">            </font>int compareOrder = ((ModuleSettings)value).ModuleOrder;
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder == compareOrder) return 0;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder < compareOrder) return -1;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder > compareOrder) return 1;<font color= "blue"></font>
+<font color= "blue">            return</font> 0;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // ModuleItem Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // This class encapsulates the basic attributes of a Module, and is used</font>
+<font color= "green">    // by the administration pages when manipulating modules.  ModuleItem implements </font>
+<font color= "green">    // the IComparable interface so that an ArrayList of ModuleItems may be sorted</font>
+<font color= "green">    // by ModuleOrder, using the ArrayList's Sort() method.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> ModuleItem : IComparable 
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "blue">        private </font>int      _moduleOrder;
+<font color= "blue">        private </font>String   _title;
+<font color= "blue">        private </font>String   _pane;
+<font color= "blue">        private </font>int      _id;
+<font color= "blue">        private </font>int      _defId;
+<font color= "blue"></font>
+<font color= "blue">        public </font>int ModuleOrder 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _moduleOrder;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_moduleOrder = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}    
+<font color= "blue"></font>
+<font color= "blue">        public </font>String ModuleTitle 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _title;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_title = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>String PaneName 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _pane;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_pane = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>int ModuleId 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _id;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_id = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}  
+<font color= "blue">  </font>
+<font color= "blue">        public </font>int ModuleDefId 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _defId;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_defId = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>} 
+<font color= "blue">   </font>
+<font color= "blue">        public </font>int CompareTo(object value) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(value == null) return 1;<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">            </font>int compareOrder = ((ModuleItem)value).ModuleOrder;
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder == compareOrder) return 0;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder < compareOrder) return -1;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.ModuleOrder > compareOrder) return 1;<font color= "blue"></font>
+<font color= "blue">            return</font> 0;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue">    </font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // TabItem Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // This class encapsulates the basic attributes of a Tab, and is used</font>
+<font color= "green">    // by the administration pages when manipulating tabs.  TabItem implements </font>
+<font color= "green">    // the IComparable interface so that an ArrayList of TabItems may be sorted</font>
+<font color= "green">    // by TabOrder, using the ArrayList's Sort() method.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> TabItem : IComparable 
+<font color= "blue">    </font>{
+<font color= "blue"></font>
+<font color= "blue">        private </font>int      _tabOrder;
+<font color= "blue">        private </font>String   _name;
+<font color= "blue">        private </font>int      _id;
+<font color= "blue"></font>
+<font color= "blue">        public </font>int TabOrder 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _tabOrder;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_tabOrder = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}    
+<font color= "blue"></font>
+<font color= "blue">        public </font>String TabName 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _name;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_name = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>int TabId 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue">            get</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                return</font> _id;
+<font color= "blue">            </font>}
+<font color= "blue">            set</font> 
+<font color= "blue">            </font>{
+<font color= "blue">                </font>_id = value;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}  
+<font color= "blue">  </font>
+<font color= "blue">        public </font>int CompareTo(object value) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(value == null) return 1;<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">            </font>int compareOrder = ((TabItem)value).TabOrder;
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.TabOrder == compareOrder) return 0;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.TabOrder < compareOrder) return -1;<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(this.TabOrder > compareOrder) return 1;<font color= "blue"></font>
+<font color= "blue">            return</font> 0;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

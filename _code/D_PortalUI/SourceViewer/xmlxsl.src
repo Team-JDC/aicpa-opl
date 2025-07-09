@@ -1,0 +1,3 @@
+User Control:XmlModule.ascx|DesktopModules_XmlModule_ascx.htm,XmlModule.ascx.cs|DesktopModules_XmlModule_ascx_cs.htm
+Business Component:Configuration.cs|Components_Configuration_cs.htm
+Edit Page:EditXml.aspx|DesktopModules_EditXml_aspx.htm, EditXml.aspx.cs|DesktopModules_EditXml_aspx_cs.htm

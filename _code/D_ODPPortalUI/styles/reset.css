@@ -1,0 +1,9 @@
+/* 
+	Using a customized version of Eric Meyer's CSS Reset to give us an even, cross-browser playing field. More info:
+	http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+*/
+body {font-family:arial; }
+
+:focus {
+	outline: none;
+}

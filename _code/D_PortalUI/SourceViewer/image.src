@@ -1,0 +1,3 @@
+User Control:ImageModule.ascx|DesktopModules_ImageModule_ascx.htm, ImageModule.ascx.cs|DesktopModules_ImageModule_ascx_cs.htm 
+Business Component:Configuration.cs|Components_Configuration_cs.htm
+Edit Page:EditImage.aspx|DesktopModules_EditImage_aspx.htm, EditImage.aspx.cs|DesktopModules_EditImage_aspx_cs.htm

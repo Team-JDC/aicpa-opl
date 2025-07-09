@@ -1,0 +1,3061 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Endeca.Web.UI.WebControls</name>
+    </assembly>
+    <members>
+        <member name="T:Endeca.Web.UI.WebControls.Breadcrumbs">
+            <summary>
+            Breadcrumbs server control that supports showing or hiding search, range filter, and dimension breadcrumbs.
+            Operations supported on individual breadcrumbs include removal for all types of breadcrumbs and navigation of dimension breadcrumbs.
+            The control also supports templates to override the rendering of each type of breadcrumb.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl">
+            <summary>
+            Abstract base class for Endeca data bound controls.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.ResolveDataSourceID(Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl)">
+            <summary>
+            For a given <see cref="T:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl"/> returns either the value of its <see cref="P:System.Web.UI.WebControls.BaseDataBoundControl.DataSource"/>
+            property's <see cref="P:System.Web.UI.Control.ID"/> property if the data source is an instance of <see cref="T:System.Web.UI.DataSourceControl"/>,
+            or the <see cref="T:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl"/>'s <see cref="P:System.Web.UI.WebControls.DataBoundControl.DataSourceID"/> property if it is set.
+            Otherwise returns <see cref="F:System.String.Empty"/>
+            </summary>
+            <param name="control">The <see cref="T:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl"/> whose data source ID is desired</param>
+            <returns>The data source ID of <see cref="F:System.String.Empty"/></returns>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManagerId">
+            <summary>
+            Gets or sets a value indicating which <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManager"/> to use.  The Default
+            <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManager"/> will be used if no value is provided.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.RenderHyperlinks">
+            <summary>
+            Returns true iff <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManager"/> is active.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManager">
+            <summary>
+            Returns the UrlManager with the specified <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManagerId"/>, or null
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.NavigationDataSourceID">
+            <summary>
+             The <see cref="T:Endeca.Web.UI.NavigationDataSource"/> to use for any command changes that would
+             be done by the user.  This propery should only be used in conjunction with the
+             <see cref="P:System.Web.UI.WebControls.BaseDataBoundControl.DataSource"/> property.  This property should not be used in conjunction
+             the DataSourceID property.
+            </summary>
+            <remarks>
+              The two ways of binding data into this control are:
+                1. The common use case.  Set a NavigationDataSource's ID in the
+                   <see cref="P:System.Web.UI.WebControls.DataBoundControl.DataSourceID"/> property.
+                2. If you want to use an alternative data source outside of the main
+                   data source.  For example you may have run your own command and
+                   want to use the results from that command, but you want user interaction
+                   to affect the command in the main data source.  You would use the
+                   <see cref="P:System.Web.UI.WebControls.BaseDataBoundControl.DataSource"/> property and the <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.NavigationDataSourceID"/>
+                   property together to set the data to render, and the DataSourceID
+                   to be modified user interactions.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that an entire dimension breadcrumb should be removed.
+            </summary>
+            <remarks>
+              To remove an entire dimension breadcrumb, set the <b>CommandName</b> of a button in a
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.FirstDimensionValueTemplate"/>, 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.IntermediateDimensionValueTemplate"/>, or
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.LastDimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.SelectDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that the navigation state should be changed to include the 
+              dimension value supplied.
+            </summary>
+            <remarks>
+              To navigate to a particular node in the dimension breadcrumb, set the <b>CommandName</b> of a button in a
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.FirstDimensionValueTemplate"/>, 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.IntermediateDimensionValueTemplate"/>, or
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.LastDimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.SelectParentDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that the navigation state should be changed to include the parent of the dimension value supplied.
+            </summary>
+            <remarks>
+              To navigate to a particular node in the dimension breadcrumb, set the <b>CommandName</b> of a button in a
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.FirstDimensionValueTemplate"/>, 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.IntermediateDimensionValueTemplate"/>, or
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.LastDimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveSearchCommand">
+            <summary>
+              Name of the command that indicates that a search breadcrumb should be removed.
+            </summary>
+            <remarks>
+              To remove a search breadcrumb, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.SearchBreadcrumbTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.ApplyAdjustment">
+            <summary>
+              Name of the command that indicates that a "Did You Mean" term should be applied.
+            </summary>
+            <remarks>
+              To apply the "Did You Mean" term, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.SearchBreadcrumbTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveRangeFilterCommand">
+            <summary>
+              Name of the command that indicates that a range filter breadcrumb should be removed.
+            </summary>
+            <remarks>
+              To remove a range filter breadcrumb, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.RangeBreadcrumbTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.#ctor">
+            <summary>
+            Instantiates a new <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnInit(System.EventArgs)">
+            <summary>
+            Uses the Init lifecycle event to register this control to use ControlState
+            </summary>
+            <param name="e">Init lifecycle <see cref="T:System.EventArgs"/></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.LoadControlState(System.Object)">
+            <summary>
+            See <see cref="M:System.Web.UI.Control.LoadControlState(System.Object)"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.SaveControlState">
+            <summary>
+            See <see cref="M:System.Web.UI.Control.SaveControlState"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.CreateChildControls(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+            See <see cref="M:System.Web.UI.WebControls.CompositeDataBoundControl.CreateChildControls(System.Collections.IEnumerable,System.Boolean)"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnRemoveSearch(Endeca.Web.UI.WebControls.SearchEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveSearchCommand"/> is issued
+            </summary>
+            <param name="args">Event args containing the search to remove from the <see cref="T:Endeca.Web.UI.NavigationDataSource"/></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnApplySearchAdjustment(Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.ApplyAdjustment"/> is issued
+            </summary>
+            <param name="args">Event args containing the search adjustment to apply to the <see cref="T:Endeca.Web.UI.NavigationDataSource"/></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnRemoveRangeFilter(Endeca.Web.UI.WebControls.RangeFilterEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveRangeFilterCommand"/> is issued
+            </summary>
+            <param name="args">Event args containing the range filter to remove from the <see cref="T:Endeca.Web.UI.NavigationDataSource"/></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSelectDimensionValue(Endeca.Web.UI.WebControls.DimensionValueEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.SelectDimensionValueCommand"/> is issued
+            </summary>
+            <param name="args">Event args containing the context path of the dimension value to select</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnRemoveDimensionValue(Endeca.Web.UI.WebControls.DimensionValueEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveDimensionValueCommand"/> is issued
+            </summary>
+            <param name="args">Event args containing the context path of the descriptor dimension value whose path should be removed</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSelectParentDimensionValue(Endeca.Web.UI.WebControls.DimensionValueEventArgs)">
+            <summary>
+            Used when a <see cref="F:Endeca.Web.UI.WebControls.Breadcrumbs.SelectParentDimensionValueCommand"/> is issued
+            </summary>
+            <param name="args">Event args containing the context path of the dimension value whose parent should be selected</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnItemCommand(Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs)">
+            <summary>
+               Raises this <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.ItemCommand"/> event.
+            </summary>
+            <param name="args">Identfies the command that occurred.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnDimensionValueItemCreated(Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the dimension value that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnRangeFilterItemCreated(Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the range filter that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSearchReportItemCreated(Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the search report that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSearchAdjustmentItemCreated(Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the search adjustment that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnDimensionValueItemDataBound(Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the dimension value that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnRangeFilterItemDataBound(Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the range filter that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSearchReportItemDataBound(Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the search report that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnSearchAdjustmentItemDataBound(Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the search adjustment that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.RaiseItemCommand(System.Object,Endeca.Web.UI.WebControls.BubbleEventArgs)">
+            <summary>
+              Raises the ItemCommand based on the template container from which the bubble args 
+              originated.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnBubbleEvent(System.Object,System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.OnBuildingUrl(Endeca.Web.UI.WebControls.BreadcrumbUrlEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.BuildingUrl"/> event.
+            </summary>
+            <param name="args">Provides information that can be used to build a URL.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.BuildUrl(System.Object,Endeca.Web.UI.WebControls.BreadcrumbsUrlType)">
+            <summary>
+             Builds URLs for different parts of the control fires the BuildingUrl event
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.HasFilters(Endeca.Data.AppliedFiltersResult)">
+            <summary>
+            Looks for any elements in all of the collections associated with the <see cref="T:Endeca.Data.AppliedFiltersResult"/>.
+            </summary>
+            <returns><code>true</code> if any of the collections have elements, <code>false</code> if they are all empty.</returns>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.InstantiateDimensionValues(System.Web.UI.Control,System.Collections.Generic.List{Endeca.Data.DimensionValue},System.Int32)">
+            <summary>
+              Loads the dimension breadcrumb template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.InstantiateRangeFilter(System.Web.UI.Control,Endeca.Data.RangeFilter,System.Int32)">
+            <summary>
+              Loads the range filter breadcrumb template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.InstantiateSearchBreadcrumb(System.Web.UI.Control,Endeca.Data.SearchReport,System.Int32)">
+            <summary>
+              Loads the search breadcrumb template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Breadcrumbs.InstantiateSuggestedSearchAdjustments(System.Web.UI.Control,Endeca.Data.SearchReport,System.Int32,System.Int32)">
+            <summary>
+              Readers the suggested search adjustments for the given <see cref="T:Endeca.Data.SearchReport"/>.  Renders the header template, each suggested
+              search adjustment, and the footer template.  Uses default templates if necessary.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.BuildingUrl">
+            <summary>
+              Raised when the control is building a URL
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchRemoved">
+            <summary>
+              Raised when the user removes an applied search.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentApplied">
+            <summary>
+              Raised when the user applies a suggested search adjustment.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterRemoved">
+            <summary>
+              Raised when the user removes an applied range filter
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueSelected">
+            <summary>
+              Raised when the user selects a dimension value.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueParentSelected">
+            <summary>
+              Raised when the user selects a dimension value's parent.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueRemoved">
+            <summary>
+              Raised when the user removes a dimension value.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.ItemCommand">
+            <summary>
+              Raised when a button is clicked in the <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.DimensionValue"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.SearchReport"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.SearchAdjustment"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.RangeFilter"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.FirstDimensionValueTemplate">
+            <summary>
+            Gets or sets a template that defines the display of the first or root dimension value 
+            in each dimension breadcrumb
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.IntermediateDimensionValueTemplate">
+            <summary>
+            Gets or sets a template that defines the display of the intermediate dimension values
+            in each dimension breadcrumb.  
+            </summary>
+            <remarks>
+            Note that intermediate dimension values only occur in hierarchical dimensions.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.LastDimensionValueTemplate">
+            <summary>
+            Gets or sets a template that defines the display of the last or descriptor dimension value 
+            in each dimension breadcrumb
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.SearchBreadcrumbTemplate">
+            <summary>
+              Gets or sets a template that defines how <see cref="T:Endeca.Data.SearchReport"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.SuggestedSearchAdjustmentTemplate">
+            <summary>
+              Gets or sets a template that defines how suggested <see cref="T:Endeca.Data.SearchAdjustment"/> items are displayed.  This template is used for
+              Did you Mean terms.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.RangeBreadcrumbTemplate">
+            <summary>
+              Gets or sets a template that defines how <see cref="T:Endeca.Data.RangeFilter"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.DataMember">
+            <summary>
+             See <see cref="P:System.Web.UI.WebControls.DataBoundControl.DataMember"/>.  This control only suppors <see cref="T:Endeca.Data.AppliedFiltersResult"/> data.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.Title">
+            <summary>
+            Gets or sets the title to be displayed by the control when there are breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.TitleWhenEmpty">
+            <summary>
+            The title to be displayed when there are no breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ShowSearches">
+            <summary>
+            Whether the control should show search breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ShowRangeFilters">
+            <summary>
+            Whether the control should show range breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ShowSelectedDimensionValues">
+            <summary>
+            Whether the control should show dimension breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ShowFullyInertSelectedDimensionValues">
+            <summary>
+            Whether the control should show inert dimensions as breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ShowPartiallyInertSelectedDimensionValues">
+            <summary>
+            Whether the control should show inert dimension values within breadcrumbs.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.Separator">
+            <summary>
+            The separator to use between elements of the dimensions template.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.SuggestedSearchAdjustmentCaption">
+            <summary>
+            The caption used for suggested search adjustments (Did you mean).
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.UseAlternateRendering">
+            <summary>
+            Gets or sets whether this control will display breadcrumbs with remove links instead of select links"
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveLinkText">
+            <summary>
+            Gets or sets the text this control will display as a remove link when useing alternate rendering
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.RemoveImageUrl">
+            <summary>
+            Gets or sets the image this control will display as a remove link when using alternate rendering and instead of the remove button when using standard rendering
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.InclusionDimensionIds">
+            <summary>
+              Gets a collection of IDs of the <see cref="T:Endeca.Data.DimensionState"/>s that should be displayed by this
+              control.
+            </summary>
+            <remarks>
+              If this array is not empty, then only dimensions with IDs in this collection are 
+              displayed, and the dimensions will be rendered in the order that they appear in the array.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.ExclusionDimensionIds">
+            <summary>
+              Gets a collection of IDs of the <see cref="T:Endeca.Data.DimensionState"/>s that should be not displayed by
+              this control.
+            </summary>
+            <remarks>
+              This list of dimensions takes precendence over <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.InclusionDimensionIds"/>.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Breadcrumbs.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.  
+            </summary>
+            <remarks>The root element for this control is a DIV tag.</remarks>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Breadcrumbs.DefaultSearchBreadcrumbTemplate">
+            <summary>
+              Provides default rendering for a search breadcrumb.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Breadcrumbs.DefaultSuggestedSearchAdjustmentTemplate">
+            <summary>
+              Provides default rendering for a suggested search adjustment.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Breadcrumbs.DefaultRangeBreadcrumbTemplate">
+            <summary>
+              Provides default rendering for a range filter breadcrumb.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.SearchEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchRemoved"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.SearchEventArgs.#ctor(Endeca.Data.Search)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.SearchEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.SearchEventArgs.Search">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.SearchEventArgs.Search"/> indicated by this event
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.RangeFilterEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.RangeFilterRemoved"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.RangeFilterEventArgs.#ctor(Endeca.Data.RangeFilter)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.RangeFilterEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.RangeFilterEventArgs.RangeFilter">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.RangeFilterEventArgs.RangeFilter"/> indicated by this event.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchAdjustmentApplied"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs.#ctor(Endeca.Data.SearchAdjustment)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs.SearchAdjustment">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.SearchAdjustmentEventArgs.SearchAdjustment"/> indicated by this event.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.DimensionValueItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs.#ctor(Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem"/> that was created or data 
+              bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs.#ctor(Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem"/> that was created or data 
+              bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs.#ctor(Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem"/> that was created or data 
+              bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.SearchReportItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs.#ctor(Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem"/> that was created or data 
+              bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.Breadcrumbs.ItemCommand"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs.#ctor(System.Web.UI.Control,Endeca.Web.UI.WebControls.BreadcrumbsItemType,System.Object,System.Web.UI.WebControls.CommandEventArgs)">
+            <summary>
+            Initializes a new <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs.CommandSource">
+            <summary>
+              Gets the object that was the original source of the command event.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs.Item">
+            <summary>
+              Gets the item in the <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control in which the command 
+              originated.  This control will be an instance of one of the following types: 
+              <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem"/>, <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem"/>,
+              <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem"/>, or <see cref="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem"/>.  
+              The type can be inferred from the value of the <see cref="P:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs.ItemType"/> property.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsItemCommandEventArgs.ItemType">
+            <summary>
+              Gets the type of the item in the <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control in which the command 
+              originated.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsItemType">
+            <summary>
+              The available item types in a <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsItemType.DimensionValue">
+            <summary>
+              The dimension value item.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsItemType.SearchReport">
+            <summary>
+              The search report item.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsItemType.SearchAdjustment">
+            <summary>
+              The search adjustment item.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsItemType.RangeFilter">
+            <summary>
+              The range filter item.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbUrlEventArgs">
+            <summary>
+            Provides a way to affect the URLs built by the Breadcrumbs Server Control
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.UrlEventArgs">
+            <summary>
+              Base class for events that allow a programmer to override the URLs that are generated by
+              Endeca server controls.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.UrlEventArgs.#ctor(Endeca.Web.Url.UrlManager,System.String)">
+            <summary>
+              Initializes a mew <see cref="T:Endeca.Web.UI.WebControls.UrlEventArgs"/> instance.
+            </summary>
+            <param name="urlManager">the URL manager that will be used to build the URL.</param>
+            <param name="commandSourceID">
+              ID of the <see cref="T:Endeca.Data.Provider.ICommandSource"/> for which the URL 
+              is being constructed.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.UrlEventArgs.UrlManager">
+            <summary>
+              Gets the URL manager that will be used to build the URL.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.UrlEventArgs.CommandSourceID">
+            <summary>
+              Gets the ID of the <see cref="T:Endeca.Data.Provider.ICommandSource"/> for which the URL 
+              is being constructed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.UrlEventArgs.Url">
+            <summary>
+              Gets or sets the URL that should be rendered.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbUrlEventArgs.#ctor(Endeca.Web.Url.UrlManager,System.String,System.Object,Endeca.Web.UI.WebControls.BreadcrumbsUrlType)">
+            <summary>
+            Creates a new BreadcrumbsUrlEventArgs with information to control the URL built.
+            </summary>
+            <param name="manager">UrlManager to use to build the URL</param>
+            <param name="commandSourceID">Command to associated with the Breadcrumbs control</param>
+            <param name="urlType">Type of URL built</param>
+            <param name="dataItem">The DataItem used to alter the state in the URL</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbUrlEventArgs.UrlType">
+            <summary>
+            Type of url built by the Breadcrumbs control
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbUrlEventArgs.DataItem">
+            <summary>
+            The DataItem used to alter the state in the URL
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsUrlType">
+            <summary>
+            Types of URLs that can be built by the Breadcrumbs server control
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.SelectDimensionValue">
+            <summary>
+            Build a URL by selecting a dimension value
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.RemoveDimensionValue">
+            <summary>
+            Build a URL by removing a dimension value
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.SelectParentDimensionValue">
+            <summary>
+            Build a URL by selecting the parent of a dimension value
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.RemoveSearch">
+            <summary>
+            Build a URL by removing a Search
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.ApplySearchAdjustment">
+            <summary>
+            Build a URL by removing one search and adding a suggested search
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.BreadcrumbsUrlType.RemoveRangeFilter">
+            <summary>
+            Build a URL by removing a RangeFilter
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1">
+            <summary>
+              Base class for template containers in the <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control.
+            </summary>
+            <typeparam name="TDataItem">
+              Type of data bound item associated with this container.
+            </typeparam>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              Converts <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events to 
+              <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes trhe event.</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.DataItem">
+            <summary>
+              Gets the data item associated with this container.  This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItem">
+            <summary>
+              Gets the data item associated with this container.  This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.DataItemIndex">
+            <summary>
+            See <see cref="P:System.Web.UI.IDataItemContainer.DataItemIndex"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.DisplayIndex">
+            <summary>
+            See <see cref="P:System.Web.UI.IDataItemContainer.DisplayIndex"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BreadcrumbsTemplateContainer`1.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.SearchBreadcrumbTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsSearchReportItem.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.SearchBreadcrumbTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsSearchAdjustmentItem.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.Breadcrumbs.RangeBreadcrumbTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.BreadcrumbsRangeFilterItem.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.BreadcrumbsDimensionValueItem">
+            <summary>
+              Provides a container for the templates of the <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control that
+              display <see cref="T:Endeca.Data.DimensionValue"/>s.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.DimensionValueTemplateContainer">
+            <summary>
+              Provides a container for the templates that display <see cref="T:Endeca.Data.DimensionValue"/>s.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1">
+            <summary>
+              Base class for template containers in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+            <typeparam name="TDataItem">
+              Type of data bound item associated with this container.
+            </typeparam>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              Converts <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events to 
+              <see cref="T:Endeca.Web.UI.WebControls.BubbleEventArgs"/> bubble events.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes the event.</param>
+            <returns>true if the event has been canceled; otherwise, false. The default is false. 
+            </returns>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItemIndex">
+            <summary>
+              Returns the index of the data item
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.System#Web#UI#IDataItemContainer#DisplayIndex">
+            <summary>
+              Returns the same value as <see cref="P:System.Web.UI.IDataItemContainer.DataItemIndex"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.DimensionValueTemplateContainer.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.DimensionValueTemplateContainer.DataItemIndex">
+            <summary>
+              Gets the index of the dimension value in the <see cref="P:Endeca.Data.DimensionState.Refinements"/> collection
+              of the <see cref="T:Endeca.Data.DimensionState"/> that contains the dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagerUrlEventArgs">
+            <summary>
+            Provides a way to affect the URLs built by the Pager Server Control
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PagerUrlEventArgs.#ctor(Endeca.Web.Url.UrlManager,System.String,System.Object,Endeca.Web.UI.WebControls.PagerUrlType)">
+            <summary>
+            Creates a new PagerUrlEventArgs with information to control the URL built.
+            </summary>
+            <param name="manager">UrlManager to use to build the URL</param>
+            <param name="commandSourceID">Command to associated with the Breadcrumbs control</param>
+            <param name="urlType">Type of URL built</param>
+            <param name="dataItem">The DataItem used to alter the state in the URL</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerUrlEventArgs.UrlType">
+            <summary>
+            Type of url built by the Pager control
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerUrlEventArgs.DataItem">
+            <summary>
+            The DataItem used to alter the state in the URL
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagerUrlType">
+            <summary>
+            The types of URLs that can be built by the Pager server control
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.PagerUrlType.Offset">
+            <summary>
+            Build a URL by changing the offset
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.PagerUrlType.ItemsPerPage">
+            <summary>
+            Build a URL by changing the items per page
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.BubbleEventArgs.CommandSource">
+            <summary>
+              Gets the object that raised the command.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner">
+            <summary>
+              Provides design-time support for a <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+               See <see cref="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner.GetDesignTimeHtml">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.WebControls.DataBoundControlDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner.CreateDesignTimeData">
+            <summary>
+              Cooks up a <see cref="T:Endeca.Data.AppliedFiltersResult"/> so that the associated <see cref="T:Endeca.Web.UI.WebControls.Breadcrumbs"/> control
+              can be populated with data without relying on a connection to an MDEX engine.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.BreadcrumbsDesigner.TemplateGroups">
+            <summary>
+              See <see cref="P:System.Web.UI.Design.ControlDesigner.TemplateGroups"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner">
+            <summary>
+              Provides design-time support for a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+               See <see cref="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner.GetDesignTimeHtml">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.WebControls.BaseDataBoundControlDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner.CreateDesignTimeData">
+            <summary>
+              Creates a group of dimensions so that the associated <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control
+              can be populated with data without relying on a connection to an MDEX engine.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.GuidedNavigationDesigner.TemplateGroups">
+            <summary>
+              See <see cref="P:System.Web.UI.Design.ControlDesigner.TemplateGroups"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PaddingInfo">
+            <summary>
+            Helper for controlling the Padding style
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PaddingInfo.#ctor(System.Web.UI.StateBag,System.Web.UI.WebControls.Style)">
+            <summary>
+            Initializes a new PaddingInfo 
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PaddingInfo.CopyFrom(Endeca.Web.UI.WebControls.PaddingInfo)">
+            <summary>
+            Copies the padding state from another padding instance
+            </summary>
+            <param name="padding"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PaddingInfo.MergeWith(Endeca.Web.UI.WebControls.PaddingInfo)">
+            <summary>
+            Merges padding state with another padding info instance.  If both padding info objects
+            have a specified padding value, the value from this instance is used instead of the
+            value from the parameter.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PaddingInfo.Top">
+            <summary>
+            Gets or sets the amount of top padding
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PaddingInfo.Left">
+            <summary>
+            Gets or sets the amount of left padding
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PaddingInfo.Right">
+            <summary>
+            Gets or sets the amount of right padding
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PaddingInfo.Bottom">
+            <summary>
+            Gets or sets the amount of bottom padding
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.InstrumentationDesigner">
+            <summary>
+              Renders placeholder HTML (the gray box) at design-time.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.PagerDesigner">
+            <summary>
+              Provides design-time support for a <see cref="T:Endeca.Web.UI.WebControls.Pager"/> control.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.PagerDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+               See <see cref="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.PagerDesigner.GetDesignTimeHtml">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.PagerDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.WebControls.DataBoundControlDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.PagerDesigner.CreateDesignTimeData">
+            <summary>
+            Create dummy design time data
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.PagerDesigner.TemplateGroups">
+            <summary>
+              See <see cref="P:System.Web.UI.Design.ControlDesigner.TemplateGroups"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.DesignerPageableResult">
+            <summary>
+            Create a private class for design time data only.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.DesignerPageableResult.TotalItemCount">
+            <summary>
+            Gets or sets the total number of items.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.DesignerPageableResult.ItemsPerPage">
+            <summary>
+            Gets or sets the number of records returned
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.DesignerPageableResult.ItemOffset">
+            <summary>
+            Gets or sets the current offset within the results to be used for paging along with <see cref="P:Endeca.Web.UI.WebControls.Design.DesignerPageableResult.TotalItemCount"/>
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Design.TagCloudDesigner">
+            <summary>
+              Provides design-time support for a <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.TagCloudDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+               See <see cref="M:System.Web.UI.Design.ControlDesigner.Initialize(System.ComponentModel.IComponent)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.TagCloudDesigner.GetDesignTimeHtml">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.ControlDesigner.GetDesignTimeHtml"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.TagCloudDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)">
+            <summary>
+              See <see cref="M:System.Web.UI.Design.WebControls.DataBoundControlDesigner.DataBind(System.Web.UI.WebControls.BaseDataBoundControl)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Design.TagCloudDesigner.CreateDesignTimeData">
+            <summary>
+              Cooks up a tag cloud so that the associated <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control
+              can be populated with data without relying on a connection to an MDEX engine.
+              
+              Specifically, creates six tags named tag0... tag5 with random sizes
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Design.TagCloudDesigner.TemplateGroups">
+            <summary>
+              See <see cref="P:System.Web.UI.Design.ControlDesigner.TemplateGroups"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation">
+            <summary>
+            Guided Navigation server control that displays dimension groups, dimensions, and dimension
+            values.  Supports opening and closing dimensions, navigating to dimension values, inert
+            dimension values, more links, and including and excluding dimensions by id.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.#ctor">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> instance.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigation.ToggleDimensionStateExposureCommand">
+            <summary>
+              Name of the command that indicates a dimension should be expanded or contracted. The 
+              value of this field is 'ToggleDimensionStateExposure'.
+            </summary>
+            <remarks>
+              To toggle a dimension, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigation.SelectDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that a dimension value should be selected. The 
+              value of this field is 'SelectDimensionValue'.
+            </summary>
+            <remarks>
+              To select a dimension value, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.RefinementDimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigation.RemoveDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that a dimension value should be removed. The 
+              value of this field is 'RemoveDimensionValue'.
+            </summary>
+            <remarks>
+              To remove a dimension value, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.SelectedDimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigation.ShowMoreDimensionValuesCommand">
+            <summary>
+              Name of the command that indicates that more dimension values for a dimension should 
+              be displayed, if only a subset of available values are currently being displayed. The 
+              value of this field is 'ShowMore'.
+            </summary>
+            <remarks>
+              To show more dimension values, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.ShowMoreDimensionValuesTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.CreateChildControls(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.CreateChildControls"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.LoadViewState(System.Object)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.SaveViewState"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.SaveViewState">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.SaveViewState"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.TrackViewState">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.TrackViewState"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.LoadControlState(System.Object)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.LoadControlState(System.Object)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.SaveControlState">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.SaveControlState"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnInit(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnPreRender(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnBubbleEvent(System.Object,System.EventArgs)"/>.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes the event.</param> 
+            <returns>true if the event has been canceled; otherwise, false. The default is false. 
+            </returns>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnToggleDimensionStateExposure(Endeca.Web.UI.WebControls.DimensionStateEventArgs)">
+            <summary>
+              Called when the user requested that a dimension state should be expanded or contracted.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnSelectDimensionValue(Endeca.Web.UI.WebControls.DimensionValueEventArgs)">
+            <summary>
+              Called when the user requests that a dimension value should be selected.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnRemoveDimensionValue(Endeca.Web.UI.WebControls.DimensionValueEventArgs)">
+            <summary>
+              Called when the user requests that a dimension value should be removed.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnShowMoreDimensionValues(Endeca.Web.UI.WebControls.DimensionStateEventArgs)">
+            <summary>
+              Called when the user requests that more dimension values should be displayed, if only a 
+              subset of available values are currently being displayed.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionValueItemCreated(Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the dimension value that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionStateItemCreated(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the dimension state that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionStateGroupItemCreated(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupItemCreated"/> event.
+            </summary>
+            <param name="args">Identifies the dimension state group that was created.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnItemCommand(Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs)">
+            <summary>
+               Raises this <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.ItemCommand"/> event.
+            </summary>
+            <param name="args">Identfies the command that occurred.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionValueItemDataBound(Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the dimension value that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionStateItemDataBound(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the dimension state that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnDimensionStateGroupItemDataBound(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItemEventArgs)">
+            <summary>
+              Raises the  <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupItemDataBound"/> event.
+            </summary>
+            <param name="args">Identifies the dimension state group that was data bound.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.OnBuildingUrl(Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.BuildingUrl"/> event.
+            </summary>
+            <param name="args">Describes the URL that is being constructed.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.BuildUrl(System.Object,Endeca.Web.UI.WebControls.GuidedNavigationUrlType)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.RaiseItemCommand(System.Object,Endeca.Web.UI.WebControls.BubbleEventArgs)">
+            <summary>
+              Raises the ItemCommand based on the template container from which the bubble args 
+              originated.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.ResolveDimensionStateGroups(System.Collections.IEnumerable,System.Boolean,System.Boolean)">
+            <summary>
+              Returns a collection representing the dimension groups. If databinding is true, then
+              the elements in the collection are <see cref="T:Endeca.Data.DimensionStateGroup"/> objects. If flattenGroups
+              is true, then a single dimension group containing all available dimensions is returned.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.ResolveDimensions(System.Object,System.Boolean)">
+            <summary>
+              Returns a collection representing the dimensions in the specified dimension group. If 
+              databinding is true, then the elements in the collection are <see cref="T:Endeca.Data.DimensionState"/> 
+              objects.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.ResolveRefinementDimensionValues(System.Object,System.Boolean)">
+            <summary>
+              Returns a collection representing the refinement dimension values in the specified dimension. If 
+              databinding is true, then the elements in the collection are <see cref="T:Endeca.Data.DimensionValue"/> 
+              objects.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.ResolveSelectedDimensionValues(System.Object,System.Boolean)">
+            <summary>
+              Returns a collection representing the selected dimension values in the specified dimension. If 
+              databinding is true, then the elements in the collection are <see cref="T:Endeca.Data.DimensionValue"/> 
+              objects.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.ResolveImplicitDimensionValues(System.Object,System.Boolean)">
+            <summary>
+              Returns a collection representing the implicit dimension values in the specified dimension. If 
+              databinding is true, then the elements in the collection are <see cref="T:Endeca.Data.DimensionValue"/> 
+              objects.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.GetFilteredDimensionStates(Endeca.Data.DimensionStateGroup)">
+            <summary>
+              Returns dimensions in the specified group that match the inclusion and exclusion filters.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.Range(System.Int32)">
+            <summary>
+              Returns integers from 0 to count - 1.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.InstantiateDimensionStateGroup(System.Web.UI.Control,Endeca.Data.DimensionStateGroup,System.Int32)">
+            <summary>
+              Loads the dimension state group template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.InstantiateDimensionState(System.Web.UI.Control,Endeca.Data.DimensionState,Endeca.Data.DimensionStateGroup,System.Int32,System.Int32)">
+            <summary>
+              Loads the dimension state template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.InstantiateRefinementDimensionValue(System.Web.UI.Control,Endeca.Data.DimensionValue,Endeca.Data.DimensionState,System.Int32)">
+            <summary>
+              Loads the dimension state template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.InstantiateSelectedDimensionValue(System.Web.UI.Control,Endeca.Data.DimensionValue,Endeca.Data.DimensionState,System.Int32)">
+            <summary>
+              Loads the dimension state template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.InstantiateImplicitDimensionValue(System.Web.UI.Control,Endeca.Data.DimensionValue,Endeca.Data.DimensionState,System.Int32)">
+            <summary>
+              Loads the dimension state template, using a default template if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigation.CreateStyle``1(System.String)">
+            <summary>
+              Creates a new style of the specified type.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateExposureToggled">
+            <summary>
+              Raised when the user expands or contracts a dimension.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.ShowMoreDimensionValues">
+            <summary>
+              Raised when the use clicks the 'Show More' link.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueSelected">
+            <summary>
+              Raised when the user selects a dimension value.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueRemoved">
+            <summary>
+              Raised when the user removes a dimension value.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.ItemCommand">
+            <summary>
+              Raised when a button is clicked in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.DimensionValue"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.DimensionState"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.DimensionStateGroup"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control, and before it is rendered on the page.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.GuidedNavigation.BuildingUrl">
+            <summary>
+              Raised when a URL is being constructed for one of the hyperlinks that is rendered by this
+              control.
+            </summary>
+            <remarks>
+              When this control has been configured with a <see cref="T:Endeca.Web.Url.UrlManager"/>, be setting the 
+              <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManagerId"/> property, hyperlinks are
+              rendered instead of links that post back to the current page.  Handling this event allows
+              a page developer to override the default URLs that are generated by the 
+              <see cref="T:Endeca.Web.Url.UrlManager"/>.  If the handler sets the 
+              <see cref="P:Endeca.Web.UI.WebControls.UrlEventArgs.Url"/> property, then this control renders the value
+              of this property, instead of the default URL.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.EnableRecordCounts">
+            <summary>
+              Gets or sets a value indicating if the count of matching records is displayed next to 
+              each dimension value.
+            </summary>
+            <remarks>
+              Note that the value of this property value has no effect unless Refinement Statistics 
+              are enabled for one or more dimensions.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.EnableDefaultStyling">
+            <summary>
+              Gets or sets a value indicating if this control is rendering using the default style sheet.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ShowRefinements">
+            <summary>
+            Enables or disables the display of refinement <see cref="T:Endeca.Data.DimensionValue"/>s for each <see cref="T:Endeca.Data.DimensionState"/>
+            in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ShowImplicitDimensionValues">
+            <summary>
+            Enables or disables the display of implicit <see cref="T:Endeca.Data.DimensionValue"/>s for each <see cref="T:Endeca.Data.DimensionState"/>
+            in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ShowSelectedDimensionValues">
+            <summary>
+            Enables or disables the display of selected <see cref="T:Endeca.Data.DimensionValue"/>s or "in-place breadcrumbs" for 
+            each <see cref="T:Endeca.Data.DimensionState"/> in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.InclusionDimensionIds">
+            <summary>
+              Gets a collection of IDs of the <see cref="T:Endeca.Data.DimensionState"/>s that should be displayed by this
+              control.
+            </summary>
+            <remarks>
+              If this array is not empty, then only dimensions with IDs in this collection are 
+              displayed, and the dimensions will be rendered in the order that they appear in the array.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ExclusionDimensionIds">
+            <summary>
+              Gets a collection of IDs of the <see cref="T:Endeca.Data.DimensionState"/>s that should be not displayed by
+              this control.
+            </summary>
+            <remarks>
+              This list of dimensions takes precendence over <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.InclusionDimensionIds"/>.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupTemplate">
+            <summary>
+              Gets or sets a template that defines how <see cref="T:Endeca.Data.DimensionStateGroup"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateTemplate">
+            <summary>
+              Gets or sets a template that defines how <see cref="T:Endeca.Data.DimensionState"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.RefinementDimensionValueTemplate">
+            <summary>
+              Gets or sets a template that defines how refinement <see cref="T:Endeca.Data.DimensionValue"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.SelectedDimensionValueTemplate">
+            <summary>
+              Gets or sets a template that defines how selected <see cref="T:Endeca.Data.DimensionValue"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ImplicitDimensionValueTemplate">
+            <summary>
+              Gets or sets a template that defines how implicit <see cref="T:Endeca.Data.DimensionValue"/> items are displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.ShowMoreDimensionValuesTemplate">
+            <summary>
+              Gets or sets a template that defines the rendering for the link that allows a user to
+              see more dimension values, if only a subset of available values is currently being 
+              displayed.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupStyle">
+            <summary>
+              Gets a style that describes the appearance of the LI element displaying each dimension group.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateStyle">
+            <summary>
+              Gets a style that describes the appearance of the LI element displaying each dimension.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueStyle">
+            <summary>
+              Gets a style that describes the appearance of the LI element displaying each dimension value.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupListStyle">
+            <summary>
+              Gets a style that describes the appearance of the UL element displaying dimension groups.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateListStyle">
+            <summary>
+              Gets a style that describes the appearance of the UL element displaying dimensions.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueListStyle">
+            <summary>
+              Gets a style that describes the appearance of the UL element displaying dimension values.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.DataMember">
+            <summary>
+             See <see cref="P:System.Web.UI.WebControls.DataBoundControl.DataMember"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigation.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.  
+            </summary>
+            <remarks>The root element for this control is a DIV tag.</remarks>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultDimensionStateGroupTemplate">
+            <summary>
+              Provides default rendering for a dimension group.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultDimensionStateTemplate">
+            <summary>
+              Provides default rendering for a dimension.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultRefinementDimensionValueTemplate">
+            <summary>
+              Provides default rendering for an dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultSelectedDimensionValueTemplate">
+            <summary>
+              Provides default rendering for an dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultImplicitDimensionValueTemplate">
+            <summary>
+              Provides default rendering for an dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigation.DefaultShowMoreTemplate">
+            <summary>
+              Provides default rendering for an dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.DimensionStateEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateExposureToggled"/> and
+              <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.ShowMoreDimensionValues"/> events.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.DimensionStateEventArgs.#ctor(System.String,System.String)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.DimensionStateEventArgs"/> instance.
+            </summary>
+            <param name="rootDimensionValueContextPath">
+              The context path of the root dimension value of the dimension for the 
+              <see cref="T:Endeca.Data.DimensionState"/> represented by this instance.
+            </param>
+            <param name="dimensionId">
+              the ID of the dimension that was expanded or contracted.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.DimensionStateEventArgs.DimensionId">
+            <summary>
+              Gets the ID of the dimension for the <see cref="T:Endeca.Data.DimensionState"/> represented by this
+              instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.DimensionStateEventArgs.RootDimensionValueContextPath">
+            <summary>
+              Gets the context path of the root dimension value of the dimension for the 
+              <see cref="T:Endeca.Data.DimensionState"/> represented by this instance.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.DimensionValueEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueSelected"/> and 
+              <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueRemoved"/> events.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.DimensionValueEventArgs.#ctor(System.String,System.String)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.DimensionValueEventArgs"/> instance.
+            </summary>
+            <param name="dimensionValueId">
+              The id of the dimension value that was selected.
+            </param>
+            <param name="dimensionValueContextPath">
+               The <see cref="P:Endeca.Data.DimensionValue.ContextPath"/> of the dimension value that was selected.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.DimensionValueEventArgs.DimensionValueId">
+            <summary>
+              Gets the ID of the <see cref="T:Endeca.Data.DimensionValue"/> that was selected.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.DimensionValueEventArgs.DimensionValueContextPath">
+            <summary>
+              Gets the <see cref="P:Endeca.Data.DimensionValue.ContextPath"/> of the dimension value that was selected.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionValueItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs.#ctor(Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem"/> that was created or data bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs.#ctor(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> that was created or data bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItemEventArgs.#ctor(Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              The <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem"/> that was created or data 
+              bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.ItemCommand"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs.#ctor(System.Web.UI.Control,Endeca.Web.UI.WebControls.GuidedNavigationItemType,System.Object,System.Web.UI.WebControls.CommandEventArgs)">
+            <summary>
+            Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs.CommandSource">
+            <summary>
+              Gets the object that was the original source of the command event.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs.Item">
+            <summary>
+              Gets the item in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control in which the command 
+              originated.  This control will be an instance of one of the following types: 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem"/>, <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/>, 
+              or <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem"/>.  The type can be inferred from the
+              value of the <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs.ItemType"/> property.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationItemCommandEventArgs.ItemType">
+            <summary>
+              Gets the type of the item in the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control in which the command 
+              originated.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.GuidedNavigation.BuildingUrl"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs.#ctor(Endeca.Web.Url.UrlManager,System.String,System.Object,Endeca.Web.UI.WebControls.GuidedNavigationUrlType)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs"/> instance.
+            </summary>
+            <param name="manager">
+              Manager that the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control will use to construct the URL.
+            </param>
+            <param name="commandSourceID">
+              ID of the <see cref="T:Endeca.Data.Provider.ICommandSource"/> for which the URL is being constructed.
+            </param>
+            <param name="dataItem">
+              Data item (<see cref="T:Endeca.Data.DimensionValue"/> or <see cref="T:Endeca.Data.DimensionState"/>) that provides 
+              context for the URL.
+            </param>
+            <param name="urlType">Gets the type of URL that is being constructed.</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs.DataItem">
+            <summary>
+              Gets the data item (<see cref="T:Endeca.Data.DimensionValue"/> or <see cref="T:Endeca.Data.DimensionState"/>) that 
+              provides context for the URL.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationUrlEventArgs.UrlType">
+            <summary>
+              Gets the type of URL that is being constructed.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationUrlType">
+            <summary>
+              Enumerates the types of URLs that are rendered by a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationUrlType.SelectDimensionValue">
+            <summary>
+              The URL that represents selecting a refinement dimension value.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationUrlType.RemoveDimensionValue">
+            <summary>
+              The URL that removing a seleced dimension value,
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationUrlType.ToggleDimensionStateExposure">
+            <summary>
+              The URL that represents expanding or contracting a dimension state.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationUrlType.ExpandMore">
+            <summary>
+              The URL that represents expanding a 'More...' link.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationItemType">
+            <summary>
+              The available item types in a <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationItemType.DimensionStateGroup">
+            <summary>
+              The dimension state group item.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationItemType.DimensionState">
+            <summary>
+              The dimension state item.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationItemType.DimensionValue">
+            <summary>
+              The dimension value item.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateGroupTemplate"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateGroupItem.DataItemIndex">
+            <summary>
+              Gets the index within its owning <see cref="T:System.Collections.ObjectModel.Collection`1"/> of the <see cref="T:Endeca.Data.DimensionStateGroup"/>.
+              The <see cref="T:Endeca.Data.DimensionStateGroup"/> is the <see cref="P:System.Web.UI.IDataItemContainer.DataItem"/>
+              for this <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> 
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigation.DimensionStateTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem.DimensionStateGroup">
+            <summary>
+              Gets the dimension group that contains the dimension. The value of this property is null
+              if <see cref="P:Endeca.Web.UI.WebControls.EndecaTemplateContainer`1.DataItem"/> is null.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem.DataItemIndex">
+            <summary>
+              Gets the index within its owning <see cref="T:System.Collections.ObjectModel.Collection`1"/> of the <see cref="T:Endeca.Data.DimensionState"/>.
+              The <see cref="T:Endeca.Data.DimensionState"/> is the <see cref="P:System.Web.UI.IDataItemContainer.DataItem"/>
+              for this <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionStateItem"/> 
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem">
+            <summary>
+              Provides a container for the templates of the <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control that
+              display <see cref="T:Endeca.Data.DimensionValue"/>s.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem.DimensionState">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem.DimensionState"/> that contains the <see cref="T:Endeca.Data.DimensionValue"/> 
+              associated with this template container.
+            </summary>
+            <remarks>
+              This value will be null if <see cref="P:System.Web.UI.IDataItemContainer.DataItem"/> is null.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItem.ItemType">
+            <summary>
+              Gets the type of <see cref="T:Endeca.Data.DimensionValue"/> that is displayed by this container.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemType">
+            <summary>
+              Describes the types of <see cref="T:Endeca.Data.DimensionValue"/> that can be displayed by the 
+              <see cref="T:Endeca.Web.UI.WebControls.GuidedNavigation"/> control.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemType.Refinement">
+            <summary>
+              A dimension value that can used to further refine a navigation query.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemType.Selected">
+            <summary>
+              A dimension value that has already been selected.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.GuidedNavigationDimensionValueItemType.Implicit">
+            <summary>
+              An implicitly selected dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.ListStyle">
+            <summary>
+            Helper style for controlling "list-style-type" css property
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.#ctor">
+            <summary>
+            Initializes a new ListStyle
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.#ctor(System.Web.UI.StateBag)">
+            <summary>
+            Initializes a new ListStyle
+            </summary>
+            <param name="bag">StateBag</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.Reset">
+            <summary>
+              See <see cref="M:System.Web.UI.WebControls.Style.Reset"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.MergeWith(System.Web.UI.WebControls.Style)">
+            <summary>
+              See <see cref="M:System.Web.UI.WebControls.Style.MergeWith(System.Web.UI.WebControls.Style)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.FillStyleAttributes(System.Web.UI.CssStyleCollection,System.Web.UI.IUrlResolutionService)">
+            <summary>
+              See <see cref="M:System.Web.UI.WebControls.Style.FillStyleAttributes(System.Web.UI.CssStyleCollection,System.Web.UI.IUrlResolutionService)"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.AddAttributesToRender(System.Web.UI.HtmlTextWriter,System.Web.UI.WebControls.WebControl)">
+            <summary>
+              See <see cref="M:System.Web.UI.WebControls.Style.AddAttributesToRender(System.Web.UI.HtmlTextWriter,System.Web.UI.WebControls.WebControl)"/>
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ListStyle.CopyFrom(System.Web.UI.WebControls.Style)">
+            <summary>
+              See <see cref="M:System.Web.UI.WebControls.Style.CopyFrom(System.Web.UI.WebControls.Style)"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.ListStyle.ListType">
+            <summary>
+            Gets or sets the current <see cref="T:Endeca.Web.UI.WebControls.ListStyleType"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.ListStyleType">
+            <summary>
+            Possible values for <see cref="T:Endeca.Web.UI.WebControls.ListStyle"/>
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.Circle">
+            <summary>
+            The css value "circle"
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.Disc">
+            <summary>
+            The css value "disc"
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.Square">
+            <summary>
+            The css value "square"
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.Decimal">
+            <summary>
+            The css value "decimal"
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.DecimalLeadingZero">
+            <summary>
+            The css value "decimal-leading-zero"
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.ListStyleType.None">
+            <summary>
+            The css value "none"
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.Pager">
+            <summary>
+            Pager server control for displaying paging options for <see cref="T:Endeca.Data.AggregateRecordsResult"/>s and <see cref="T:Endeca.Data.RecordsResult"/>s.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Pager.ChangeItemsPerPage">
+            <summary>
+            Command argument used to change the page size
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.Pager.ChangeOffset">
+            <summary>
+            Command argument used to change the offset
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.OnCommand(System.Web.UI.WebControls.CommandEventArgs)">
+            <summary>
+               Raises this <see cref="E:Endeca.Web.UI.WebControls.Pager.Command"/> event.
+            </summary>
+            <param name="args">Identfies the command that occurred.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.OnBuildingUrl(Endeca.Web.UI.WebControls.PagerUrlEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.Pager.BuildingUrl"/> event.
+            </summary>
+            <param name="args">Provides information that can be used to build a URL.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.BuildUrl(System.Object,Endeca.Web.UI.WebControls.PagerUrlType)">
+            <summary>
+             Builds URLs for different parts of the control fires the BuildingUrl event
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnBubbleEvent(System.Object,System.EventArgs)"/>.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes the event.</param> 
+            <returns>true if the event has been canceled; otherwise, false. The default is false. 
+            </returns>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.SetItemsPerPage(System.Web.UI.IDataSource,System.Int32)">
+            <summary>
+            Set the given items per page to the given data source.  The data source may be a <see cref="T:Endeca.Web.UI.NavigationDataSource"/>.  This pager's
+            <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemsType"/> must be <see cref="F:Endeca.Web.UI.WebControls.PagerItemsType.Records"/> or <see cref="F:Endeca.Web.UI.WebControls.PagerItemsType.AggregateRecords"/>.
+            </summary>
+            <param name="ds"></param>
+            <param name="itemsPerPage"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.SetItemOffset(System.Web.UI.IDataSource,System.Int64)">
+            <summary>
+            Set the given item offset to the given data source.  The data source may be a <see cref="T:Endeca.Web.UI.NavigationDataSource"/>.  This pager's
+            <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemsType"/> must be <see cref="F:Endeca.Web.UI.WebControls.PagerItemsType.Records"/> or <see cref="F:Endeca.Web.UI.WebControls.PagerItemsType.AggregateRecords"/>.
+            </summary>
+            <param name="ds"></param>
+            <param name="itemOffset"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.CreateChildControls(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.CreateChildControls"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.ParseResultsObject(System.Object)">
+            <summary>
+            Parses the given results object to set this pager's <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemOffset"/>, <see cref="P:Endeca.Web.UI.WebControls.Pager.TotalItemCount"/> and
+            <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPage"/>.  The result must be of type <see cref="T:Endeca.Data.RecordsResult"/>, <see cref="T:Endeca.Data.AggregateRecordsResult"/>,
+            or <see cref="T:Endeca.Web.UI.WebControls.Design.DesignerPageableResult"/>.
+            </summary>
+            <param name="oResult"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.Pager.ValidateDataSourceResult">
+            <summary>
+            Validates the DataSourceID and <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemsType"/> properties.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Pager.Command">
+            <summary>
+              Raised when a button is clicked in the <see cref="T:Endeca.Web.UI.WebControls.Pager"/> control.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.Pager.BuildingUrl">
+            <summary>
+              Raised when the <see cref="T:Endeca.Web.UI.WebControls.Pager"/> control is building a URL.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PagingInfo">
+            <summary>
+            Paging helper to calculate the attributes necessary for paging, i.e. next page, previous page, etc.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPageChoicesLabel">
+            <summary>
+              Gets or sets the label preceding the list of items per page choices.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.OffsetChoicesLabel">
+            <summary>
+              Gets or sets the offset choices label
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemsType">
+            <summary>
+              Gets or sets the type of items that will be paged by this pager.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.RenderInTable">
+            <summary>
+              Gets or sets a value indicating if the various components of the pager should be rendered
+              as columns in a table.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPageChoices">
+            <summary>
+            List of page sizes. Defaults to 10,20,30.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPage">
+            <summary>
+            Gets or sets this pager's items per page.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemOffset">
+            <summary>
+            Gets or sets this pagers item offset.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.TotalItemCount">
+            <summary>
+            Gets or sets this pager's total item count.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PageButtonCount">
+            <summary>
+            Gets or sets the number of pages to choose for offsets.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousBlockImageUrl">
+            <summary>
+            Gets or sets the previous block offset image path.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousBlockText">
+            <summary>
+            Gets or sets the previous block offset text. Defaults to "&lt;&lt;".
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousPageImageUrl">
+            <summary>
+            Gets or sets the previous page offset image path.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousPageText">
+            <summary>
+            Gets or sets the previous block offset text. Defaults to "&lt;".
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextBlockImageUrl">
+            <summary>
+            Gets or sets the next block offset image path.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextBlockText">
+            <summary>
+            Gets or sets the next block offset text. Defaults to "&gt;&gt;".
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextPageImageUrl">
+            <summary>
+            Gets or sets the next page offset image path.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextPageText">
+            <summary>
+            Gets or sets the next page offset text. Defaults to "&gt;".
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPageChoiceTemplate">
+            <summary>
+            Template to display the page size chooser
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PagerResultsTemplate">
+            <summary>
+            Template to display "Results x of y"
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousPageTemplate">
+            <summary>
+            Next page template. This will display "&lt;" by default.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.PreviousBlockTemplate">
+            <summary>
+            Next block template. This will display "&lt;&lt;" by default.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextPageTemplate">
+            <summary>
+            Next page template. This will display "&gt;" by default.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NextBlockTemplate">
+            <summary>
+            Next block template. This will display "&gt;&gt;" by default.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.OffsetChoiceTemplate">
+            <summary>
+            Item template for offset chooser. This will display the list of pages by default (1, 2, 3, 4...).
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.NoResultsTemplate">
+            <summary>
+            No results template
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.DataMember">
+            <summary>
+             See <see cref="P:System.Web.UI.WebControls.DataBoundControl.DataMember"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.Pager.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.  
+            </summary>
+            <remarks>The root element for this control is a DIV tag.</remarks>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagerItemsType">
+            <summary>
+            Available item types for this Pager control 
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.PagerItemsType.Records">
+            <summary>
+              Pager will page through records.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.PagerItemsType.AggregateRecords">
+            <summary>
+             Pager will page through aggregate records.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.ItemsPerPageChoice">
+            <summary>
+            Encapsulates a page size choice to the user, and whether it is currently selected
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ItemsPerPageChoice.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Define a new ItemsPerPageChoice
+            </summary>
+            <param name="pageSize"></param>
+            <param name="selected"></param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.ItemsPerPageChoice.ItemsPerPage">
+            <summary>
+            Gets or sets the page size
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.ItemsPerPageChoice.IsSelected">
+            <summary>
+            Gets or sets whether the page size is selected
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.OffsetChoice">
+            <summary>
+            Encapsulates an offset choice to the user, and whether it is currently selected
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.OffsetChoice.#ctor(System.Int64,System.Boolean,System.Int64)">
+            <summary>
+            Define a new OffsetChoice
+            </summary>
+            <param name="offset"></param>
+            <param name="selected"></param>
+            <param name="displayValue"></param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetChoice.DisplayValue">
+            <summary>
+            Gets or sets the offset to display
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetChoice.Offset">
+            <summary>
+            Gets or sets the actual offset
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetChoice.IsSelected">
+            <summary>
+            Gets or sets whether this OffsetChoice is selected
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagerTemplateContainer`1">
+            <summary>
+              Base class for template containers in the <see cref="T:Endeca.Web.UI.WebControls.Pager"/> control.
+            </summary>
+            <typeparam name="TDataItem">
+              Type of data bound item associated with this container.
+            </typeparam>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              Converts <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events to 
+              <see cref="T:Endeca.Web.UI.WebControls.BubbleEventArgs"/> bubble events.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes the event.</param>
+            <returns>true if the event has been canceled; otherwise, false. The default is false. 
+            </returns>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItemIndex">
+            <summary>
+              Returns the index of the data item
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.System#Web#UI#IDataItemContainer#DisplayIndex">
+            <summary>
+              Returns the same value as <see cref="P:System.Web.UI.IDataItemContainer.DataItemIndex"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerTemplateContainer`1.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.ItemsPerPageChoiceTemplateContainer">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.Pager.ItemsPerPageChoiceTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.ItemsPerPageChoiceTemplateContainer.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.OffsetChoiceTemplateContainer">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.Pager.OffsetChoiceTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.OffsetChoiceTemplateContainer.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer">
+            <summary>
+              Provides a container for the Offset Jumps template
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer.#ctor(System.Nullable{System.Int64},System.String,System.String)">
+            <summary>
+            Instantiates a new OffsetNavigationTemplateContainer
+            </summary>
+            <param name="offset"></param>
+            <param name="text"></param>
+            <param name="imageUrl"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              Converts <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events to 
+              <see cref="T:Endeca.Web.UI.WebControls.BubbleEventArgs"/> bubble events.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes the event.</param>
+            <returns>true if the event has been canceled; otherwise, false. The default is false. 
+            </returns>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer.Offset">
+            <summary>
+            Gets the offset
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer.Text">
+            <summary>
+            Gets the text representation of this offset, i.e. "&gt;&gt;"
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.OffsetNavigationTemplateContainer.ImageUrl">
+            <summary>
+            Gets the image url of this offet.  
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagerResultsTemplateContainer">
+            <summary>
+            Container for the Paging templates
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PagerResultsTemplateContainer.#ctor(Endeca.Web.UI.WebControls.PagingInfo)">
+            <summary>
+            Creates a new PagingInfoContainer with the given paging helper
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagerResultsTemplateContainer.PagingInfo">
+            <summary>
+            Returns the paging helper
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.PagingInfo">
+            <summary>
+             Utility class to assist with paging through a datasource.
+             The paging helper assumes that pages are arranged into blocks.
+             A block is a set of <i>n</i> pages, where <i>n</i> is the number of page
+             links to display.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.PagingInfo.#ctor(System.Int32,System.Int32,System.Int64,System.Int64)">
+            <summary>
+            Construct a new PagingHelper.
+            </summary>
+            <param name="pageSize">number of records per page</param>
+            <param name="pageButtonCount">number of page links to display</param>
+            <param name="offset">offset into the record set</param>
+            <param name="totalItemCount">total number of records</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.Offset">
+            <summary>
+            Returns the current record offset.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.ItemsPerPage">
+            <summary>
+            Returns the page size.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.NextBlockOffset">
+            <summary> Returns the offset for the next block of pages.  </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.NextItemOffset">
+            <summary> Returns the offset for the next page of records.</summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.PreviousBlockOffset">
+            <summary> Returns the offset for the previous block of pages.</summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.PreviousItemOffset">
+            <summary> Returns the offset for the previous page of records.</summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.StartPageNumber">
+            <summary> Returns the page number for the first page in the current block.</summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.FirstIndexOfPage">
+            <summary>
+            Returns the index of the first item on the page.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.TotalItemCount">
+            <summary>
+            Returns the index of the total record count.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.LastIndexOfPage">
+            <summary>
+            Returns the index of the last item on the page.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.PagingInfo.ItemOffsets">
+            <summary> Returns all page offsets for the current block of pages.</summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloud">
+            <summary>
+            Tag cloud server control that displays each dimension value of a dimension as a tag in a 
+            cloud.  By default, the tags will be sorted alphabetically and the size of each tag will be 
+            proportional to the record count of navigating on each dimension value.
+            </summary>
+            <remarks>
+            If all tags are the same size, this probably means that "compute refinement statistics" is
+            not enabled for the dimension that the tag cloud is displaying.
+            </remarks>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.#ctor">
+            <summary>
+            Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> instance.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloud.SelectDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that a dimension value should be navigated to. The 
+              value of this field is 'SelectDimensionValue'.
+            </summary>
+            <remarks>
+              To navigate to a dimension value, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.TagCloud.DimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloud.SearchForDimensionValueCommand">
+            <summary>
+              Name of the command that indicates that a dimension value should be searched for by
+              name. The value of this field is 'SearchForDimensionValue'.
+            </summary>
+            <remarks>
+              To search for the name of a dimension value, set the <b>CommandName</b> of a button in the 
+              <see cref="P:Endeca.Web.UI.WebControls.TagCloud.DimensionValueTemplate"/> to this value.
+            </remarks>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.CreateChildControls(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.CreateChildControls"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.LoadControlState(System.Object)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.LoadControlState(System.Object)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.SaveControlState">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.SaveControlState"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnInit(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnInit(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnPreRender(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnBubbleEvent(System.Object,System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnBuildingUrl(Endeca.Web.UI.WebControls.TagCloudUrlEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.BuildingUrl"/> event.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnSelectDimensionValue(System.String,System.String)">
+            <summary>
+              Called when the user requests that a dimension value should be navigated to.
+            </summary>
+            <param name="dimensionValueName">
+              The <see cref="P:Endeca.Data.DimensionValue.Name"/> of the dimension value to select.
+            </param>
+            <param name="contextPath">
+              The <see cref="P:Endeca.Data.DimensionValue.ContextPath"/> of the dimension value to select.
+            </param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnSearchForDimensionValue(System.String,System.String,Endeca.Data.SearchMode)">
+            <summary>
+              Called when the user requests that a dimension value should be searched for by name.
+            </summary>
+            <param name="name">
+              The name of the dimension value that should be searched for.
+            </param>
+            <param name="searchKey">The key taht should be searched for.</param>
+            <param name="searchMode">The mode for the search that should be performed.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnItemCommand(Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs)">
+            <summary>
+               Raises the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.ItemCommand"/> event.
+            </summary>
+            <param name="args">Identfies the command that occurred.</param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnDimensionValueItemCreated(Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemCreated"/> event.
+            </summary>
+            <param name="args">
+              Describes the <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem"/> that was created.
+            </param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.OnDimensionValueItemDataBound(Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs)">
+            <summary>
+              Raises the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemDataBound"/> event.
+            </summary>
+            <param name="args">
+              Describes the <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem"/> that was data bound.
+            </param>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.InstantiateDimensionValue(System.Web.UI.Control,System.Int32,Endeca.Data.DimensionValue,Endeca.Data.DimensionState,System.Int32,System.Int32)">
+            <summary>
+              Loads the dimension value template and separator template, using default templates if necessary.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloud.InstantiateEmptyTemplate(System.Web.UI.Control)">
+            <summary>
+              Loads the empty template, using the default template if necessary.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloud._tagSizes">
+            <summary>
+            The size of each tag in the tag cloud.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.ItemCommand">
+            <summary>
+              Raised when a button is clicked in the <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueSearched">
+            <summary>
+              Raised when the user clicks on a dimension value in the tag cloud, and the value of 
+              <see cref="P:Endeca.Web.UI.WebControls.TagCloud.SelectAction"/> is <see cref="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Search"/>.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueSelected">
+            <summary>
+              Raised when the user clicks on a dimension value in the tag cloud, and the value of 
+              <see cref="P:Endeca.Web.UI.WebControls.TagCloud.SelectAction"/> is <see cref="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Navigate"/>.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.BuildingUrl">
+            <summary>
+              Raised when a URL is being constructed for one of the hyperlinks that is rendered by this
+              control.
+            </summary>
+            <remarks>
+              When this control has been configured with a <see cref="T:Endeca.Web.Url.UrlManager"/>, be setting the 
+              <see cref="P:Endeca.Web.UI.WebControls.EndecaCompositeDataBoundControl.UrlManagerId"/> property, hyperlinks are
+              rendered instead of links that post back to the current page.  Handling this event allows
+              a page developer to override the default URLs that are generated by the 
+              <see cref="T:Endeca.Web.Url.UrlManager"/>.  If the handler sets the 
+              <see cref="P:Endeca.Web.UI.WebControls.UrlEventArgs.Url"/> property, then this control renders the value
+              of this property, instead of the default URL.
+            </remarks>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemCreated">
+            <summary>
+              Raised after a <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem"/> is first created in the 
+              <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control, and before it is data bound.
+            </summary>
+        </member>
+        <member name="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemDataBound">
+            <summary>
+              Raised after a <see cref="T:Endeca.Data.DimensionValue"/> is data bound in the 
+              <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control, and before it is rendered on the page.   
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.EnableDefaultStyling">
+            <summary>
+              Gets or sets a value indicating if this control is rendering using the default style sheet.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.TagSizeCount">
+            <summary>
+            Gets or sets a value indicating the number of distinct tag sizes to which dimension values will be assigned.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.MaximumNumberOfTags">
+            <summary>
+            Gets or sets a value indicating the maximum number of tags that will be returned in the tag cloud.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.CssClass">
+            <summary>
+            See <see cref="P:System.Web.UI.WebControls.WebControl.CssClass"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.Sizing">
+            <summary>
+            Gets or sets a value that determines the formula used to calculate the relative size of each tag.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.SortType">
+            <summary>
+            Gets or sets a value that determines the order that the dimension values in this tag cloud are sorted.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.SelectAction">
+            <summary>
+            Gets or sets a value that determines whether to navigate or do a search when a tag is selected.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.SearchKey">
+            <summary>
+            Gets or sets a value that determines the property or search interface name to use when a tag is selected.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.SearchMode">
+            <summary>
+            Gets or sets a value that determines the search mode to use when a tag is selected.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.DimensionId">
+            <summary>
+            Gets or sets the ID of the dimension that should be displayed by this control. Note that 
+            you must expose this Dimension in order for the engine to return Dimension Values to be
+            turned into tags.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.DataMember">
+            <summary>
+            By default, the DataMember will be set to "DimensionStatesResult" and this result will be used to
+            create the tag cloud based on the dimension whose ID is specified in the DimensionID
+            property. Another possible value for DataMember is to set it to a single dimension, for
+            example, 'DimensionStatesResult.RefinableDimensionStates["Region"]'.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.DimensionValueTemplate">
+            <summary>
+              Gets or sets a template that defines how <see cref="T:Endeca.Data.DimensionValue"/> items are displayed.
+              
+              Note that this template is the same as each tag in the cloud, since the cloud is made
+              up of dimension value items.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.SeparatorTemplate">
+            <summary>
+              Gets or sets a template that defines how the separator between each element of the 
+              tag cloud is displayed.
+            </summary>
+            <remarks>
+              By default, the template looks like:
+              <SeparatorTemplate> </SeparatorTemplate>
+              In other words, a single, non-breaking space
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.EmptyTemplate">
+            <summary>
+              Gets or sets a template that defines what is displayed when a tag cloud has no tags.
+            </summary>
+            <remarks>
+              By default, the template looks like:
+              <EmptyTemplate></EmptyTemplate>
+              In other words, it is empty
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloud.TagKey">
+            <summary>
+              See <see cref="P:System.Web.UI.WebControls.WebControl.TagKey"/>.  
+            </summary>
+            <remarks>The root element for this control is a DIV tag.</remarks>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloud.DefaultDimensionValueTemplate">
+            <summary>
+              Provides default rendering for a dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudSizing">
+            <summary>
+            Determines the formula used to calculate the relative size of each tag.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSizing.Frequency">
+            <summary>
+            The size of each tag is directly proportional to the record count for each dimension value.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSizing.Relevancy">
+            <summary>
+            The size of each tag is determined by a relevancy formula.  Warning: you must enable
+            the "stat-all" flag on the dgraph for this formula to work.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudSortType">
+            <summary>
+            Determines the order that the dimension values in this tag cloud are sorted.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSortType.Default">
+            <summary>
+            The dimension values will remain in the order they come back from the engine.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSortType.Alphabetical">
+            <summary>
+            Sorts the dimension values alphabetically by name in ascending order.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudSelectAction">
+            <summary>
+            Determines whether selecting a tag will result in a navigation query based on the ID of
+            the dimension value, or a search based on the name of the dimension value.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Navigate">
+            <summary>
+            Selecting a tag will result in a navigation query based on the dimension value ID.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Search">
+            <summary>
+            Selecting a tag will result in a search based on the name of the dimension value.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemCreated"/> and 
+              <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueItemDataBound"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs.#ctor(Endeca.Web.UI.WebControls.TagCloudDimensionValueItem)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs"/> instance.
+            </summary>
+            <param name="item">
+              the <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem"/> that was created or data bound.
+            </param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueItemEventArgs.Item">
+            <summary>
+              Gets the <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem"/> that was created or data bound.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs">
+            <summary>
+               Provides data for the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.ItemCommand"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs.#ctor(Endeca.Web.UI.WebControls.TagCloudDimensionValueItem,System.Object,System.Web.UI.WebControls.CommandEventArgs)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs.CommandSource">
+            <summary>
+              Gets the object that was the original source of the command event.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudItemCommandEventArgs.Item">
+            <summary>
+              Gets the item in the <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control in which the command 
+              originated.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueSearchedEventArgs">
+            <summary>
+              ///   Provides data for the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueSearched"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudDimensionValueSearchedEventArgs.#ctor(Endeca.Data.Search)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueSearchedEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueSearchedEventArgs.Search">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueSearchedEventArgs.Search"/> object describing the search that was performed.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueSelectedEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.DimensionValueSelected"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudDimensionValueSelectedEventArgs.#ctor(System.String,System.String)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueSelectedEventArgs"/> instance.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueSelectedEventArgs.DimensionValueName">
+            <summary>
+              Gets the <see cref="P:Endeca.Data.DimensionValue.Name"/> of the dimension value that was selected.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueSelectedEventArgs.ContextPath">
+            <summary>
+              Gets the <see cref="P:Endeca.Data.DimensionValue.ContextPath"/> of the dimension value that was selected.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs">
+            <summary>
+              Provides data for the <see cref="E:Endeca.Web.UI.WebControls.TagCloud.BuildingUrl"/> event.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.#ctor(Endeca.Web.Url.UrlManager,System.String,Endeca.Data.DimensionValue,Endeca.Data.Search,Endeca.Web.UI.WebControls.TagCloudUrlType)">
+            <summary>
+              Initializes a new <see cref="T:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs"/> instance.
+            </summary>
+            <param name="urlManager">
+              Manager that the <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control will use to construct the URL.
+            </param>
+            <param name="commandSourceID">
+              ID of the <see cref="T:Endeca.Data.Provider.ICommandSource"/> for which the URL is being constructed.
+            </param>
+            <param name="dimensionValue">the <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.DimensionValue"/> for which a link is being generated. </param>
+            <param name="search">the <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.Search"/> for which a link is being generated.  </param>
+            <param name="urlType">the type of URL that is being generated.</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.DimensionValue">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.DimensionValue"/> for which a link is being generated.  
+            </summary>
+            <remarks>
+              If <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.UrlType"/> is <see cref="F:Endeca.Web.UI.WebControls.TagCloudUrlType.Navigate"/>,
+              this dimension value should be selected when constructing the URL.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.Search">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.Search"/> for which a link is being generated.  
+            </summary>
+            <remarks>
+              If <see cref="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.UrlType"/> is <see cref="F:Endeca.Web.UI.WebControls.TagCloudUrlType.Search"/>,
+              this search should be selected when constructing the URL.
+            </remarks>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudUrlEventArgs.UrlType">
+            <summary>
+              Gets a value indicating the type of URL that is being generated.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudUrlType">
+            <summary>
+              Enumerates the types of URLs that are rendered by a <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudUrlType.Navigate">
+            <summary>
+              The type of link that is rendered when <see cref="P:Endeca.Web.UI.WebControls.TagCloud.SelectAction"/> is 
+              <see cref="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Navigate"/>.
+            </summary>
+        </member>
+        <member name="F:Endeca.Web.UI.WebControls.TagCloudUrlType.Search">
+            <summary>
+              The type of link that is rendered when <see cref="P:Endeca.Web.UI.WebControls.TagCloud.SelectAction"/> is 
+              <see cref="F:Endeca.Web.UI.WebControls.TagCloudSelectAction.Search"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1">
+            <summary>
+              Base class for template containers in the <see cref="T:Endeca.Web.UI.WebControls.TagCloud"/> control.
+            </summary>
+            <typeparam name="TDataItem">
+              Type of data bound item associated with this container.
+            </typeparam>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.OnBubbleEvent(System.Object,System.EventArgs)">
+            <summary>
+              Converts <see cref="T:System.Web.UI.WebControls.CommandEventArgs"/> bubble events to 
+              <see cref="T:Endeca.Web.UI.WebControls.BubbleEventArgs"/> bubble events.
+            </summary>
+            <param name="source">Source of the event</param>
+            <param name="args">Describes trhe event.</param>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.System#Web#UI#IDataItemContainer#DataItem">
+            <summary>
+              Gets the data item associated with this container. This value is null if this container
+              is not currently being data bound.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.DataItemIndex">
+            <summary>
+              See <see cref="P:System.Web.UI.IDataItemContainer.DataItemIndex"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.DisplayIndex">
+            <summary>
+               Returns the same value as <see cref="P:System.Web.UI.IDataItemContainer.DataItemIndex"/>.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem">
+            <summary>
+              Provides a container for the <see cref="P:Endeca.Web.UI.WebControls.TagCloud.DimensionValueTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem.OnDataBinding(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnDataBinding(System.EventArgs)"/>.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem.DimensionState">
+            <summary>
+              Gets the <see cref="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem.DimensionState"/> that contains the dimension value identified by 
+              <see cref="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.DataItem"/>. The value of this property is null
+              if <see cref="P:Endeca.Web.UI.WebControls.TagCloudTemplateContainer`1.DataItem"/> is null.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.TagCloudDimensionValueItem.TagSize">
+            <summary>
+            Gets the size of this tag. This value will always be between 0 and 
+            <see cref="P:Endeca.Web.UI.WebControls.TagCloud.TagSizeCount"/> - 1.  
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.WebStudioNavigationInstrumentation">
+            <summary>
+            Web Studio Instrumentation server control that can return the instrumentation necessary 
+            to enable Web Studio to read navigation state from the application.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.WebStudioNavigationInstrumentation.OnPreRender(System.EventArgs)">
+            <summary>
+              See <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>.
+            </summary>        
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.WebStudioNavigationInstrumentation.DataSourceID">
+            <summary>
+            The DataSourceID of the NavigationDataSource this control will render WebStudio instrumentation from.
+            </summary>
+        </member>
+        <member name="T:Endeca.Web.UI.WebControls.WebStudioRecordInstrumentation">
+            <summary>
+            Web Studio Instrumentation server control that can return the instrumentation necessary 
+            to enable Web Studio to read Record state from the application.
+            </summary>
+        </member>
+        <member name="M:Endeca.Web.UI.WebControls.WebStudioRecordInstrumentation.OnPreRender(System.EventArgs)">
+            <summary>
+            <see cref="M:System.Web.UI.Control.OnPreRender(System.EventArgs)"/>
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.WebStudioRecordInstrumentation.DataSourceID">
+            <summary>
+            The DataSourceID of the NavigationDataSource this control will render WebStudio instrumentation from.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.WebStudioRecordInstrumentation.RecordSpecProperty">
+            <summary>
+            The name of the Record Property that holds the unique Spec information for the Record.
+            </summary>
+        </member>
+        <member name="P:Endeca.Web.UI.WebControls.WebStudioRecordInstrumentation.RecordNameProperty">
+            <summary>
+            The name of the Record Property that holds the Display Name that will be used in WebStudio
+            to display the record.
+            </summary>
+        </member>
+    </members>
+</doc>

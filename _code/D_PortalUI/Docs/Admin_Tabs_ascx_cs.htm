@@ -1,0 +1,248 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue">        </font>
+<font color= "blue">    public </font>abstract class Tabs : AICPA.Destroyer.UI.Portal.PortalModuleControl {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton addBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ListBox tabList;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton upBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton downBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton editBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton deleteBtn;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">        </font>int tabIndex = 0;
+<font color= "blue">        </font>int tabId = 0;
+<font color= "blue">        protected </font>ArrayList portalTabs;
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load server event handler on this user control is used</font>
+<font color= "green">        // to populate the current tab settings from the database</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to access this page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles("Admins") == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["tabid"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>tabId = Int32.Parse(Request.Params["tabid"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["tabindex"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>tabIndex = Int32.Parse(Request.Params["tabindex"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue">        </font>
+<font color= "blue">            </font>portalTabs = new ArrayList();
+<font color= "blue">            </font>foreach (TabStripDetails tab in portalSettings.DesktopTabs) {
+<font color= "blue">        </font>
+<font color= "blue">                </font>TabItem t = new TabItem();
+<font color= "blue">                </font>t.TabName = tab.TabName;
+<font color= "blue">                </font>t.TabId = tab.TabId;
+<font color= "blue">                </font>t.TabOrder = tab.TabOrder;
+<font color= "blue">                </font>portalTabs.Add(t);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>
+<font color= "green">            // Give the admin tab a big sort order number, to ensure it's</font>
+<font color= "green">            // always at the end</font>
+<font color= "blue">            </font>TabItem adminTab = (TabItem) portalTabs[portalTabs.Count-1];
+<font color= "blue">            </font>adminTab.TabOrder=99999;
+<font color= "blue">        </font>
+<font color= "green">            // If this is the first visit to the page, bind the tab data to the page listbox</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>tabList.DataBind();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpDown_Click server event handler on this page is</font>
+<font color= "green">        // used to move a portal module up or down on a tab's layout pane</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UpDown_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>String cmd = ((ImageButton)sender).CommandName;
+<font color= "blue">        </font>
+<font color= "blue"></font><font color= "blue">            if </font>(tabList.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>int delta;
+<font color= "blue">            </font>
+<font color= "green">                // Determine the delta to apply in the order number for the module</font>
+<font color= "green">                // within the list.  +3 moves down one item; -3 moves up one item</font>
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>(cmd == "down") {<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue">                    </font>delta = 3;
+<font color= "blue">                </font>}
+<font color= "blue"></font><font color= "blue">                else </font>{<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue">                    </font>delta = -3;
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                </font>TabItem t;
+<font color= "blue">                </font>t = (TabItem) portalTabs[tabList.SelectedIndex];
+<font color= "blue">                </font>t.TabOrder += delta; 
+<font color= "blue">            </font>
+<font color= "green">                // Reset the order numbers for the tabs within the portal  </font>
+<font color= "blue">                </font>OrderTabs();
+<font color= "blue">            </font>
+<font color= "green">                // Redirect to this site to refresh</font>
+<font color= "blue">                </font>Response.Redirect("~/DesktopDefault.aspx?tabindex=" + (portalTabs.Count-1).ToString() + "&tabid=" + tabId);        }
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteBtn_Click server event handler is used to delete</font>
+<font color= "green">        // the selected tab from the portal</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> DeleteBtn_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(tabList.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // must delete from database too</font>
+<font color= "blue">                </font>TabItem t = (TabItem) portalTabs[tabList.SelectedIndex];
+<font color= "blue">                </font>Configuration config = new Configuration();
+<font color= "blue">                </font>config.DeleteTab(t.TabId);
+<font color= "blue">                        </font>
+<font color= "green">                // remove item from list</font>
+<font color= "blue">                </font>portalTabs.RemoveAt(tabList.SelectedIndex);
+<font color= "blue"></font>
+<font color= "green">                // reorder list</font>
+<font color= "blue">                </font>OrderTabs();
+<font color= "blue">            </font>
+<font color= "green">                // Redirect to this site to refresh</font>
+<font color= "blue">                </font>Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);        
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">    </font>
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddTab_Click server event handler is used to add</font>
+<font color= "green">        // a new security tab for this portal</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> AddTab_Click(Object Sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // New tabs go to the end of the list</font>
+<font color= "blue">            </font>TabItem t = new TabItem();
+<font color= "blue">            </font>t.TabName = "New Tab";
+<font color= "blue">            </font>t.TabId = -1;
+<font color= "blue">            </font>t.TabOrder = 999;
+<font color= "blue">            </font>portalTabs.Add(t);
+<font color= "blue"></font>
+<font color= "green">            // write tab to database</font>
+<font color= "blue">            </font>Configuration config = new Configuration();
+<font color= "blue">            </font>t.TabId = config.AddTab(portalSettings.PortalId, t.TabName, t.TabOrder);
+<font color= "blue">        </font>
+<font color= "green">            // reload the _portalSettings from the database</font>
+<font color= "blue">            </font>HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, t.TabId);
+<font color= "blue"></font>
+<font color= "green">            // Reset the order numbers for the tabs within the list  </font>
+<font color= "blue">            </font>OrderTabs();
+<font color= "blue">        </font>
+<font color= "green">            // Redirect to edit page</font>
+<font color= "blue">            </font>Response.Redirect("~/Admin/TabLayout.aspx?tabid=" + t.TabId);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">    </font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The EditBtn_Click server event handler is used to edit</font>
+<font color= "green">        // the selected tab within the portal</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> EditBtn_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Redirect to edit page of currently selected tab</font>
+<font color= "blue"></font><font color= "blue">            if </font>(tabList.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Redirect to module settings page</font>
+<font color= "blue">                </font>TabItem t = (TabItem) portalTabs[tabList.SelectedIndex];
+<font color= "blue">            </font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/TabLayout.aspx?tabid=" + t.TabId);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The OrderTabs helper method is used to reset the display</font>
+<font color= "green">        // order for tabs within the portal</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> OrderTabs () {
+<font color= "blue">    </font>
+<font color= "blue">            </font>int i = 1;
+<font color= "blue">        </font>
+<font color= "green">            // sort the arraylist</font>
+<font color= "blue">            </font>portalTabs.Sort();
+<font color= "blue">        </font>
+<font color= "green">            // renumber the order and save to database</font>
+<font color= "blue">            </font>foreach (TabItem t in portalTabs) {
+<font color= "blue">        </font>
+<font color= "green">                // number the items 1, 3, 5, etc. to provide an empty order</font>
+<font color= "green">                // number when moving items up and down in the list.</font>
+<font color= "blue">                </font>t.TabOrder = i;
+<font color= "blue">                </font>i += 2;
+<font color= "blue">            </font>
+<font color= "green">                // rewrite tab to database</font>
+<font color= "blue">                </font>Configuration config = new Configuration();
+<font color= "blue">                </font>config.UpdateTabOrder(t.TabId, t.TabOrder);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>Tabs() {
+<font color= "blue">            </font>this.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        ///        Required method for Designer support - do not modify</font>
+<font color= "green">        ///        the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.addBtn.Click += new System.EventHandler(this.AddTab_Click);
+<font color= "blue">            </font>this.upBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.downBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.editBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
+<font color= "blue">            </font>this.deleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue"></font>
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

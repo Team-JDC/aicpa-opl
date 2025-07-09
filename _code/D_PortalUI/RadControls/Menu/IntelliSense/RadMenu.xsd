@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense" xmlns="http://schemas.telerik.com/Intellisense/RadMenu" elementFormDefault="qualified" targetNamespace="http://schemas.telerik.com/Intellisense/RadMenu" vs:friendlyName="Visual Studio r.a.d.menu intellisence schema" vs:ishtmlschema="false" vs:iscasesensitive="false" vs:requireattributequotes="false" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:annotation>
+<xsd:documentation>Visual Studio r.a.d.menu intellisence schema</xsd:documentation>
+</xsd:annotation>
+<xsd:element name="RadMenu" type="RadMenuDef" />
+<xsd:complexType vs:noambientcontentmodel="true" name="MenuTemplateDef">
+<xsd:choice>
+<xsd:element maxOccurs="1" form="unqualified" name="Content" type="ITemplateDef" />
+</xsd:choice>
+<xsd:attribute name="ID" type="xsd:string" />
+<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+<xsd:attribute name="Visible" type="xsd:boolean" />
+<xsd:attribute vs:omtype="event" name="OnDisposed" />
+<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+<xsd:attribute vs:omtype="event" name="OnInit" />
+<xsd:attribute vs:omtype="event" name="OnLoad" />
+<xsd:attribute vs:omtype="event" name="OnPreRender" />
+<xsd:attribute vs:omtype="event" name="OnUnload" />
+<xsd:attribute name="Runat">
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="server" />
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:attribute>
+</xsd:complexType>
+<xsd:complexType vs:noambientcontentmodel="true" name="RadMenuDef">
+<xsd:choice>
+<xsd:element maxOccurs="1" form="unqualified" name="RootGroupPersistable" type="MenuGroupDef" />
+<xsd:element maxOccurs="1" form="unqualified" name="MenuTemplates" type="MenuItemTemplatesDef" />
+</xsd:choice>
+<xsd:attribute name="DefaultItemCss" type="xsd:string" />
+<xsd:attribute name="DefaultItemOverCss" type="xsd:string" />
+<xsd:attribute name="DefaultItemClickedCss" type="xsd:string" />
+<xsd:attribute name="DefaultItemDisabledCss" type="xsd:string" />
+<xsd:attribute name="DefaultItemHeight" type="xsd:int" />
+<xsd:attribute name="DefaultItemWidth" type="xsd:int" />
+<xsd:attribute name="Scrollable" type="xsd:boolean" />
+<xsd:attribute name="ScrollUpImage" type="xsd:string" />
+<xsd:attribute name="ScrollUpDisabledImage" type="xsd:string" />
+<xsd:attribute name="ScrollDownImage" type="xsd:string" />
+<xsd:attribute name="ScrollDownDisabledImage" type="xsd:string" />
+<xsd:attribute name="EnableGroupChildrenImage" type="xsd:boolean" />
+<xsd:attribute name="GroupChildrenImage" type="xsd:string" />
+<xsd:attribute name="ScrollLeftImage" type="xsd:string" />
+<xsd:attribute name="ScrollLeftImageDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollRightImage" type="xsd:string" />
+<xsd:attribute name="ScrollRightImageDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollCssClass" type="xsd:string" />
+<xsd:attribute name="ScrollOverCssClass" type="xsd:string" />
+<xsd:attribute name="ScrollClickedCssClass" type="xsd:string" />
+<xsd:attribute name="ScrollDisabledCssClass" type="xsd:string" />
+<xsd:attribute name="ScrollSpeed" type="xsd:int" />
+<xsd:attribute name="ScrollStep" type="xsd:int" />
+<xsd:attribute name="GroupHideDelay" type="xsd:int" />
+<xsd:attribute name="Opacity" type="xsd:int" />
+<xsd:attribute name="ShadowWidth" type="xsd:int" />
+<xsd:attribute name="ShadowColor" type="xsd:string" />
+<xsd:attribute name="DefaultExpandEffectDuration" type="xsd:int" />
+<xsd:attribute name="DefaultGroupCss" type="xsd:string" />
+<xsd:attribute name="ID" type="xsd:string" />
+<xsd:attribute name="EnableImageCaching" type="xsd:boolean" />
+<xsd:attribute name="EnableKeyboardControl" type="xsd:boolean" />
+<xsd:attribute name="EnableSearchSupport" type="xsd:boolean" />
+<xsd:attribute name="RequiresFilterSupport" type="xsd:boolean" />
+<xsd:attribute name="DataMember" type="xsd:string" />
+<xsd:attribute name="DataFieldID" type="xsd:string" />
+<xsd:attribute name="DataFieldParentID" type="xsd:string" />
+<xsd:attribute name="DataFieldParentRootValue" type="xsd:string" />
+<xsd:attribute name="AccessibilityEnabled" type="xsd:boolean" />
+<xsd:attribute name="BaseZIndex" type="xsd:int" />
+<xsd:attribute name="HrefBaseDir" type="xsd:string" />
+<xsd:attribute name="ImagesBaseDir" type="xsd:string" />
+<xsd:attribute name="ContentFile" type="xsd:string" />
+<xsd:attribute name="CssFile" type="xsd:string" />
+<xsd:attribute name="Overlay" type="xsd:boolean" />
+<xsd:attribute name="AbsolutePositioning" type="xsd:boolean" />
+<xsd:attribute name="AbsoluteX" type="xsd:int" />
+<xsd:attribute name="AbsoluteY" type="xsd:int" />
+<xsd:attribute name="IsContext" type="xsd:boolean" />
+<xsd:attribute name="IsStatic" type="xsd:boolean" />
+<xsd:attribute name="ContextHtmlElementID" type="xsd:string" />
+<xsd:attribute name="ExpandToID" type="xsd:string" />
+<xsd:attribute name="AutoPostBack" type="xsd:boolean" />
+<xsd:attribute name="CausesValidation" type="xsd:boolean" />
+<xsd:attribute name="ClickToOpen" type="xsd:boolean" />
+<xsd:attribute name="ShowPath" type="xsd:boolean" />
+<xsd:attribute name="Width" type="xsd:unsignedInt" />
+<xsd:attribute name="Height" type="xsd:unsignedInt" />
+<xsd:attribute name="OverrideDefaultTDCss" type="xsd:boolean" />
+<xsd:attribute name="OnClientClick" type="xsd:string" />
+<xsd:attribute name="OnClientItemHighlight" type="xsd:string" />
+<xsd:attribute name="OutputCacheMode" type="xsd:boolean" />
+<xsd:attribute name="RadControlsDir" type="xsd:string" />
+<xsd:attribute name="HeadContainerID" type="xsd:string" />
+<xsd:attribute name="ContentContainerID" type="xsd:string" />
+<xsd:attribute name="DefaultLevelCss" type="xsd:string" />
+<xsd:attribute name="ActivationKey" type="xsd:string" />
+<xsd:attribute name="AltKey" type="xsd:boolean" />
+<xsd:attribute name="CtrlKey" type="xsd:boolean" />
+<xsd:attribute name="ThemesDir" type="xsd:string" />
+<xsd:attribute name="Theme" type="xsd:string" />
+<xsd:attribute name="SkinID" type="xsd:string" />
+<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+<xsd:attribute name="LicenseFile" type="xsd:string" />
+<xsd:attribute name="Visible" type="xsd:boolean" />
+<xsd:attribute vs:omtype="event" name="OnItemClicked" />
+<xsd:attribute vs:omtype="event" name="OnItemDataBound" />
+<xsd:attribute vs:omtype="event" name="OnItemCreated" />
+<xsd:attribute vs:omtype="event" name="OnDisposed" />
+<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+<xsd:attribute vs:omtype="event" name="OnInit" />
+<xsd:attribute vs:omtype="event" name="OnLoad" />
+<xsd:attribute vs:omtype="event" name="OnPreRender" />
+<xsd:attribute vs:omtype="event" name="OnUnload" />
+<xsd:attribute name="Runat">
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="server" />
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:attribute>
+</xsd:complexType>
+<xsd:simpleType name="IeTransitions">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="Barn" />
+<xsd:enumeration value="Blinds" />
+<xsd:enumeration value="CheckerBoard" />
+<xsd:enumeration value="Fade" />
+<xsd:enumeration value="GradientWipe" />
+<xsd:enumeration value="Inset" />
+<xsd:enumeration value="Iris" />
+<xsd:enumeration value="Pixelate" />
+<xsd:enumeration value="RadialWipe" />
+<xsd:enumeration value="RandomBars" />
+<xsd:enumeration value="RandomDissolve" />
+<xsd:enumeration value="Slide" />
+<xsd:enumeration value="Spiral" />
+<xsd:enumeration value="Stretch" />
+<xsd:enumeration value="Strips" />
+<xsd:enumeration value="Wheel" />
+<xsd:enumeration value="Zigzag" />
+<xsd:enumeration value="None" />
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="ITemplateDef" />
+<xsd:complexType vs:noambientcontentmodel="true" name="MenuItemDef">
+<xsd:choice>
+<xsd:element maxOccurs="1" form="unqualified" name="ChildGroupPersistable" type="MenuGroupDef" />
+</xsd:choice>
+<xsd:attribute name="ID" type="xsd:string" />
+<xsd:attribute name="TemplateID" type="xsd:string" />
+<xsd:attribute name="Text" type="xsd:string" />
+<xsd:attribute name="StatusBarTip" type="xsd:string" />
+<xsd:attribute name="ToolTip" type="xsd:string" />
+<xsd:attribute name="Value" type="xsd:string" />
+<xsd:attribute name="Category" type="xsd:string" />
+<xsd:attribute name="Href" type="xsd:string" />
+<xsd:attribute name="Target" type="xsd:string" />
+<xsd:attribute name="PostBack" type="xsd:boolean" />
+<xsd:attribute name="Enabled" type="xsd:boolean" />
+<xsd:attribute name="IsSeparator" type="xsd:boolean" />
+<xsd:attribute name="Selected" type="xsd:boolean" />
+<xsd:attribute name="Visible" type="xsd:boolean" />
+<xsd:attribute name="NoWrap" type="xsd:boolean" />
+<xsd:attribute name="ImageAlt" type="xsd:string" />
+<xsd:attribute name="ImageLongDesc" type="xsd:string" />
+<xsd:attribute name="Image" type="xsd:string" />
+<xsd:attribute name="ImageDisabled" type="xsd:string" />
+<xsd:attribute name="ImageClicked" type="xsd:string" />
+<xsd:attribute name="ImageOver" type="xsd:string" />
+<xsd:attribute name="ImageWidth" type="xsd:string" />
+<xsd:attribute name="ImageHeight" type="xsd:string" />
+<xsd:attribute name="CssClass" type="xsd:string" />
+<xsd:attribute name="CssClassOver" type="xsd:string" />
+<xsd:attribute name="CssClassClicked" type="xsd:string" />
+<xsd:attribute name="CssClassDisabled" type="xsd:string" />
+<xsd:attribute name="LevelCss" type="xsd:string" />
+<xsd:attribute name="TextAlign" type="xsd:string" />
+<xsd:attribute name="Width" type="xsd:int" />
+<xsd:attribute name="Height" type="xsd:int" />
+<xsd:attribute name="LeftLogo" type="xsd:string" />
+<xsd:attribute name="LeftLogoOver" type="xsd:string" />
+<xsd:attribute name="LeftLogoDisabled" type="xsd:string" />
+<xsd:attribute name="LeftLogoClicked" type="xsd:string" />
+<xsd:attribute name="LeftLogoWidth" type="xsd:string" />
+<xsd:attribute name="LeftLogoHeight" type="xsd:string" />
+<xsd:attribute name="RightLogo" type="xsd:string" />
+<xsd:attribute name="RightLogoOver" type="xsd:string" />
+<xsd:attribute name="RightLogoDisabled" type="xsd:string" />
+<xsd:attribute name="RightLogoClicked" type="xsd:string" />
+<xsd:attribute name="RightLogoWidth" type="xsd:string" />
+<xsd:attribute name="RightLogoHeight" type="xsd:string" />
+<xsd:attribute name="Key" type="xsd:string" />
+<xsd:attribute name="AltKey" type="xsd:boolean" />
+<xsd:attribute name="CtrlKey" type="xsd:boolean" />
+<xsd:attribute name="AccessKey" type="xsd:string" />
+<xsd:attribute name="TabIndex" type="xsd:int" />
+<xsd:attribute name="OnClientClick" type="xsd:string" />
+<xsd:attribute name="OnClientItemHighlight" type="xsd:string" />
+<xsd:attribute name="OnClientItemSelect" type="xsd:string" />
+<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+<xsd:attribute vs:omtype="event" name="OnDisposed" />
+<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+<xsd:attribute vs:omtype="event" name="OnInit" />
+<xsd:attribute vs:omtype="event" name="OnLoad" />
+<xsd:attribute vs:omtype="event" name="OnPreRender" />
+<xsd:attribute vs:omtype="event" name="OnUnload" />
+<xsd:attribute name="Runat">
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="server" />
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:attribute>
+</xsd:complexType>
+<xsd:simpleType name="PresentationDirection">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="Vertical" />
+<xsd:enumeration value="Horizontal" />
+<xsd:enumeration value="NotValid" />
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:simpleType name="ExpandDirection">
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="Up" />
+<xsd:enumeration value="Down" />
+<xsd:enumeration value="Left" />
+<xsd:enumeration value="Right" />
+<xsd:enumeration value="NotValid" />
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType vs:noambientcontentmodel="true" name="MenuItemTemplatesDef">
+<xsd:choice>
+<xsd:element form="qualified" name="MenuTemplate" type="MenuTemplateDef" />
+</xsd:choice>
+<xsd:attribute name="Runat">
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="server" />
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:attribute>
+</xsd:complexType>
+<xsd:complexType vs:noambientcontentmodel="true" name="MenuGroupDef">
+<xsd:choice>
+<xsd:element maxOccurs="1" form="unqualified" name="MenuItem" type="MenuItemDef" />
+</xsd:choice>
+<xsd:attribute name="OnClientGroupExpand" type="xsd:string" />
+<xsd:attribute name="ID" type="xsd:string" />
+<xsd:attribute name="LeftCellWidth" type="xsd:int" />
+<xsd:attribute name="RightCellWidth" type="xsd:int" />
+<xsd:attribute name="Width" type="xsd:int" />
+<xsd:attribute name="ExpandDirection" type="ExpandDirection" />
+<xsd:attribute name="Flow" type="PresentationDirection" />
+<xsd:attribute name="OffsetX" type="xsd:int" />
+<xsd:attribute name="OffsetY" type="xsd:int" />
+<xsd:attribute name="CssClass" type="xsd:string" />
+<xsd:attribute name="LevelCss" type="xsd:string" />
+<xsd:attribute name="ExpandEffect" type="IeTransitions" />
+<xsd:attribute name="ExpandEffectDuration" type="xsd:int" />
+<xsd:attribute name="GroupHasChildrenImage" type="xsd:string" />
+<xsd:attribute name="ScrollHeight" type="xsd:int" />
+<xsd:attribute name="ScrollWidth" type="xsd:int" />
+<xsd:attribute name="ScrollImageTop" type="xsd:string" />
+<xsd:attribute name="ScrollImageBottom" type="xsd:string" />
+<xsd:attribute name="ScrollImageTopDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollImageBottomDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollImageLeft" type="xsd:string" />
+<xsd:attribute name="ScrollImageRight" type="xsd:string" />
+<xsd:attribute name="ScrollImageLeftDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollImageRightDisabled" type="xsd:string" />
+<xsd:attribute name="ScrollCss" type="xsd:string" />
+<xsd:attribute name="ScrollOverCss" type="xsd:string" />
+<xsd:attribute name="ScrollDisabledCss" type="xsd:string" />
+<xsd:attribute name="ScrollClickedCss" type="xsd:string" />
+<xsd:attribute name="EnableViewState" type="xsd:boolean" />
+<xsd:attribute name="Visible" type="xsd:boolean" />
+<xsd:attribute vs:omtype="event" name="OnDisposed" />
+<xsd:attribute vs:omtype="event" name="OnDataBinding" />
+<xsd:attribute vs:omtype="event" name="OnInit" />
+<xsd:attribute vs:omtype="event" name="OnLoad" />
+<xsd:attribute vs:omtype="event" name="OnPreRender" />
+<xsd:attribute vs:omtype="event" name="OnUnload" />
+<xsd:attribute name="Runat">
+<xsd:simpleType>
+<xsd:restriction base="xsd:string">
+<xsd:enumeration value="server" />
+</xsd:restriction>
+</xsd:simpleType>
+</xsd:attribute>
+</xsd:complexType>
+</xsd:schema>

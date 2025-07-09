@@ -1,0 +1,44 @@
+﻿{#template MAIN}
+<div id="join-sections-results-table-div" class="tableResults">
+    <table class="toolResults">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Topic</th>
+                <th>Subtopic</th>
+                <th>Section</th>
+                <th class="left">Title</th>
+            </tr>
+        </thead>
+        <tbody>
+        {#if $T.d[0] != null}
+            {#foreach $T.d as JoinSectionsResult}
+                <tr>
+                    <td><input class="join-section-checkbox" type="checkbox"></td>
+                    <td>{$T.JoinSectionsResult.TopicNum}</td>
+                    <td>{$T.JoinSectionsResult.SubtopicsNum}</td>
+                    <td>{$T.JoinSectionsResult.SectionNum}</td>
+                    <td class="left">{$T.JoinSectionsResult.TopicNum} {$T.JoinSectionsResult.BookTitle} > {$T.JoinSectionsResult.SubtopicNum} {$T.JoinSectionsResult.SubtopicTitle} > {$T.JoinSectionsResult.SectionNum} {$T.JoinSectionsResult.SectionTitle}</td>
+                </tr>
+            {#/for}
+        {#else}
+            <tr>
+                <td><input type="checkbox"</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {#/if}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="left" colspan="5">
+                    <a onclick="doJoinSections(false)" class="btn">Join Sections</a>
+                    <a onclick="doJoinSections(true)" class="btn">Join Sections with Sources</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{#/template MAIN}

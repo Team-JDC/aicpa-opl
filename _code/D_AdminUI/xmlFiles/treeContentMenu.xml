@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<ContextMenus>
+<Menu Name="BookMenu">
+   <Item Image="images/delete.gif" Text="Remove Book" PostBack="True" ID="Delete"/>
+   <Item Image="images/edit.gif" Text="Replace Book" PostBack="True" ID="Replace"/>
+   <Item Image="images/up.gif" Text="Move Up" PostBack="True" ID="MoveUp"/>
+   <Item Image="images/dn.gif" Text="Move Down" PostBack="True" ID="MoveDn"/>
+</Menu>
+<Menu Name="FolderMenu">
+   <Item Image="images/newfldr.gif" Text="Add Folder" PostBack="True" ID="addFolder" />
+   <Item Image="images/TreeIcons/Icons/book.gif" Text="Add Book" PostBack="True" ID="addBook" />
+   <Item Image="images/up.gif" Text="Move Up" PostBack="True" ID="MoveUp"/>
+   <Item Image="images/dn.gif" Text="Move Down" PostBack="True" ID="MoveDn"/>   
+   <Item Image="images/rename.gif" Text="Rename Folder" PostBack="True" ID="Delete"/>
+   <Item Image="images/delete.gif" Text="Remove Folder" PostBack="True" ID="Delete"/>
+</Menu>
+<Menu Name="RootMenu">
+   <Item Image="images/newfldr.gif" Text="Add Folder" PostBack="True" ID="addFolder" />
+   <Item Image="images/TreeIcons/Icons/book.gif" Text="Add Book" PostBack="True" ID="addBook" />
+</Menu>
+<Menu Name="BookSiteMenu">
+   <Item Image="images/delete.gif" Text="Remove Book from Site" PostBack="True" ID="RemoveSite"/>	
+</Menu>
+<Menu Name="SubscriptionRootMenu">
+   <Item Image="images/TreeIcons/Icons/ball_blueS.gif" Text="Add Subscription" PostBack="True" ID="AddSubscription"/>	
+</Menu>
+<Menu Name="SubscriptionSubscriptionMenu">
+   <Item Image="images/TreeIcons/Icons/book.gif" Text="Add Book" PostBack="True" ID="AddBook" />	
+   <Item Image="images/edit.gif" Text="Edit Subscription" PostBack="True" ID="EditSubscription"/>	
+   <Item Image="images/delete.gif" Text="Delete Subscription" PostBack="True" ID="DeleteSubscription"/>
+</Menu>
+<Menu Name="SubscriptionBookMenu">
+   <Item Image="images/delete.gif" Text="Remove Book" PostBack="True" ID="RemoveBook"/>
+</Menu>
+</ContextMenus>

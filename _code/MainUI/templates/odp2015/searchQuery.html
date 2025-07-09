@@ -1,0 +1,22 @@
+﻿{#template MAIN}
+
+<div class="widget_header">
+    <h3>Search Query</h3>
+</div>
+<div class="widget_inner">
+    <form>
+        <div class="clearfix">
+            <input type="text" name="q" style="display:none;" value="{$T.d.SearchTerm}">
+            <input type="hidden" id="sm" name="sm" value="{$T.d.SearchMode}"/>
+            <select name="did">
+                {#foreach $T.d.DimensionResults as DimensionNavigationResult} 
+                    <option value="{$T.DimensionNavigationResult.DimensionId}">{$T.DimensionNavigationResult.DimensionName}</option>
+                {#/foreach}
+            </select>
+            <input type="submit" class="adv_searchsubmit" value="GO" action="/search" />
+        </div>
+    </form>
+</div>
+
+                            
+{#/template MAIN}

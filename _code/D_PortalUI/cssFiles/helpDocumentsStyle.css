@@ -1,0 +1,84 @@
+Body
+{
+    background-color: white;
+    font-family:Verdana;
+    font-size: smaller;
+}
+
+HR {
+    color: dimgrey;
+    height:1pt;
+    text-align:left
+}
+
+H1  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  20px;
+    font-weight:    normal;
+    color: #666644;
+   }
+
+H3  {
+    font-family: Gautami;
+    font-size:  30px;
+    font-weight: bold;
+    color: darkred;
+    margin: 0px 0px 15px 15px;
+}
+
+H2  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  14px;
+    font-weight: bold;
+    color: darkblue;
+    margin: 0px 0px -15px 0px;
+}
+
+H4  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    font-weight:    normal;
+    color: #333399;
+}
+
+H5, DT  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: #333399;
+}
+
+A:link  {
+    text-decoration:    none;
+    color:  darkred;
+}
+
+A:visited   {
+    text-decoration:    none;
+    color:  darkred;
+}
+
+A:active    {
+    text-decoration:    none;
+    color:  darkred;
+}
+
+A:hover {
+    text-decoration:    underline;
+    color:  darkred;
+}
+
+UL LI   {
+	font-family:Verdana;
+	font-weight:normal;
+	margin: 0px 0px 0px 5px;
+	color: darkblue;
+	list-style: url(../images/portal/bullet.png);
+}
+
+TD
+{
+	background-color: white;
+    font-family:Verdana;
+    font-size: smaller;
+}

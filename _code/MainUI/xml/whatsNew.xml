@@ -1,0 +1,29 @@
+﻿<News>
+  <!-- we can supply text here to override the book name if we desire
+  example:
+  <NewsItem text="What's new in Professional Standards" bookId="whatsnew_ps" />
+  -->
+ 
+  <NewsItem text="What’s New in the Online Professional Library" bookId="whatsnew_opl" />
+  <NewsItem text="What’s New in Accountant`s Business Manual" bookId="whatsnew_abm" />
+  <NewsItem text="What’s New in Alerts" bookId="whatsnew_ara" />
+  <NewsItem text="What’s New in Audit and Accounting Manual" bookId="whatsnew_aam" />
+  <NewsItem text="What’s New for Best Practices in Presentation and Disclosure" bookId="whatsnew_att" />
+  <NewsItem text="What`s New in Checklists and Illustrative Financial Statements" bookId="whatsnew_chk" />
+  <NewsItem text="What’s New in eXacct: Financial Reporting Tools and Techniques" bookId="whatsnew_exacct" />
+  <NewsItem text="What’s New in FASB ASC" bookId="whatsnew_fasb_asc" />
+  <NewsItem text="What’s New in the Forensic &amp; Valuation Services Library" bookId="whatsnew_fvs" />
+  <NewsItem text="What`s New in GASB Literature" bookId="whatsnew_gasb" />
+  <NewsItem text="What’s New in Guides" bookId="whatsnew_aag" />
+  <NewsItem text="What’s New in Management of an Accounting Practice Handbook" bookId="whatsnew_emap" />
+  <NewsItem text="What’s New in Measurement Criteria" bookId="whatsnew_mct" />
+  <NewsItem text="What’s New in PCAOB Standards and Related Rules" bookId="whatsnew_pcaob" />
+  <NewsItem text="What’s New in Peer Review Program" bookId="whatsnew_prp" />
+  <NewsItem text="What’s New in Personal Financial Planning Services Library" bookId="whatsnew_pfp" />
+  <NewsItem text="What’s New in Practice Aids and Tools" bookId="whatsnew_pra" />
+  <NewsItem text="What’s New in Professional Standards" bookId="whatsnew_ps" />
+  <NewsItem text="What’s New in Technical Practice Aids" bookId="whatsnew_tpa" />
+  
+
+
+</News>

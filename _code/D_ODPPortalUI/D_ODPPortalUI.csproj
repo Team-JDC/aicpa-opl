@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8E242E09-5AB3-4BEF-9EC9-3EEB4A66423E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>D_ODPPortalUI</RootNamespace>
+    <AssemblyName>D_ODPPortalUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arat.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_ODPPortalUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'etpoc.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_ODPPortalUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ethics|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_ODPPortalUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CosoStage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_ODPPortalUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_ODPPortalUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ASPENCRYPTLib, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\D_PortalUI\bin\ASPENCRYPTLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="wnvhtmlconvert, Version=6.0.3.0, Culture=neutral, PublicKeyToken=5b5f377bc08a4d32, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\D_PortalUI\bin\wnvhtmlconvert.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasePage.aspx.cs">
+      <DependentUpon>BasePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BasePage.aspx.designer.cs">
+      <DependentUpon>BasePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Breadcrumb.ascx.cs">
+      <DependentUpon>Breadcrumb.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Breadcrumb.ascx.designer.cs">
+      <DependentUpon>Breadcrumb.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\AnnouncementsDB.cs" />
+    <Compile Include="Components\Configuration.cs" />
+    <Compile Include="Components\ContactsDB.cs" />
+    <Compile Include="Components\DesktopControls.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\DiscussionDB.cs" />
+    <Compile Include="Components\DocumentDB.cs" />
+    <Compile Include="Components\EventsDB.cs" />
+    <Compile Include="Components\HtmlTextDB.cs" />
+    <Compile Include="Components\LinksDB.cs" />
+    <Compile Include="Components\MobileControls.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\RolesDB.cs" />
+    <Compile Include="Components\Security.cs" />
+    <Compile Include="Content.aspx.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content.aspx.designer.cs">
+      <DependentUpon>Content.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BorderlessImageButton.cs" />
+    <Compile Include="Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PortalCfg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.ascx.cs">
+      <DependentUpon>Search.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.ascx.designer.cs">
+      <DependentUpon>Search.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchResults.ascx.cs">
+      <DependentUpon>SearchResults.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchResults.ascx.designer.cs">
+      <DependentUpon>SearchResults.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchResultsPage.aspx.cs">
+      <DependentUpon>SearchResultsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchResultsPage.aspx.designer.cs">
+      <DependentUpon>SearchResultsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\BaseDestroyerUi.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\MimeTypeUtil.cs" />
+    <Compile Include="Toolbars\ToolbarDocuments.ascx.cs">
+      <DependentUpon>ToolbarDocuments.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarDocuments.ascx.designer.cs">
+      <DependentUpon>ToolbarDocuments.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarHome.ascx.cs">
+      <DependentUpon>ToolbarHome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarHome.ascx.designer.cs">
+      <DependentUpon>ToolbarHome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarPreferences.ascx.cs">
+      <DependentUpon>ToolbarPreferences.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarPreferences.ascx.designer.cs">
+      <DependentUpon>ToolbarPreferences.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarTools.ascx.cs">
+      <DependentUpon>ToolbarTools.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Toolbars\ToolbarTools.ascx.designer.cs">
+      <DependentUpon>ToolbarTools.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ucTOC.ascx.cs">
+      <DependentUpon>ucTOC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ucTOC.ascx.designer.cs">
+      <DependentUpon>ucTOC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TesterTemplate.aspx.cs">
+      <DependentUpon>TesterTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TesterTemplate.aspx.designer.cs">
+      <DependentUpon>TesterTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDocument.ascx.cs">
+      <DependentUpon>ViewDocument.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDocument.ascx.designer.cs">
+      <DependentUpon>ViewDocument.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\accordian-bg.gif" />
+    <Content Include="images\aicpa-home.gif" />
+    <Content Include="images\aicpa-lp.gif" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\amb-home.gif" />
+    <Content Include="images\amb-lp.gif" />
+    <Content Include="images\archive-home.gif" />
+    <Content Include="images\archive-lp.gif" />
+    <Content Include="images\arrow-down.gif" />
+    <Content Include="images\arrow-left.gif" />
+    <Content Include="images\arrow-right.gif" />
+    <Content Include="images\arrow.gif" />
+    <Content Include="images\blank.gif" />
+    <Content Include="images\body-bg.png" />
+    <Content Include="images\breadcrumb-bg.gif" />
+    <Content Include="images\breadcrumb-divider.gif" />
+    <Content Include="images\breadcrumb-divider.png" />
+    <Content Include="images\breadcrumb-end.gif" />
+    <Content Include="images\breadcrumb-end.png" />
+    <Content Include="images\breadcrumb-start.gif" />
+    <Content Include="images\btn-back.gif" />
+    <Content Include="images\btn-doc.gif" />
+    <Content Include="images\btn-next.gif" />
+    <Content Include="images\btn-print.gif" />
+    <Content Include="images\btn-results.gif" />
+    <Content Include="images\btn-search.gif" />
+    <Content Include="images\B_c.gif" />
+    <Content Include="images\B_o.gif" />
+    <Content Include="images\Chevron.gif" />
+    <Content Include="images\ChevronOverlay.png" />
+    <Content Include="images\content-bg.gif" />
+    <Content Include="images\doc-1.gif" />
+    <Content Include="images\doc-2.gif" />
+    <Content Include="images\doc-new.gif" />
+    <Content Include="images\D_c.gif" />
+    <Content Include="images\D_Resource.gif" />
+    <Content Include="images\fasb-home.gif" />
+    <Content Include="images\fasb-lp.gif" />
+    <Content Include="images\footer-bg.gif" />
+    <Content Include="images\gasb-home.gif" />
+    <Content Include="images\gasb-lp.gif" />
+    <Content Include="images\header-bg.gif" />
+    <Content Include="images\header-bg.png" />
+    <Content Include="images\header-bg2.png" />
+    <Content Include="images\heiler.gif" />
+    <Content Include="images\hide.gif" />
+    <Content Include="images\home-book-aicpa.gif" />
+    <Content Include="images\home-book-amb.gif" />
+    <Content Include="images\home-book-archive.gif" />
+    <Content Include="images\home-book-bg-hover.gif" />
+    <Content Include="images\home-book-bg-left.gif" />
+    <Content Include="images\home-book-bg-right.gif" />
+    <Content Include="images\home-book-bg.gif" />
+    <Content Include="images\home-book-fasb.gif" />
+    <Content Include="images\home-book-gasb.gif" />
+    <Content Include="images\home-forum.gif" />
+    <Content Include="images\home-pic.jpg" />
+    <Content Include="images\icon-find.gif" />
+    <Content Include="images\icon-forum.gif" />
+    <Content Include="images\icon-help.gif" />
+    <Content Include="images\icon-hot.gif" />
+    <Content Include="images\icon-note.gif" />
+    <Content Include="images\icon-toc.gif" />
+    <Content Include="images\IconHome.gif" />
+    <Content Include="images\images_aam.gif" />
+    <Content Include="images\images_att.gif" />
+    <Content Include="images\images_title_pcaob.gif" />
+    <Content Include="images\images_Title_ProfStandards.gif" />
+    <Content Include="images\images_Title_TechPractice.gif" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\main-bg.gif" />
+    <Content Include="images\main-bottom-bg.gif" />
+    <Content Include="images\main-bottom-left.gif" />
+    <Content Include="images\main-bottom-right.gif" />
+    <Content Include="images\pref-favs.gif" />
+    <Content Include="images\pref-pref.gif" />
+    <Content Include="images\pref-searches.gif" />
+    <Content Include="images\print-header-bg.gif" />
+    <Content Include="images\print.gif" />
+    <Content Include="images\searchbar-left.gif" />
+    <Content Include="images\searchbar-mid.gif" />
+    <Content Include="images\searchbar-right.gif" />
+    <Content Include="images\show.gif" />
+    <Content Include="images\square.gif" />
+    <Content Include="images\S_o.gif" />
+    <Content Include="images\tab-current.gif" />
+    <Content Include="images\tab.gif" />
+    <Content Include="images\tier2-1.gif" />
+    <Content Include="images\tier2-2.gif" />
+    <Content Include="images\tier2-3.gif" />
+    <Content Include="images\tier2-4.gif" />
+    <Content Include="images\tier2-5.gif" />
+    <Content Include="images\tier2-6.gif" />
+    <Content Include="images\tier2-7.gif" />
+    <Content Include="images\tier2-8.gif" />
+    <Content Include="images\tier3-1.gif" />
+    <Content Include="images\tier3-3.gif" />
+    <Content Include="images\tier3-4.gif" />
+    <Content Include="images\tier3-5.gif" />
+    <Content Include="images\tier3-6.gif" />
+    <Content Include="images\tier3-7.gif" />
+    <Content Include="images\tier3-8.gif" />
+    <Content Include="images\tools-add.gif" />
+    <Content Include="images\tools-f1.gif" />
+    <Content Include="images\tools-f2.gif" />
+    <Content Include="images\tools-f3.gif" />
+    <Content Include="images\tools-f4.gif" />
+    <Content Include="images\tools-f5.gif" />
+    <Content Include="images\tools-f6.gif" />
+    <Content Include="images\tools-f7.gif" />
+    <Content Include="images\tools-find.gif" />
+    <Content Include="images\tools-help.gif" />
+    <Content Include="images\tools-print.gif" />
+    <Content Include="images\tools-source.gif" />
+    <Content Include="images\tools-toc.gif" />
+    <Content Include="images\Untitled-1.gif" />
+    <Content Include="javascripts\jquery-1.3.2.min.js" />
+    <Content Include="javascripts\jquery.coda-slider-2.0.js" />
+    <Content Include="javascripts\jquery.easing.1.3.js" />
+    <Content Include="js\animatedcollapse.js" />
+    <Content Include="js\detect.js" />
+    <Content Include="js\javascript.js" />
+    <Content Include="js\jquery-1.2.1.pack.js" />
+    <Content Include="js\jquery-1.2.6.js" />
+    <Content Include="js\jquery-1.3.2.min.js" />
+    <Content Include="js\jquery-slide-panel.js" />
+    <Content Include="js\jquery-slider.js" />
+    <Content Include="js\jquery-slider2.js" />
+    <Content Include="js\jquery-ui-1.7.2.custom.min.js" />
+    <Content Include="js\jquery.anchor.js" />
+    <Content Include="js\jquery.coda-slider-2.0.js" />
+    <Content Include="js\jquery.easing.1.3.js" />
+    <Content Include="js\jquery.flip.js" />
+    <Content Include="js\jquery.flip.min.js" />
+    <Content Include="js\jquery.jBreadCrumb.1.1.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.tabs1.js" />
+    <Content Include="js\jquery.tabs2.js" />
+    <Content Include="js\jquery.timeout.js" />
+    <Content Include="js\popup.js" />
+    <Content Include="aicpa.html" />
+    <Content Include="aicpa2.html" />
+    <Content Include="aicpa3.html" />
+    <Content Include="amb.html" />
+    <Content Include="archive.html" />
+    <Content Include="mockups_temp\content-1.html" />
+    <Content Include="mockups_temp\content-2.html" />
+    <Content Include="mockups_temp\content-3.html" />
+    <Content Include="mockups_temp\content-4.html" />
+    <Content Include="mockups_temp\content-5.html" />
+    <Content Include="mockups_temp\content-6.html" />
+    <Content Include="fasb.html" />
+    <Content Include="gasb.html" />
+    <Content Include="index-img.html" />
+    <Content Include="index.html" />
+    <Content Include="new.html" />
+    <Content Include="test.html" />
+    <Content Include="resources\aag-arr.css" />
+    <Content Include="resources\AICPA-Audit-Guide.gif" />
+    <Content Include="resources\demo.js" />
+    <Content Include="resources\Destroyer.js" />
+    <Content Include="resources\file.gif" />
+    <Content Include="resources\folder-closed.gif" />
+    <Content Include="resources\Illustration-1-2-%281%29.gif" />
+    <Content Include="resources\Illustration-1-2-%282%29.gif" />
+    <Content Include="resources\img1-1.gif" />
+    <Content Include="resources\jquery.cookie.js" />
+    <Content Include="resources\jquery.js" />
+    <Content Include="resources\jquery.treeview.css" />
+    <Content Include="resources\jquery.treeview.js" />
+    <Content Include="resources\minus.gif" />
+    <Content Include="resources\plus.gif" />
+    <Content Include="resources\table-minus.GIF" />
+    <Content Include="resources\tableThumbnail.gif" />
+    <Content Include="resources\treeview-black-line.gif" />
+    <Content Include="resources\treeview-black.gif" />
+    <Content Include="resources\treeview-default-line.gif" />
+    <Content Include="resources\treeview-default.gif" />
+    <Content Include="resources\treeview-famfamfam-line.gif" />
+    <Content Include="resources\treeview-famfamfam.gif" />
+    <Content Include="resources\treeview-gray-line.gif" />
+    <Content Include="resources\treeview-gray.gif" />
+    <Content Include="resources\treeview-red-line.gif" />
+    <Content Include="resources\treeview-red.gif" />
+    <Content Include="styles\Base.css" />
+    <Content Include="styles\BreadCrumb.css" />
+    <Content Include="styles\coda-slider-2.0.css" />
+    <Content Include="styles\detect1024.css" />
+    <Content Include="styles\detect1280.css" />
+    <Content Include="styles\detect1600.css" />
+    <Content Include="styles\main.css" />
+    <Content Include="styles\pop.css" />
+    <Content Include="styles\reset.css" />
+    <Content Include="web_appSettings.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\D_DestroyerAPI\D_DestroyerAPI.csproj">
+      <Project>{9F4AA7B8-6536-4A97-B862-5B6322321A85}</Project>
+      <Name>D_DestroyerAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\.DS_Store" />
+    <None Include="PortalCfg.xsc">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <None Include="PortalCfg.xss">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <None Include="PortalCfg.xsx">
+      <DependentUpon>PortalCfg.xsd</DependentUpon>
+    </None>
+    <Content Include="BasePage.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="js\jQuery-jtemplates.min.js" />
+    <Content Include="PortalCfg.xml" />
+    <Content Include="PortalCfg.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PortalCfg.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Breadcrumb.ascx" />
+    <Content Include="Content.aspx" />
+    <Content Include="Docs\AddAnnouncement.htm" />
+    <Content Include="Docs\AddContact.htm" />
+    <Content Include="Docs\AddEvent.htm" />
+    <Content Include="Docs\AddLink.htm" />
+    <Content Include="Docs\AddMessage.htm" />
+    <Content Include="Docs\AddRole.htm" />
+    <Content Include="Docs\AddUser.htm" />
+    <Content Include="Docs\AddUserRole.htm" />
+    <Content Include="Docs\Admin_AccessDenied_aspx.htm" />
+    <Content Include="Docs\Admin_AccessDenied_aspx_cs.htm" />
+    <Content Include="Docs\Admin_EditAccessDenied_aspx.htm" />
+    <Content Include="Docs\Admin_EditAccessDenied_aspx_cs.htm" />
+    <Content Include="Docs\Admin_Logoff_aspx.htm" />
+    <Content Include="Docs\Admin_Logoff_aspx_cs.htm" />
+    <Content Include="Docs\Admin_ManageUsers_aspx.htm" />
+    <Content Include="Docs\Admin_ManageUsers_aspx_cs.htm" />
+    <Content Include="Docs\Admin_MobileAccessDenied_aspx.htm" />
+    <Content Include="Docs\Admin_ModuleDefinitions_aspx.htm" />
+    <Content Include="Docs\Admin_ModuleDefinitions_aspx_cs.htm" />
+    <Content Include="Docs\Admin_ModuleDefs_ascx.htm" />
+    <Content Include="Docs\Admin_ModuleDefs_ascx_cs.htm" />
+    <Content Include="Docs\Admin_ModuleSettings_aspx.htm" />
+    <Content Include="Docs\Admin_ModuleSettings_aspx_cs.htm" />
+    <Content Include="Docs\Admin_NotImplemented_aspx.htm" />
+    <Content Include="Docs\Admin_NotImplemented_aspx_cs.htm" />
+    <Content Include="Docs\Admin_Register_aspx.htm" />
+    <Content Include="Docs\Admin_Register_aspx_cs.htm" />
+    <Content Include="Docs\Admin_Roles_ascx.htm" />
+    <Content Include="Docs\Admin_Roles_ascx_cs.htm" />
+    <Content Include="Docs\Admin_SecurityRoles_aspx.htm" />
+    <Content Include="Docs\Admin_SecurityRoles_aspx_cs.htm" />
+    <Content Include="Docs\Admin_SiteSettings_ascx.htm" />
+    <Content Include="Docs\Admin_SiteSettings_ascx_cs.htm" />
+    <Content Include="Docs\Admin_TabLayout_aspx.htm" />
+    <Content Include="Docs\Admin_TabLayout_aspx_cs.htm" />
+    <Content Include="Docs\Admin_Tabs_ascx.htm" />
+    <Content Include="Docs\Admin_Tabs_ascx_cs.htm" />
+    <Content Include="Docs\Admin_Users_ascx.htm" />
+    <Content Include="Docs\Admin_Users_ascx_cs.htm" />
+    <Content Include="Docs\ASPNETPortal_css.htm" />
+    <Content Include="Docs\Components_AdminDB_cs.htm" />
+    <Content Include="Docs\Components_AnnouncementsDB_cs.htm" />
+    <Content Include="Docs\Components_Configuration_cs.htm" />
+    <Content Include="Docs\Components_ContactsDB_cs.htm" />
+    <Content Include="Docs\Components_DesktopControls_cs.htm" />
+    <Content Include="Docs\Components_DiscussionDB_cs.htm" />
+    <Content Include="Docs\Components_DocumentDB_cs.htm" />
+    <Content Include="Docs\Components_EventsDB_cs.htm" />
+    <Content Include="Docs\Components_HtmlTextDB_cs.htm" />
+    <Content Include="Docs\Components_LinksDB_cs.htm" />
+    <Content Include="Docs\Components_MobileControls_cs.htm" />
+    <Content Include="Docs\Components_RolesDB_cs.htm" />
+    <Content Include="Docs\Components_Security_cs.htm" />
+    <Content Include="Docs\custommodules.htm" />
+    <Content Include="Docs\Default_aspx.htm" />
+    <Content Include="Docs\Default_aspx_cs.htm" />
+    <Content Include="Docs\DeleteAnnouncement.htm" />
+    <Content Include="Docs\DeleteContact.htm" />
+    <Content Include="Docs\DeleteDocument.htm" />
+    <Content Include="Docs\DeleteEvent.htm" />
+    <Content Include="Docs\DeleteLink.htm" />
+    <Content Include="Docs\DeleteModule.htm" />
+    <Content Include="Docs\DeleteRole.htm" />
+    <Content Include="Docs\DeleteUserRole.htm" />
+    <Content Include="Docs\DesktopDefault_aspx.htm" />
+    <Content Include="Docs\DesktopDefault_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Announcements_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Announcements_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Contacts_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Contacts_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_DiscussDetails_aspx.htm" />
+    <Content Include="Docs\DesktopModules_DiscussDetails_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Discussion_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Discussion_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Document_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Document_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditAnnouncements_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditAnnouncements_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditContacts_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditContacts_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditDocs_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditDocs_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditEvents_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditEvents_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditHtml_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditHtml_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditImage_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditImage_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditLinks_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditLinks_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_EditXml_aspx.htm" />
+    <Content Include="Docs\DesktopModules_EditXml_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Events_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Events_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_HtmlModule_ascx.htm" />
+    <Content Include="Docs\DesktopModules_HtmlModule_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_ImageModule_ascx.htm" />
+    <Content Include="Docs\DesktopModules_ImageModule_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Links_ascx.htm" />
+    <Content Include="Docs\DesktopModules_Links_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_QuickLinks_ascx.htm" />
+    <Content Include="Docs\DesktopModules_QuickLinks_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_Signin_ascx.htm" />
+    <Content Include="Docs\DesktopModules_SignIn_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModules_ViewDocument_aspx.htm" />
+    <Content Include="Docs\DesktopModules_ViewDocument_aspx_cs.htm" />
+    <Content Include="Docs\DesktopModules_XmlModule_ascx.htm" />
+    <Content Include="Docs\DesktopModules_XmlModule_ascx_cs.htm" />
+    <Content Include="Docs\DesktopModuleTitle_ascx.htm" />
+    <Content Include="Docs\DesktopModuleTitle_ascx_cs.htm" />
+    <Content Include="Docs\DesktopPortalBanner_ascx.htm" />
+    <Content Include="Docs\DesktopPortalBanner_ascx_cs.htm" />
+    <Content Include="Docs\Docs.htm" />
+    <Content Include="Docs\GetAnnouncements.htm" />
+    <Content Include="Docs\GetAuthRoles.htm" />
+    <Content Include="Docs\GetContacts.htm" />
+    <Content Include="Docs\GetDocumentContent.htm" />
+    <Content Include="Docs\GetDocuments.htm" />
+    <Content Include="Docs\GetEvents.htm" />
+    <Content Include="Docs\GetHtmlText.htm" />
+    <Content Include="Docs\GetLinks.htm" />
+    <Content Include="Docs\GetNextMessageId.htm" />
+    <Content Include="Docs\GetPortalRoles.htm" />
+    <Content Include="Docs\GetPrevMessageId.htm" />
+    <Content Include="Docs\GetRoleMembership.htm" />
+    <Content Include="Docs\GetRolesByUser.htm" />
+    <Content Include="Docs\GetSingleAnnouncement.htm" />
+    <Content Include="Docs\GetSingleContact.htm" />
+    <Content Include="Docs\GetSingleDocument.htm" />
+    <Content Include="Docs\GetSingleEvent.htm" />
+    <Content Include="Docs\GetSingleLink.htm" />
+    <Content Include="Docs\GetSingleMessage.htm" />
+    <Content Include="Docs\getthreadmessages.htm" />
+    <Content Include="Docs\gettoplevelmessages.htm" />
+    <Content Include="Docs\GetUsers.htm" />
+    <Content Include="Docs\Global_asax.htm" />
+    <Content Include="Docs\Global_asax_cs.htm" />
+    <Content Include="Docs\images\1x1.gif" />
+    <Content Include="Docs\images\announcements.jpg" />
+    <Content Include="Docs\images\code-behind.gif" />
+    <Content Include="Docs\images\contacts.jpg" />
+    <Content Include="Docs\images\designerverbs.gif" />
+    <Content Include="Docs\images\discussion.jpg" />
+    <Content Include="Docs\images\documents.jpg" />
+    <Content Include="Docs\images\events.jpg" />
+    <Content Include="Docs\images\helloworld1.gif" />
+    <Content Include="Docs\images\helloworld2.gif" />
+    <Content Include="Docs\images\helloworld3.gif" />
+    <Content Include="Docs\images\helloworld4.gif" />
+    <Content Include="Docs\images\htmltext.jpg" />
+    <Content Include="Docs\images\links.jpg" />
+    <Content Include="Docs\images\moduledefinitions.jpg" />
+    <Content Include="Docs\images\modules.jpg" />
+    <Content Include="Docs\images\modulesettings.jpg" />
+    <Content Include="Docs\images\portal.jpg" />
+    <Content Include="Docs\images\roles.jpg" />
+    <Content Include="Docs\images\tabs.jpg" />
+    <Content Include="Docs\images\tenmost.gif" />
+    <Content Include="Docs\images\userroles.jpg" />
+    <Content Include="Docs\images\users.jpg" />
+    <Content Include="Docs\MobileDefault_aspx.htm" />
+    <Content Include="Docs\MobileDefault_aspx_cs.htm" />
+    <Content Include="Docs\MobileModules_Announcements_ascx.htm" />
+    <Content Include="Docs\MobileModules_Contacts_ascx.htm" />
+    <Content Include="Docs\MobileModules_Events_ascx.htm" />
+    <Content Include="Docs\MobileModules_Text_ascx.htm" />
+    <Content Include="Docs\MobileModuleTitle_ascx.htm" />
+    <Content Include="Docs\PortalCfg_cs.htm" />
+    <Content Include="Docs\PortalCfg_xml.htm" />
+    <Content Include="Docs\style.css" />
+    <Content Include="Docs\UpdateAnnouncement.htm" />
+    <Content Include="Docs\UpdateContact.htm" />
+    <Content Include="Docs\UpdateDocument.htm" />
+    <Content Include="Docs\UpdateEvent.htm" />
+    <Content Include="Docs\UpdateHtmlText.htm" />
+    <Content Include="Docs\UpdateLink.htm" />
+    <Content Include="Docs\UpdateRole.htm" />
+    <Content Include="Docs\UpdateUser.htm" />
+    <Content Include="Docs\UserLogin.htm" />
+    <Content Include="Docs\visualstudio_project_notes.htm" />
+    <Content Include="Docs\Web_config.htm" />
+    <Content Include="Footer.ascx" />
+    <Content Include="Main.Master" />
+    <Content Include="Default.aspx" />
+    <Content Include="Search.ascx" />
+    <Content Include="SearchResults.ascx" />
+    <Content Include="SearchResultsPage.aspx" />
+    <Content Include="Toolbars\ToolbarDocuments.ascx" />
+    <Content Include="Toolbars\ToolbarHome.ascx" />
+    <Content Include="Toolbars\ToolbarPreferences.ascx" />
+    <Content Include="Toolbars\ToolbarTools.ascx" />
+    <Content Include="ucTOC.ascx" />
+    <Content Include="TesterTemplate.aspx" />
+    <Content Include="ViewDocument.ascx" />
+    <Content Include="xmlFiles\aicpaStore.xml" />
+    <Content Include="xmlFiles\aicpaStoreNews.xml" />
+    <Content Include="xmlFiles\aicpaTechniques.xml" />
+    <Content Include="xmlFiles\aicpaTips.xml" />
+    <Content Include="xmlFiles\aicpaTipsAndTech.xml" />
+    <Content Include="xmlFiles\HelpMenu\helpMenu.xml" />
+    <Content Include="xmlFiles\homePage\storeInfo.xml" />
+    <Content Include="xmlFiles\homePage\tipsAndTechniques.xml" />
+    <Content Include="xmlFiles\homePage\whatsNew.xml" />
+    <Content Include="xmlFiles\Panelbar.xml" />
+    <Content Include="xmlFiles\promote.xml" />
+    <Content Include="xmlFiles\Taxonomy.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015ci.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55884</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<TabCollection>
+      <Tab ID="Tab1" Text="Site Manager" Width="100" />
+      <Tab ID="Tab2" Text="Book Manager" Width="100" />
+      <Tab ID="Tab3" Text="Subscription Manager" Width="100" />
+      <Tab ID="Tab4" Text="Reports" Width="100" />
+</TabCollection>

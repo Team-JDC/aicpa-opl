@@ -1,0 +1,671 @@
+* 
+{
+	
+}
+
+.leftcol_content p {
+	
+	font-size:16px;
+}
+h1,h2,h3,h4,h5,h6
+{
+
+font-size:20px;
+}
+a 
+{
+     
+    font-size:inherit;
+}
+.italic {}
+.citetitle {font-size:inherit; }
+span {font-size:inherit; }
+.unicode_symbol {font-family: arial unicode ms;}
+
+/* --------------------- Main/PS --------------------- */
+
+div.preface * .ps_center_alpha, div.chapter * .ps_center_alpha, div.section * .ps_center_alpha, div.appendix * .ps_center_alpha, div.glossary * .ps_center_alpha
+{
+	font-size:16px;
+}
+
+div.navheader *, div.navfooter *
+{
+	
+	font-size:18px;
+}
+
+div.preface * .ps_section_heading, div.chapter * .ps_section_heading, div.section * .ps_section_heading, div.appendix * .ps_section_heading, div.glossary * .ps_section_heading
+{
+	font-size: 28px;
+}
+
+div.preface * .ps_tab_heading, div.chapter * .ps_tab_heading, div.section * .ps_tab_heading, div.appendix * .ps_tab_heading, div.glossary * .ps_tab_heading
+{
+	font-size:28px;
+}
+
+div.toc *
+{
+	font-size:21px;
+}
+
+div.preface * .ps_level_2, div.chapter * .ps_level_2, div.section * .ps_level_2, div.appendix * .ps_level_2, div.glossary * .ps_level_2
+{
+	font-size:30px;
+}
+
+div.preface * .ps_tab_heading_index, div.chapter * .ps_tab_heading_index, div.section * .ps_tab_heading_index, div.appendix * .ps_tab_heading_index, div.glossary * .ps_tab_heading_index
+{
+	font-size:28px;
+}
+
+
+.footnote, .footnote a, .footnote p, .footnote p a, .footnote span
+{
+	font-size: 15px;
+}
+
+.ls_level_3
+{
+	font-size:16px;	
+}
+
+.ls_level_4
+{
+	font-size: 16px;
+
+}
+
+.ps_box_-_guide
+{
+	font-size: 18px;
+}
+
+.ps_box_-_guide_center
+{
+	font-size: 18px;
+}
+
+.ps_bullet
+{
+	font-size: 21px;
+}
+
+ul.ps_bullet
+{
+	font-size: 21px;
+}
+
+.ps_bullet_subparagraph
+{
+	font-size: 21px;
+}
+
+ul.ps_bullet_subparagraph
+{
+	font-size: 21px;
+}
+
+.ps_full
+{
+	font-size: 21px;
+}
+
+.ps_definition
+{
+	font-size: 21px;
+}
+
+.ps_left_text
+{
+	font-size: 21px;
+}
+
+.ps_main_heading {
+	font-size: 19px;}
+
+.ps_main_heading_center
+{
+	font-size: 19px;
+}
+
+.ps_para_number
+{
+	font-size: 16px;
+}
+
+.ps_para_number_full
+{
+	font-size: 16px;
+}
+
+.ps_para_number_center
+{
+	font-size: 16px;
+}
+
+.ps_para_number_left
+{
+	font-size: 16px;
+}
+
+.ps_para_number_right
+{
+	font-size: 16px;
+}
+
+.ps_paragraph
+{
+	font-size: 16px;
+}
+
+.ps_paragraph_center
+{
+	font-size: 16px;
+}
+
+.ps_paragraph_full
+{
+	font-size: 16px;
+}
+
+.ps_paragraph_left
+{
+	font-size: 16px;
+}
+
+.ps_paragraph_right
+{
+	font-size: 16px;
+}
+
+.ps_left_10
+{
+	font-size: 16px;
+}
+
+.ps_center_10
+{
+	font-size: 16px;
+}
+
+.ps_right_10
+{
+	font-size: 16px;
+}
+
+.ps_right_line
+{
+	font-size: 16px;
+}
+
+.ps_section_title
+{
+	font-size: 15px;
+}
+
+.ps_sub_heading
+{
+	font-size: 21px;
+}
+
+.ps_sub_heading_right
+{
+	font-size: 21px;
+}
+
+.ps_sub_heading_center
+{
+	font-size: 21px;
+}
+
+.ps_sub_heading_full
+{
+	font-size: 21px;
+}
+
+.ps_sub_heading_left
+{
+	font-size: 21px;
+}
+
+.ps_sub_heading_right
+{
+	font-size: 21px;
+}
+
+.ps_subparagraph
+{
+	font-size: 21px;
+}
+
+ul.ps_subparagraph
+{
+	font-size: 21px;
+}
+
+.ps_subsub_heading
+{
+	font-size: 18px;
+}
+
+.ps_subsub_heading_center
+{
+	font-size: 18px;
+}
+
+.ps_subsubsub_heading
+{
+	font-size: 18px;
+}
+
+.ps_tab_name
+{
+	font-size: 15px;
+}
+
+.ps_bullet_paragraph
+{
+	font-size: 21px;
+}
+
+ul.ps_bullet_paragraph
+{
+	font-size: 21px;
+}
+
+.ps_indent_section_paragraph
+{
+	font-size: 21px;
+}
+
+ul.ps_indent_section_paragraph
+{
+	font-size: 21px;
+}
+
+.ps_table_text_left
+{
+	font-size: 18px;
+}
+
+.ps_table_text_right
+{
+	font-size: 18px;
+}
+
+.ps_table_text_center
+{
+	font-size: 18px;
+}
+
+.ps_table_text_full
+{
+	font-size: 18px;
+}
+
+.ps_table_title
+{
+	font-size: 21px;
+}
+
+.ps_table_title_center
+{
+	font-size: 21px;
+}
+
+/* set all the following table cell content to 18px font */
+div.ps_table_center table td, div.ps_table_center table th
+{font-size: 18px;}
+
+div.ps_table_left table td, div.ps_table_left table th
+{font-size: 18px;}
+
+div.ps_table_right table td, div.ps_table_right table th
+{font-size: 18px;}
+
+div.ps_table_blockquote table td, div.ps_table_blockquote table th
+{font-size: 18px;}
+
+div.ps_table_landscape table td, div.ps_table_landscape table th
+{font-size: 18px;}
+
+div.ps_indent table td, div.ps_indent table th
+{font-size: 18px;}
+
+div.ps_indent_0 table td, div.ps_indent_0 table th
+{font-size: 18px;}
+
+div.ps_indent_1 table td, div.ps_indent_1 table th
+{font-size: 18px;}
+
+div.ps_indent_2 table td, div.ps_indent_2 table th
+{font-size: 18px;}
+
+div.ps_indent_3 table td, div.ps_indent_3 table th
+{font-size: 18px;}
+
+div.ps_indent_4 table td, div.ps_indent_4 table th
+{font-size: 18px;}
+
+div.ps_indent_5 table td, div.ps_indent_5 table th
+{font-size: 18px;}
+
+div.ps_indent_6 table td, div.ps_indent_6 table th
+{font-size: 18px;}
+
+div.ps_indent_7 table td, div.ps_indent_7 table th
+{font-size: 18px;}
+
+div.ps_indent_8 table td, div.ps_indent_8 table th
+{font-size: 18px;}
+
+div.ps_indent_9 table td, div.ps_indent_9 table th
+{font-size: 18px;}
+
+
+/* set all the following table cell content to 21px font */
+div.ps_table_center_normal table td, div.ps_table_center_normal table th
+{font-size: 21px;}
+
+div.ps_table_left_normal table td, div.ps_table_left_normal table th
+{font-size: 21px;}
+
+div.ps_table_right_normal table td, div.ps_table_right_normal table th
+{font-size: 21px;}
+
+div.ps_table_blockquote_normal table td, div.ps_table_blockquote_normal table th
+{font-size: 21px;}
+
+div.ps_table_landscape_normal table td, div.ps_table_landscape_normal table th
+{font-size: 21px;}
+
+div.ps_indent_normal table td, div.ps_indent_normal table th
+{font-size: 21px;}
+
+div.ps_indent_0_normal table td, div.ps_indent_0_normal table th
+{font-size: 21px;}
+
+div.ps_indent_1_normal table td, div.ps_indent_1_normal table th
+{font-size: 21px;}
+
+div.ps_indent_2_normal table td, div.ps_indent_2_normal table th
+{font-size: 21px;}
+
+div.ps_indent_3_normal table td, div.ps_indent_3_normal table th
+{font-size: 21px;}
+
+div.ps_indent_4_normal table td, div.ps_indent_4_normal table th
+{font-size: 21px;}
+
+div.ps_indent_5_normal table td, div.ps_indent_5_normal table th
+{font-size: 21px;}
+
+div.ps_indent_6_normal table td, div.ps_indent_6_normal table th
+{font-size: 21px;}
+
+div.ps_indent_7_normal table td, div.ps_indent_7_normal table th
+{font-size: 21px;}
+
+div.ps_indent_8_normal table td, div.ps_indent_8_normal table th
+{font-size: 21px;}
+
+div.ps_indent_9_normal table td, div.ps_indent_9_normal table th
+{font-size: 21px;}
+
+/* ------------------ Common LTR ------------------ */
+
+.topictitle1 { font-size: 19px; }
+.topictitle2 { font-size: 21px; }
+.topictitle3 { font-size: 21px; }
+.topictitle4 { font-size: 21px; }
+.topictitle5 { font-size: 21px; }
+.topictitle6 { font-size: 21px; }
+.sectiontitle { font-size: 21px; }
+
+
+/* ------------------ FASB ------------------ */
+
+div.navheader *, div.navfooter *
+{
+font-size:18px;
+}
+
+.ps_cod_secondary_level, .ps_fasb_cod_secondary_level
+{
+font-size:20px;
+}
+
+.ps_cod_tertiary_level, .ps_fasb_cod_tertiary_level
+{
+font-size:20px;
+}
+
+.ps_cod_fourth_level, .ps_fasb_cod_fourth_level
+{
+font-size:18px;
+}
+
+.ps_cod_fifth_level, .ps_fasb_cod_fifth_level
+{
+font-size:18px;
+}
+
+.ps_level2, .ps_fasb_level2
+{
+font-size:20px;
+}
+
+.ps_subtitle, .ps_fasb_subtitle
+{
+font-size:20px;
+}
+
+.ps_tertiary_heading, .ps_fasb_tertiary_heading
+{
+font-size:20px;
+}
+
+.ps_toc_entry, .ps_fasb_toc_entry
+{
+
+}
+
+.ps_toc_title, .ps_fasb_toc_title
+{
+font-size:21px;
+}
+
+.ps_document_type, .ps_fasb_document_type
+{
+font-size:34px;
+}
+
+.ps_document_type_sub, .ps_fasb_document_type_sub
+{
+font-size:28px;
+}
+
+.ps_title, .ps_fasb_title
+{
+font-size:20px;
+}
+
+.ps_fourth_level, .ps_fasb_fourth_level
+{
+font-size:20px;
+}
+
+.ps_fifth_level, .ps_fasb_fifth_level
+{
+font-size:18px;
+}
+
+.ps_sixth_level, .ps_fasb_sixth_level
+{
+font-size:18px;
+}
+
+.ps_seventh_level, .ps_fasb_seventh_level
+{
+font-size:16px;
+}
+
+.ps_eighth_level, .ps_fasb_eighth_level
+{
+font-size:16px;
+}
+
+.ps_seventh_level, .ps_fasb_seventh_level
+{
+font-size:16px;
+}
+
+.ps_fourth_level-type_heading, .ps_fasb_fourth_level-type_heading
+{
+font-size:20px;
+}
+
+.ps_quoted_footnote, .ps_fasb_quoted_footnote
+{
+font-size:18px;
+}
+
+.ps_fifth_heading, .ps_fasb_fifth_heading
+{
+font-size:18px;
+}
+
+.ps_fourth_heading, .ps_fasb_fourth_heading
+{
+font-size:20px;
+}
+
+.ps_volume_title, .ps_fasb_volume_title
+{
+font-size:45px;
+}
+
+.ps_sixth_heading, .ps_fasb_sixth_heading
+{
+font-size:16px;
+}
+
+.ps_section_title, .ps_fasb_section_title
+{
+font-size:15px;
+}
+
+.ps_third_level_para_bullet_list, .ps_fasb_third_level_para_bullet_list
+{
+font-size:21px;
+}
+
+.ps_fourth_level_para_bullet_list, .ps_fasb_fourth_level_para_bullet_list
+{
+font-size:21px;
+}
+
+.ps_index_primary_level, .ps_fasb_index_primary_level
+{
+font-size:18px;
+}
+
+.ps_index_heading, .ps_fasb_index_heading
+{
+font-size:18px;
+}
+
+.ps_index_entry, .ps_fasb_index_entry
+{
+font-size:18px;
+}
+
+.ps_index_entry_2, .ps_fasb_index_entry_2
+{
+font-size:18px;
+}
+
+.ps_index_entry_3, .ps_fasb_index_entry_3
+{
+font-size:18px;
+}
+
+.ps_index_entry_4, .ps_fasb_index_entry_4
+{
+font-size:18px;
+}
+
+.ps_alpha_menu, .ps_fasb_alpha_menu
+{
+font-size:15px;
+}
+
+.ps_normal_level-variation8, .ps_fasb_normal_level-variation8
+{
+font-size:21px;
+}
+
+/* ------------------ GASB ------------------ */
+
+.ps_copyright_notice
+{
+font-size:18px;
+}
+
+/* ------------------ ASC ------------------ */
+
+.pending-text-title 
+{
+	
+    font-size:20px;
+}
+.pending-text span {font-size:16px; }
+
+.secTitle
+{
+	font-size:15px;
+}
+
+
+.prev { 
+
+}
+.next { 	
+
+}
+.prevdisabled { }
+.nextdisabled { }
+
+.required { font-size: 20px; }
+
+.asc_heading {
+	font-size:15px; 
+}
+
+.asc_pgroup { 
+	font-size:20px; 
+}
+
+.section_content #section_wrapper h1 {  
+	font-size:15px; 
+}
+
+.section_content #section_wrapper h2 { 
+	font-size:21px; 
+}
+
+.section_content #section_wrapper h3 { 
+	font-size:18px; 
+}
+
+#fasb_info {
+	font-size:20px; 
+	
+}
+
+.general_note {
+		 
+}
+

@@ -1,0 +1,26 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="saml.Master.cs" Inherits="WebsiteDemo.saml" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>Service Provider</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body onload="document.forms[0].submit();">
+    <form id="frmSeamless" runat="server" action="http://staging.knowlysis.com/D_PortalUI/ResourceSeamlessLogin.aspx">
+    <div>
+        SAML Test Landing Page
+    </div>
+    <hr />
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    <hr />
+    </form>
+</body>
+</html>

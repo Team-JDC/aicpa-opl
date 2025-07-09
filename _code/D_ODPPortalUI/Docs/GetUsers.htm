@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1>
+			"GetUsers" Stored Procedure
+		</h1>
+		<b>Description:</b>
+		<P>
+			This stored procedure returns the UserID, Name and Email for all registered 
+			users.
+		</P>
+		<b>Definition:</b>
+		<pre>
+    
+   CREATE PROCEDURE Portal_GetUsers
+   AS
+   
+   SELECT  
+       UserID,
+       Email
+   
+   FROM Portal_Users
+       
+   ORDER BY Email
+        </pre>
+		<b>Database Tables Used: </b>
+		<P>
+			<i>Users:</i>
+		&nbsp;Each record in the Users table is a unique user identity. The primary key 
+		in this table is the UserID identity field.
+		<p>
+			<img src="../docs/images/1x1.gif" width="25"> <IMG src="../docs/images/users.jpg">
+		</p>
+	</body>
+</html>

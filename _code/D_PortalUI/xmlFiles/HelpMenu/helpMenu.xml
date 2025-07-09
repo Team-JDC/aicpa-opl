@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Menu>
+  <Group Flow="Horizontal">
+     <Item Image="mainSeparator.gif" CssClass="MainSeparator" CssClassOver="MainSeparator" />
+    <Item Text="Help Home" CssClass="MainItem" CssClassOver="MainItem" CssClassClicked="MainItem" Value="Help/start.htm"/>
+      
+     <Item Image="mainSeparator.gif" CssClass="MainSeparator" CssClassOver="MainSeparator" />
+    <Item Text="AICPA Toolbar" CssClass="MainItem" CssClassOver="MainItemOver" CssClassClicked="MainItemOver">
+      <Group ExpandEffect="Fade">
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Toolbar" Value="Help/toolbar.htm"/>
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator"/>
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Home" Value="Help/home.htm"/>
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator"/>
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Document" Value="Help/document.htm" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Quick Find" Value="Help/quickFind.htm" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Search" Value="Help/search.htm" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item Image="footer.gif" CssClassClicked="MainGroup"  CssClass="MainGroup" CssClassOver="MainGroup" />
+      </Group>
+    </Item>
+    <Item Image="mainSeparator.gif" CssClass="MainSeparator" CssClassOver="MainSeparator" />
+     
+    <Item Text="Additional Topics" CssClass="MainItem" CssClassOver="MainItemOver" CssClassClicked="MainItemOver" >
+      <Group ExpandEffect="Fade">
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Table of Contents" Value="Help/otherTips.htm#toc" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />        
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Not Subscribed Content" Value="Help/otherTips.htm#notSub" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Copy/Paste" Value="Help/otherTips.htm#CopyPaste" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Common Error Messages" Value="Help/otherTips.htm#CommonErrorMsgs" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />
+        <Item LeftLogo="arrow.gif" LeftLogoOver="arrowOver.gif" Text="Customer Service" Value="Help/otherTips.htm#CustomerService" />
+        <Item Image="Separator.gif" CssClass="MenuSeparator" CssClassOver="MenuSeparator" />                
+        <Item Image="footer.gif" CssClassClicked="MainGroup" CssClass="MainGroup" CssClassOver="MainGroup" />
+      </Group>
+    </Item>
+    <Item Image="mainSeparator.gif" CssClass="MainSeparator" CssClassOver="MainSeparator" />
+    
+  </Group>
+</Menu>

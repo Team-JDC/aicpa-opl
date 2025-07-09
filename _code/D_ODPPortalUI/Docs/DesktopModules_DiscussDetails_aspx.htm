@@ -1,0 +1,108 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+&lt%@ Page language="c#" CodeBehind="DiscussDetails.aspx.cs" AutoEventWireup="false" Inherits="AICPA.Destroyer.UI.Portal.DiscussDetails" %<font color= "blue">&gt</font>
+&lt%@ Register TagPrefix="ASPNETPortal" TagName="Banner" Src="~/DesktopPortalBanner.ascx" %<font color= "blue">&gt</font>
+&lt%@ Import Namespace="AICPA.Destroyer.UI.Portal" %<font color= "blue">&gt</font>
+
+<font color= "blue">&lt</font><font color="maroon">HTML</font><font color= "blue">&gt</font>
+    <font color= "blue">&lt</font><font color="maroon">HEAD</font><font color= "blue">&gt</font>
+        <font color= "blue">&lt</font><font color="maroon">link</font> href='&lt%= Global.GetApplicationPath(Request) + "/ASPNETPortal.css" %<font color= "blue">&gt</font>' type="text/css" rel="stylesheet"<font color= "blue">&gt</font>
+    <font color= "blue">&lt/</font><font color="maroon">HEAD</font><font color= "blue">&gt</font>
+    <font color= "blue">&lt</font><font color="maroon">body</font> bottomMargin="0" leftMargin="0" topMargin="0" rightMargin="0" marginwidth="0" marginheight="0"<font color= "blue">&gt</font>
+        <font color= "blue">&lt</font><font color="maroon">form</font> name="form1" runat="server"<font color= "blue">&gt</font>
+            <font color= "blue">&lt</font><font color="maroon">table</font> cellSpacing="0" cellPadding="0" width="100%" border="0"<font color= "blue">&gt</font>
+                <font color= "blue">&lt</font><font color="maroon">tr</font> vAlign="top"<font color= "blue">&gt</font>
+                    <font color= "blue">&lt</font><font color="maroon">td</font> colSpan="2"<font color= "blue">&gt</font>
+                        <font color= "blue">&lt</font><font color="maroon">ASPNETPortal:banner</font> id="Banner1" runat="server" ShowTabs="false"<font color= "blue">&gt</font>
+                        <font color= "blue">&lt/</font><font color="maroon">ASPNETPortal:banner</font><font color= "blue">&gt</font>
+                    <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                <font color= "blue">&lt/</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                <font color= "blue">&lt</font><font color="maroon">tr</font> vAlign="top"<font color= "blue">&gt</font>
+                    <font color= "blue">&lt</font><font color="maroon">td</font> width="10%"<font color= "blue">&gt</font>
+                        &nbsp;
+                    <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                    <font color= "blue">&lt</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt</font><font color="maroon">table</font> cellSpacing="0" cellPadding="0" width="600"<font color= "blue">&gt</font>
+                            <font color= "blue">&lt</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">td</font> align="left"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">span</font> class="Head"<font color= "blue">&gt</font>Message Detail<font color= "blue">&lt/</font><font color="maroon">span</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">td</font> align="right"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color=blue>asp:panel id="ButtonPanel" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt</font><font color="maroon">A</font> class="CommandButton" id="prevItem" title="Previous Message" runat="server"</font><font color= "blue">&gt</font>
+                                            <font color= "blue">&lt</font><font color="maroon">IMG</font> src='&lt%=Global.GetApplicationPath(Request) + "/images/rew.gif"  %<font color= "blue">&gt</font>' border="0"<font color= "blue">&gt</font><font color= "blue">&lt/</font><font color="maroon">A</font><font color= "blue">&gt</font>&nbsp; <font color= "blue">&lt</font><font color="maroon">A</font> class="CommandButton" id="nextItem" title="Next Message" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt</font><font color="maroon">IMG</font> src='&lt%=Global.GetApplicationPath(Request) + "/images/fwd.gif"  %<font color= "blue">&gt</font>' border="0"<font color= "blue">&gt</font><font color= "blue">&lt/</font><font color="maroon">A</font><font color= "blue">&gt</font>&nbsp; 
+                                            <font color= "blue">&lt</font><font color=blue>asp:LinkButton id="ReplyBtn" runat="server" EnableViewState="false" Cssclass="CommandButton" Text="Reply to this Message"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:LinkButton</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt/</font><font color=blue>asp:panel</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt/</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">td</font> colSpan="2"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">hr</font> noShade SIZE="1"<font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt/</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt/</font><font color="maroon">table</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt</font><font color=blue>asp:panel id="EditPanel" runat="server" Visible="false"</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt</font><font color="maroon">TABLE</font> cellSpacing="0" cellPadding="4" width="600" border="0"<font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">TR</font> vAlign="top"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> class="SubHead" width="150"<font color= "blue">&gt</font>
+                                        Title:
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> rowSpan="4"<font color= "blue">&gt</font>
+                                        &nbsp;
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> width="*"<font color= "blue">&gt</font>
+                                        <font color= "blue">&lt</font><font color=blue>asp:TextBox id="TitleField" runat="server" maxlength="100" columns="40" width="500" cssclass="NormalTextBox"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:TextBox</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">TR</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">TR</font> vAlign="top"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> class="SubHead"<font color= "blue">&gt</font>
+                                        Body:
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> width="*"<font color= "blue">&gt</font>
+                                        <font color= "blue">&lt</font><font color=blue>asp:TextBox id="BodyField" runat="server" columns="59" width="500" Rows="15" TextMode="Multiline"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:TextBox</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">TR</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">TR</font> vAlign="top"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                        &nbsp;
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                        <font color= "blue">&lt</font><font color=blue>asp:LinkButton class="CommandButton" id="updateButton" runat="server" Text="Submit"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:LinkButton</font><font color= "blue">&gt</font>
+                                        &nbsp;
+                                        <font color= "blue">&lt</font><font color=blue>asp:LinkButton class="CommandButton" id="cancelButton" runat="server" Text="Cancel" CausesValidation="False"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:LinkButton</font><font color= "blue">&gt</font>
+                                        &nbsp;
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">TR</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">TR</font> vAlign="top"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font> class="SubHead"<font color= "blue">&gt</font>
+                                        Original Message:
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                        &nbsp;
+                                    <font color= "blue">&lt/</font><font color="maroon">TD</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">TR</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt/</font><font color="maroon">TABLE</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt/</font><font color=blue>asp:panel</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt</font><font color="maroon">table</font> cellSpacing="0" cellPadding="4" width="600" border="0"<font color= "blue">&gt</font>
+                            <font color= "blue">&lt</font><font color="maroon">tr</font> vAlign="top"<font color= "blue">&gt</font>
+                                <font color= "blue">&lt</font><font color="maroon">td</font> class="Message" align="left"<font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">b</font><font color= "blue">&gt</font>Subject: <font color= "blue">&lt/</font><font color="maroon">b</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color=blue>asp:label id="Title" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:label</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">b</font><font color= "blue">&gt</font>Author: <font color= "blue">&lt/</font><font color="maroon">b</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color=blue>asp:label id="CreatedByUser" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:label</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">b</font><font color= "blue">&gt</font>Date: <font color= "blue">&lt/</font><font color="maroon">b</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color=blue>asp:label id="CreatedDate" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:label</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+                                    <font color= "blue">&lt</font><font color=blue>asp:label id="Body" runat="server"<font color= "blue">&gt</font><font color= "blue">&lt/</font>asp:label</font><font color= "blue">&gt</font>
+                                <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                            <font color= "blue">&lt/</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+                        <font color= "blue">&lt/</font><font color="maroon">table</font><font color= "blue">&gt</font>
+                    <font color= "blue">&lt/</font><font color="maroon">td</font><font color= "blue">&gt</font>
+                <font color= "blue">&lt/</font><font color="maroon">tr</font><font color= "blue">&gt</font>
+            <font color= "blue">&lt/</font><font color="maroon">table</font><font color= "blue">&gt</font>
+        <font color= "blue">&lt/</font><font color="maroon">form</font><font color= "blue">&gt</font>
+    <font color= "blue">&lt/</font><font color="maroon">body</font><font color= "blue">&gt</font>
+<font color= "blue">&lt/</font><font color="maroon">HTML</font><font color= "blue">&gt</font>
+</pre>

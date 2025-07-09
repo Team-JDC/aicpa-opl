@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+	targetNamespace="http://schemas.telerik.com/intellisense/RadMultiPage"
+	elementFormDefault="qualified"
+	xmlns="http://schemas.telerik.com/intellisense/RadMultiPage"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
+	vs:friendlyname="RadMultiPage"
+	vs:ishtmlschema="false"
+	vs:iscasesensitive="false"
+	vs:requireattributequotes="false">
+
+	<xsd:element name="RadMultiPage" type="multiPageDef" />
+
+	<xsd:complexType name="PageViewDef" vs:noambientcontentmodel="true">
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="ID" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:complexType name="multiPageDef">
+		<xsd:attribute name="AutoScrollBars" type="EnumBoolean" />
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="PageView" type="PageViewDef" form="unqualified" />
+		</xsd:choice>
+		<xsd:attribute name="BackColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="BorderColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="BorderWidth" type="xsd:ui4" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="ForeColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="Height" type="xsd:ui4" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="RadControlsDir" type="xsd:string" />
+		<xsd:attribute name="RenderSelectedPageOnly" type="EnumBoolean" />
+		<xsd:attribute name="SelectedIndex" type="xsd:ui4" />
+		<xsd:attribute name="Style" type="xsd:string" vs:nonbrowseable="true" />
+		<xsd:attribute name="Visible" type="EnumBoolean" />
+		<xsd:attribute name="Width" type="xsd:ui4" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="ui4">
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="4294967295" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="enumBoolean">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="True" />
+			<xsd:enumeration value="False" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BorderStyle">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Dotted" />
+			<xsd:enumeration value="Dashed" />
+			<xsd:enumeration value="Solid" />
+			<xsd:enumeration value="Double" />
+			<xsd:enumeration value="Groove" />
+			<xsd:enumeration value="Ridge" />
+			<xsd:enumeration value="Inset" />
+			<xsd:enumeration value="Outset" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

@@ -1,0 +1,18 @@
+﻿<div style="padding:20px;" class="tool-wrapper">
+	<h1>Quick Find</h1>
+    <p>Use Quick Find to easily locate a standard or other codified guidance. Simply select the document type or subject matter from the menus on the left, then select the original pronouncement or other literature from the resulting list. You will automatically be taken to the selected literature.</p>
+    
+    <table class="quickfind" cellpadding="" cellspacing="" width="100%">
+    	<tr>
+        	<td id="quickfindLeftCol" width="25%" valign="top"></td>
+            <td id="quickfindRightCol" width="75%" valign="top"></td>
+        </tr>
+    </table> 
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function ()
+    {
+        loadTemplate('WS/QuickFind.asmx/GetQuickFindLists', "{}", 'templates/quickFindDropdowns.html', 'quickfindLeftCol');
+    });
+</script>

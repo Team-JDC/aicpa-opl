@@ -1,0 +1,64 @@
+﻿{#template MAIN}
+    <div class="tool-container">
+	    <h1>My Notes</h1>
+    
+        <div class="padbot15 clear">
+    	    <table cellpadding="5" cellspacing="0">
+        	    <tr>
+                    <td width="655" class="borderbot"><label>Note Location</label></td>
+                    <td class="borderbot">
+                        <select id="note-bulk-action" onchange="executeBulkNoteAction()">
+                            <option value="label">Bulk Action...</option>
+                            <option value="delete">Delete Selected</option>
+                            <option value="print">Print Selected</option>
+                        </select>
+                    </td>
+       		    </tr> 
+                <tr><td colspan="2" height="10"></td></tr>
+                {#foreach $T.d as MyNote}
+                <tr>
+                    <td valign="top" class="savedsearch">
+                            <div style="padding-right: 99px;" class="float">
+                                <label style="padding-top:5px;">
+                                {#if $T.MyNote.Note.Available > 0}
+                                    <a href="#" onclick="doLink('{$T.MyNote.Note.TargetDoc}', '{$T.MyNote.Note.TargetPtr}', false)">
+                                        {$T.MyNote.Note.Title} - {$T.MyNote.Location}
+                                    </a>
+                                    <a href="#" onclick="doLink('{$T.MyNote.Note.TargetDoc}', '{$T.MyNote.Note.TargetPtr}', true);" title="Open this link as a new document">
+                                        <img alt="Open this link as a new document" src="images/icon-open-new-doc.gif" style="border:none" />
+                                    </a>
+                                {#else}
+                                    <b>*</b>&nbsp; {$T.MyNote.Note.Title} - {$T.MyNote.Location}
+                                {#/if}
+                                </label>
+                            </div>
+                    </td>
+                    <td class="savedsearch">
+                            <div class="float">
+                                <span>
+                                    <a href="#" id="vieweditnote" onclick="editMyNote({$T.MyNote.Note.Id})"><img src="images/btn-view-edit.gif" class="submit" alt="View/Edit Note" border="0" style="margin-left:5px;"/></a>
+                                    <!-- <a href="#" onclick="deleteMyNote({$T.MyNote.Note.Id})"><img src="images/btn-delete.gif" class="submit" alt="Delete Note" border="0" style="margin-left:5px;"/></a> -->
+                                    <input type="checkbox" class="note-checkbox" id="{$T.MyNote.Note.Id}" style="vertical-align: super;"/>
+                                </span>
+                                <div id='edit-div-{$T.MyNote.Note.Id}' class="edit-div" >
+                                    <div class="edit-inner-div">
+                                        <label>Title:</label><input type="text" id='edit-title-{$T.MyNote.Note.Id}' class="edit-textinput" value="{$T.MyNote.Note.Title}" />
+                                        <textarea id='edit-textarea-{$T.MyNote.Note.Id}' class="edit-textarea" >{$T.MyNote.Note.Text}</textarea>
+                                        <div>                                            
+                                            <button onclick="updateMyNote({$T.MyNote.Note.Id})">Save</button>
+                                            <button onclick="closeMyEdit({$T.MyNote.Note.Id})">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+       		    </tr> 
+                {#/for}
+            </table>
+        </div>
+    </div>
+    <div class="under-note">
+        <p style="padding-top:10px;"><b>Note:</b> To return to your document, click the document tab below and select your document.</p>
+        <p style="padding-top:10px;"><b>*</b> The document this note was attached to is no longer available.</p>
+    </div>
+{#/template MAIN}

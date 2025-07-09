@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ReportNav.master.cs" Inherits="D_ReportUI.ReportNav" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Reports</title>
+    <link rel="stylesheet" href="style/Reports.css" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="LeftNav">
+        <h1 class="NavTitle">Reports</h1>
+        <ul class="ReportList">
+            <li class="first"><a href="DocumentsAccessedByBook.aspx">Documents Accessed By Book</a><span>&raquo;</span></li>
+            <li><a href="UserLoginsBySubscription.aspx">User Logins By Subscription</a><span>&raquo;</span></li>
+            <li><a href="UserLogins.aspx">User Logins</a><span>&raquo;</span></li>
+            <li><a href="MaxConcurrentUsers.aspx">Maximum Concurrent Users</a><span>&raquo;</span></li>
+            <li><a href="MaxConcurrentUsersByFirm.aspx">Maximum Concurrent Users By Firm</a><span>&raquo;</span></li>
+            <li><a href="FAFLicenseAgreement.aspx">FAF License Agreement</a><span>&raquo;</span></li>
+        </ul>
+    </div>
+    <div class="RightContent">
+        <asp:ContentPlaceHolder ID="ContentHolder" runat="server"></asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>

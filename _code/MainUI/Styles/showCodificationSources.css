@@ -1,0 +1,23 @@
+/* sburton: This stylesheet will show the codification sources.
+ *			Include it after the other stylesheets.
+ */
+
+.sfragmentlarge
+{
+	display:inline;
+	color: #336699;
+	font-size: 1.4em;
+	margin-left: .1em;
+	margin-right: .2em;
+	font-weight: bold;
+}
+.sfragmentsmall
+{
+	display:inline;
+	color: #981b1e;
+}
+
+.sfragment_brackets_small
+{
+	display:inline;
+}

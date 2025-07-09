@@ -1,0 +1,1552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2207A60B-3C88-4212-BE63-05F3B32B98B9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>D_AdminUI</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>D_AdminUI</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AicpaStage|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <PublishDatabases>false</PublishDatabases>
+    <DeployIisAppPath>Default Web Site/D_AdminUI</DeployIisAppPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AicpaProd|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <FileAlignment>4096</FileAlignment>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'KnowlysisStage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arat.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_AdminUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'etpoc.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_AdminUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ethics|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_AdminUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CosoStage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_AdminUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\D_AdminUI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RadMultiPage">
+      <Name>RadMultiPage</Name>
+      <HintPath>external\bin\RadMultiPage.dll</HintPath>
+    </Reference>
+    <Reference Include="RadTabStrip">
+      <Name>RadTabStrip</Name>
+      <HintPath>external\bin\RadTabStrip.dll</HintPath>
+    </Reference>
+    <Reference Include="RadTreeView">
+      <Name>RadTreeView</Name>
+      <HintPath>external\bin\RadTreeView.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Net">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="adminBanner.ascx">
+      <SubType>UserControl</SubType>
+    </Content>
+    <Content Include="default.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="descContainer.htm" />
+    <Content Include="external\bin\RadMultiPage.dll" />
+    <Content Include="external\bin\RadTabStrip.dll" />
+    <Content Include="external\bin\RadTreeView.dll" />
+    <Content Include="Global.asax">
+      <SubType>Component</SubType>
+    </Content>
+    <Content Include="images\3Drafts.gif" />
+    <Content Include="images\action_check_in.gif" />
+    <Content Include="images\action_check_out.gif" />
+    <Content Include="images\action_project_archive.gif" />
+    <Content Include="images\action_project_unarchive.gif" />
+    <Content Include="images\adminLogo.gif" />
+    <Content Include="images\aicpa.jpg" />
+    <Content Include="images\aicpa_logo.gif" />
+    <Content Include="images\apiBg.gif" />
+    <Content Include="images\archive.gif" />
+    <Content Include="images\archiveIcon.gif" />
+    <Content Include="images\bg.gif" />
+    <Content Include="images\bgr.png" />
+    <Content Include="images\BottomLine.gif" />
+    <Content Include="images\build.gif" />
+    <Content Include="images\buttonBg.gif" />
+    <Content Include="images\check.gif" />
+    <Content Include="images\codeTabsFinish.gif" />
+    <Content Include="images\copyto.gif" />
+    <Content Include="images\delete.gif" />
+    <Content Include="images\dn.gif" />
+    <Content Include="images\edit.gif" />
+    <Content Include="images\FolderOpen.gif" />
+    <Content Include="images\headerBg.gif" />
+    <Content Include="images\headerSeparator.gif" />
+    <Content Include="images\help.gif" />
+    <Content Include="images\hr.gif" />
+    <Content Include="images\icon-calendar.gif" />
+    <Content Include="images\icon-clone.gif" />
+    <Content Include="images\icon-delete.gif" />
+    <Content Include="images\icon-floppy.gif" />
+    <Content Include="images\icon-pencil-x.gif" />
+    <Content Include="images\icon-pencil.gif" />
+    <Content Include="images\IconClose.gif" />
+    <Content Include="images\indexBuild.gif" />
+    <Content Include="images\innerTabBg.gif" />
+    <Content Include="images\itemsBg.gif" />
+    <Content Include="images\minus_L.gif" />
+    <Content Include="images\newClose.gif" />
+    <Content Include="images\newfldr.gif" />
+    <Content Include="images\oInboxF.gif" />
+    <Content Include="images\panelBg.gif" />
+    <Content Include="images\panelLeft.gif" />
+    <Content Include="images\panelRight.gif" />
+    <Content Include="images\plusik.gif" />
+    <Content Include="images\prevDoc.gif" />
+    <Content Include="images\print.gif" />
+    <Content Include="images\refresh.gif" />
+    <Content Include="images\reload.gif" />
+    <Content Include="images\rename.gif" />
+    <Content Include="images\resize.gif" />
+    <Content Include="images\resource_logo_pms286.gif" />
+    <Content Include="images\save.gif" />
+    <Content Include="images\search.gif" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="images\tabMiddleOff.gif" />
+    <Content Include="images\toc_collapse.gif" />
+    <Content Include="images\toc_expand.gif" />
+    <Content Include="images\TopLine.gif" />
+    <Content Include="images\TreeIcons\Icons\ada.gif" />
+    <Content Include="images\TreeIcons\Icons\asp.gif" />
+    <Content Include="images\TreeIcons\Icons\aspx.gif" />
+    <Content Include="images\TreeIcons\Icons\atS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_blueS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_glass_blueS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_glass_greenS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_glass_redS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_glass_yellowS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_greenS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_redS.gif" />
+    <Content Include="images\TreeIcons\Icons\ball_yellowS.gif" />
+    <Content Include="images\TreeIcons\Icons\bfly.gif" />
+    <Content Include="images\TreeIcons\Icons\book.gif" />
+    <Content Include="images\TreeIcons\Icons\BookY.gif" />
+    <Content Include="images\TreeIcons\Icons\category.gif" />
+    <Content Include="images\TreeIcons\Icons\close_icon.gif" />
+    <Content Include="images\TreeIcons\Icons\contact.gif" />
+    <Content Include="images\TreeIcons\Icons\delete_test1.gif" />
+    <Content Include="images\TreeIcons\Icons\delete_test2.gif" />
+    <Content Include="images\TreeIcons\Icons\doc.gif" />
+    <Content Include="images\TreeIcons\Icons\dsChild.gif" />
+    <Content Include="images\TreeIcons\Icons\dsParent.gif" />
+    <Content Include="images\TreeIcons\Icons\dsRoot.gif" />
+    <Content Include="images\TreeIcons\Icons\flag.gif" />
+    <Content Include="images\TreeIcons\Icons\Folder.gif" />
+    <Content Include="images\TreeIcons\Icons\folder_old.gif" />
+    <Content Include="images\TreeIcons\Icons\folder_small.gif" />
+    <Content Include="images\TreeIcons\Icons\Folder_Y.gif" />
+    <Content Include="images\TreeIcons\Icons\goblet_bronzeS.gif" />
+    <Content Include="images\TreeIcons\Icons\help.gif" />
+    <Content Include="images\TreeIcons\Icons\help_book.gif" />
+    <Content Include="images\TreeIcons\Icons\help_obook.gif" />
+    <Content Include="images\TreeIcons\Icons\help_page.gif" />
+    <Content Include="images\TreeIcons\Icons\hr.gif" />
+    <Content Include="images\TreeIcons\Icons\hr_l.gif" />
+    <Content Include="images\TreeIcons\Icons\ico_note.gif" />
+    <Content Include="images\TreeIcons\Icons\ie.gif" />
+    <Content Include="images\TreeIcons\Icons\ie_link.gif" />
+    <Content Include="images\TreeIcons\Icons\ie_link_old.gif" />
+    <Content Include="images\TreeIcons\Icons\ie_small.gif" />
+    <Content Include="images\TreeIcons\Icons\joypadS.gif" />
+    <Content Include="images\TreeIcons\Icons\KeepState\ball_glass_redS.gif" />
+    <Content Include="images\TreeIcons\Icons\KeepState\Folder.gif" />
+    <Content Include="images\TreeIcons\Icons\KeepState\ob_tree_505.js" />
+    <Content Include="images\TreeIcons\Icons\KeepState\page.gif" />
+    <Content Include="images\TreeIcons\Icons\lens.gif" />
+    <Content Include="images\TreeIcons\Icons\memobook.gif" />
+    <Content Include="images\TreeIcons\Icons\memobook_blue.gif" />
+    <Content Include="images\TreeIcons\Icons\minus.gif" />
+    <Content Include="images\TreeIcons\Icons\minus_l.gif" />
+    <Content Include="images\TreeIcons\Icons\mydoc.gif" />
+    <Content Include="images\TreeIcons\Icons\n.gif" />
+    <Content Include="images\TreeIcons\Icons\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Icons\ob_dnd_505.js" />
+    <Content Include="images\TreeIcons\Icons\ob_ekn_505.js" />
+    <Content Include="images\TreeIcons\Icons\ob_ms_505.js" />
+    <Content Include="images\TreeIcons\Icons\ob_tree_505.js" />
+    <Content Include="images\TreeIcons\Icons\oCalendar.gif" />
+    <Content Include="images\TreeIcons\Icons\oDrafts.gif" />
+    <Content Include="images\TreeIcons\Icons\oInbox.gif" />
+    <Content Include="images\TreeIcons\Icons\oInboxF.gif" />
+    <Content Include="images\TreeIcons\Icons\oJornal.gif" />
+    <Content Include="images\TreeIcons\Icons\oJunk.gif" />
+    <Content Include="images\TreeIcons\Icons\oMailbox.gif" />
+    <Content Include="images\TreeIcons\Icons\oMessage.gif" />
+    <Content Include="images\TreeIcons\Icons\oNotes.gif" />
+    <Content Include="images\TreeIcons\Icons\oOutlook.gif" />
+    <Content Include="images\TreeIcons\Icons\oRecycle.gif" />
+    <Content Include="images\TreeIcons\Icons\oSearch.gif" />
+    <Content Include="images\TreeIcons\Icons\oSearchF.gif" />
+    <Content Include="images\TreeIcons\Icons\oSent.gif" />
+    <Content Include="images\TreeIcons\Icons\oTasks.gif" />
+    <Content Include="images\TreeIcons\Icons\page.gif" />
+    <Content Include="images\TreeIcons\Icons\person.gif" />
+    <Content Include="images\TreeIcons\Icons\plusik.gif" />
+    <Content Include="images\TreeIcons\Icons\plusik_l.gif" />
+    <Content Include="images\TreeIcons\Icons\print.gif" />
+    <Content Include="images\TreeIcons\Icons\prodgp.gif" />
+    <Content Include="images\TreeIcons\Icons\question.gif" />
+    <Content Include="images\TreeIcons\Icons\recycle.gif" />
+    <Content Include="images\TreeIcons\Icons\red_ball.gif" />
+    <Content Include="images\TreeIcons\Icons\scales.gif" />
+    <Content Include="images\TreeIcons\Icons\search.gif" />
+    <Content Include="images\TreeIcons\Icons\search_globe.gif" />
+    <Content Include="images\TreeIcons\Icons\Segment.gif" />
+    <Content Include="images\TreeIcons\Icons\shoprite.gif" />
+    <Content Include="images\TreeIcons\Icons\square_blueS.gif" />
+    <Content Include="images\TreeIcons\Icons\square_greenS.gif" />
+    <Content Include="images\TreeIcons\Icons\square_redS.gif" />
+    <Content Include="images\TreeIcons\Icons\square_yellowS.gif" />
+    <Content Include="images\TreeIcons\Icons\tree.gif" />
+    <Content Include="images\TreeIcons\Icons\triangle_blueS.gif" />
+    <Content Include="images\TreeIcons\Icons\triangle_greenS.gif" />
+    <Content Include="images\TreeIcons\Icons\triangle_redS.gif" />
+    <Content Include="images\TreeIcons\Icons\triangle_yellowS.gif" />
+    <Content Include="images\TreeIcons\Icons\vertical.gif" />
+    <Content Include="images\TreeIcons\Icons\woman1S.gif" />
+    <Content Include="images\TreeIcons\Icons\woman2S.gif" />
+    <Content Include="images\TreeIcons\Icons\woman3S.gif" />
+    <Content Include="images\TreeIcons\Icons\woman4S.gif" />
+    <Content Include="images\TreeIcons\Icons\workerS.gif" />
+    <Content Include="images\TreeIcons\Icons\xpAdmin.gif" />
+    <Content Include="images\TreeIcons\Icons\xpCdRom.gif" />
+    <Content Include="images\TreeIcons\Icons\xpDesktop.gif" />
+    <Content Include="images\TreeIcons\Icons\xpDriveA.gif" />
+    <Content Include="images\TreeIcons\Icons\xpFolder.gif" />
+    <Content Include="images\TreeIcons\Icons\xpLens.gif" />
+    <Content Include="images\TreeIcons\Icons\xpMyComp.gif" />
+    <Content Include="images\TreeIcons\Icons\xpMyDoc.gif" />
+    <Content Include="images\TreeIcons\Icons\xpNetPlace.gif" />
+    <Content Include="images\TreeIcons\Icons\xpNetwork.gif" />
+    <Content Include="images\TreeIcons\Icons\xpPanel.gif" />
+    <Content Include="images\TreeIcons\Icons\xpPrinter.gif" />
+    <Content Include="images\TreeIcons\Icons\xpRecentDoc.gif" />
+    <Content Include="images\TreeIcons\Icons\xpRecycle.gif" />
+    <Content Include="images\TreeIcons\Icons\xpShared.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\ClassicBW\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Classic\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Classic\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Explorer\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Explorer\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Gray2\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray2\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Gray\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Gray\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\HelpPlus\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Help\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Help\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\MSDN\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\MSDN\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Outlook\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Outlook\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\TMenu\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TMenu\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\TsMenu\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\n.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\n_circle.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\n_square.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\n_square_full.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\Web\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\Web\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG2\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteBG\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\WhiteR\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\White\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\White\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\White\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\White\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\White\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\White\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\White\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\White\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\win2003L\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003L\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\win2003\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\win2003\vertical.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\hr.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\hr_L.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\minus.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\minus_L.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\obout_treeview2.css" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\plusik.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\plusik_L.gif" />
+    <Content Include="images\TreeIcons\Styles\xpBlue\vertical.gif" />
+    <Content Include="images\unarchiveIcon.gif" />
+    <Content Include="images\up.gif" />
+    <Content Include="images\welcomeBg.gif" />
+    <Content Include="Img\bg.gif" />
+    <Content Include="Img\buttonBg.gif" />
+    <Content Include="Img\codeTab3.jpg" />
+    <Content Include="Img\codeTabsArrow.gif" />
+    <Content Include="Img\codeTabsArrowDisabled.gif" />
+    <Content Include="Img\codeTabsAscx.gif" />
+    <Content Include="Img\codeTabsCS.gif" />
+    <Content Include="Img\codeTabsCss.gif" />
+    <Content Include="Img\codeTabsDescription.gif" />
+    <Content Include="Img\codeTabsFinish.gif" />
+    <Content Include="Img\codeTabsImages.gif" />
+    <Content Include="Img\codeTabsStart.gif" />
+    <Content Include="Img\codeTabsVB.gif" />
+    <Content Include="Img\codeTabsXML.gif" />
+    <Content Include="Img\codeViewBg.gif" />
+    <Content Include="Img\demoButton1.gif" />
+    <Content Include="Img\demoButton2.gif" />
+    <Content Include="Img\demoButton3.gif" />
+    <Content Include="Img\demoChartBg.gif" />
+    <Content Include="Img\demoChartBg.jpg" />
+    <Content Include="Img\demoChartBg1.jpg" />
+    <Content Include="Img\demoNav.gif" />
+    <Content Include="Img\downloadBg.gif" />
+    <Content Include="Img\example1Bg.gif" />
+    <Content Include="Img\exampleBg.gif" />
+    <Content Include="Img\footer.gif" />
+    <Content Include="Img\helpIconCHM.gif" />
+    <Content Include="Img\helpIconIE.gif" />
+    <Content Include="Img\moduleBg.gif" />
+    <Content Include="Img\moduleChart.gif" />
+    <Content Include="Img\moduleData.gif" />
+    <Content Include="Img\moduleEditChart.gif" />
+    <Content Include="Img\moduleTitleLegend.gif" />
+    <Content Include="Img\new.gif" />
+    <Content Include="Img\Outlook\1.gif" />
+    <Content Include="Img\Outlook\10.gif" />
+    <Content Include="Img\Outlook\11.gif" />
+    <Content Include="Img\Outlook\12.gif" />
+    <Content Include="Img\Outlook\13.gif" />
+    <Content Include="Img\Outlook\1PersonalFolders.gif" />
+    <Content Include="Img\Outlook\2.gif" />
+    <Content Include="Img\Outlook\2DeletedItems.gif" />
+    <Content Include="Img\Outlook\3.gif" />
+    <Content Include="Img\Outlook\3Drafts.gif" />
+    <Content Include="Img\Outlook\4.gif" />
+    <Content Include="Img\Outlook\4Inbox.gif" />
+    <Content Include="Img\Outlook\5.gif" />
+    <Content Include="Img\Outlook\6.gif" />
+    <Content Include="Img\Outlook\7.gif" />
+    <Content Include="Img\Outlook\8.gif" />
+    <Content Include="Img\Outlook\9.gif" />
+    <Content Include="Img\Outlook\check.gif" />
+    <Content Include="Img\Outlook\folder.gif" />
+    <Content Include="Img\Outlook\outbox.gif" />
+    <Content Include="Img\Outlook\search.gif" />
+    <Content Include="Img\Outlook\searchFolder.gif" />
+    <Content Include="Img\Outlook\sent.gif" />
+    <Content Include="Img\productBox.gif" />
+    <Content Include="Img\productCaption.gif" />
+    <Content Include="Img\productChooser.jpg" />
+    <Content Include="Img\productChooserQuickstartFramework.swf" />
+    <Content Include="Img\productLogo.gif" />
+    <Content Include="Img\sideNavBg.gif" />
+    <Content Include="Img\sideNavCategory.gif" />
+    <Content Include="Img\tab0.gif" />
+    <Content Include="Img\tab1.gif" />
+    <Content Include="Img\tab2.gif" />
+    <Content Include="Img\tab3.gif" />
+    <Content Include="Img\tabsBg.gif" />
+    <Content Include="Img\tabsRightFade.gif" />
+    <Content Include="Img\telerikLogo.gif" />
+    <Content Include="Img\textfield.gif" />
+    <Content Include="Img\treeMinus.gif" />
+    <Content Include="Img\treePlus.gif" />
+    <Content Include="Img\vs.gif" />
+    <Content Include="Img\VSoptimized.gif" />
+    <Content Include="Img\welcome.gif" />
+    <Content Include="Img\welcomeBg.gif" />
+    <Content Include="Img\welcomeDemo.gif" />
+    <Content Include="Img\welcomeExamples.gif" />
+    <Content Include="Img\welcomeExamplesImg.gif" />
+    <Content Include="Img\welcomeHelp.gif" />
+    <Content Include="Img\welcomeHelpImg.gif" />
+    <Content Include="Img\welcomePurchase.gif" />
+    <Content Include="Img\welcomePurchaseImg.gif" />
+    <Content Include="Img\welcomeQuickStart.gif" />
+    <Content Include="Img\welcomeQuickStartImg.gif" />
+    <Content Include="Img\welcomeSupport.gif" />
+    <Content Include="Img\welcomeSupportImg.gif" />
+    <Content Include="Img\WindowsXP\10networkConnection.gif" />
+    <Content Include="Img\WindowsXP\11fonts.gif" />
+    <Content Include="Img\WindowsXP\12administrativeTools.gif" />
+    <Content Include="Img\WindowsXP\13Recycle.gif" />
+    <Content Include="Img\WindowsXP\14CD.gif" />
+    <Content Include="Img\WindowsXP\15hardDisk.gif" />
+    <Content Include="Img\WindowsXP\16floppy.gif" />
+    <Content Include="Img\WindowsXP\17myWebs.gif" />
+    <Content Include="Img\WindowsXP\18myPics.gif" />
+    <Content Include="Img\WindowsXP\19myMusic.gif" />
+    <Content Include="Img\WindowsXP\1folderRemote.gif" />
+    <Content Include="Img\WindowsXP\2PCRemote.gif" />
+    <Content Include="Img\WindowsXP\3domain.gif" />
+    <Content Include="Img\WindowsXP\4network.gif" />
+    <Content Include="Img\WindowsXP\5entireNetwork.gif" />
+    <Content Include="Img\WindowsXP\6myNetworkPlaces.gif" />
+    <Content Include="Img\WindowsXP\7allaire.gif" />
+    <Content Include="Img\WindowsXP\8scannersCamera.gif" />
+    <Content Include="Img\WindowsXP\8scheduledTaska.gif" />
+    <Content Include="Img\WindowsXP\9printers.gif" />
+    <Content Include="Img\WindowsXP\BottomLine.gif" />
+    <Content Include="Img\WindowsXP\BottomMinus.gif" />
+    <Content Include="Img\WindowsXP\BottomPlus.gif" />
+    <Content Include="Img\WindowsXP\ControlPanel.gif" />
+    <Content Include="Img\WindowsXP\desktop.gif" />
+    <Content Include="Img\WindowsXP\File.gif" />
+    <Content Include="Img\WindowsXP\folder.gif" />
+    <Content Include="Img\WindowsXP\FolderOpen.gif" />
+    <Content Include="Img\WindowsXP\myDataSources.gif" />
+    <Content Include="Img\WindowsXP\myDocuments.gif" />
+    <Content Include="IndexStatusMonitor.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="ManageBooks.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="ManageSite.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="ManageSubscriptions.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="RadControls\Multipage\IntelliSense\RadMultipage.xsd" />
+    <Content Include="RadControls\Multipage\Scripts\1_5_1\RadMultiPage_Client.js" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\lineBg.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\ScrollLeft.png" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\ScrollLeftDisabled.png" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\ScrollRight.png" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\ScrollRightDisabled.png" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabLeftFirstOff.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabLeftFirstOn.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabMiddleOffOff.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabMiddleOffOn.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabMiddleOnOff.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabRightLastOff.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabRightLastOn.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabsBg.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabStripeOff.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Img\tabStripeOn.gif" />
+    <Content Include="RadControls\Tabstrip\ClassicBlue\Styles\ClassicBlue.css" />
+    <Content Include="RadControls\Tabstrip\IntelliSense\RadTabStrip.xsd" />
+    <Content Include="RadControls\Tabstrip\Scripts\2_5_1\RadTabStrip_Client.js" />
+    <Content Include="RadControls\Treeview\IntelliSense\RadTreeView.xsd" />
+    <Content Include="RadControls\Treeview\Scripts\RadTreeView_Client_5_0_2.js" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DBlue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DClassic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DGreen\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Arrows\3DOrange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Blue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Classic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Green\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Brackets\Orange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Classic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Classic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Color\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Color\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Blue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Classic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Green\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Emboss\Orange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\File.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\Folder.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\FolderOpen.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\itemsBg.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\ContextMenu\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\File.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\Folder.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\FolderOpen.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\ExampleSkins\CustomNodeStyle\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Blue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\glassy\Green\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Blue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Classic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Green\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\MSDN\Orange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DBlue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DClassic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DGreen\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\3DOrange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Blue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Classic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Green\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Round\Orange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Rtl\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DBlue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DClassic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DGreen\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\3DOrange\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleBlue\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleClassic\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleGreen\WhiteSpace.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\BottomLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\BottomMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\BottomPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\MiddleCrossLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\MiddleLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\MiddleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\MiddlePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\SingleMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\SinglePlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\Style.css" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\TopLine.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\TopMinus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\TopPlus.gif" />
+    <Content Include="RadControls\Treeview\Skins\Square\RectangleOrange\WhiteSpace.gif" />
+    <Content Include="Reporting\reports.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="Reporting\reportsMain.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="scripts\common.js" />
+    <Content Include="siteTreeViewer.aspx">
+      <SubType>Form</SubType>
+    </Content>
+    <Content Include="styles.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="xmlFiles\adminMainMenu.xml" />
+    <Content Include="xmlFiles\treeContentMenu.xml" />
+    <Compile Include="adminBanner.ascx.cs">
+      <DependentUpon>adminBanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminBanner.ascx.designer.cs">
+      <DependentUpon>adminBanner.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IndexStatusMonitor.aspx.cs">
+      <DependentUpon>IndexStatusMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IndexStatusMonitor.aspx.designer.cs">
+      <DependentUpon>IndexStatusMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageBooks.aspx.cs">
+      <DependentUpon>ManageBooks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageBooks.aspx.designer.cs">
+      <DependentUpon>ManageBooks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSite.aspx.cs">
+      <DependentUpon>ManageSite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageSite.aspx.designer.cs">
+      <DependentUpon>ManageSite.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageSubscriptions.aspx.cs">
+      <DependentUpon>ManageSubscriptions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageSubscriptions.aspx.designer.cs">
+      <DependentUpon>ManageSubscriptions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporting\reporting_db.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporting\reports.aspx.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporting\reports.aspx.designer.cs">
+      <DependentUpon>reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\reportsMain.aspx.cs">
+      <DependentUpon>reportsMain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reporting\reportsMain.aspx.designer.cs">
+      <DependentUpon>reportsMain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="siteTreeViewer.aspx.cs">
+      <DependentUpon>siteTreeViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="siteTreeViewer.aspx.designer.cs">
+      <DependentUpon>siteTreeViewer.aspx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="adminBanner.ascx.resx">
+      <DependentUpon>adminBanner.ascx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="default.aspx.resx">
+      <DependentUpon>default.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Global.asax.resx">
+      <DependentUpon>Global.asax.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexStatusMonitor.aspx.resx">
+      <DependentUpon>IndexStatusMonitor.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageBooks.aspx.resx">
+      <DependentUpon>ManageBooks.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageSite.aspx.resx">
+      <DependentUpon>ManageSite.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManageSubscriptions.aspx.resx">
+      <DependentUpon>ManageSubscriptions.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\reports.aspx.resx">
+      <DependentUpon>reports.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\reportsMain.aspx.resx">
+      <DependentUpon>reportsMain.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="siteTreeViewer.aspx.resx">
+      <DependentUpon>siteTreeViewer.aspx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="images\TreeIcons\Styles\win2003L\Thumbs.db" />
+    <None Include="Img\Outlook\Thumbs.db" />
+    <None Include="Img\Thumbs.db" />
+    <None Include="Img\WindowsXP\Thumbs.db" />
+    <None Include="RadControls\Tabstrip\ClassicBlue\ClassicBlue.skin" />
+    <None Include="RadControls\Tabstrip\IntelliSense\RadTabStrip.xsx">
+      <DependentUpon>RadTabStrip.xsd</DependentUpon>
+    </None>
+    <None Include="RadControls\Treeview\Skins\Arrows\3DBlue\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Arrows\3DClassic\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Arrows\3DGreen\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Arrows\3DOrange\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Brackets\Blue\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Brackets\Classic\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Brackets\Green\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Brackets\Orange\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\glassy\Blue\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\glassy\Green\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\MSDN\Blue\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\MSDN\Classic\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\MSDN\Green\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\MSDN\Orange\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Square\RectangleBlue\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Square\RectangleClassic\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Square\RectangleGreen\Thumbs.db" />
+    <None Include="RadControls\Treeview\Skins\Square\RectangleOrange\Thumbs.db" />
+    <Content Include="web_appSettings.template.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AicpaStage.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AicpaProd.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.KnowlysisStage.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\D_DestroyerAPI\D_DestroyerAPI.csproj">
+      <Project>{9F4AA7B8-6536-4A97-B862-5B6322321A85}</Project>
+      <Name>D_DestroyerAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlHelper\SqlHelper.csproj">
+      <Project>{5CC91EE4-3CB0-44A1-8A80-5EB8592194E7}</Project>
+      <Name>SqlHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015ci.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55874</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

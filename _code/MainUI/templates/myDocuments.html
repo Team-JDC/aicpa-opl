@@ -1,0 +1,26 @@
+﻿{#template MAIN}
+<ul id="ulMyDocuments" class="tabs2">
+    {#foreach $T.d as screen}
+        <li class="{#if $T.screen$index == $T.activeIndex}active{#/if}" style="position:relative;" id="myDocumentLi-{$T.screen$index}">
+            <div class="new-doc-bg">
+                <a href="#" onclick="doScreenLink({$T.screen$index});" style="color:#000;">
+                    <img src="images/icon_{$T.screen.siteNode.Type}.gif" border="0" class="icon" style="padding-right:0; margin-right:6px;" />
+                    <div class="bubble">
+                        {#if $T.screen.targetDoc == ""}
+                            <p>{$T.screen.siteNode.Title}</p>
+                        {#else}
+                        <p>{$T.screen.targetDoc} -  {$T.screen.siteNode.Title}</p>                        
+                        {#/if}
+                    </div>
+                </a>
+            </div>
+            <a class="close" href="#" onclick="closeScreen({$T.screen$index});"><img src="images/icon-close.gif" title="Close this document" alt="Close this document" border="0" /></a>
+        </li>
+    {#/for}
+    {#if getMyScreenCount() < 10}
+        <li>
+           <a href="#" onclick="loadNewDocumentLanding();"><img src="images/doc-new2.gif" title="Open a new document" alt="open new document"  /></a>
+        </li>
+    {#/if}
+</ul>
+{#/template MAIN}

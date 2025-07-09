@@ -1,0 +1,17 @@
+﻿{#template MAIN}
+<ul id="ulHomeNavToolbar" class="tabs2"> 
+    {#foreach $T.d.Children as HomePageNode}
+        <li class="">
+            <a href="#" onclick="doToolbarHomeNavLink('{$T.HomePageNode.SiteFolderName}');"><img src="{$T.HomePageNode.ImageUrl}" alt="{$T.HomePageNode.DisplayName}" title="{$T.HomePageNode.DisplayName}" /></a>
+        </li>
+    {#/for}
+</ul>
+
+<ul class="forum">
+    <!-- li class="first"><a href="#" onclick="doLinkToForum();"><img src="images/home-forum.gif" alt="Forum"  /></a></li> -->
+</ul>
+<form id="forumForm" action="" method="post" target="_blank">
+    <input id="forumFormGuid" type="hidden" name="guid" value="" />
+</form>
+{#/template MAIN}
+

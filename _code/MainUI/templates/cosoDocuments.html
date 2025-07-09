@@ -1,0 +1,16 @@
+﻿{#template MAIN}
+<ul id="ulMyDocuments" class="tools">
+    {#foreach $T.d as screen}
+        <li class="{#if $T.screen$index == $T.activeIndex}active{#/if}" id="myDocumentLi-{$T.screen$index}">
+
+            <a href="#" onclick="doScreenLink({$T.screen$index});" title="{$T.screen.titleLimit()}">
+                <!--<img src="images/icon_{$T.screen.siteNode.Type}.gif" border="0" />-->
+                <div id="docTitle">
+                    {$T.screen.titleLimit(25) }
+                </div>    
+            </a>
+            <a class="close" href="#" onclick="closeScreen({$T.screen$index});">X</a>
+        </li>
+    {#/for}
+</ul>
+{#/template MAIN}

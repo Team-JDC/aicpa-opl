@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<news>
+    <NewsItem>
+        <Newsdate>
+			Can I save a section of text to my word processing program?
+        </Newsdate>
+        <NewsText>
+			How to copy text to Word processing tools
+        </NewsText>
+    </NewsItem>
+    <NewsItem>
+        <Newsdate>
+			What is the easiest way to locate a specific document?
+        </Newsdate>
+        <NewsText>
+			Learn how to locate documents
+        </NewsText>
+    </NewsItem>
+</news>

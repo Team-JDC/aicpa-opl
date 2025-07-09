@@ -1,0 +1,82 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> ViewDocument : System.Web.UI.Page {
+<font color= "blue"></font>
+<font color= "blue">        </font>int documentId = -1;
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load event handler on this Page is used to</font>
+<font color= "green">        // obtain obtain the contents of a document from the </font>
+<font color= "green">        // Documents table, construct an HTTP Response of the</font>
+<font color= "green">        // correct type for the document, and then stream the </font>
+<font color= "green">        // document contents to the response.  It uses the </font>
+<font color= "green">        // AICPA.Destroyer.UI.Portal.DocumentDB() data component to encapsulate </font>
+<font color= "green">        // the data access functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["DocumentId"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>documentId = Int32.Parse(Request.Params["DocumentId"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(documentId != -1) {<font color= "blue"></font>
+<font color= "blue">        </font>
+<font color= "green">                // Obtain Document Data from Documents table</font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.DocumentDB documents = new AICPA.Destroyer.UI.Portal.DocumentDB();
+<font color= "blue">            </font>
+<font color= "blue">                </font>SqlDataReader dBContent = documents.GetDocumentContent(documentId);
+<font color= "blue">                </font>dBContent.Read();
+<font color= "blue"></font>
+<font color= "green">                // Serve up the file by name</font>
+<font color= "blue">                </font>Response.AppendHeader("content-disposition","filename=" + (String)dBContent["FileName"]);          
+<font color= "blue">            </font>
+<font color= "green">                // set the content type for the Response to that of the </font>
+<font color= "green">                // document to display.  For example. "application/msword"</font>
+<font color= "blue">                </font>Response.ContentType = (String) dBContent["ContentType"];
+<font color= "blue">            </font>
+<font color= "green">                // output the actual document contents to the response output stream</font>
+<font color= "blue">                </font>Response.OutputStream.Write((byte[]) dBContent["Content"], 0, (int) dBContent["ContentSize"]);
+<font color= "blue"></font>
+<font color= "green">                // end the response</font>
+<font color= "blue">                </font>Response.End();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>ViewDocument() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

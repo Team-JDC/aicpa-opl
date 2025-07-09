@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="DocumentDS" targetNamespace="http://tempuri.org/DocumentDS.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/DocumentDS.xsd" xmlns:mstns="http://tempuri.org/DocumentDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="DocumentDs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Document">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DocumentInstanceId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="0" msdata:AutoIncrementStep="-1" type="xs:int" />
+              <xs:element name="BookInstanceId" type="xs:int" />
+              <xs:element name="Name" type="xs:string" />
+              <xs:element name="Title" type="xs:string" />
+              <xs:element name="BookTitlePath" type="xs:string" />
+              <xs:element name="Left" type="xs:int" />
+              <xs:element name="Right" type="xs:int" />
+              <xs:element name="HasChildren" type="xs:boolean" />
+              <xs:element name="Hidden" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DocumentFormat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DocumentInstanceId" type="xs:int" />
+              <xs:element name="ContentTypeId" type="xs:int" />
+              <xs:element name="Description" type="xs:string" />
+              <xs:element name="Uri" type="xs:string" />
+              <xs:element name="Primary" type="xs:boolean" />
+              <xs:element name="AutoDownload" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NamedAnchor">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NamedAnchorId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="0" msdata:AutoIncrementStep="-1" type="xs:int" />
+              <xs:element name="DocumentInstanceId" type="xs:int" />
+              <xs:element name="Name" type="xs:string" />
+              <xs:element name="Title" type="xs:string" />
+              <xs:element name="BookTitlePath" type="xs:string" />
+              <xs:element name="Left" type="xs:int" />
+              <xs:element name="Right" type="xs:int" />
+              <xs:element name="HasChildren" type="xs:boolean" />
+              <xs:element name="Hidden" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:keyref name="DocumentDocumentFormat" refer="DocumentDsKey4">
+      <xs:selector xpath=".//mstns:DocumentFormat" />
+      <xs:field xpath="mstns:DocumentInstanceId" />
+    </xs:keyref>
+    <xs:unique name="DocumentDsKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:NamedAnchor" />
+      <xs:field xpath="mstns:NamedAnchorId" />
+    </xs:unique>
+    <xs:keyref name="DocumentNamedAnchor" refer="DocumentDsKey4">
+      <xs:selector xpath=".//mstns:NamedAnchor" />
+      <xs:field xpath="mstns:DocumentInstanceId" />
+    </xs:keyref>
+    <xs:key name="DocumentDsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DocumentFormat" />
+      <xs:field xpath="mstns:DocumentInstanceId" />
+      <xs:field xpath="mstns:ContentTypeId" />
+    </xs:key>
+    <xs:key name="DocumentDsKey3">
+      <xs:selector xpath=".//mstns:Document" />
+      <xs:field xpath="mstns:DocumentInstanceId" />
+      <xs:field xpath="mstns:BookInstanceId" />
+    </xs:key>
+    <xs:key name="DocumentDsKey4">
+      <xs:selector xpath=".//mstns:Document" />
+      <xs:field xpath="mstns:DocumentInstanceId" />
+    </xs:key>
+  </xs:element>
+</xs:schema>

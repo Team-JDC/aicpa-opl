@@ -1,0 +1,72 @@
+﻿/*
+	sburton 2009-07-10: I have changed this use javascript for the popup rather than
+	simply css.
+
+	sburton 2009-06-26: I have changed this to use spans instead of tables, nested
+	inside the 'a' tags, because it was causing problems in IE 8.
+
+    jstockett 2014-4-14: I have branched this css from the original to do some ethics specific formatting.
+*/
+
+a.popup_tooltip span.popupSpan
+{
+	display: none;
+    position:absolute;
+    top:1em; left: 0em; width:25em;
+    text-align: left;
+    color:#000000;
+    text-decoration:none;
+	z-index: 3000;
+	border: 1px solid #336699;
+	background-color: #fff;
+	padding: 0px 0px 0px 0px;
+	opacity: 1;
+	font-size: 12px;
+	text-indent: 0in;
+}
+
+
+
+
+
+a.xbrlReference span.popupSpan
+{
+	display: none;
+    position:absolute;
+    top:1em; left: 0em; width:25em;
+    text-align: left;
+    color:#000000;
+    text-decoration:none;
+	z-index: 3000;
+	border: 1px solid #336699;
+	background-color: #fff;
+	padding: 0px 0px 0px 0px;
+	opacity: 1;
+	font-size: 12px;
+}
+
+div.runfoot
+{
+	height:150px;
+}
+
+span.highlight
+{
+	color:#336699;
+}     
+
+span.glossaryheader
+{
+	background-color:#336699;
+	color:#ffffff;
+	font-weight:bold;
+	display:block;
+	padding:3px;
+}
+
+span.glossarybody
+{
+	display:block;
+	padding:3px;
+	text-indext: 0in;
+}

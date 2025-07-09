@@ -1,0 +1,13 @@
+﻿{#template MAIN}
+<ul id="ulLibrary" class="tools">            
+    {#foreach $T.d as link}    
+        <li id="bookLi-{$T.link$index}">  
+                <a href="#" onclick="doLink('{$T.link.TargetDoc}', '{$T.link.TargetPointer}', true);" title="{$T.link.Title}">                    
+                    <div class="">
+                        <p>{$T.link.Title}</p>                        
+                    </div>
+                </a>                 
+        </li>
+    {#/for}                
+</ul>
+{#/template MAIN}

@@ -1,0 +1,40 @@
+﻿{#template MAIN}
+<div id="join-sections-results-table-div">
+    
+    <table cellpadding="0" cellspacing="5" style="font-size:12px">
+        <tr>
+            <th>
+                <input id="selectAllCheckbox" type="checkbox" onclikc="($('#selectAllCheckbox:checked').val() != null) ? $('.join-section-checkbox').attr('checked', 'checked') : $('.join-section-checkbox').removeAttr('checked')" name="Documents:_ctl1:checkAll">
+		    </th>
+            <th>Topic</th>
+            <th>Subtopic</th>
+            <th>Section</th>
+            <th align="left">Title</th>
+        </tr>
+
+        {#foreach $T.d as JoinSectionsResult}
+        <tr>
+            <td>
+                <input class="bookTitle" type="hidden" value="{$T.JoinSectionsResult.BookTitle}" />
+                <input class="join-section-checkbox" value="{$T.JoinSectionsResult.TopicNum}-{$T.JoinSectionsResult.SubtopicNum}-{$T.JoinSectionsResult.SectionNum}" type="checkbox" id="Checkbox2" name="section"/>
+		    </td>
+            <td>{$T.JoinSectionsResult.TopicNum}</td>
+            <td>{$T.JoinSectionsResult.SubtopicNum}</td>
+            <td>{$T.JoinSectionsResult.SectionNum}</td>
+            <td align="left">{$T.JoinSectionsResult.TopicNum} {$T.JoinSectionsResult.TopicTitle} &gt; {$T.JoinSectionsResult.SubtopicNum} {$T.JoinSectionsResult.SubtopicTitle} &gt; {$T.JoinSectionsResult.SectionNum} {$T.JoinSectionsResult.SectionTitle}</td>
+        </tr>
+        {#/for}
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href="#" onclick="doJoinSections(false)" ><img src="images/btn-join.gif" alt="Join Sections" border="0"/></a>
+                <a href="#" onclick="doJoinSections(true)"><img src="images/btn-join-sources.gif" alt="Join Sections with Sources" border="0" /></a>
+            </td>
+        </tr>
+    </table>
+</div>
+{#/template MAIN}

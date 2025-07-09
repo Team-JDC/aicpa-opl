@@ -1,0 +1,11 @@
+﻿{#template MAIN}
+<div class="clear" style="margin:0 0 0 20px; padding-top:25px;">
+    <h4>Code of Professional Conduct:</h4>
+    <select id="documentType" class="quickfind" onchange="doQuickFindDropDownOnChange('documentType', $('#documentType').val());">
+        <option value=""></option>
+    {#foreach $T.d.DocumentTypeList as DocumentType}
+        <option value="{$T.DocumentType.Id}">{$T.DocumentType.Title}</option>
+    {#/for}
+    </select>
+</div>
+{#/template MAIN}

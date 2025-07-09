@@ -1,0 +1,29 @@
+﻿{#template MAIN}
+    {#if $T.d.IsFafInMySubscription}
+        <a><span class="arrow">FASB ASC</span></a>
+        <ul class="submenu">
+        <li id="liFafDocument" style="display:none" runat="server"><a href="" id="aFafDocument"><span>Document</span></a></li>
+        <li id="liGoTo" runat="server"><a href="/tools/goto"><span>GoTo</span></a></li>
+        <li id="liXRef" runat="server"><a href="/tools/xref"><span>Cross Reference</span></a></li>
+        {#if $T.d.ShowFafTools}
+            <li id="liJoin" runat="server"><a href="/tools/join"><span>Join Sections</span></a></li>        
+            {#if $T.d.ReferencingLinks == true && $T.d.HasWhatLinksHereContent == true}
+                <li id="liFafWhatLinksHere"><a href="/tools/wlh/link/{$T.d.TargetDoc}/{$T.d.TargetPtr}" id="aFafWhatLinksHere"><span>What Links Here</span></a></li>
+            {#else}
+                <li id="liFafWhatLinksHere" style="display:none"><a id="aFafWhatLinksHere"><span>What Links Here</span></a></li>
+            {#/if}
+            {#if $T.d.ArchivedBook == true && $T.d.HasArchivedContent == true}
+                <li id="liFafArchive"><a href="/tools/archive/link/{$T.d.TargetDoc}/{$T.d.TargetPtr}" id="fafArchive"><span>Archive</span></a></li>
+            {#else}
+                <li id="liFafArchive" style="display:none"><a id="fafArchive"><span>Archive</span></a></li>
+            {#/if}
+            {#if $T.d.ViewSources == true}
+                <li id="liShowSource"><a href="" id="aShowSource" class="" onclick="toggleShowSources()"><span>Source</span></a></li>
+            {#else}
+                <li id="liShowSource" style="display:none"><a id="aShowSource"><span>Source</span></a></li>
+            {#/if}
+        {#/if} {* ShowFafTools *}
+        </ul>
+        <div></div>
+    {#/if}
+{#/template MAIN}

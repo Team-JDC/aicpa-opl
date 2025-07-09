@@ -1,0 +1,92 @@
+﻿{#template MAIN}
+    <div class="tool-container">
+    <form class="preferences">
+	    <h1 class="borderbot">User Preferences</h1>
+
+        <div class="padbot15 clear">
+    	    <label class="main float">Document Font:</label>
+            <div align="left" class="left100 ">
+                <select id="Font">
+                {#if $T.d.UserPreference[0] != null}
+                    {#if $T.d.UserPreference[0].Value != 1 && $T.d.UserPreference[0].Value != null}
+                        <option value="1">All Arial, Helvetica</option>
+                        {#else}
+                        <option value="1" selected="selected">All Arial, Helvetica</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[0].Value == 2}
+                        <option style="font-family:Times New Roman, Times, serif" selected="selected" value="2">Times New Roman</option>
+                        {#else}
+                        <option style="font-family:Times New Roman, Times, serif" value="2">Times New Roman</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[0].Value == 3}
+                        <option style="font-family:Trebuchet MS, Arial, Helvetica, sans-serif" selected="selected" value="3">Trebuchet</option>
+                        {#else}
+                        <option style="font-family:Trebuchet MS, Arial, Helvetica, sans-serif" value="3">Trebuchet</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[0].Value == 4}
+                        <option style="font-family:Verdana, Geneva, sans-serif" selected="selected" value="4">Verdana</option>
+                        {#else}
+                        <option style="font-family:Verdana, Geneva, sans-serif" value="4">Verdana</option>
+                    {#/if}
+                {#else}
+                    <option value="1" selected="selected">All Arial, Helvetica</option>
+                    <option style="font-family:Times New Roman, Times, serif" value="2">Times New Roman</option>
+                    <option style="font-family:Trebuchet MS, Arial, Helvetica, sans-serif" value="3">Trebuchet</option>
+                    <option style="font-family:Verdana, Geneva, sans-serif" value="4">Verdana</option>
+                {#/if}
+                </select>
+            </div>
+        </div>
+    
+        <div class="padbot15 clear">
+    	    <label class="main float">Font Size:</label>
+            <div align="left" class="left100 ">
+                <select id="FontSize">
+                {#if $T.d.UserPreference[1] != null}
+                    {#if $T.d.UserPreference[1].Value == 1}
+                        <option style="font-size:10pt;" selected="selected" value="1">Small</option>
+                        {#else}
+                        <option style="font-size:10pt;" value="1">Small</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[1].Value != 2 && $T.d.UserPreference[1].Value != null}
+                        <option style="font-size:12pt;" value="2">Medium (Default Size)</option>
+                        {#else}
+                        <option style="font-size:12pt;" selected="selected" value="2">Medium (Default Size)</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[1].Value == 3}
+                        <option style="font-size:14pt;" selected="selected" value="3">Large</option>
+                        {#else}
+                        <option style="font-size:14pt;" value="3">Large</option>
+                    {#/if}
+                    {#if $T.d.UserPreference[1].Value == 4}
+                        <option style="font-size:18pt;" selected="selected" value="4">X-Large</option>
+                        {#else}
+                        <option style="font-size:18pt;" value="4">X-Large</option>
+                    {#/if}
+                {#else}
+                    <option style="font-size:10pt;" value="1">Small</option>
+                    <option style="font-size:12pt;" selected="selected" value="2">Medium (Default Size)</option>
+                    <option style="font-size:14pt;" value="3">Large</option>
+                    <option style="font-size:18pt;" value="4">X-Large</option>
+                {#/if}
+                </select>
+            </div>
+        </div>
+        <div class="clear" style="height:15px;"></div>
+  
+        <div class="padbot15 clear" style="border-top:1px solid #ccc; padding-top:10px;">
+            <div align="left" class="left100 ">
+                <a href="#" id="submitpreferences" onclick="savePreferences()"><img alt="Submit" src="images/btn-submit.gif" class="submit float" border="0"/></a>
+            </div>
+        </div>
+        {#if $T.d.PreferencesChanged != null && $T.d.PreferencesChanged == true}
+        <div id="flashBox" class="padbot15 clear" style="background-color: #a1ceec; border: 1px solid #4fa9e5; padding: 10px;">
+            <span style="font-size: 16px; font-weight: bold; color:#014470; padding: 10px; text-align: center;">Your preferences were successfully saved.</span>
+        </div>
+        {#/if}
+    </form>
+    </div>
+    <div class="under-note">
+        <p style="padding-top:10px;"><b>Note:</b> To return to your document, click the document tab below and select your document.</p>
+    </div>
+{#/template MAIN}

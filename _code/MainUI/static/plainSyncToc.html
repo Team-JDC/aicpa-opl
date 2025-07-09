@@ -1,0 +1,19 @@
+﻿<div id="plainTocDiv" style="padding:20px;">
+    <h1>Table of Contents</h1>
+
+    <button onclick="loadToc(true);" value="SYNC TOC" title="Syncronize the table of contents with your current document location in the breadcrumb." >SYNC TOC</button>
+                
+    <ul id="toc" class="treeview">
+    </ul>
+</div>
+
+<script language="javascript" type="text/javascript">
+    setLoading(true);
+    try
+    {
+        syncTocLoad('toc');
+    } finally
+    {
+      setLoading(false);
+    }
+</script>

@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1>
+			"DeleteModule" Stored Procedure
+		</h1>
+		<b>Description:</b>
+		<P>
+			This stored procedure deletes the selected module data from the correlating 
+			module tables in&nbsp;the database.&nbsp; The actual module configuration 
+			itself is stored in the configuration file, PortalCfg.xml.&nbsp; The input 
+			parameter is ModuleID, the unique identifier for each of the tables.
+		</P>
+		<b>Definition:</b>
+		<pre>
+    
+   CREATE  PROCEDURE Portal_DeleteModule
+   (
+       @ModuleID       int
+   )
+   AS
+         DELETE FROM Portal_Announcements
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_Contacts
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_Discussion
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_Documents
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_Events
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_HTMLText
+         WHERE ModuleID = @ModuleID
+   
+         DELETE FROM Portal_Links
+         WHERE ModuleID = @ModuleID
+        </pre>
+		<b>Database Tables Used: </b>
+		<P>
+			<i>Module:</i> &nbsp;Each Module element in the&nbsp;configuration 
+			file&nbsp;represents a single module instance on a specific tab in the selected 
+			portal. The definition for the module type is pulled via the ModuleDefID field 
+			from the ModuleDefinitions element, again in the xml configuration file.
+		</P>
+		<p>The data stored within&nbsp;each module is stored in&nbsp;separate database 
+			tables for the selected module type, and indexed by ModuleID.
+		</p>
+	</body>
+</html>

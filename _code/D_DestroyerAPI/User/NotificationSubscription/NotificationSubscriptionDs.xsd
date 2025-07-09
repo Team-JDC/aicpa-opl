@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="NotificationSubscriptionDS" targetNamespace="http://tempuri.org/NotificationSubscriptionDS.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/NotificationSubscriptionDS.xsd" xmlns:mstns="http://tempuri.org/NotificationSubscriptionDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NotificationSubscriptionDS">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="NotificationSubscription">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" />
+              <xs:element name="BookID" type="xs:string" />
+              <xs:element name="BookVersion" type="xs:int" />
+              <xs:element name="NotificationSubscription" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DocumentKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:NotificationSubscription" />
+      <xs:field xpath="mstns:UserID" />
+      <xs:field xpath="mstns:BookID" />
+      <xs:field xpath="mstns:BookVersion" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

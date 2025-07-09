@@ -1,0 +1,195 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> EditAnnouncements : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox TitleField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator Req1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox MoreLinkField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox MobileMoreField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox DescriptionField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator Req2;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox ExpireField;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredExpireDate;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CompareValidator VerifyExpireDate;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton updateButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton cancelButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton deleteButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label CreatedBy;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label CreatedDate;
+<font color= "blue">    </font>
+<font color= "blue"></font>
+<font color= "blue">        </font>int itemId = 0;
+<font color= "blue">        </font>int moduleId = 0;
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load event on this Page is used to obtain the ModuleId</font>
+<font color= "green">        // and ItemId of the announcement to edit.</font>
+<font color= "green">        //</font>
+<font color= "green">        // It then uses the AICPA.Destroyer.UI.Portal.AnnouncementsDB() data component</font>
+<font color= "green">        // to populate the page's edit controls with the annoucement details.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Determine ModuleId of Announcements Portal Module</font>
+<font color= "blue">            </font>moduleId = Int32.Parse(Request.Params["Mid"]);
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to edit this module</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.HasEditPermissions(moduleId) == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Determine ItemId of Announcement to Update</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["ItemId"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>itemId = Int32.Parse(Request.Params["ItemId"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If the page is being requested the first time, determine if an</font>
+<font color= "green">            // announcement itemId value is specified, and if so populate page</font>
+<font color= "green">            // contents with the announcement details</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(itemId != 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // Obtain a single row of announcement information</font>
+<font color= "blue">                    </font>AICPA.Destroyer.UI.Portal.AnnouncementsDB announcementDB = new AICPA.Destroyer.UI.Portal.AnnouncementsDB();
+<font color= "blue">                    </font>SqlDataReader dr = announcementDB.GetSingleAnnouncement(itemId);
+<font color= "blue">                </font>
+<font color= "green">                    // Load first row into DataReader</font>
+<font color= "blue">                    </font>dr.Read();
+<font color= "blue">                </font>
+<font color= "green">                    // Security check.  verify that itemid is within the module.</font>
+<font color= "blue">                    </font>int dbModuleID = Convert.ToInt32(dr["ModuleID"]);
+<font color= "blue"></font><font color= "blue">                    if </font>(dbModuleID != moduleId)<font color= "blue"></font>
+<font color= "blue">                    </font>{
+<font color= "blue">                        </font>dr.Close();
+<font color= "blue">                        </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">                    </font>}
+<font color= "blue"></font>
+<font color= "blue">                    </font>TitleField.Text = (String) dr["Title"];
+<font color= "blue">                    </font>MoreLinkField.Text = (String) dr["MoreLink"];
+<font color= "blue">                    </font>MobileMoreField.Text = (String) dr["MobileMoreLink"];
+<font color= "blue">                    </font>DescriptionField.Text = (String) dr["Description"];
+<font color= "blue">                    </font>ExpireField.Text = ((DateTime) dr["ExpireDate"]).ToShortDateString();
+<font color= "blue">                    </font>CreatedBy.Text = (String) dr["CreatedByUser"];
+<font color= "blue">                    </font>CreatedDate.Text = ((DateTime) dr["CreatedDate"]).ToShortDateString();
+<font color= "blue">                </font>
+<font color= "green">                    // Close the datareader</font>
+<font color= "blue">                    </font>dr.Close();
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "green">                // Store URL Referrer to return to portal</font>
+<font color= "blue">                </font>ViewState["UrlReferrer"] = Request.UrlReferrer.ToString();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateBtn_Click event handler on this Page is used to either</font>
+<font color= "green">        // create or update an announcement.  It  uses the AICPA.Destroyer.UI.Portal.AnnouncementsDB()</font>
+<font color= "green">        // data component to encapsulate all data functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UpdateBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Only Update if the Entered Data is Valid</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsValid == true) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Create an instance of the Announcement DB component</font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.AnnouncementsDB announcementDB = new AICPA.Destroyer.UI.Portal.AnnouncementsDB();
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(itemId == 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // Add the announcement within the Announcements table</font>
+<font color= "blue">                    </font>announcementDB.AddAnnouncement( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, MoreLinkField.Text, MobileMoreField.Text);
+<font color= "blue">                </font>}
+<font color= "blue"></font><font color= "blue">                else </font>{<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // Update the announcement within the Announcements table</font>
+<font color= "blue">                    </font>announcementDB.UpdateAnnouncement( moduleId, itemId, Context.User.Identity.Name, TitleField.Text, DateTime.Parse(ExpireField.Text), DescriptionField.Text, MoreLinkField.Text, MobileMoreField.Text);
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "green">                // Redirect back to the portal home page</font>
+<font color= "blue">                </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteBtn_Click event handler on this Page is used to delete an</font>
+<font color= "green">        // an announcement.  It  uses the AICPA.Destroyer.UI.Portal.AnnouncementsDB()</font>
+<font color= "green">        // data component to encapsulate all data functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> DeleteBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Only attempt to delete the item if it is an existing item</font>
+<font color= "green">            // (new items will have "ItemId" of 0)</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(itemId != 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.AnnouncementsDB announcementDB = new AICPA.Destroyer.UI.Portal.AnnouncementsDB();
+<font color= "blue">                </font>announcementDB.DeleteAnnouncement(itemId);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Redirect back to the portal home page</font>
+<font color= "blue">            </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //****************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The CancelBtn_Click event handler on this Page is used to cancel</font>
+<font color= "green">        // out of the page, and return the user back to the portal home</font>
+<font color= "green">        // page.</font>
+<font color= "green">        //</font>
+<font color= "green">        //****************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> CancelBtn_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Redirect back to the portal home page</font>
+<font color= "blue">            </font>Response.Redirect((String) ViewState["UrlReferrer"]);
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>EditAnnouncements() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue">            </font>this.updateButton.Click += new System.EventHandler(this.UpdateBtn_Click);
+<font color= "blue">            </font>this.cancelButton.Click += new System.EventHandler(this.CancelBtn_Click);
+<font color= "blue">            </font>this.deleteButton.Click += new System.EventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

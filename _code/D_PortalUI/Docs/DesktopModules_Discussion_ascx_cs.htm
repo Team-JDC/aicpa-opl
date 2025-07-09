@@ -1,0 +1,159 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public </font>abstract class Discussion : AICPA.Destroyer.UI.Portal.PortalModuleControl {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.DataList TopLevelList;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load server event handler on this User Control is used</font>
+<font color= "green">        // on the first visit of the page to obtain and databind a list of</font>
+<font color= "green">        // discussion messages.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue">                </font>BindList();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The BindList method obtains the list of top-level messages</font>
+<font color= "green">        // from the Discussion table and then databinds them against</font>
+<font color= "green">        // the "TopLevelList" asp:datalist server control.  It uses </font>
+<font color= "green">        // the AICPA.Destroyer.UI.Portal.DiscussionDB() data component to encapsulate </font>
+<font color= "green">        // all data access functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> BindList() {
+<font color= "blue"></font>
+<font color= "green">            // Obtain a list of discussion messages for the module</font>
+<font color= "green">            // and bind to datalist</font>
+<font color= "blue">            </font>AICPA.Destroyer.UI.Portal.DiscussionDB discuss = new AICPA.Destroyer.UI.Portal.DiscussionDB();
+<font color= "blue"></font>
+<font color= "blue">            </font>TopLevelList.DataSource = discuss.GetTopLevelMessages(ModuleId);
+<font color= "blue">            </font>TopLevelList.DataBind();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetThreadMessages method is used to obtain the list</font>
+<font color= "green">        // of messages contained within a sub-topic of the</font>
+<font color= "green">        // a top-level discussion message thread.  This method is</font>
+<font color= "green">        // used to populate the "DetailList" asp:datalist server control</font>
+<font color= "green">        // in the SelectedItemTemplate of "TopLevelList".</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>SqlDataReader GetThreadMessages() {
+<font color= "blue"></font>
+<font color= "green">            // Obtain a list of discussion messages for the module</font>
+<font color= "blue">            </font>AICPA.Destroyer.UI.Portal.DiscussionDB discuss = new AICPA.Destroyer.UI.Portal.DiscussionDB();
+<font color= "blue">            </font>SqlDataReader dr = discuss.GetThreadMessages(TopLevelList.DataKeys[TopLevelList.SelectedIndex].ToString());
+<font color= "blue"></font>
+<font color= "green">            // Return the filtered DataView</font>
+<font color= "blue">            return</font> dr;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The TopLevelList_Select server event handler is used to</font>
+<font color= "green">        // expand/collapse a selected discussion topic within the </font>
+<font color= "green">        // hierarchical <asp:DataList> server control.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> TopLevelList_Select(object Sender, DataListCommandEventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Determine the command of the button (either "select" or "collapse")</font>
+<font color= "blue">            </font>String command = ((ImageButton)e.CommandSource).CommandName;
+<font color= "blue"></font>
+<font color= "green">            // Update asp:datalist selection index depending upon the type of command</font>
+<font color= "green">            // and then rebind the asp:datalist with content</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(command == "collapse") {<font color= "blue"></font>
+<font color= "blue">                </font>TopLevelList.SelectedIndex = -1;
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else </font>{<font color= "blue"></font>
+<font color= "blue">                </font>TopLevelList.SelectedIndex = e.Item.ItemIndex;
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue">            </font>BindList();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The FormatUrl method is a helper messages called by a</font>
+<font color= "green">        // databinding statement within the <asp:DataList> server</font>
+<font color= "green">        // control template.  It is defined as a helper method here</font>
+<font color= "green">        // (as opposed to inline within the template) to to improve </font>
+<font color= "green">        // code organization and avoid embedding logic within the </font>
+<font color= "green">        // content template.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>String FormatUrl(int item) {
+<font color= "blue"></font>
+<font color= "blue">            return</font> "~/DesktopModules/DiscussDetails.aspx?ItemID=" + item + "&mid=" + ModuleId;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The NodeImage method is a helper method called by a</font>
+<font color= "green">        // databinding statement within the <asp:datalist> server</font>
+<font color= "green">        // control template.  It controls whether or not an item</font>
+<font color= "green">        // in the list should be rendered as an expandable topic</font>
+<font color= "green">        // or just as a single node within the list.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>String NodeImage(int count) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(count > 0) {<font color= "blue"></font>
+<font color= "blue">                return</font> "~/images/plus.gif";
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else </font>{<font color= "blue"></font>
+<font color= "blue">                return</font> "~/images/node.gif";
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>Discussion() {
+<font color= "blue">            </font>this.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        ///        Required method for Designer support - do not modify</font>
+<font color= "green">        ///        the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.TopLevelList.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.TopLevelList_Select);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

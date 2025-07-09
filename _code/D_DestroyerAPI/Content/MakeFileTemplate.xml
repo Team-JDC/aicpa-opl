@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Makefile xmlns="http://tempuri.org/D_Makefile.xsd">
+	<Book Name="tpa" Title="Technical Practice Aids" Description="Description" Copyright="Copyright American Institute of Certified Public Accountants">
+		<Document Name="tpa_1" Title="TPA 1">
+			<DocumentFormat Uri="tpa_1.htm" Content-Type="text/html" Primary="true"/>
+			<DocumentAnchor Name="tpa_1_1" Title="TPA 1.1">
+				<DocumentAnchor Name="tpa_1_1_1" Title="TPA 1.1.1"/>
+				<DocumentAnchor Name="tpa_1_1_2" Title="TPA 1.1.2"/>
+			</DocumentAnchor>
+			<DocumentAnchor Name="tpa_1_2" Title="TPA 1.2">
+				<DocumentAnchor Name="tpa_1_2_1" Title="TPA 1.2.1"/>
+				<DocumentAnchor Name="tpa_1_2_2" Title="TPA 1.2.2"/>
+			</DocumentAnchor>
+		</Document>
+		<Document Name="tpa_2" Title="TPA 2">
+			<DocumentFormat Uri="tpa_2.htm" Content-Type="text/html" Primary="true"/>
+			<DocumentAnchor Name="tpa_2_1" Title="TPA 2.1">
+				<DocumentAnchor Name="tpa_2_1_1" Title="TPA 2.1.1"/>
+				<DocumentAnchor Name="tpa_2_1_2" Title="TPA 2.1.2"/>
+			</DocumentAnchor>
+			<DocumentAnchor Name="tpa_2_2" Title="TPA 2.2">
+				<DocumentAnchor Name="tpa_2_2_1" Title="TPA 2.2.1"/>
+				<DocumentAnchor Name="tpa_2_2_2" Title="TPA 2.2.2"/>
+			</DocumentAnchor>
+		</Document>
+		<BookFolder Title="BookFolder 1" Name="book_folder_1">
+			<BookFolder Title="Book Folder 1.1" Name="book_folder_1_1">
+			</BookFolder>
+			<Document Name="test_1" Title="Test 1">
+				<DocumentFormat Uri="tpa_1.htm" Content-Type="text/html" Primary="true"/>
+			</Document>
+		</BookFolder>
+	</Book>
+</Makefile>
+

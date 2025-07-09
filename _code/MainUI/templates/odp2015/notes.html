@@ -1,0 +1,144 @@
+﻿{#template MAIN}
+
+<div id="leftcol" class="col-sm-12">
+    <div class="leftcol_inner">
+        <div class="leftcol_header">
+            <h1>My Notes</h1>
+        </div>
+        <div class="leftcol_content">
+            <h2 class="clearfix">
+                Note Title
+                <aside>
+                    <select id="bulk" placeholder="Bulk Action" onchange="bulkCheck(this)" style="color:#000; font-weight:500;">
+                        <option id="0">Bulk Action</option>
+                        <option>Delete</option>
+                    </select>
+                    {#if $T.d.length > 0 }
+                    <a href="#" onclick="selectAll()" style="float:right;">Select All</a>
+                    {#/if}
+                </aside>
+            </h2>
+            <!-- Modal Are You Sure (AYS) -->
+            <div class="modal fade" id="bulkAYS" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+				    <div class="modal-content">					        
+                        <div id="Div2" class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h3 class="modal-title" id="H2">Bulk Delete</h3>
+                        </div>                            
+                        <div id="Div3" class="modal-body">
+                            Are you sure you want to perform a bulk delete?
+					    </div>
+					    <div class="modal-footer">
+						    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="doCancel();">Cancel</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="bulkDelete();">Delete</button>						        
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+            <!-- End Modal -->		
+
+                                
+            <ul id="toc" class="accordion tools top20">
+                {#foreach $T.d as MyNote}
+                <li id="liNote-{$T.MyNote.Note.Id}">
+                    <div class="acc_head">
+                        <div class="acc_head_inner">
+                            <h2 class="clearfix">
+                                <span class="icon"></span>
+                                <span id="editHeader-{$T.MyNote.Note.Id}" class="acc_text">{$T.MyNote.Note.Title}</span>
+                                <input type="checkbox" style="float:right;" name="cb-{$T.MyNote.Note.Id}" value="{$T.MyNote.Note.Id}" >
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="acc_content">
+                        <ul>
+                            <li class="clearfix">
+                                <div class="col-sm-9">
+                                    <a href="/content/link/{$T.MyNote.Note.TargetDoc}/{$T.MyNote.Note.TargetPtr}">&raquo  <span id="editTitle-{$T.MyNote.Note.Id}">{$T.MyNote.Note.Title}</span> - {$T.MyNote.Location}</a>
+                                    <p id="editText-{$T.MyNote.Note.Id}">{$T.MyNote.Note.Text}</p>
+                                </div>
+                                <div class="col-sm-3 top45">
+                                    <a href="#" class="btn" data-toggle="modal" data-target="#myModal-{$T.MyNote.Note.Id}">Edit</a>
+                                    <a href="#" class="btn" data-toggle="modal" data-target="#myModalAYS-{$T.MyNote.Note.Id}">Delete</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <div class="modal fade" id="myModal-{$T.MyNote.Note.Id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title" id="myModalLabel">Edit Note</h3>
+                            </div>
+                            <div class="modal-body">
+                                <label>Title*</label>
+                                <br>
+                                <input id="noteTitle-{$T.MyNote.Note.Id}" type="text" value="{$T.MyNote.Note.Title}"/>
+                                <br>
+                                <label>Note Contents</label>
+                                <br>
+                                <textarea id="noteTextArea-{$T.MyNote.Note.Id}" cols="3">{$T.MyNote.Note.Text}</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="updateNoteById({$T.MyNote.Note.Id})">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Are You Sure (AYS) -->
+                <div class="modal fade" id="myModalAYS-{$T.MyNote.Note.Id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			        <div class="modal-dialog">
+				        <div class="modal-content">					        
+                            <div id="aysDivHeader" class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                <h3 class="modal-title" id="H1">Delete Note</h3>
+                            </div>                            
+                            <div id="aysDivBody" class="modal-body">
+                                {$T.MyNote.Note.Title}<br />
+						        {$T.MyNote.Note.Text}
+					        </div>
+					        <div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteMyNote({$T.MyNote.Note.Id})">Delete</button>						        
+					        </div>
+				        </div>
+			        </div>
+		        </div>
+                <!-- End Modal -->		
+		               
+
+                {#/for}
+            </ul>                               
+        </div><!-- .leftcol_content -->
+    </div><!-- .leftcol_inner -->
+</div>
+{#literal}
+<script language="javascript" type="text/javascript">
+    function doCancel() {
+        $("#bulk").find('option:first').attr('selected', 'selected');
+    }
+
+    function bulkCheck(me) {
+        if ($(me).val() == 'Delete') {
+           var oneChecked = false;
+            $("[name^=cb-]").each(function () {
+                if ($(this).is(":checked")) {
+                    oneChecked = true; 
+                } 
+            });
+            if (oneChecked) {
+                $("#bulkAYS").modal('show');
+            } else {
+                doCancel();
+            }
+            
+        }
+    }
+</script>
+{#/literal}
+
+{#/template MAIN}

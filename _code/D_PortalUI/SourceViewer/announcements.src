@@ -1,0 +1,5 @@
+User Control:Announcements.ascx|DesktopModules_Announcements_ascx.htm,Announcements.ascx.cs|DesktopModules_Announcements_ascx_cs.htm
+Mobile User Control:Announcements.ascx|MobileModules_Announcements_ascx.htm
+Business Component:AnnouncementsDB.cs|Components_AnnouncementsDB_cs.htm
+Stored Procedures: AddAnnouncement|AddAnnouncement.htm,DeleteAnnouncement|DeleteAnnouncement.htm,GetAnnouncements|GetAnnouncements.htm,GetSingleAnnouncement|GetSingleAnnouncement.htm,UpdateAnnouncement|UpdateAnnouncement.htm
+Edit Page:EditAnnouncements.aspx|DesktopModules_EditAnnouncements_aspx.htm

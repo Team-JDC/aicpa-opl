@@ -1,0 +1,348 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ODPMaster.master.cs" Inherits="MainUI.ODPMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="no-js yes-js">
+    <head id="Head1" runat="server">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>AICPA | OPL</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type='text/javascript'>var validCosoDomains = '<%=ConfigurationManager.AppSettings["CosoDomains"] %>';</script>
+        <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="/elements/css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="/elements/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="/elements/css/main.css" />    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <%--<link rel="stylesheet" type="text/css" href="/resources/jquery.treeview.css" />--%>
+        <link rel="stylesheet" type="text/css" href="/Styles/loading.css" />
+        <%--<link rel="Stylesheet" type="text/css" href="/Handlers/GetResource.ashx?type=user_preferences"/>--%>
+        <!--[if lt IE 9 ]>
+        <link rel="stylesheet" href="/elements/css/ie.css">
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <script type='text/javascript' src='/elements/js/modernizr.custom.19057.js'></script>
+        <script type="text/javascript" src="/js/jquery/jquery-1.11.2.min.js"></script>                
+        <script type="text/javascript" src="/js/jQuery-jtemplates.min.js"></script>   
+        <script type="text/javascript" src="/js/opl2015/handlers.js"></script>
+        <script type="text/javascript" src="/js/opl2015/webServiceHelpers.js"></script>   
+        <script type="text/javascript" src="/js/opl2015/globalVariables.js"></script>   
+        <script type="text/javascript" src="/js/opl2015/searchHelper.js"></script>   
+        <script type="text/javascript" src="/js/opl2015/base64.js"></script>   
+        <script type="text/javascript" src="/js/opl2015/faftools.js"></script>   
+        <script type='text/javascript' src='/elements/js/modernizr.custom.19057.js'></script>
+		<script type='text/javascript' src="/elements/js/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/sticky-anything/jq-sticky-anything.min.js"></script>
+		<script type="text/javascript" src="/elements/js/main.js"></script>
+        <script type="text/javascript" src="/elements/js/clamp.js"></script>
+        <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="/resources/jquery.treeview.js" ></script>
+        <script type="text/javascript" src="/resources/jquery.treeview.async.js"></script>
+        <script type="text/javascript" src="/js/opl2015/plainToc.js"></script>
+        <script type="text/javascript" src="/js/bootstrap-session-timeout.min.js"></script>
+        <script type="text/javascript" src="/js/opl2015/documenttools.js"></script>
+
+        <!-- The following javascript is for brightcove videos to be embedded on pages such as the help page. -->
+        <script language="JavaScript" type="text/javascript" src="https://sadmin.brightcove.com/js/BrightcoveExperiences.js"></script>
+        
+
+
+        <!--<script type="text/javascript" src='js/director.js'></script>        
+        <script type="text/javascript" src="js/routing.js"></script>   -->
+        <script type="text/javascript">
+
+            var routeTargetDoc = '<asp:Literal ID="lTargetDoc" runat="server" Text="<%$RouteValue:targetdoc%>" />';
+            var routeTargetPtr = '<asp:Literal ID="lTargetPtr" runat="server" Text="<%$RouteValue:targetptr%>" />';
+            var routeNodeType = '<asp:Literal ID="lNodeType" runat="server" Text="<%$RouteValue:nodetype%>" />';
+            var hasArchive = '<asp:Literal ID="lHasArchive" runat="server" Text="false" />' == 'true';
+            var remoteLogoutUrl = '<asp:Literal ID="remoteLogoutUrl" runat="server" Text="<%$appSettings:RemoteLogoutUrl%>" />';
+            $().ready(function () {
+                if ($.inArray(routeNodeType.toLowerCase(), g_NodeTypeArray) != -1) {
+                    loadFafTools(routeTargetDoc, routeNodeType);
+                } else {
+                    loadFafToolsByDocAndPtr(routeTargetDoc, routeTargetPtr);
+                }
+                getCopyrightYear();
+
+                var href = "";
+                showDocumentToolbar(false);
+                if (getShowSources()) {
+                    $("#aShowSource").addClass("active");
+                } else {
+                    $("#aShowSource").removeClass("active");
+                }
+                //debugger;
+                //                if (hasArchive) {
+                ////                if ((routeNodeType != null && routeNodeType != '') &&
+                ////                    (routeTargetDoc != null && routeTargetDoc != '')) {
+                //                    if ($.inArray(routeNodeType.toLowerCase(), g_NodeTypeArray) != -1) {
+                //                        href = "/tools/archive/" + routeNodeType + "/" + routeTargetDoc;
+                //                    } else {
+                //                        href = "/tools/archive/" + routeNodeType +"/"+ routeTargetDoc + "/" + routeTargetPtr
+                //                    }
+                //                    $("#fafArchive").attr("href", href);
+                //                } else {
+                //                    $("#fafArchive").removeAttr("href");
+                //                    $("#liFafArchive").hide();
+                //                }
+            });
+        
+        </script>
+    </head>
+    <body>
+
+
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-P868ND" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-P868ND');</script>
+        <!-- End Google Tag Manager -->
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="page">
+            <div id="page_inner" class="container">
+                <div id="header_container">
+                    <div id="header_outer" class="row">
+                        <div class="gradient"></div>
+                        <div class="header_inner">
+                            <a class="logo" href="/default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                        </div>
+                    </div>
+                    <div id="primary_nav_outer" class="row primary_nav_outer">
+                        <div class="primary_nav_inner">
+                            <ul id="primary_nav" class="clearfix primary_nav" >
+                                <li class="library" id="liLibrary" runat="server">
+                                    <a class="top_level">
+                                        <span class="icon">
+                                            <img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>My Library<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" />
+                                    </a>
+                                    <ul class="submenu">
+                                    </ul>
+                                </li>
+                                <li class="history" id="liHistory" runat="server">
+                                    <a class="top_level">
+                                        <span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>History<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                    <ul class="submenu">
+                                
+                                    </ul>
+                                </li>
+                                <li class="tools">
+                                    <a class="top_level"><span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>My Tools<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                    <ul class="submenu">
+                                        <li><a href="/tools/notes"><span>My Notes</span></a></li>
+                                        <li><a href="/tools/bookmarks"><span>Bookmarks</span></a></li>
+                                        <li><a href="/tools/savedsearches"><span>Saved Searches</span></a></li>
+                                        <%--<li><a href="/tools/preferences"><span>Fonts</span></a></li>--%>
+                                        <li><a href="/tools/howtoguide"><span>How to Guide</span></a></li>
+                                        <li id="liFasbAsc">
+                                         <%--   <a><span class="arrow">FASB ASC</span></a>
+                                            <ul class="submenu">
+                                                <li id="liFafDocument" style="display:none" runat="server"><a href="" id="aFafDocument"><span>Document</span></a></li>
+                                                <li id="liGoTo"  runat="server"><a href="/tools/goto"><span>GoTo</span></a></li>
+                                                <li id="liXRef" runat="server"><a href="/tools/xref"><span>Cross Reference</span></a></li>
+                                                <li id="liJoin" runat="server"><a href="/tools/join"><span>Join Sections</span></a></li>
+                                                <li id="liFafWhatLinksHere" runat="server"><a href="" id="aFafWhatLinksHere" runat="server"><span>What Links Here</span></a></li>
+                                                <li id="liFafArchive"><a href="" id="fafArchive"><span>Archive</span></a></li>
+                                                <li id="liShowSource"><a href="" id="aShowSource" class="" onclick="toggleShowSources()"><span>Source</span></a></li>
+                                            </ul>
+                                            <div></div>--%>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="last">
+                                    <div id="main_search">
+                                        <form id="advancedSearch" role="search" method="get" class="searchform" action="/search">
+                                            <a id="mobile_search_btn" href=""><span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>Search<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                            <div id="search_wrapper" class="clearfix">
+                                                <div class="search_inner">
+                                                        <div class="clearfix">
+                                                            <input type="submit" class="btn searchsubmit" value="SEARCH" />
+                                                            <input type="text" id="q" name="q" onfocus="if(this.value == 'SEARCH') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'SEARCH'; }" value="SEARCH" />
+                                                        </div>
+                                                </div>
+                                                <a class="toggle_advanced" href=""><span>Show Advanced Search</span></a>
+                                            </div>
+                                            <div id="advanced_search">
+                                                <div id="searchDropdown" runat="server"></div>
+                                                <div class="phraseBox"><input type="checkbox" checked value="3" id="sm" name="sm"/><span>Exact Phrase</span></div>
+                                                <input type="submit" class="adv_searchsubmit" value="GO" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                    <!-- PHONE NAV --->
+                            <ul id="phone_nav" class="clearfix">
+                                <a class="logoPhone" href="/default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                                <li class="first">
+                                    <div id="phoneMenuWrapper">
+                                        <a id="phoneMenu_btn">
+                                            <i class="fa fa-bars"></i>
+                                        </a>
+                                        <div id="phoneMenu">
+                                            <ul class="submenu" id="phoneAll">
+                                                <li class="buttons" id="phone_widget">
+                                                    <!-- Replace Here -->
+                                                    <a href="" class="btn" id="phonePrev" disabled><i class="fa fa-chevron-circle-left orange"></i> Previous</a>
+                                                    <a href="" class="btn" id="phoneNext" disabled>Next <i class="fa fa-chevron-circle-right orange"></i></a>
+                                                </li>
+                                                <li id="liLibraryPhone" runat="server">
+                                                    <a><span id="libraryBtn">My Library <i class="fa fa-angle-down"></i></span></a>
+                                                    <ul class="submenu">
+                                                        <!--<li><a href=""><span>Accountant's Business Manual <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>AICPA Audit &amp; Accounting Literature <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>FASB Accounting Standards Codification <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Forensic &amp; Valuation Services Collection <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>GASB Library <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Management of Accounting Practice Handbook <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Personal Financial Planning Services Collection <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Archive Library <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>-->
+                                                    </ul>
+                                                </li>
+                                                <li id="liHistoryPhone" runat="server">
+                                                    <a><span>History <i class="fa fa-angle-down"></i></span></a>
+                                                    <ul class="submenu">
+                                                        <!--<li><a href=""><span>Internal Control for Today's Smart Business <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Assessing and Responding to Audit Risk:<br />International Auditing <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>Audit Risk Assessment Tool <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+                                                        <li><a href=""><span>U.S. GAAP Financial Statements &ndash;<br />Best Practices in Presentation and Disclosure <img src="elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>-->
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><span>My Tools <i class="fa fa-angle-down"></i></span></a>
+                                                    <ul class="submenu">
+                                                        <li><a href="/tools/notes"><span>My Notes</span></a></li>
+                                                        <li><a href="/tools/bookmarks"><span>Bookmarks</span></a></li>
+                                                        <li><a href="/tools/savedsearches"><span>Saved Searches</span></a></li>
+                                                        <li><a href="/tools/howtoguide"><span>How to Guide</span></a></li>
+                                                        <li><a href="/tools/goto"><span>FASB ASC - Go To</span></a></li>
+                                                    </ul>
+                                                </li>                                                
+                                                <li id="phoneBookmarkli" class="phoneBookmarkli">
+                                                    <a href="#" id="aBookmarkPhone" class="aBookmarkPhone" style="display:none"><span>Bookmark this Page</span></a>
+                                                    <a href="#" id="rBookmarkPhone" class="rBookmarkPhone" style="display:none"><span>Remove Bookmark</span></a>
+                                                </li>                                                
+                                                <li id="liPrintPhone"><a id="aPrintPhone" href="#"><span>Print</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="last">
+                                    <div id="phone_search">
+                                        <a id="mobile_search_btn">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                        <div id="advanced_search_phone">
+                                            <form id="advancedSearchMobile" action="/search">
+                                                <input type="text" name="q" id="q" onfocus="if(this.value == 'SEARCH') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'SEARCH'; }" value="SEARCH" />
+                                                <div id="searchDropdownMobile" runat="server"></div>
+                                                <div class="clearfix">
+                                                    <input type="submit" class="btn searchsubmit" value="SEARCH" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!-- #header_container -->
+                <div id="main" class="clearfix">
+                    <div id="document-container">
+                        <div id="document-container-left">
+                            <asp:ContentPlaceHolder ID="cphLeft" runat="server">
+        
+                            </asp:ContentPlaceHolder>
+                        </div><!-- document-container-left-->
+
+                        <div id="rightcol" class="col-sm-3">
+                            <div id="document-container-right" data-spy="affix" data-offset-top="150">
+                                <asp:ContentPlaceHolder ID="cphRight" runat="server">
+        
+                                </asp:ContentPlaceHolder>
+                            </div><!-- contentLeft -->
+                        </div> <!-- col-sm-3 -->
+                    </div><!-- document-container-right -->
+                </div><!-- #main -->
+<%--                <div id="target" class="loading">
+                    <div class="loading-overlay">
+                        <p class="loading-spinner">
+                            <span class="loading-icon"></span>
+                            <span class="loading-text">loading</span>
+                        </p>
+                    </div>
+                </div>--%>
+                <div id="loading-div" style="display: none;">
+	                <div id="loading-div-opacity">
+		                <img id="loading-spinner" src="/images/ajax-loading.gif" alt="Loading - Your request will be fulfilled momentarily."/>
+	                </div>	                
+                </div>
+
+                <div id="footer_container">
+                    <div class="footer_inner row clearfix">
+                        <div class="col-sm-6">
+                            <p class="copyright">Copyright &copy; <span id="copyright"></span> Association of International Certified Professional Accountants.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="footer_nav">
+                                <li><a href="mailto:OPL@aicpa.org">Contact</a></li>
+                                <li><a href="http://www.aicpa.org/PrivacyandTerms/Pages/cpyright.aspx">Privacy &amp; Terms</a></li>
+                                <!--<li><a href="">Jobs</a></li>-->
+                                <li class="last"><a href="/tools/howtoguide">Help</a></li>
+                                <li class="last"><a href="#" onclick="handleLogoutClick()">Logout</a></li>
+                            </ul>
+                            <ul class="footer_social">
+                                <li><a class="rss" href="" target="_blank" title="RSS"></a></li>
+                                <li><a class="facebook" href="" target="_blank" title="AICPA on Facebook"></a></li>
+                                <li><a class="linkedin" href="" target="_blank" title="AICPA on LinkedIn"></a></li>
+                                <li><a class="twitter" href="" target="_blank" title="AICPA on Twitter"></a></li>
+                                <li><a class="blogger" href="" target="_blank" title="AICPA on ???"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- #page_inner -->
+        </div><!-- #page -->
+		<!--<script type="text/javascript" src="/elements/js/jquery-1.9.1.min.js"></script>-->
+		<script id="scriptID" type="text/javascript">
+		    //Added here to access the analytics for logout that was already calculated,
+            //so we can track the user.
+		    function handleLogoutClick() {
+		        <%=Session["analyticslogout"] %>		        
+		        doLogout();
+		    }
+
+
+		    //$.timeout(50 * 60 * 1000, timeoutHandler); // set default timeout to 50 mins
+		    $.sessionTimeout({
+		        message: 'Your session is about to expire.\n\nClick \'Stay Connected\' if you wish to stay logged in, or click \'Logout\' to log out.\n\nFor your security reasons, if you are unable to respond you will be logged out automatically.',
+		        keepAliveUrl: '/keep-alive',
+		        logoutUrl: '/logout',
+		        redirUrl: '/sessionexpired',
+		        countdownMessage: 'Redirecting in {timer} seconds.',
+                countdownBar: true,
+                warnAfter: 3000000,
+                redirAfter: 3600000
+		    });
+		    $(document).ready(function () {		        
+
+//		        var prevPhone = $('a.prev').attr('href');
+//		        var nextPhone = $('a.next').attr('href');
+
+//		        $('a#phonePrev').attr("href", prevPhone);
+//		        $('a#phoneNext').attr("href", nextPhone);
+		    });
+        </script>
+    </body>
+</html>
+

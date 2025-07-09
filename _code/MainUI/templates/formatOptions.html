@@ -1,0 +1,14 @@
+﻿{#template MAIN}
+{#if $T.d && $T.d.length > 0}
+    <ul class="formatOptions">  
+        {#foreach $T.d as FormatOption}
+            <li>
+                <a href="Handlers/DownloadDocument.ashx?docid={$T.FormatOption.DocumentId}&d_ft={$T.FormatOption.FormatId}" target="_blank">
+                    <img src="images/contentTypes/ct_{$T.FormatOption.FormatId}.gif" alt="Download {$T.FormatOption.FormatName} file" />
+                </a>
+                
+            </li>
+        {#/for}
+    </ul>
+{#/if}
+{#/template MAIN}

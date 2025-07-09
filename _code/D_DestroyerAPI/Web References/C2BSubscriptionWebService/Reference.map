@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://66.243.40.91/C2BSubscriptionServiceNew/SubscriptionService.asmx?disco" filename="SubscriptionService.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://66.243.40.91/C2BSubscriptionServiceNew/SubscriptionService.asmx?wsdl" filename="SubscriptionService.wsdl" />
+  </Results>
+</DiscoveryClientResultsFile>

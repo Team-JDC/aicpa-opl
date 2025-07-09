@@ -1,0 +1,48 @@
+<project SchemaVersion="1.3">
+    <assemblies>
+        <assembly location="D:\Projects\AICPA\destroyer\_code\D_DestroyerAPI\bin\Debug\DestroyerAPI.dll" documentation="D:\Projects\AICPA\destroyer\_code\D_DestroyerAPI\bin\Debug\DestroyerAPI.dll.xml" />
+    </assemblies>
+    <documenters>
+        <documenter name="JavaDoc">
+            <property name="Title" value="Knowlysis.Destroyer" />
+            <property name="OutputDirectory" value="..\..\D_AdminUI_SetupHelper\Docs\JAVADOC\" />
+            <property name="FeedbackEmailAddress" value="wdalton@knowlysis.com" />
+        </documenter>
+        <documenter name="LaTeX">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="TextFileFullName" value="Documentation.tex" />
+            <property name="TexFileBaseName" value="Documentation" />
+            <property name="LatexCompiler" value="latex" />
+            <property name="TexFileFullPath" value=".\doc\Documentation.tex" />
+        </documenter>
+        <documenter name="LinearHtml">
+            <property name="OutputDirectory" value="..\..\..\D_AdminUI_SetupHelper\Docs\HTML\" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+            <property name="IncludeHierarchy" value="True" />
+            <property name="FeedbackEmailAddress" value="wdalton@Knowlysis.com" />
+        </documenter>
+        <documenter name="MSDN">
+            <property name="OutputDirectory" value="..\..\..\D_AdminUI_SetupHelper\Docs\MSDN\" />
+            <property name="HtmlHelpName" value="Documentation" />
+            <property name="Title" value="Knowlysis.Destroyer" />
+        </documenter>
+        <documenter name="MSDN 2003">
+            <property name="OutputDirectory" value="..\..\..\D_AdminUI_SetupHelper\Docs\MSDN2003\" />
+            <property name="Title" value="Knowlysis.Destroyer" />
+            <property name="FeedbackEmailAddress" value="wdalton@knowlysis.com" />
+        </documenter>
+        <documenter name="VS.NET 2003">
+            <property name="OutputDirectory" value="..\..\..\D_AdminUI_SetupHelper\Docs\VS.NET\" />
+            <property name="HtmlHelpName" value="Knowlysis_Destroyer" />
+            <property name="Title" value="Knowlysis.Destroyer" />
+            <property name="CollectionNamespace" value="Knowlysis.Destroyer" />
+            <property name="GenerateCollectionFiles" value="True" />
+            <property name="FeedbackEmailAddress" value="wdalton@knowlysis.com" />
+            <property name="AutoPropertyBackerSummaries" value="True" />
+            <property name="CleanIntermediates" value="True" />
+        </documenter>
+        <documenter name="XML">
+            <property name="OutputFile" value=".\doc\doc.xml" />
+        </documenter>
+    </documenters>
+</project>

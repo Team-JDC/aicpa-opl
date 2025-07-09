@@ -1,0 +1,14 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+&lt%@ Control language="c#" Inherits="AICPA.Destroyer.UI.Portal.Links" CodeBehind="Links.ascx.cs" AutoEventWireup="false" %<font color= "blue">&gt</font>
+&lt%@ Register TagPrefix="Portal" TagName="Title" Src="~/DesktopModuleTitle.ascx"%<font color= "blue">&gt</font>
+<font color= "blue">&lt</font><font color=blue>portal:title editurl="~/DesktopModules/EditLinks.aspx" edittext="Add Link" runat="server" id="Title1" /</font><font color= "blue">&gt</font>
+<font color= "blue">&lt</font><font color=blue>asp:datalist id="myDataList" cellpadding="4" width="100%" runat="server"</font><font color= "blue">&gt</font>
+    <font color= "blue">&lt</font><font color="maroon">itemtemplate</font><font color= "blue">&gt</font>
+        <font color= "blue">&lt</font><font color="maroon">span</font> class="Normal"<font color= "blue">&gt</font>
+            <font color= "blue">&lt</font><font color=blue>asp:hyperlink id="editLink" imageurl="&lt%# linkImage %<font color= "blue">&gt</font>" navigateurl='&lt%# ChooseURL(Convert.ToString(DataBinder.Eval(Container.DataItem,"ItemID")), ModuleId.ToString(), (string)DataBinder.Eval(Container.DataItem,"Url")) %<font color= "blue">&gt</font>' target='&lt%# ChooseTarget() %<font color= "blue">&gt</font>' tooltip='&lt%# ChooseTip((string)DataBinder.Eval(Container.DataItem,"Description")) %<font color= "blue">&gt</font>' runat="server" /</font><font color= "blue">&gt</font>
+            <font color= "blue">&lt</font><font color=blue>asp:hyperlink text='&lt%# DataBinder.Eval(Container.DataItem,"Title") %<font color= "blue">&gt</font>' navigateurl='&lt%# DataBinder.Eval(Container.DataItem,"Url") %<font color= "blue">&gt</font>' tooltip='&lt%# DataBinder.Eval(Container.DataItem,"Description") %<font color= "blue">&gt</font>' target="_new" runat="server"/</font><font color= "blue">&gt</font>
+        <font color= "blue">&lt/</font><font color="maroon">span</font><font color= "blue">&gt</font>
+        <font color= "blue">&lt</font><font color="maroon">br</font><font color= "blue">&gt</font>
+    <font color= "blue">&lt/</font><font color="maroon">itemtemplate</font><font color= "blue">&gt</font>
+<font color= "blue">&lt/</font><font color=blue>asp:datalist</font><font color= "blue">&gt</font>
+</pre>

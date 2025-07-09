@@ -1,0 +1,34 @@
+﻿{#template MAIN}
+    {#if $T.d.IsFafInMySubscription}
+            <p class="float faftools">ASC<br />tools:</p>
+            {#if hasActiveDocument()}
+            <li id="fafDocument"><a href="#" onclick="doFafDocumentLink();"><img class="tools" src="images/tools-f1.gif" alt="Document" title="Document" /></a></li>
+            {#else}
+            <li id="fafDocument"><img class="tools" src="images/tools-f1-faded.gif" alt="Document" /></li>
+            {#/if}
+            <li id="fafGoto"><a href="#" onclick="doFafGotoLink();"><img class="tools" src="images/tools-f2.gif" alt="Go to" title="Go to" /></a></li>
+            <li id="fafCrossReference"><a href="#" onclick="loadCrossReference();"><img class="tools" src="images/tools-f5.gif" alt="Cross Reference" title="Cross Reference" /></a></li>
+        {#if $T.d.ShowFafTools}
+            <li id="fafJoinSections"><a href="#" onclick="doFafJoinSectionsLink();"><img class="tools" src="images/tools-f6.gif" alt="Join Sections" title="Join Sections" /></a></li>
+            {#if $T.d.ReferencingLinks == true && $T.d.HasWhatLinksHereContent == true}
+            <li id="fafWhatLinksHere"><a href="#" onclick="doFafWhatLinksHereLink();"><img class="tools" src="images/tools-f3.gif" alt="What Links Here" title="What Links Here" /></a></li>
+            {#else}
+            <li id="fafWhatLinksHere"><img class="tools" src="images/tools-f3-faded.gif" alt="What Links Here" /></li>
+            {#/if}
+            {#if $T.d.ArchivedBook == true && $T.d.HasArchivedContent == true}
+            <li id="fafArchive"><a href="#" onclick="doFafArchiveLink();"><img class="tools" src="images/tools-f4.gif" alt="Archive" title="Archive" /></a></li>
+            {#else}
+            <li id="fafArchive"><img class="tools" src="images/tools-f4-faded.gif" alt="Archive" /></li>
+            {#/if}
+            {#if $T.d.ViewSources == true}
+            <li id="fafViewSources">
+                <a href="#" onclick="toggleShowSources();">
+                    <img class="tools" src="{#if getShowSources() == true}images/tools-f7-selected.gif{#else}images/tools-f7.gif{#/if}" alt="View/Hide Sources" title="View/Hide Sources" />
+                </a>
+            </li>
+            {#else}
+            <li id="fafViewSources"><img class="tools" src="images/tools-f7-faded.gif" alt="View/Hide Sources" /></li>
+            {#/if}
+        {#/if}
+    {#/if}
+{#/template MAIN}

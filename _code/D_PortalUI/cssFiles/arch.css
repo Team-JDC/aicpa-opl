@@ -1,0 +1,19 @@
+body
+{
+	text-decoration: line-through;
+	font-family: arial;
+}
+
+H1
+{
+	FONT-WEIGHT: bold;
+	FONT-SIZE: large;
+	COLOR: #577ab4;
+	FONT-FAMILY: arial;
+	TEXT-ALIGN: left;
+}
+
+.noStrikethrough
+{
+	text-decoration: none;
+}

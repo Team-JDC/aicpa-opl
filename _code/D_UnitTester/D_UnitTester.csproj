@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{49372083-D0F7-44E0-86B7-20765F06669D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>D_UnitTester</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AICPA.Destroyer</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/D_UnitTester/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arat.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\arat.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\D_UnitTester.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'etpoc.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\etpoc.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\D_UnitTester.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ethics|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Ethics\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\D_UnitTester.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CosoStage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CosoStage\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\D_UnitTester.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\opl2015.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\D_UnitTester.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015ci.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\opl2015ci.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>..\..\..\..\..\Program Files\MRC\Tiramisu\bin\nunit.framework.dll</HintPath>
+      <AssemblyFolderKey>hklm\tiramisuassemblies</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\D_DestroyerAPI\D_DestroyerAPI.csproj">
+      <Name>D_DestroyerAPI</Name>
+      <Project>{9F4AA7B8-6536-4A97-B862-5B6322321A85}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlHelper\SqlHelper.csproj">
+      <Name>SqlHelper</Name>
+      <Project>{5CC91EE4-3CB0-44A1-8A80-5EB8592194E7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="C2bUser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>C2bUser.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Book\BookBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\ContentShared.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\SearchBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\SubscriptionBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OtherTests\BaseDalcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="TestShared.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Event\EventBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\FirmBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Note\NoteBpcTest.cs" />
+    <Compile Include="User\UserBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\UserPreferences\UserPreferencesBpcTest.cs" />
+    <Compile Include="User\UserSecurityBpcTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="C2bUser.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>C2bUser.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="D_UnitTester.dll.config" />
+    <Content Include="nunit\net-2.0\framework\nunit.framework.dll" />
+    <Content Include="nunit\net-2.0\framework\nunit.framework.xml" />
+    <Content Include="nunit\net-2.0\framework\nunit.mocks.dll" />
+    <Content Include="nunit\net-2.0\framework\pnunit.framework.dll" />
+    <Content Include="nunit\net-2.0\lib\Failure.png" />
+    <Content Include="nunit\net-2.0\lib\fit.dll" />
+    <Content Include="nunit\net-2.0\lib\Ignored.png" />
+    <Content Include="nunit\net-2.0\lib\Inconclusive.png" />
+    <Content Include="nunit\net-2.0\lib\log4net.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit-console-runner.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit-gui-runner.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.core.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.core.interfaces.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.fixtures.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.uiexception.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.uikit.dll" />
+    <Content Include="nunit\net-2.0\lib\nunit.util.dll" />
+    <Content Include="nunit\net-2.0\lib\Skipped.png" />
+    <Content Include="nunit\net-2.0\lib\Success.png" />
+    <Content Include="nunit\net-2.0\nunit-agent.exe" />
+    <Content Include="nunit\net-2.0\nunit-console-x86.exe" />
+    <Content Include="nunit\net-2.0\nunit-console.exe" />
+    <Content Include="nunit\net-2.0\nunit-x86.exe" />
+    <Content Include="nunit\net-2.0\nunit.exe" />
+    <Content Include="nunit\net-2.0\nunit.framework.dll" />
+    <Content Include="nunit\net-2.0\NUnitFitTests.html" />
+    <Content Include="nunit\net-2.0\pnunit-agent.exe" />
+    <Content Include="nunit\net-2.0\pnunit-launcher.exe" />
+    <Content Include="nunit\net-2.0\pnunit.framework.dll" />
+    <Content Include="nunit\net-2.0\pnunit.tests.dll" />
+    <Content Include="nunit\net-2.0\runFile.exe" />
+    <Content Include="nunit\net-2.0\tests\loadtest-assembly.dll" />
+    <Content Include="nunit\net-2.0\tests\mock-assembly.dll" />
+    <Content Include="nunit\net-2.0\tests\nonamespace-assembly.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit-console.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit-gui.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.core.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.fixtures.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.framework.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.framework.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.mocks.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.uiexception.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.uikit.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\nunit.util.tests.dll" />
+    <Content Include="nunit\net-2.0\tests\test-assembly.dll" />
+    <Content Include="nunit\net-2.0\tests\test-utilities.dll" />
+    <Content Include="nunit\net-2.0\tests\timing-tests.dll" />
+    <None Include="D_UnitTester_appSettings.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="app.config" />
+    <None Include="C2bUser.xsx">
+      <DependentUpon>C2bUser.xsd</DependentUpon>
+    </None>
+    <None Include="nunit\net-2.0\agent.conf" />
+    <None Include="nunit\net-2.0\agent.log.conf" />
+    <None Include="nunit\net-2.0\clr.bat" />
+    <None Include="nunit\net-2.0\launcher.log.conf" />
+    <None Include="nunit\net-2.0\nunit-agent.exe.config" />
+    <None Include="nunit\net-2.0\nunit-console-x86.exe.config" />
+    <None Include="nunit\net-2.0\nunit-console.exe.config" />
+    <None Include="nunit\net-2.0\nunit-x86.exe.config" />
+    <None Include="nunit\net-2.0\nunit.exe.config" />
+    <None Include="nunit\net-2.0\NUnitTests.config" />
+    <None Include="nunit\net-2.0\NUnitTests.nunit" />
+    <None Include="nunit\net-2.0\pnunit-agent.exe.config" />
+    <None Include="nunit\net-2.0\pnunit-launcher.exe.config" />
+    <None Include="nunit\net-2.0\runFile.exe.config" />
+    <None Include="nunit\net-2.0\runpnunit.bat" />
+    <None Include="nunit\net-2.0\test.conf" />
+    <None Include="D_UnitTester_appSettings.template.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shared\" />
+    <Folder Include="User\Feedback\" />
+    <Folder Include="User\NotificationSubscription\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

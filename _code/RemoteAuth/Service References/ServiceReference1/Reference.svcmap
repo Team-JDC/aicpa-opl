@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="df7b5680-4cd8-4a9b-931e-c0b7bdf81ce2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://raws.aicpa.org/Authentication.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Authentication.xsd" MetadataType="Schema" ID="7db84755-3c4e-4412-8edf-fbc9567be662" SourceId="1" SourceUrl="https://raws.aicpa.org/Authentication.svc?xsd=xsd1" />
+    <MetadataFile FileName="Authentication.wsdl" MetadataType="Wsdl" ID="a8d15540-7474-478f-ae64-afc426ac13dc" SourceId="1" SourceUrl="https://raws.aicpa.org/Authentication.svc?wsdl" />
+    <MetadataFile FileName="Authentication1.xsd" MetadataType="Schema" ID="6c0fe1ef-d385-41bd-b2ce-24e694756978" SourceId="1" SourceUrl="https://raws.aicpa.org/Authentication.svc?xsd=xsd0" />
+    <MetadataFile FileName="Authentication.disco" MetadataType="Disco" ID="39a9bf26-2e83-47ac-b180-4203d4723a59" SourceId="1" SourceUrl="https://raws.aicpa.org/Authentication.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,237 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> ManageUsers : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox Email;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox Password;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.DropDownList allRoles;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton addExisting;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.DataList userRoles;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton saveBtn;
+<font color= "blue">        protected </font>System.Web.UI.HtmlControls.HtmlGenericControl title;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton UpdateUserBtn;
+<font color= "blue"></font>
+<font color= "blue">        </font>int    userId   = -1;
+<font color= "blue">        </font>String userName = "";
+<font color= "blue">        </font>int tabIndex = 0;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox ConfirmPassword;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CompareValidator CompareValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+<font color= "blue">        </font>int tabId = 0;
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load server event handler on this page is used</font>
+<font color= "green">        // to populate the role information for the page</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to access this page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles("Admins") == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Calculate userid</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["userid"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>userId = Int32.Parse(Request.Params["userid"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["username"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>userName = (String)Request.Params["username"];
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["tabid"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>tabId = Int32.Parse(Request.Params["tabid"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["tabindex"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>tabIndex = Int32.Parse(Request.Params["tabindex"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">            // If this is the first visit to the page, bind the role data to the datalist</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // new user?</font>
+<font color= "blue"></font><font color= "blue">                if </font>(userName == "") {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                    </font>UsersDB users = new UsersDB();
+<font color= "blue"></font>
+<font color= "green">                    // make a unique new user record</font>
+<font color= "blue">                    </font>int uid = -1;
+<font color= "blue">                    </font>int i = 0;
+<font color= "blue"></font>
+<font color= "blue">                    while</font> (uid == -1) {
+<font color= "blue"></font>
+<font color= "blue">                        </font>String friendlyName = "New User created " + DateTime.Now.ToString();
+<font color= "blue">                        </font>userName = "New User" + i.ToString();
+<font color= "blue">                        </font>uid = users.AddUser(friendlyName, userName, "");
+<font color= "blue">                        </font>i++;
+<font color= "blue">                    </font>}
+<font color= "blue"></font>
+<font color= "green">                    // redirect to this page with the corrected querystring args</font>
+<font color= "blue">                    </font>Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + uid + "&username=" + userName + "&tabindex=" + tabIndex + "&tabid=" + tabId);
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                </font>BindData();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Save_Click server event handler on this page is used</font>
+<font color= "green">        // to save the current security settings to the configuration system</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Save_Click(Object Sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Navigate back to admin page</font>
+<font color= "blue">            </font>Response.Redirect("~/DesktopDefault.aspx?tabindex=" + tabIndex + "&tabid=" + tabId);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddRole_Click server event handler is used to add</font>
+<font color= "green">        // the user to this security role</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> AddRole_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>int roleId;
+<font color= "blue"></font>
+<font color= "green">            //get user id from dropdownlist of existing users</font>
+<font color= "blue">            </font>roleId = Int32.Parse(allRoles.SelectedItem.Value);
+<font color= "blue"></font>
+<font color= "green">            // Add a new userRole to the database</font>
+<font color= "blue">            </font>RolesDB roles = new RolesDB();
+<font color= "blue">            </font>roles.AddUserRole(roleId, userId);
+<font color= "blue"></font>
+<font color= "green">            // Rebind list</font>
+<font color= "blue">            </font>BindData();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateUser_Click server event handler is used to add</font>
+<font color= "green">        // the update the user settings</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UpdateUser_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // update the user record in the database</font>
+<font color= "blue">            </font>UsersDB users = new UsersDB();
+<font color= "blue">            </font>users.UpdateUser(userId, Email.Text, PortalSecurity.Encrypt(Password.Text));
+<font color= "blue"></font>
+<font color= "green">            // redirect to this page with the corrected querystring args</font>
+<font color= "blue">            </font>Response.Redirect("~/Admin/ManageUsers.aspx?userId=" + userId + "&username=" + Email.Text + "&tabindex=" + tabIndex + "&tabid=" + tabId);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UserRoles_ItemCommand server event handler on this page</font>
+<font color= "green">        // is used to handle deleting the user from roles</font>
+<font color= "green">        // from the userRoles asp:datalist control</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UserRoles_ItemCommand(object sender, DataListCommandEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>RolesDB roles = new RolesDB();
+<font color= "blue">            </font>int roleId = (int) userRoles.DataKeys[e.Item.ItemIndex];
+<font color= "blue"></font>
+<font color= "green">            // update database</font>
+<font color= "blue">            </font>roles.DeleteUserRole(roleId, userId);
+<font color= "blue"></font>
+<font color= "green">            // Ensure that item is not editable</font>
+<font color= "blue">            </font>userRoles.EditItemIndex = -1;
+<font color= "blue"></font>
+<font color= "green">            // Repopulate list</font>
+<font color= "blue">            </font>BindData();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The BindData helper method is used to bind the list of</font>
+<font color= "green">        // security roles for this portal to an asp:datalist server control</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> BindData() {
+<font color= "blue"></font>
+<font color= "green">            // Bind the Email and Password</font>
+<font color= "blue">            </font>UsersDB users = new UsersDB();
+<font color= "blue">            </font>SqlDataReader dr = users.GetSingleUser(userName);
+<font color= "blue"></font>
+<font color= "green">            // Read first row from database</font>
+<font color= "blue">            </font>dr.Read();
+<font color= "blue"></font>
+<font color= "blue">            </font>Email.Text = (String) dr["Email"];
+<font color= "blue"></font>
+<font color= "blue">            </font>dr.Close();
+<font color= "blue"></font>
+<font color= "green">            // add the user name to the title</font>
+<font color= "blue"></font><font color= "blue">            if </font>(userName != "") {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>title.InnerText = "Manage User: " + userName;
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // bind users in role to DataList</font>
+<font color= "blue">            </font>userRoles.DataSource = users.GetRolesByUser(userName);
+<font color= "blue">            </font>userRoles.DataBind();
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Get the portal's roles from the database</font>
+<font color= "blue">            </font>RolesDB roles = new RolesDB();
+<font color= "blue"></font>
+<font color= "green">            // bind all portal roles to dropdownlist</font>
+<font color= "blue">            </font>allRoles.DataSource = roles.GetPortalRoles(portalSettings.PortalId);
+<font color= "blue">            </font>allRoles.DataBind();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>ManageUsers() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.UpdateUserBtn.Click += new System.EventHandler(this.UpdateUser_Click);
+<font color= "blue">            </font>this.addExisting.Click += new System.EventHandler(this.AddRole_Click);
+<font color= "blue">            </font>this.userRoles.ItemCommand += new System.Web.UI.WebControls.DataListCommandEventHandler(this.UserRoles_ItemCommand);
+<font color= "blue">            </font>this.saveBtn.Click += new System.EventHandler(this.Save_Click);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

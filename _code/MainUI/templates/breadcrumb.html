@@ -1,0 +1,33 @@
+﻿{#template MAIN}	
+    <ul>  
+        {#foreach $T.d as SiteNode}
+            {#if $T.SiteNode$first == true}
+                <li style="margin:0 5px 0 0; padding:5px 0 0 5px; width:30px; ">
+                    <a href="#" onclick="loadChildren({$T.SiteNode.Id}, '{$T.SiteNode.Type}', 'drop{$T.SiteNode$index + 1}');">&nbsp;</a>  
+                    <div class="dropdown"><a href=""></a></div>
+                </li>
+            {#elseif $T.SiteNode$last == true}
+                <li>
+                    <span class="float"><img src="images/icon_{$T.SiteNode.Type}.gif" border="0" class="icon-last" />{Left($T.SiteNode.Title, 50)}</span>
+                    <!-- IE Bug occurs here... IE adds in an empty text node that causes css issues -->
+                    <!-- Need to add logic: If last list item has no children, then don't show the dropdown arrow -->
+                    <div style="margin:-2px 0 0 5px;" class="float"><a href="#" onclick="loadChildren({$T.SiteNode.Id}, '{$T.SiteNode.Type}', 'drop{$T.SiteNode$index + 1}');"><img src="images/arrow-down.gif" border="0" class="arrow-bc" /></a></div>
+                </li>
+            {#else}
+                <li >
+                    <a href="#" onclick="doBreadcrumbLink({$T.SiteNode.Id}, '{$T.SiteNode.Type}')">
+                        <img src="images/icon_{$T.SiteNode.Type}.gif" border="0" class="icon" />
+                        {Left($T.SiteNode.Title, 50)}
+                    </a>
+                    <div style="margin:-20px 0 0 8px;"><a href="#" onclick="loadChildren({$T.SiteNode.Id}, '{$T.SiteNode.Type}', 'drop{$T.SiteNode$index + 1}');"><img src="images/arrow-down.gif" border="0" class="arrow-bc" /></a></div>
+                </li>
+            {#/if}
+        {#/for}
+        <script type="text/javascript">
+            $("#breadCrumb2").jBreadCrumb();
+        </script>
+    </ul>
+
+{#/template MAIN}
+{#template ROW}
+{#/template ROW}

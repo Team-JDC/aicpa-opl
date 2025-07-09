@@ -1,0 +1,84 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue">    public </font>abstract class SiteSettings : AICPA.Destroyer.UI.Portal.PortalModuleControl {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox siteName;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBox showEdit;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton applyBtn;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load server event handler on this user control is used</font>
+<font color= "green">        // to populate the current site settings from the config system</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to access this page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles("Admins") == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If this is the first visit to the page, populate the site data</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Obtain PortalSettings from Current Context</font>
+<font color= "blue">                </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue">            </font>
+<font color= "blue">                </font>siteName.Text = portalSettings.PortalName;
+<font color= "blue">                </font>showEdit.Checked = portalSettings.AlwaysShowEditButton;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Apply_Click server event handler is used</font>
+<font color= "green">        // to update the Site Name within the Portal Config System</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Apply_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // update Tab info in the database</font>
+<font color= "blue">            </font>Configuration config = new Configuration();
+<font color= "blue">            </font>config.UpdatePortalInfo(portalSettings.PortalId, siteName.Text, showEdit.Checked);
+<font color= "blue">        </font>
+<font color= "green">            // Redirect to this site to refresh</font>
+<font color= "blue">            </font>Response.Redirect(Request.RawUrl);        
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>SiteSettings() {
+<font color= "blue">            </font>this.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        ///        Required method for Designer support - do not modify</font>
+<font color= "green">        ///        the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

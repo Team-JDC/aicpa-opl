@@ -1,0 +1,93 @@
+﻿{#template MAIN}
+<div class="tool-container" align="center">
+    <table cellpadding="0" cellspacing="5" style="font-size:12px">
+        <tr>
+            <td colspan="3" align="left"><h4 class="nopad">Join Sections</h4></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="left">Join all of the selected sections under a given topic.</td>
+        </tr>
+        <tr>
+            <td colspan="3" height="10px" align="left">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="cr-title" align="left">Required</td>
+            <td class="cr-title" align="left">Options</td>
+        </tr>
+        <tr>
+            <td width="60px" align="left">Topic:</td>
+            <td align="left">
+                <select id="topic" onchange="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);">
+                    <option></option>
+                {#foreach $T.d.TopicGroups as TopicGroup}
+                    <option value="{$T.TopicGroup.Topics[0].TopicNum}">{$T.TopicGroup.Name}</option>
+                    {#foreach $T.TopicGroup.Topics as Topic}
+                        {#if $T.d.SelectedTopicNum == $T.Topic.TopicNum}
+                        <option value="{$T.Topic.TopicNum}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                        {#else}
+                        <option value="{$T.Topic.TopicNum}">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                        {#/if}
+                    {#/for}
+                {#/for}
+                </select>
+            </td>
+            <td align="left">
+                {#if $T.d.IncludeIntersectionSubtopics == true}
+                <input id="includeIntersectionSubtopics" type="checkbox" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);" checked="checked" />Include Intersection Subtopics
+                {#else}
+                <input id="includeIntersectionSubtopics" type="checkbox" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>Include Intersection Subtopics
+                {#/if}
+            </td>
+        </tr>
+        <tr>
+            <td align="left">Section:</td>
+            <td align="left">
+                <select id="section">
+                    <option></option>
+                {#foreach $T.d.Sections as Section}
+                    <option value="{$T.Section.SectionNum}">{$T.Section.SectionNum} - {$T.Section.SectionTitle}</option>
+                {#/for}
+                </select>
+            </td>
+            <td align="left">
+                {#if $T.d.SelectedContent == "FASB"}
+                <input id="content-FASB" type="radio" name="section-options" value="FASB" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);" checked="checked"/>FASB
+                <input id="content-SEC" type="radio" name="section-options" value="SEC" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>SEC
+                <input id="content-ALL" type="radio" name="section-options" value="ALL" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>ALL
+                {#elseif $T.d.SelectedContent == "SEC"}
+                <input id="content-FASB" type="radio" name="section-options" value="FASB" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>FASB
+                <input id="content-SEC" type="radio" name="section-options" value="SEC" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);" checked="checked"/>SEC
+                <input id="content-ALL" type="radio" name="section-options" value="ALL" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>ALL
+                {#else}
+                <input id="content-FASB" type="radio" name="section-options" value="FASB" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>FASB
+                <input id="content-SEC" type="radio" name="section-options" value="SEC" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);"/>SEC
+                <input id="content-ALL" type="radio" name="section-options" value="ALL" onclick="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);" checked="checked"/>ALL
+                {#/if}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" height="10px" align="left">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="padding-top:8px; border-top:1px solid #999;" align="right">
+                <a href="#" onclick="doJoinSectionsQuery($('#topic').val(), $('#section').val(), $('input[name=section-options]:checked').val(), ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false)">
+                    <img src="images/btn-get-sections.gif" alt="Get Sections" border="0"/>
+                </a>
+            </td>
+        </tr>                
+    </table>
+    <div id="fafJoinSectionsResults">
+        
+    </div>
+</div>
+{#/template MAIN}
+
+{#template OLDCODE}
+    {#foreach $T.d.Topics as Topic}
+        {#if $T.d.SelectedTopicNum == $T.Topic.TopicNum}
+        <option value="{$T.Topic.TopicNum}" selected="selected">{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+        {#else}
+        <option value="{$T.Topic.TopicNum}">{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+        {#/if}
+    {#/for}
+{#/template OLDCODE}

@@ -1,0 +1,79 @@
+﻿.LeftNav
+{
+	background:#dae2e8;
+	float: left;
+	border:1px solid #768ca5;
+	width: 20%;
+}
+
+.NavTitle
+{
+	height:20px;
+	background:url(../img/header-bg.gif) repeat-x top left;
+	font:bold 14px Arial, Helvetica, sans-serif;
+	color:#fff;
+	margin:0;
+	padding:4px 0 0 15px;
+	text-transform:uppercase;
+	border-bottom:1px solid #254e6f;
+}
+
+ul.ReportList { 
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+ul.ReportList li { 
+	font:12px Arial, Helvetica, sans-serif;
+	color:#000;
+	border-top:1px solid #768ca5;
+	display:block; 
+	position:relative;
+}
+ul.ReportList li.inactive { 
+	font:12px Arial, Helvetica, sans-serif;
+	color:#666666;
+	border-top:1px solid #768ca5;
+	display:block; 
+	position:relative;
+	padding:8px 0 8px 15px;
+	background:#ccc;
+}
+ul.ReportList li.first { 
+	border:none;
+}
+
+ul.ReportList li a { 
+	color:#1a3c62;
+	text-decoration:none;
+	display:block;
+	padding:8px 0 8px 15px;
+}
+
+ul.ReportList li a:hover { 
+	color:#fff;
+	text-decoration:none;
+	background:#768ca5;
+	display:block;
+	padding:8px 0 8px 15px;
+}
+ul.ReportList span {
+	position:absolute;
+	top:8px;
+	right:5px;
+	color:#dae2e8;
+}
+ul.ReportList span a {
+	color:#dae2e8;
+}
+
+ul.ReportList span a:hover {
+	color:#fff;
+}
+
+.RightContent
+{
+	float: left;
+	margin-left:15px;
+	width:78%;
+}

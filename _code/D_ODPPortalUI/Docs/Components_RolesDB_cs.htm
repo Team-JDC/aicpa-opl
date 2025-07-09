@@ -1,0 +1,315 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal
+<font color= "blue"></font>{
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // RolesDB Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates all data logic necessary to add/query/delete</font>
+<font color= "green">    // Users, Roles and security settings values within the Portal database.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue">    public class</font> RolesDB
+<font color= "blue">    </font>{
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetPortalRoles() Method <a name="GetPortalRoles"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetPortalRoles method returns a list of all role names for the </font>
+<font color= "green">        // specified portal.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetRolesByUser.htm" style="color:green">GetPortalRoles Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetPortalRoles(int portalId) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetPortalRoles", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterPortalID = new SqlParameter("@PortalID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterPortalID.Value = portalId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterPortalID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue"></font>
+<font color= "green">            // Return the datareader</font>
+<font color= "blue">            return</font> dr;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddRole() Method <a name="AddRole"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddRole method creates a new security role for the specified portal,</font>
+<font color= "green">        // and returns the new RoleID value.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="AddRole.htm" style="color:green">AddRole Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>int AddRole(int portalId, String roleName) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_AddRole", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterPortalID = new SqlParameter("@PortalID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterPortalID.Value = portalId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterPortalID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
+<font color= "blue">            </font>parameterRoleName.Value = roleName;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleName);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Direction = ParameterDirection.Output;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "green">            // return the role id </font>
+<font color= "blue">            return</font> (int) parameterRoleID.Value;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteRole() Method <a name="DeleteRole"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteRole deletes the specified role from the portal database.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="DeleteRole.htm" style="color:green">DeleteRole Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> DeleteRole(int roleId) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteRole", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Value = roleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue">       </font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateRole() Method <a name="UpdateRole"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateRole method updates the friendly name of the specified role.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="UpdateRole.htm" style="color:green">UpdateRole Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> UpdateRole(int roleId, String roleName) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_UpdateRole", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Value = roleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterRoleName = new SqlParameter("@RoleName", SqlDbType.NVarChar, 50);
+<font color= "blue">            </font>parameterRoleName.Value = roleName;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleName);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>
+<font color= "green">        //</font>
+<font color= "green">        // USER ROLES</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetRoleMembers() Method <a name="GetRoleMembers"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetRoleMembers method returns a list of all members in the specified</font>
+<font color= "green">        // security role.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetRoleMembers.htm" style="color:green">GetRoleMembers Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetRoleMembers(int roleId) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetRoleMembership", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Value = roleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue"></font>
+<font color= "green">            // Return the datareader</font>
+<font color= "blue">            return</font> dr;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddUserRole() Method <a name="AddUserRole"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddUserRole method adds the user to the specified security role.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="AddUserRole.htm" style="color:green">AddUserRole Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> AddUserRole(int roleId, int userId) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_AddUserRole", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Value = roleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUserID = new SqlParameter("@UserID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterUserID.Value = userId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUserID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteUserRole() Method <a name="DeleteUserRole"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteUserRole method deletes the user from the specified role.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="DeleteUserRole.htm" style="color:green">DeleteUserRole Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> DeleteUserRole(int roleId, int userId) 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteUserRole", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterRoleID = new SqlParameter("@RoleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterRoleID.Value = roleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterRoleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUserID = new SqlParameter("@UserID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterUserID.Value = userId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUserID);
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue">       </font>
+<font color= "blue">        </font>
+<font color= "green">        //</font>
+<font color= "green">        // USERS</font>
+<font color= "green">        //</font>
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetUsers() Method <a name="GetUsers"></a></font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetUsers method returns returns the UserID, Name and Email for </font>
+<font color= "green">        // all registered users.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetUsers.htm" style="color:green">GetUsers Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetUsers() 
+<font color= "blue">        </font>{
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetUsers", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Open the database connection and execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader dr = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue"></font>
+<font color= "green">            // Return the datareader</font>
+<font color= "blue">            return</font> dr;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

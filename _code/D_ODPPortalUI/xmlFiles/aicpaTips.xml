@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<news>
+    <NewsItem>
+        <Newsdate>
+			How do I specify only certain sections to print? 
+        </Newsdate>
+        <NewsText>
+			Click here to learn how to print certain sections
+        </NewsText>
+    </NewsItem>
+    <NewsItem>
+        <Newsdate>
+			How can I narrow my search to only specific documents?
+        </Newsdate>
+        <NewsText>
+			Learn how to norrow searches on documents 
+        </NewsText>
+    </NewsItem>
+    <NewsItem>
+        <Newsdate>
+			How do I clear my search and begin a new search?
+        </Newsdate>
+        <NewsText>
+			Searching Tips
+        </NewsText>
+    </NewsItem>    
+</news>

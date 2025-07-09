@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<xsd:schema
+	targetNamespace="http://schemas.telerik.com/intellisense/RadTabStrip"
+	elementFormDefault="qualified"
+	xmlns="http://schemas.telerik.com/intellisense/RadTabStrip"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
+	vs:friendlyname="RadTabStrip"
+	vs:ishtmlschema="false"
+	vs:iscasesensitive="false"
+	vs:requireattributequotes="false">
+
+	<xsd:element name="RadTabStrip" type="tabStripDef" />
+
+	<xsd:complexType name="TabDef" vs:noambientcontentmodel="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Tab" type="TabDef" form="unqualified" />
+		</xsd:choice>
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="EnumBoolean" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultCenter" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultLeft" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultRight" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledCenter" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledLeft" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledRight" type="xsd:string" />
+		<xsd:attribute name="ImageHoverCenter" type="xsd:string" />
+		<xsd:attribute name="ImageHoverLeft" type="xsd:string" />
+		<xsd:attribute name="ImageHoverRight" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultHover" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledHover" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedHover" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedCenter" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedLeft" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedRight" type="xsd:string" />
+		<xsd:attribute name="IsBreak" type="EnumBoolean" />
+		<xsd:attribute name="IsSeparator" type="EnumBoolean" />
+		<xsd:attribute name="NavigateUrl" type="xsd:string" />
+		<xsd:attribute name="OverlappingTabs" type="EnumBoolean" />
+		<xsd:attribute name="PageViewID" type="xsd:string" />
+		<xsd:attribute name="ScrollButtonsPosition" type="scrollButtonsPosition" />
+		<xsd:attribute name="ScrollPosition" type="xsd:ui4" />
+		<xsd:attribute name="SelectedIndex" type="xsd:ui4" />
+		<xsd:attribute name="SubGroupCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDisplayMode" type="tabDisplayMode" />
+		<xsd:attribute name="TabHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="TabHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabStripAlign" type="tabStripAlign" />
+		<xsd:attribute name="TabStripOrientation" type="tabStripOrientation" />
+		<xsd:attribute name="TabTextDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="Target" type="xsd:string" />
+		<xsd:attribute name="Text" type="xsd:string" />
+		<xsd:attribute name="TextOnlyTabs" type="EnumBoolean" />
+		<xsd:attribute name="ToolTip" type="xsd:string" />
+		<xsd:attribute name="UniqueDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueTextDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueTextHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueTextHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="UniqueTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="Value" type="xsd:string" />
+		<xsd:attribute name="Visible" type="EnumBoolean" />
+		<xsd:attribute name="Width" type="xsd:ui4" />
+	</xsd:complexType>
+
+	<xsd:complexType name="TabCollectionDef" vs:noambientcontentmodel="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Tab" type="TabDef" />
+		</xsd:choice>	
+	</xsd:complexType>
+
+	<xsd:complexType name="tabStripDef">
+		<xsd:choice minOccurs="0" maxOccurs="1">
+			<xsd:element name="TabCollection" type="TabCollectionDef" form="unqualified" />		
+		</xsd:choice>
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute name="AfterClientTabClick" type="xsd:string" />
+		<xsd:attribute name="AppendDataBoundItems" type="EnumBoolean" />
+		<xsd:attribute name="AutoPostBack" type="EnumBoolean" />
+		<xsd:attribute name="BackColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="BeforeClientTabClick" type="xsd:string" />
+		<xsd:attribute name="BorderColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="BorderStyle" type="BorderStyle" />
+		<xsd:attribute name="BorderWidth" type="xsd:ui4" />
+		<xsd:attribute name="CausesValidation" type="EnumBoolean" />
+		<xsd:attribute name="ClientMouseOut" type="xsd:string" />
+		<xsd:attribute name="ClientMouseOver" type="xsd:string" />
+		<xsd:attribute name="ContentFile" type="xsd:string" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="CssFile" type="xsd:string" />
+		<xsd:attribute name="DataFieldID" type="xsd:string" />
+		<xsd:attribute name="DataFieldParentID" type="xsd:string" />
+		<xsd:attribute name="DataFieldParentRootValue" type="xsd:string" />
+		<xsd:attribute name="DataMember" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="EnumBoolean" />
+		<xsd:attribute name="ExpandEffect" type="xsd:expandEffect" />
+		<xsd:attribute name="ExpandEffectSettings" type="xsd:string" />
+		<xsd:attribute name="ForeColor" type="xsd:string" vs:builder="color" />
+		<xsd:attribute name="Height" type="xsd:ui4" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="ImagesBaseDir" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultCenter" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultLeft" type="xsd:string" />
+		<xsd:attribute name="ImageDefaultRight" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledCenter" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledLeft" type="xsd:string" />
+		<xsd:attribute name="ImageDisabledRight" type="xsd:string" />
+		<xsd:attribute name="ImageHoverCenter" type="xsd:string" />
+		<xsd:attribute name="ImageHoverLeft" type="xsd:string" />
+		<xsd:attribute name="ImageHoverRight" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultHover" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDefaultSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledHover" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleDisabledSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleHoverSelected" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedDefault" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageMiddleSelectedHover" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedCenter" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedLeft" type="xsd:string" />
+		<xsd:attribute name="ImageSelectedRight" type="xsd:string" />
+		<xsd:attribute name="KeyboardSupport" type="EnumBoolean" />
+		<xsd:attribute name="LeftScrollButtonCssClass" type="xsd:string" />
+		<xsd:attribute name="LeftScrollButtonDisabledImage" type="xsd:string" />
+		<xsd:attribute name="LeftScrollButtonImage" type="xsd:string" />
+		<xsd:attribute name="LeftScrollButtonSize" type="xsd:ui4" />
+		<xsd:attribute name="MultiPageID" type="xsd:string" />
+		<xsd:attribute name="NavigateBaseUrl" type="xsd:string" />
+		<xsd:attribute name="OverlappingTabs" type="EnumBoolean" />
+		<xsd:attribute name="PerTabScrolling" type="EnumBoolean" />
+		<xsd:attribute name="PreloadLiteralID" type="EnumBoolean" />
+		<xsd:attribute name="RadControlsDir" type="xsd:string" />
+		<xsd:attribute name="RightScrollButtonCssClass" type="xsd:string" />
+		<xsd:attribute name="RightScrollButtonDisabledImage" type="xsd:string" />
+		<xsd:attribute name="RightScrollButtonImage" type="xsd:string" />
+		<xsd:attribute name="RightScrollButtonSize" type="xsd:ui4" />
+		<xsd:attribute name="RightToLeft" type="EnumBoolean" />
+		<xsd:attribute name="Runat">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:xsd:string">
+				<xsd:enumeration value="server" />
+			</xsd:restriction>
+		</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="ScrollButtonsPosition" type="scrollButtonsPosition" />
+		<xsd:attribute name="ScrollPosition" type="xsd:ui4" />
+		<xsd:attribute name="SelectedIndex" type="xsd:ui4" />
+		<xsd:attribute name="SkinID" type="xsd:string" />
+		<xsd:attribute name="Style" type="xsd:string" vs:nonbrowseable="true" />
+		<xsd:attribute name="SubGroupCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="TabDisplayMode" type="tabDisplayMode" />
+		<xsd:attribute name="TabHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="TabHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabIndex" type="xsd:ui4" />
+		<xsd:attribute name="TabSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabStripAlign" type="tabStripAlign" />
+		<xsd:attribute name="TabStripOrientation" type="tabStripOrientation" />
+		<xsd:attribute name="TabTextDefaultCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextHoverCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextHoverSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TabTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="TextOnlyTabs" type="EnumBoolean" />
+		<xsd:attribute name="Theme" type="xsd:string" />
+		<xsd:attribute name="ThemesDir" type="xsd:string" />
+		<xsd:attribute name="Visible" type="EnumBoolean" />
+		<xsd:attribute name="Width" type="xsd:ui4" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="ui4">
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="4294967295" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="enumBoolean">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="True" />
+			<xsd:enumeration value="False" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="scrollButtonsPosition">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Left" />
+			<xsd:enumeration value="Middle" />
+			<xsd:enumeration value="Right" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="tabStripOrientation">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HorizontalTopToBottom" />
+			<xsd:enumeration value="HorizontalBottomToTop" />
+			<xsd:enumeration value="VerticalLeftToRight" />
+			<xsd:enumeration value="VerticalRightToLeft" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="tabStripAlign">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Left" />
+			<xsd:enumeration value="Center" />
+			<xsd:enumeration value="Right" />
+			<xsd:enumeration value="Justify" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="tabDisplayMode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SingleRow" />
+			<xsd:enumeration value="MultiRow" />
+			<xsd:enumeration value="Scrollable" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="expandEffect">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Barn" />
+			<xsd:enumeration value="Blinds" />
+			<xsd:enumeration value="CheckerBoard" />
+			<xsd:enumeration value="Fade" />
+			<xsd:enumeration value="GradientWipe" />
+			<xsd:enumeration value="Inset" />
+			<xsd:enumeration value="Iris" />
+			<xsd:enumeration value="Pixelate" />
+			<xsd:enumeration value="RadialWipe" />
+			<xsd:enumeration value="RandomBars" />
+			<xsd:enumeration value="RandomDissolve" />
+			<xsd:enumeration value="Slide" />
+			<xsd:enumeration value="Spiral" />
+			<xsd:enumeration value="Stretch" />
+			<xsd:enumeration value="Strips" />
+			<xsd:enumeration value="Wheel" />
+			<xsd:enumeration value="Zigzag" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BorderStyle">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="NotSet" />
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Dotted" />
+			<xsd:enumeration value="Dashed" />
+			<xsd:enumeration value="Solid" />
+			<xsd:enumeration value="Double" />
+			<xsd:enumeration value="Groove" />
+			<xsd:enumeration value="Ridge" />
+			<xsd:enumeration value="Inset" />
+			<xsd:enumeration value="Outset" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

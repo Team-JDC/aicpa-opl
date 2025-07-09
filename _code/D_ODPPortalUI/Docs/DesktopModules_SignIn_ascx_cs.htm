@@ -1,0 +1,64 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Web.Security;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public </font>abstract class Signin : AICPA.Destroyer.UI.Portal.PortalModuleControl {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox email;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox password;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBox RememberCheckbox;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton SigninBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label Message;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> LoginBtn_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Attempt to Validate User Credentials using UsersDB</font>
+<font color= "blue">            </font>UsersDB accountSystem = new UsersDB();
+<font color= "blue">            </font>String userId = accountSystem.Login(email.Text, PortalSecurity.Encrypt(password.Text));
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>((userId != null) && (userId != "")) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Use security system to set the UserID within a client-side Cookie</font>
+<font color= "blue">                </font>FormsAuthentication.SetAuthCookie(email.Text, RememberCheckbox.Checked);
+<font color= "blue"></font>
+<font color= "green">                // Redirect browser back to originating page</font>
+<font color= "blue">                </font>Response.Redirect(Request.ApplicationPath);
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else </font>{<font color= "blue"></font>
+<font color= "blue">                </font>Message.Text = "<" + "br" + ">Login Failed!" + "<" + "br" + ">";
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>Signin() {
+<font color= "blue">            </font>this.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        ///        Required method for Designer support - do not modify</font>
+<font color= "green">        ///        the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.SigninBtn.Click += new System.Web.UI.ImageClickEventHandler(this.LoginBtn_Click);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

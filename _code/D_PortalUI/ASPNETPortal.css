@@ -1,0 +1,1309 @@
+/* ================================
+    CSS STYLES FOR THE ASP.NET PORTAL STARTER KIT
+    v1.0, 10/2002
+   ================================
+*/   
+
+
+.waitMsgShow
+{
+	position:absolute;
+	left:0px; 
+	top:72px; 
+	border: solid 1px #f2f2f2; 
+	z-Index: 105; 
+	background-color:white; 
+	layer-background-color:white; 
+	height:120%; 
+	width:100%;
+	Filter: Alpha(Opacity=85);
+	-moz-opacity:0.85; /* mozilla (FireFox) Alpha */
+	opacity: 0.85; /* safari Alpha */
+	visibility:hidden;
+	display:none;
+}
+
+.waitingBlocker
+{
+	display:none;
+}
+
+/* my resources module */
+
+.publicationHeader
+{
+	color:#5e5e5f;
+	font-weight:bold;
+	font-size:large;
+}
+
+.booksTitle
+{
+	color:darkblue;
+	font-weight:bold;
+}
+
+A.booksTitle:link    {
+    text-decoration: none;
+    color:darkblue;
+}
+
+A.booksTitle:visited {
+    text-decoration: none;
+    color:darkblue;
+}
+
+A.booksTitle:active  {
+    text-decoration: none;
+    color:darkblue;
+}
+
+A.booksTitle:hover   {
+    text-decoration: none;
+    color:darkred;
+}
+
+.booksDetail
+{
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+	cursor:hand;
+	cursor:pointer;
+}
+.viewAll
+{
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+	font-weight:bold;
+	cursor:hand;
+	cursor:hand
+}
+.rollupTitle
+{
+	cursor:hand;
+	cursor:pointer;
+}	
+
+A.booksDetail:link    {
+    text-decoration: none;
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+}
+
+A.booksDetail:visited {
+    text-decoration: none;
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+}
+
+A.booksDetail:active  {
+    text-decoration: none;
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+}
+
+A.booksDetail:hover   {
+    text-decoration: none;
+	color:'#5e5e5f';
+	font-family:verdana;
+	font-size:10px;
+}
+
+li.subscriptionTitle
+{
+	font-size:large;
+	font-family:Book Antiqua;
+	font-weight:bold;
+	margin: 10px 0px 5px 0px;
+	padding: 0px 0px 0px 0px;
+	color:#5e5e5f;
+	list-style: url(images/portal/nextDoc.gif);
+}
+
+.booksAvailable
+{
+	font-size: x-small;
+	margin: 0px 0px 0px 0px;
+	padding-left: 0px;
+	padding-right:10px;
+	color:darkred;	
+}
+.subscriptionDesc
+{
+	font-size: x-small;
+	margin: 0px 0px 0px 0px;
+	/*padding: 0px 0px 0px 0px;*/
+	padding-left: 30px;
+	padding-right:10px;
+	color:gray;
+}
+
+.subscriptionShowBooks
+{
+	font-size: xx-small;
+	font-family:Verdana;
+	padding-left:0px;
+	margin: 0 0 0 0px;
+}
+
+tr.hideBookDesc
+{
+	display: none;
+}
+
+tr.showBookDesc
+{
+	
+}
+
+tr.hideBookRollup
+{
+	display: none;
+}
+
+tr.showBookRollup
+{
+	
+}
+
+trialNotice
+{
+	font-family: Arial;
+    font-size: 8px;
+    font-weight:bold;
+    color:darkred;	
+}    
+p.subscriptionBookTitle
+{
+	font-weight: bold;
+	font-size: x-small;
+	margin: 5px 0px 5px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+p.subscriptionBookDesc
+{
+	font-size: x-small;
+	margin: 0px 0px 0px 40px;
+	padding: 0px 0px 0px 0px;	
+}
+
+.listings
+{
+list-style: url(images/portal/bullet.png) disc;
+margin: 5px auto 10px 17px;
+padding: 0;
+}
+
+.subscription_listings
+{
+list-style: url(images/portal/bullet.png) disc;
+margin: 5px auto 10px 17px;
+padding: 0;
+color:#666666;
+}
+
+.listings li
+{
+margin: 0;
+padding: 0;
+padding-bottom: 5px;
+border-bottom: 1px solid #ececec;
+}
+
+.destopImg
+{
+	background-image:url(images/portal/eMailBg.gif);
+}
+/* PAGE BACKGROUND */
+/* background color for the header at the top of the page  */
+.HeadBg
+{
+    background-image:url(images/portal/apiBg.gif);
+    background-repeat:repeat-x;
+    /*border-bottom: silver 1px solid;*/
+	/*filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=0, xray=0, mirror=0, invert=0, opacity=1, rotation=2);*/
+}
+
+/* background color for the content part of the pages */
+Body
+{
+    background-color: white;
+}
+
+.bannerText
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 10px;
+    color:darkblue;	
+}
+
+/* PAGE BANNER */
+/* NOTE: Site Title, Site Links and Tabs are rendered by MobilePortalBanner.ascx
+/* style for the text of the site title */
+.SiteTitle {
+    font-family: Verdana Bold, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color:#cccc99
+}
+
+/* background/border colors for the selected tab */
+.TabBg {
+    /*background-color: white;
+    border-color: white;*/
+}
+
+/* background/border colors for the unselected tabs */
+.OtherTabsBg {
+    /*background-color: dimgray;
+    border-color: black;*/
+}
+
+/* text style for the selected tab */
+.SelectedTab {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 10px;
+    color:darkred;
+    font-weight: bold
+}
+
+/* text style for the unselected tabs */
+.OtherTabs {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 10px;
+    color:gainsboro;
+    text-decoration:none;
+    font-weight: bold
+}
+
+/* hyperlink styles of the unselected tabs */
+A.OtherTabs:link    {
+    text-decoration:    none;
+    color:#3263c1;
+}
+
+A.OtherTabs:visited {
+    text-decoration: none;
+    color:#3263c1;
+}
+
+A.OtherTabs:active  {
+    text-decoration:    none;
+    color:#3263c1;
+}
+
+A.OtherTabs:hover   {
+    text-decoration: none;
+    color:darkblue;
+}
+    
+/* text style for the site links (at extreme top-right of header) */
+.SiteLink {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold
+}   
+
+/* hyperlink style for the site links */
+A.SiteLink:link {
+    text-decoration:    none;
+    color:white;
+}
+
+A.SiteLink:visited  {
+    text-decoration:    none;
+    color:#eeeeee;
+}
+
+A.SiteLink:active   {
+    text-decoration:    none;
+    color:#eeeeee;
+}
+
+A.SiteLink:hover    {
+    text-decoration:    underline;
+    color:white;
+}
+
+/* style for separator between site links */
+.Accent
+{
+    color: red;
+    font-weight:    bold;
+}
+
+
+
+/* MODULE-SPECIFIC */
+/* text style for reading messages in Discussion */    
+.Message    {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    font-size: 11px;
+    background-color: #eeeeee
+}   
+
+/* style of item titles by Announcements and events */
+.ItemTitle    {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: darkblue;
+}
+
+
+
+/* GENERAL */
+/* style for module titles */
+.Head   {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    color: #666644;
+}
+
+/* style of item titles on edit and admin pages */
+.SubHead    {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:  bold;
+    color: darkblue;
+}
+
+/* module title style used instead of Head for compact rendering by QuickLinks and Signin modules */
+.SubSubHead {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: black;
+}
+
+/* text style used for most text rendered by modules */
+.Normal
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 12px    
+}
+
+/* text style used for textboxes in the admin and edit pages, for Nav compatibility */
+.NormalTextBox
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.NormalRed
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: red
+}
+
+.NormalBold
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold
+}
+
+/* text style for buttons and link buttons used in the portal admin pages */
+.CommandButton     {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+}
+    
+/* hyperlink style for buttons and link buttons used in the portal admin pages */
+A.CommandButton:link {
+    text-decoration:    underline;
+    color: darkblue;
+}
+
+A.CommandButton:visited  {
+    text-decoration:    underline;
+    color: darkblue;
+}
+
+A.CommandButton:active   {
+    text-decoration:    underline;
+    color: darkblue;
+}
+
+A.CommandButton:hover    {
+    text-decoration:    underline;
+    color: red;
+}
+    
+
+
+
+/* GENERIC */
+H1  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  20px;
+    font-weight:    normal;
+    color: #666644;
+}
+
+H2  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  20px;
+    font-weight:    normal;
+    color: #666644;
+}
+
+H3  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    font-weight:    normal;
+    color: darkblue;
+}
+
+H4  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    font-weight:    normal;
+    color: darkblue;
+}
+
+H5, DT  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: darkblue;
+}
+
+H6  {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  11px;
+    font-weight:    bold;
+    color: darkblue;
+}
+
+TFOOT, THEAD    {
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    color: darkblue;
+}
+
+TH  {
+    vertical-align: baseline;
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size:  12px;
+    font-weight:    bold;
+    color: darkblue;
+}
+
+A:link  {
+    text-decoration:    none;
+    color:  darkblue;
+}
+
+A:visited   {
+    text-decoration:    none;
+    color:  darkblue;
+}
+
+A:active    {
+    text-decoration:    none;
+    color:  darkblue;
+}
+
+A:hover {
+    text-decoration:    underline;
+    color:  red;
+}
+
+SMALL   {
+    font-size:  8px;
+}
+
+BIG {
+    font-size:  14px;
+}
+
+BLOCKQUOTE, PRE {
+    font-family:    Lucida Console, monospace;
+}
+
+
+UL LI   {
+    list-style-type:    square ;
+}
+
+UL LI LI    {
+    list-style-type:    disc;
+}
+
+UL LI LI LI {
+    list-style-type:    circle;
+}
+
+OL LI   {
+    list-style-type:    decimal;
+}
+
+OL OL LI    {
+    list-style-type:    lower-alpha;
+}
+
+OL OL OL LI {
+    list-style-type:    lower-roman;
+}
+
+HR {
+    color: dimgrey;
+    height:1pt;
+    text-align:left
+}
+
+.htmlHolderClass
+{
+	border-right: gray 1px solid;
+	border-top: white 1px solid;
+	border-left: white 1px double;
+	border-bottom: #000000 1px solid;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:darkred;
+	font-size: 12px;
+	background-color:#ffffff;
+}
+/******************************  Rotator ***********************************/
+table.whatsNewTable
+{
+	border-collapse:collapse;
+}
+
+table.whatsNewTable tr td
+{
+	border: solid 0px black;
+}
+
+.wnewTopBG, .newsTop
+{
+	background-image: url(images/portal/wntopper.gif);
+	background-repeat:repeat-y;
+}
+.newsUpperContent, .newsLowerContent 
+{
+    font: normal 10px Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    background-image: url(images/portal/wnMiddle2.gif);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    padding-top: 0px;
+    padding-left: 12px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    width:350px;
+    height:118px;
+}
+.diamond 
+{
+    vertical-align: middle;
+}
+.date 
+{
+    font-weight: bold;
+    font-size: 12px;
+}
+.news 
+{
+    margin-left: 5px;
+    text-align: justify;
+}
+
+A.news:link    {
+    text-decoration: none;
+	color:'#666666';
+	font-size:10px;
+}
+
+A.news:visited {
+    text-decoration: none;
+	color:'#666666';
+	font-size:10px;	
+}
+
+A.news:active  {
+    text-decoration: none;
+	color:'#666666';
+	font-size:10px;	
+}
+
+A.news:hover   {
+    text-decoration: none;
+	color:'#666666';
+	font-size:10px;	
+}
+
+
+.tipsTech 
+{
+   border: none;
+   color: #666666;
+   font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
+   text-align: justify;
+   padding-top: 5px;
+}
+
+.tipsTechBg
+{
+    font: normal 11px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    background-image: url(images/portal/bottom.gif);
+    background-repeat: repeat-y;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;	
+}
+
+.module {
+    font: normal 13px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    background-image: url(images/portal/ttMiddle.gif);
+    background-repeat: repeat-y;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+}
+
+.module TD, .module A {
+	font-size:10px;
+	color:#333333;
+}
+.tipTitle
+{
+    font-size: 12px;
+    margin-left: 0px;
+    text-align: justify;
+    color:#666666;  
+}
+
+.storeFeature
+{
+    font: normal 12px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+}
+
+.storeModule {
+    font: normal 12px Arial, Verdana, Helvetica, Sans-serif;
+    color: #666666;
+    background-image: url(images/portal/storeMid2.gif);
+    background-repeat: repeat-y;
+    width:300px;
+    padding-top: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 1px;
+}
+
+.storeTitleTxt
+{
+	font-size: 12px;
+    color: #666666; 
+    cursor:hand;
+    cursor:pointer;
+    width:100%;
+	vertical-align:text-top;
+	padding-top: 0px;
+	margin-top: 0px;
+	font-weight:bold;
+}
+
+.storeTitle2Txt
+{
+	font-size: 10px;
+    color: #666666; 
+    cursor:hand;
+    cursor:pointer;
+    width:100%;
+	vertical-align:text-top;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+.storeTxt
+{
+	font-size: 11px;
+    color: #666666; 
+    cursor:hand;
+    width:100%;
+	vertical-align:text-top;  
+	padding-top: 0px;
+	padding-left: 8px;
+}
+
+li.storeFeatureTxt
+{
+	font-size: 11px;
+    color: #666666; 
+    cursor:hand;
+    width:90%;
+	vertical-align:text-top; 
+	list-style: url(images/portal/new.gif);
+}
+/***********************************************************************/
+.TocTop
+{ 
+	background-image:url(images/portal/navheader_slice.gif);
+	background-repeat:repeat;
+}
+
+.tocCollapse
+{
+	width: 200px;
+	height: 500px;
+	position:absolute;
+	z-index: 100;
+	overflow:auto;
+	/*border: solid 1px #a9c2dc;
+	background-color:#f8fbfd;*/
+	border: solid 1px #5d5d5d;
+	background-color:#f8f8f8;
+	Filter: Alpha(Opacity=85);
+	-moz-opacity:0.85; /* mozilla (FireFox) Alpha */
+	opacity: 0.85; /* safari Alpha */	
+}
+
+.tocExpand
+{
+	padding-left: 15px;
+	position:absolute;
+	height: 440px;
+	z-index: 100;
+	background-color:White;
+	overflow:auto;
+	Filter: Alpha(Opacity=85);
+	-moz-opacity:0.85; /* mozilla (FireFox) Alpha */
+	opacity: 0.85; /* safari Alpha */
+
+	border: solid 1px #5d5d5d;
+	background-color:#f8f8f8;
+}
+
+.DocRefLink
+{
+	font: normal 12px Arial, Verdana, Helvetica, Sans-serif;
+    color: darkblue;
+}
+
+A.DocRefLink:link    {
+    text-decoration: none;
+    color:darkblue;
+}
+
+A.DocRefLink:visited {
+    text-decoration: none;
+    color:darkblue;
+}
+
+A.DocRefLink:active  {
+    text-decoration:  none;
+    color:#3263c1;
+}
+
+A.DocRefLink:hover   {
+    text-decoration: none;
+    color:darkred;
+}
+
+/*************************************  Search  ***************************************/
+/* search module */
+.searchOptionCheck
+{
+	font-size: xx-small;
+	font-weight: bold;
+	color: Gray;
+	font-family:verdana;
+}
+
+.searchTypeRadio
+{
+	font-size: xx-small;
+	font-weight: bold;
+	color: Gray;
+	font-family:verdana;
+}
+
+tr.authorizedContent
+{
+}
+
+tr.nonAuthorizedContent
+{
+	background-color:#fafafa;
+}
+
+td.kwic
+{
+	font-size: xx-small;
+	font-family:Verdana;
+	padding-left:65px;
+	padding-right:45px;
+	padding-top:5px;
+	padding-bottom:10px;
+	text-align:justify;
+	border-left:solid 1px #cccccc;
+	border-right:solid 1px #cccccc;
+}
+
+.searchTxt
+{
+	font-family:Verdana;
+	font-size:12px;
+	color:#666666
+}
+
+.searchLine
+{
+	background-image:url(images/portal/bg3.gif);
+	background-repeat:repeat-x;
+}
+
+.resultsNavHeader
+{
+	background-image:url(images/portal/tabBG.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana;
+	color: Black;
+	font-size: xx-small;
+	font-weight: bold;
+	height: 16px;
+	/*border-bottom: solid 1px #e0e0e0;*/
+	padding-top: 10px;
+	padding-left: 10px;
+	border-top: solid 1px #e0e0e0;
+}
+
+.resultsNavFooter
+{
+	background-image:url(images/portal/tabBG.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana;
+	color: Black;
+	font-size: xx-small;
+	font-weight: bold;
+	height: 16px;
+	/*border-bottom: solid 1px #e0e0e0;*/
+	padding-top: 10px;
+	padding-left: 10px;
+	border-top: solid 1px #e0e0e0;
+}
+
+.searchResultHeader
+{
+	background-image:url(images/portal/navheader_slice.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana;
+	color:darkblue;
+	font-size: 10pt;
+	font-weight: bold;
+	height: 16px;
+	border-bottom: solid 1px #e0e0e0;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+.searchResultText
+{
+	padding-left: 4px;
+	padding-right: 4px;
+	vertical-align: top;
+	font-family:Verdana;
+	color: Black;
+	font-size:smaller;
+	font-weight:normal;
+}
+.searchResultHeaderText
+{
+
+	padding-right: 4px;
+	padding-top: 5px;
+	vertical-align: top;
+	font-family:Verdana;
+	color: darkred;
+	font-size:xx-small;
+	font-weight:normal;
+	border-top:solid 1px #cccccc;
+	border-right:solid 1px #cccccc;
+}
+
+A.searchResultHeaderText:link    {
+    text-decoration: none;
+    color:darkred;
+}
+
+A.searchResultHeaderText:visited {
+    text-decoration: none;
+    color:darkred;
+}
+
+A.searchResultHeaderText:active  {
+    text-decoration:  none;
+    color:#3263c1;
+}
+
+A.searchResultHeaderText:hover   {
+    text-decoration: none;
+    color:darkred;
+}
+
+
+.searchResultHeaderNumber
+{
+	padding-left: 4px;
+	padding-top: 5px;
+	vertical-align: top;
+	font-family:Verdana;
+	color: Black;
+	font-size:smaller;
+	font-weight:normal;
+	border-top:solid 1px #cccccc;
+	border-left:solid 1px #cccccc;
+}
+.searchTable
+{
+	background-color: #ffffff;
+	border-color: #cccccc;
+	border-width: 1px;
+	border-style: solid;
+	padding-left: 14px;
+	padding-right: 4px;
+	vertical-align: top;
+	font-size: xx-small;
+	font-family:verdana;
+	color: Black;
+	font-weight:normal;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 10px;
+}
+
+.searchTableResults
+{
+	background-color: #ffffff;
+	padding-left: 0px;
+	padding-right: 4px;
+	vertical-align: top;
+	font-size: xx-small;
+	font-family:verdana;
+	color: Black;
+	font-weight:normal;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 10px;
+}
+
+.searchTableHeader
+{
+	background-color: #ffffff;
+	border-color: #cccccc;
+	border-width: 1px;
+	border-style: solid;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+li.SearchSuggestions
+{
+	font-size:smaller;
+	font-family:Verdana;
+	font-weight:normal;
+	margin: 0px 0px 0px 40px;
+	color:#5e5e5f;
+	list-style: url(images/portal/gray_arrow.gif);
+}
+
+P.SearchSuggestions
+{
+	font-size:small;
+	font-family:Verdana;
+	font-weight:normal;
+	color:#5e5e5f;
+}
+
+.legend
+{
+	background-color: #ffffff;
+	padding-right: 25px;
+	font-size: xx-small;
+	font-family:verdana;
+	color: Black;
+	font-weight:normal;
+	font-style:italic;
+}
+/***********************************************************************************/
+.noAccess {
+    color: #000000;
+    background-color: transparent;
+    font-family: Optima, Helvetica, Arial, sans-serif;
+    font-size: 180%;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #f1f1f1;
+}
+/***********************  PRINT CLASSES ********************************************/
+#dhtmltooltip{
+	position: absolute;
+	left: 100px;
+	width: 200px;
+	height: 115px;
+	border: 1px solid #dedede;
+	padding: 2px;
+	background-image:url(images/portal/moduleBg.gif);
+	background-repeat:repeat-x;
+	background-color:#FFFFFF;
+	visibility: hidden;
+	z-index: 100;
+	Filter: Alpha(Opacity=95);
+	-moz-opacity:0.95; /* mozilla (FireFox) Alpha */
+	opacity: 0.95; /* safari Alpha */
+
+}
+
+#dhtmlpointer{
+	position:absolute;
+	left: 100px;
+	z-index: 101;
+	visibility: hidden;
+	Filter: Alpha(Opacity=95);
+	-moz-opacity:0.95; /* mozilla (FireFox) Alpha */
+	opacity: 0.95; /* safari Alpha */	
+}
+.printText
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-weight:normal;
+    font-size: 10px;
+    color:darkblue;	
+}
+/***********************************************************************/
+h1 {
+    color: black;
+    background-color: transparent;
+    font-family: Optima, Helvetica, Arial, sans-serif;
+    font-size: 160%;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 0.5em;
+    border-bottom: 1px solid #999966;
+    padding-left: 15px;
+    padding-right: 15px;    
+}
+p
+{
+	font: 89% "Lucida Grande", Verdana, Lucida, Helvetica, Arial, sans-serif;
+	color:Gray;	
+    padding-left: 35px;
+    padding-right: 35px; 
+}
+
+.aicpa
+{
+	background-image:url(images/portal/subscriptionBG.gif);
+	background-repeat:repeat;
+}
+
+/**********************************  ERRORS ******************************/
+#errors{
+	position: absolute;
+	background-color: #E4F1FF;
+	border:1px solid #CFE6F2;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:silver;
+	font-size: 10px;
+	line-height: 18px;
+	z-index: 100;
+	visibility: hidden;
+	Filter: Alpha(Opacity=90);
+}
+
+.linkLike
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:silver;
+	font-size: 10px;
+}
+/*****************************  Quick Find  *****************************/
+.subElementTitle
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:darkblue;
+	font-size: 11px;
+}
+
+.subElement
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:darkblue;
+	font-size: 11px;
+	cursor:hand;
+	cursor:pointer;
+}
+
+.subElementSelected
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:darkred;
+	font-weight:bold;
+	font-size: 11px;
+	cursor:hand;
+	cursor:pointer;
+}
+
+.under
+{
+	/*background-image:url(images/portal/quickFindBG.gif);*/
+}
+
+.divHiddenClass
+{
+	display:block;
+}
+.divVisibleClass
+{
+	display:none;
+}
+
+.taxonomy
+{
+	background-image:url(images/portal/navheader_slice.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana;
+	color: Black;
+	font-size: xx-small;
+	font-weight: bold;
+	height: 16px;
+	border-bottom: solid 1px #e0e0e0;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+	border-top:solid 1px #cecece;
+	border-bottom:solid 1px #cecece;
+	/*border-left:solid 1px #cecece;*/
+}
+
+.taxonomy_image
+{
+	background-image:url(images/portal/navheader_slice.gif);
+	background-repeat:repeat-x;
+	height: 16px;
+	border-bottom: solid 1px #e0e0e0;
+	padding-top: 5px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	border-top:solid 1px #cecece;
+	border-bottom:solid 1px #cecece;
+	/*border-right:solid 1px #cecece;*/
+}
+
+.taxonomiesTable
+{
+	background-image:url(images/portal/quickFindBG.gif);
+	background-repeat:repeat;
+	border-right:solid 1px #cecece;
+	border-left:solid 1px #cecece;
+	border-bottom:solid 1px #cecece;
+}
+
+.taxonomyValueTitle
+{
+	background-image:url(images/portal/titleBarBg.gif);
+	background-repeat:repeat-x;
+	font-family:Verdana;
+	color: white;
+	font-size: x-small;
+	font-weight: bold;	
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-bottom: 5px;	
+}
+
+.taxonomyValueTitleLeft
+{
+	background-image:url(images/portal/titleBarLeft.gif);
+	background-repeat:no-repeat;
+}
+
+.taxonomyValueTitleRight
+{
+	background-image:url(images/portal/titleBarRight.gif);
+	background-repeat:no-repeat;
+}
+
+.taxonamyValueColumn1
+{
+	font-family:Verdana;
+	color: gray;
+	font-size: xx-small;
+}
+
+.taxonomyLink
+{
+	font-family:Verdana;
+	color: darkblue;
+	font-size: x-small;
+}
+
+A.taxonomyLink:link {
+    text-decoration: none;
+    color: darkblue;
+}
+
+A.taxonomyLink:visited  {
+    text-decoration:    none;
+    color: darkblue;
+}
+
+A.taxonomyLink:active   {
+    text-decoration:    none;
+    color: darkblue;
+}
+
+A.taxonomyLink:hover    {
+    text-decoration: none;
+    color: darkred;
+}
+
+.taxonomyImage
+{
+	z-index:-1;
+	top:200;
+	left:190;
+	position:absolute;
+	Filter: Alpha(Opacity=15);
+	-moz-opacity:0.15; /* mozilla (FireFox) Alpha */
+	opacity: 0.15; /* safari Alpha */		
+}
+
+/*******************  Document Navigation taking to long to load ****************************************/
+#docNavMsg{
+	position: absolute;
+	left: 100px;
+	width: 400px;
+	height: 155px;
+	border: solid 1px darkred; 
+	padding: 2px;
+	background-image:url(images/portal/moduleBg.gif);
+	background-color:White;
+	background-repeat:repeat-x;
+	visibility: hidden;
+	z-index: 115;
+}

@@ -1,0 +1,86 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public </font>abstract class QuickLinks : AICPA.Destroyer.UI.Portal.PortalModuleControl {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.HyperLink EditButton;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.DataList myDataList;
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">        protected </font>String linkImage = "";
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load event handler on this User Control is used to</font>
+<font color= "green">        // obtain a DataReader of link information from the Links</font>
+<font color= "green">        // table, and then databind the results to a templated DataList</font>
+<font color= "green">        // server control.  It uses the AICPA.Destroyer.UI.Portal.LinkDB()</font>
+<font color= "green">        // data component to encapsulate all data functionality.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Set the link image type</font>
+<font color= "blue"></font><font color= "blue">            if </font>(IsEditable) {<font color= "blue"></font>
+<font color= "blue">                </font>linkImage = "~/images/edit.gif";
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else </font>{<font color= "blue"></font>
+<font color= "blue">                </font>linkImage = "~/images/navlink.gif";
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Obtain links information from the Links table</font>
+<font color= "green">            // and bind to the list control</font>
+<font color= "blue">            </font>AICPA.Destroyer.UI.Portal.LinkDB links = new AICPA.Destroyer.UI.Portal.LinkDB();
+<font color= "blue"></font>
+<font color= "blue">            </font>myDataList.DataSource = links.GetLinks(ModuleId);
+<font color= "blue">            </font>myDataList.DataBind();
+<font color= "blue">        </font>
+<font color= "green">            // Ensure that only users in role may add links</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles(ModuleConfiguration.AuthorizedEditRoles)) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>EditButton.Text="Add Link";
+<font color= "blue">                </font>EditButton.NavigateUrl = "~/DesktopModules/EditLinks.aspx?mid=" + ModuleId.ToString();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        protected </font>string ChooseURL(string itemID, string modID, string URL)
+<font color= "blue">        </font>{
+<font color= "blue"></font><font color= "blue">            if</font>(IsEditable)<font color= "blue"></font>
+<font color= "blue">                return</font> "~/DesktopModules/EditLinks.aspx?ItemID=" + itemID.ToString() + "&mid=" + modID;
+<font color= "blue"></font><font color= "blue">            else</font><font color= "blue"></font>
+<font color= "blue">                return</font> URL;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        public </font>QuickLinks() {
+<font color= "blue">            </font>this.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        ///        Required method for Designer support - do not modify</font>
+<font color= "green">        ///        the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

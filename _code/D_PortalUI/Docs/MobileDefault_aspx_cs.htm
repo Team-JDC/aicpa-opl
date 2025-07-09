@@ -1,0 +1,215 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Web.UI.MobileControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> MobileDefault : System.Web.UI.MobileControls.MobilePage {
+<font color= "blue">        protected </font>System.Web.UI.MobileControls.Label Label1;
+<font color= "blue">        protected </font>AICPA.Destroyer.UI.Portal.MobileControls.TabbedPanel TabView;
+<font color= "blue">        protected </font>System.Web.UI.MobileControls.Form Form1;
+<font color= "blue">        protected </font>System.Web.UI.MobileControls.DeviceSpecific DeviceSpecific1;
+<font color= "blue"></font>
+<font color= "blue">        public </font>MobileDefault() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>ArrayList authorizedTabs = new ArrayList();
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // Page_Init Event Handler</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Init event handler executes at the very beginning of each page</font>
+<font color= "green">        // request (immediately before Page_Load).</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Init event handler calls the PopulateTabs utility method</font>
+<font color= "green">        // to insert empty tabs into the tab view. It then determines the tab</font>
+<font color= "green">        // index of the currently requested portal, and then calls the</font>
+<font color= "green">        // PopulateTabView utility method to dynamically populate the</font>
+<font color= "green">        // active portal view.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue"></font>
+<font color= "blue">            </font>int tabIndex = 0;
+<font color= "blue">            </font>int tabID = 1;
+<font color= "blue"></font>
+<font color= "green">            // Obtain current tab index and tab id settings</font>
+<font color= "blue">            </font>String tabSetting = (String)HiddenVariables["ti"];
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(tabSetting != null) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>int comma = tabSetting.IndexOf(',');
+<font color= "blue">                </font>tabIndex = Int32.Parse(tabSetting.Substring(0, comma));
+<font color= "blue">                </font>tabID = Int32.Parse(tabSetting.Substring(comma + 1));
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>LoadPortalSettings(tabIndex, tabID);
+<font color= "blue"></font>
+<font color= "green">            // Populate tab list with empty tabs</font>
+<font color= "blue">            </font>PopulateTabStrip();
+<font color= "blue"></font>
+<font color= "green">            // Populate the current tab view</font>
+<font color= "blue">            </font>PopulateTabView(tabIndex);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // PopulateTabStrip method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The PopulateTabStrip method is used to dynamically create and add</font>
+<font color= "green">        // tabs for each tab view defined in the portal configuration.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> PopulateTabStrip() {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "blue">            for</font> (int i=0;i < portalSettings.MobileTabs.Count; i++) {
+<font color= "blue"></font>
+<font color= "green">                // Create a MobilePortalTab control for the tab,</font>
+<font color= "green">                // and add it to the tab view.</font>
+<font color= "blue"></font>
+<font color= "blue">                </font>TabStripDetails tab = (TabStripDetails)portalSettings.MobileTabs[i];
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(PortalSecurity.IsInRoles(tab.AuthorizedRoles)) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                    </font>MobilePortalTab tabPanel = new MobilePortalTab();
+<font color= "blue">                    </font>tabPanel.Title = tab.TabName;
+<font color= "blue"></font>
+<font color= "blue">                    </font>TabView.Panes.Add(tabPanel);
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // PopulateTabView method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The PopulateTabView method dynamically populates a portal tab</font>
+<font color= "green">        // with each module defined in the portal configuration.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> PopulateTabView(int tabIndex) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // Ensure that the visiting user has access to the current page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/MobileAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Obtain reference to container mobile tab</font>
+<font color= "blue">            </font>MobilePortalTab view = (MobilePortalTab) TabView.Panes[tabIndex];
+<font color= "blue"></font>
+<font color= "green">            // Dynamically populate the view</font>
+<font color= "blue"></font><font color= "blue">            if </font>(portalSettings.ActiveTab.Modules.Count > 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Loop through each entry in the configuration system for this tab</font>
+<font color= "blue">                </font>foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules) {
+<font color= "blue"></font>
+<font color= "green">                    // Only add the module if it support Mobile devices</font>
+<font color= "blue"></font><font color= "blue">                    if </font>(_moduleSettings.ShowMobile) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                        </font>MobilePortalModuleControl moduleControl = (MobilePortalModuleControl) Page.LoadControl(_moduleSettings.MobileSrc);
+<font color= "blue">                        </font>moduleControl.ModuleConfiguration = _moduleSettings;
+<font color= "blue"></font>
+<font color= "blue">                        </font>view.Panes.Add(moduleControl);
+<font color= "blue">                    </font>}
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // TabView_OnActivate Event Handler</font>
+<font color= "green">        //</font>
+<font color= "green">        // The TabView_OnActivate event handler executes when the user switches</font>
+<font color= "green">        // tabs in the tab view. It calls the PopulateTabView utility</font>
+<font color= "green">        // method to dynamically populate the newly activated view.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> TabView_OnTabActivate(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "blue">            </font>int tabIndex = TabView.ActivePaneIndex;
+<font color= "blue">            </font>int tabID = ((TabStripDetails) portalSettings.MobileTabs[tabIndex]).TabId;
+<font color= "blue"></font>
+<font color= "green">            // Store tabindex in a hidden variable to preserve accross round trips</font>
+<font color= "blue"></font><font color= "blue">            if </font>(tabIndex != 0) {<font color= "blue"></font>
+<font color= "blue">                </font>HiddenVariables["ti"] = String.Concat(tabIndex.ToString(), ",", tabID.ToString());
+<font color= "blue">            </font>}
+<font color= "blue"></font><font color= "blue">            else </font>{<font color= "blue"></font>
+<font color= "blue">                </font>HiddenVariables.Remove("ti");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Check to see if portal settings need reloading</font>
+<font color= "blue">            </font>LoadPortalSettings(tabIndex, tabID);
+<font color= "blue"></font>
+<font color= "green">            // Populate the newly active tab.</font>
+<font color= "blue">            </font>PopulateTabView(tabIndex);
+<font color= "blue"></font>
+<font color= "green">            // Set the view to summary mode, where a summary of all the modules are shown.</font>
+<font color= "blue">            </font>((MobilePortalTab)TabView.ActivePane).SummaryView = true;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // LoadPortalSettings method</font>
+<font color= "green">        //</font>
+<font color= "green">        // LoadPortalSettings is a helper methods that loads portal settings for</font>
+<font color= "green">        // the selected tab.  It first verifies that the settings haven't already</font>
+<font color= "green">        // been set within the Global.asax file -- if they are different (in the</font>
+<font color= "green">        // case that a tab change is made) then the method reloads the appropriate</font>
+<font color= "green">        // tab data.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> LoadPortalSettings(int tabIndex, int tabId) {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>((portalSettings.ActiveTab.TabId != tabId) || (portalSettings.ActiveTab.TabIndex != tabIndex)) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>HttpContext.Current.Items["PortalSettings"] = new PortalSettings(tabIndex, tabId);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {
+<font color= "blue"></font>
+<font color= "blue">            </font>this.TabView.TabActivate += new System.EventHandler(this.TabView_OnTabActivate);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<news>
+    <NewsItem>
+        <Newsdate>
+			09/25/2005
+        </Newsdate>
+        <NewsText>
+			What's new in Audit and Accounting Guides
+        </NewsText>
+    </NewsItem>
+    <NewsItem>
+        <Newsdate>
+			10/04/2005
+        </Newsdate>
+        <NewsText>
+			What's new in e-MAP 
+        </NewsText>
+    </NewsItem>
+    <NewsItem>
+        <Newsdate>
+			09/07/2005
+        </Newsdate>
+        <NewsText>
+			What's new in FASB 
+        </NewsText>
+    </NewsItem>    
+</news>
+

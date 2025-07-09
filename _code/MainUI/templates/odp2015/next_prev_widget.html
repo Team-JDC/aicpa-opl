@@ -1,0 +1,86 @@
+﻿{#template MAIN}
+    <div class="widget alt">
+        <div class="widget_inner">
+            <div class="shaw" id="headerHit">
+                <span class="handle">Search Hits <aside><i onclick="$('#headerHit').hide();" id="hhClose" class="fa fa-times-circle"></i></aside></span>
+                <a class="btn" id="prevHitDoc"><i class="fa fa-angle-double-left"></i></a>
+                <a class="btn" id="nextHit" onclick="goToPrevious()">Prev</a>
+                <a class="btn" id="prevHit" onclick="goToNext()">Next</a>
+                <a class="btn" id="nextHitDoc"><i class="fa fa-angle-double-right"></i></a>
+                <a class="backToSearch" onclick="getResults()">Back to search results &raquo;</a>
+            </div>
+            <div class="prev_next">
+                {#if $T.d.PreviousDocument != null}
+                <a class="prev" onclick="googleAnalytics('previousButton')" href="/content/link/{$T.d.PreviousDocument.TargetDoc}/{$T.d.PreviousDocument.TargetPtr}">
+                    <span class="handle">
+                        <span></span>Previous
+                    </span>
+                    <span class="title">{$T.d.PreviousDocument.Title}</span>
+                </a>
+                {#/if}
+                {#if $T.d.NextDocument != null}
+                <a class="next" onclick="googleAnalytics('nextButton')" href="/content/link/{$T.d.NextDocument.TargetDoc}/{$T.d.NextDocument.TargetPtr}">
+                    <span class="handle"><span></span>Next</span>
+                    <span class="title">{$T.d.NextDocument.Title}</span>
+                </a>
+                {#/if}
+            </div>
+            <ul class="utility_links">
+                {#if showBookmarks($T.d.Type)}
+                    <li id="Toolbar-Tools-AddBookmark-Widget"><a class="bookmark clearfix" href="#" onclick="addPageBookmark('{$T.d.Id}','{$T.d.Type}', '{unencodeHtml($T.d.Title)}'); googleAnalytics('bookmark');"><span class="icon"></span><span class="text">Bookmark This Page</span></a></li>
+                    <li id="Toolbar-Tools-DeleteBookmark-Widget" style="display:none"><a class="bookmark clearfix" href="#" onclick="deletePageBookmark('{$T.d.Id}','{$T.d.Type}');"><span class="icon"></span><span class="text">Remove Bookmark</span></a></li>
+                    
+                {#/if}
+                
+                {#if $T.d.Formats.length > 1}
+                    <!-- > 1 {$T.d.Formats.length} -->
+                    <li><a class="download clearfix" href="#" data-toggle="modal" data-target="#download_modal"><span class="icon"></span><span class="text">Download</span></a></li>                    
+                    
+                {#elseif $T.d.Formats.length > 0}                    
+                    <!-- > 0  {$T.d.Formats.length} -->
+                    <li><a class="download clearfix" href="/Handlers/DownloadDocument.ashx?docid={$T.d.Formats[0].DocumentId}&d_ft={$T.d.Formats[0].FormatId}"><span class="icon"></span><span class="text">Download</span></a></li>                                        
+                {#else}
+                    <!-- 0  {$T.d.Formats.length} -->
+                    <li style="display:none"><a class="download clearfix" disabled><span class="icon"></span><span class="text">Download</span></a></li>                                        
+                {#/if}
+
+                <li><a class="print clearfix" href="" onclick="doPrint({$T.d.Id},'{$T.d.Type}'); googleAnalytics('printPage'); return false;"><span class="icon"></span><span class="text">Print This Page</span></a></li>
+                <!-- removed per AICPA
+                  <li><a class="purchase clearfix" href=""><span class="icon"></span><span class="text">Purchase Printed Report</span></a></li>
+                -->
+            </ul>
+            {#if $T.d.hasCopyright}
+            <div class="copyrightwidget">{$T.d.copyright}</div>
+            {#/if}
+        </div>
+    </div>
+    {#if $T.d.Formats.length > 1}
+    <!-- Modal Are You Sure (AYS) -->
+    <div class="modal fade" id="download_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">					        
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h3 class="modal-title" id="H2">Download</h3>
+                </div>                            
+                <div class="modal-body">
+                    <p>Please select the document you would like to download.</p>
+                    <ul>
+                                    
+                    {#foreach $T.d.Formats as FormatOption}
+                        <li><a href="/Handlers/DownloadDocument.ashx?docid={$T.FormatOption.DocumentId}&d_ft={$T.FormatOption.FormatId}" target="_blank">                                            
+                            {$T.FormatOption.FormatShortName}
+                        </a>
+                        </li>
+                    {#/for}                                    
+                    </ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                    
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- End Modal -->
+    {#/if}
+{#/template MAIN}   

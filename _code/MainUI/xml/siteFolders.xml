@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteFolders>
+  <include>
+    <siteFolder name="Accountant's Business Manual" title="Accountant's Business Manual" imageUrl="images/abm-lp.gif" description="A concise, nontechnical reference designed to keep you knowledgeable on the wide array of constantly changing business, legal, tax, and financial issues that affect your clients." />
+    <siteFolder name="Audit &amp; Accounting Literature" title="Audit &amp; Accounting Literature" imageUrl="images/aicpa-lp.gif" description="Your source for AICPA and PCAOB standards, guidance,  and practical tools to help you meet the challenges of today's increasing complex financial and regulatory environment." />
+    <siteFolder name="FASB Accounting Standards Codification" title="FASB Accounting Standards Codification" imageUrl="images/fasb-lp.gif" description="Access to all authoritative U.S. generally accepted accounting principles (GAAP) through a topically organized structure." />
+    <siteFolder name="Forensic &amp; Valuation Services Library" title="Forensic &amp; Valuation Services Library" imageUrl="images/fvscollection-lp.gif" description="The top destination for technical &amp; practice management guidance, tools, and resources for the forensic accountant and business valuation specialist." />
+    <siteFolder name="GASB Library" title="GASB Library" imageUrl="images/gasb-lp.gif" description="A collection of authoritative literature and implementation guides issued by the Governmental Accounting Standards Board." />
+    <siteFolder name="Management of an Accounting Practice Handbook" title="Management of an Accounting Practice Handbook" imageUrl="images/emap-lp.gif" description="A collection of guidance and ready-to-use tools and exhibits that provide you with easy-to-implement solutions to solve your practice management dilemmas." />
+    <siteFolder name="Archive Library" title="Archive Library" imageUrl="images/title_archives.gif" description="AICPA and FASB guidance superseded by the issuance of the FASB Accounting Standards Codification." />
+    <siteFolder name="Accounting Trends and Techniques" title="Accounting Trends and Techniques" imageUrl="images/att-lp.gif" description="Filled with current reporting techniques and methods, these practice aids provide illustrative presentation and disclosure examples from actual financial statements." />
+    <siteFolder name="AICPA Guides" title="AICPA Guides" imageUrl="images/aag-lp.gif" description="Audit and Accounting Guides summarize new standards, guidance, and practices and deliver &quot;how-to&quot; advice for handling audit and accounting issues in a variety of industries." />
+    <siteFolder name="Audit and Accounting Manual" title="Audit and Accounting Manual" imageUrl="images/aam-lp.gif" description="Provides explanations and demonstrates useful techniques and procedures for the engagements you conduct. It also explains in a plain English format engagement steps from planning to performing procedures to issuing your reports." />
+    <siteFolder name="Alerts" title="Alerts" imageUrl="images/ara-lp.gif" description="Provides auditors of financial statements with an overview of recent economic, industry, technical, regulatory, and professional developments that may affect the audits and other engagements they perform." />
+    <siteFolder name="Checklists and Illustrative Financial Statements" title="Checklists and Illustrative Financial Statements" imageUrl="images/checklists-lp.gif" description="Provides auditors, accountants, and other practitioners with disclosure checklists and sample financial statements for a variety of industries and governmental units." />
+    <siteFolder name="PCAOB Standards and Related Rules" title="PCAOB Standards and Related Rules" imageUrl="images/pcaob-lp.gif" description="A comprehensive source of PCAOB guidance, including standards, select rules and releases, and staff guidance." />
+    <siteFolder name="Practice Aids and Tools" title="Practice Aids and Tools" imageUrl="images/practice-lp.gif" description="Provides financial statement preparers and auditors with practical guidance related to unique accounting and auditing issues." />
+    <siteFolder name="AICPA Professional Standards" title="AICPA Professional Standards" imageUrl="images/ps-lp.gif" description="A compilation of currently outstanding authoritative standards issued by the AICPA." />
+    <siteFolder name="Technical Questions and Answers" title="Technical Questions and Answers" imageUrl="images/tpa-lp.gif" description="A compilation of guidance including Statements of Position for audit and attestation services, Trust Services Principles, Criteria, and Illustrations, and staff guidance issued by the AICPA and PCAOB." />
+    <siteFolder name="Audit and Accounting Guides Archive" title="Audit &amp; Accounting Guides" imageUrl="images/aag-arch-lp.gif" description="This section contains the pre-Codification AICPA Audit and Accounting Guides where incremental accounting guidance was included in the FASB Accounting Standards Codification." />
+    <siteFolder name="Pre-Codification FASB Literature" title="Pre-Codification FASB Literature" imageUrl="images/fasb-arch-lp.gif" description="This section contains the pre-Codification FASB Literature." />
+    <siteFolder name="Personal Financial Planning Services Library" title="Personal Financial Planning Services Library" imageUrl="images/pfpcollection-lp.gif" description="Access an extensive suite of technical and practice guides to assist you in advising your individual, family, and business owner clients in estate, retirement, tax, investment, and risk management planning." />
+
+
+
+  </include>
+  <exclude>
+    <!-- sburton 2010-08-03: please note that right now exclude only works for books-->
+    <book name="att-2008" />
+  </exclude>
+</siteFolders>

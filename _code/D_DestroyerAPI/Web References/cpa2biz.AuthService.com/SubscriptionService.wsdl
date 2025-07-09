@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.cpa2biz.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" targetNamespace="http://www.cpa2biz.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.cpa2biz.com">
+      <s:element name="GetOnlinePlatformAuthInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptedUserGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOnlinePlatformAuthInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOnlinePlatformAuthInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOnlinePlatformAuthInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOnlinePlatformAuthInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetOnlinePlatformAuthInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOnlinePlatformAuthInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SubscriptionServiceSoap">
+    <wsdl:operation name="GetOnlinePlatformAuthInfo">
+      <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">Provides subscription authorization information for access to the AICPA ReSource/EMAP (R/E) online platform</documentation>
+      <wsdl:input message="tns:GetOnlinePlatformAuthInfoSoapIn" />
+      <wsdl:output message="tns:GetOnlinePlatformAuthInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SubscriptionServiceSoap" type="tns:SubscriptionServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOnlinePlatformAuthInfo">
+      <soap:operation soapAction="http://www.cpa2biz.com/GetOnlinePlatformAuthInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SubscriptionService">
+    <documentation xmlns="http://schemas.xmlsoap.org/wsdl/">CPA2Biz User Subscription Authorization Service</documentation>
+    <wsdl:port name="SubscriptionServiceSoap" binding="tns:SubscriptionServiceSoap">
+      <soap:address location="https://63.236.50.103/C2BSubscriptionService/SubscriptionService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

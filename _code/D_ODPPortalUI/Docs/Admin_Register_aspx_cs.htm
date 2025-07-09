@@ -1,0 +1,75 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Web.Security;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "green">    /// <summary></font>
+<font color= "green">    /// Summary description for Register.</font>
+<font color= "green">    /// </summary></font>
+<font color= "blue">    public class</font> Register : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox Name;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox Email;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox Password;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox ConfirmPassword;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CompareValidator CompareValidator1;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton RegisterBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.Label Message;
+<font color= "blue">    </font>
+<font color= "blue">        private void</font> RegisterBtn_Click(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Only attempt a login if all form fields on the page are valid</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsValid == true) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Add New User to Portal User Database</font>
+<font color= "blue">                </font>AICPA.Destroyer.UI.Portal.UsersDB accountSystem = new AICPA.Destroyer.UI.Portal.UsersDB();
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>((accountSystem.AddUser(Name.Text, Email.Text, PortalSecurity.Encrypt(Password.Text))) > -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                    // Set the user's authentication name to the userId</font>
+<font color= "blue">                    </font>FormsAuthentication.SetAuthCookie(Email.Text, false);
+<font color= "blue"></font>
+<font color= "green">                    // Redirect browser back to home page</font>
+<font color= "blue">                    </font>Response.Redirect("~/DesktopDefault.aspx");
+<font color= "blue">                </font>}
+<font color= "blue"></font><font color= "blue">                else </font>{<font color= "blue"></font>
+<font color= "blue">                    </font>Message.Text = "Registration Failed!  <" + "u" + ">" + Email.Text + "<" + "/u" + "> is already registered." + "<" + "br" + ">" + "Please register using a different email address.";
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>Register() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue">            </font>this.RegisterBtn.Click += new System.EventHandler(this.RegisterBtn_Click);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

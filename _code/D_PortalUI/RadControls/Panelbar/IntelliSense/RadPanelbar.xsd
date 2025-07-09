@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema
+	targetNamespace="http://schemas.telerik.com/intellisense/RadPanelbar"
+	elementFormDefault="qualified"
+	xmlns="http://schemas.telerik.com/intellisense/RadPanelbar"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:vs="http://schemas.microsoft.com/Visual-Studio-Intellisense"
+	vs:friendlyname="RadPanelbar"
+	vs:ishtmlschema="false"
+	vs:iscasesensitive="false"
+	vs:requireattributequotes="false">
+
+	<xsd:element name="RadPanelbar" type="panelbarDef" />
+
+	<xsd:complexType name="ContentTemplateDef" vs:noambientcontentmodel="true">
+	</xsd:complexType>
+
+	<xsd:complexType name="PanelItemTemplateDef" vs:noambientcontentmodel="true">
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:choice minOccurs="0" maxOccurs="1">
+			<xsd:element name="ContentTemplate" type="ContentTemplateDef" form="unqualified" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="PanelItemTemplatesDef" vs:noambientcontentmodel="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="PanelItemTemplate" type="PanelItemTemplateDef" />
+		</xsd:choice>
+	</xsd:complexType>
+
+	<xsd:complexType name="PanelItemDef" vs:noambientcontentmodel="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="PanelItem" type="PanelItemDef" form="unqualified" />
+		</xsd:choice>
+		<xsd:attribute name="AccessKey" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageCollapsed" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageDisabled" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageExpanded" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageHoverCollapsed" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageHoverExpanded" type="xsd:string" />
+		<xsd:attribute name="BackgroundImageSelected" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="EnumBoolean" />
+		<xsd:attribute name="Expanded" type="EnumBoolean" />
+		<xsd:attribute name="Height" type="xsd:string" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="ImageCollapsed" type="xsd:string" />
+		<xsd:attribute name="ImageDisabled" type="xsd:string" />
+		<xsd:attribute name="ImageExpanded" type="xsd:string" />
+		<xsd:attribute name="ImageHoverCollapsed" type="xsd:string" />
+		<xsd:attribute name="ImageHoverExpanded" type="xsd:string" />
+		<xsd:attribute name="ImagePosition" type="imagePosition" />
+		<xsd:attribute name="ImageSelected" type="xsd:string" />
+		<xsd:attribute name="ItemCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="NavigateUrl" type="xsd:string" />
+		<xsd:attribute name="PanelExpandEffect" type="xsd:string" />
+		<xsd:attribute name="Selected" type="EnumBoolean" />
+		<xsd:attribute name="SubGroupCssClass" type="xsd:string" />
+		<xsd:attribute name="SubGroupHeight" type="xsd:string" />
+		<xsd:attribute name="Target" type="xsd:string" />
+		<xsd:attribute name="TemplateID" type="xsd:string" />
+		<xsd:attribute name="Text" type="xsd:string" />
+		<xsd:attribute name="ToolTip" type="xsd:string" />
+		<xsd:attribute name="UseClientEventsForTemplate" type="EnumBoolean" />
+		<xsd:attribute name="Value" type="xsd:string" />
+		<xsd:attribute name="Visible" type="EnumBoolean" />
+	</xsd:complexType>
+
+	<xsd:complexType name="PanelItemsDef" vs:noambientcontentmodel="true">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="PanelItem" type="PanelItemDef" />
+		</xsd:choice>	
+	</xsd:complexType>
+
+	<xsd:complexType name="panelbarDef">
+		<xsd:choice minOccurs="0" maxOccurs="1">
+			<xsd:element name="PanelItemTemplates" type="PanelItemTemplatesDef" form="unqualified" />
+			<xsd:element name="PanelItems" type="PanelItemsDef" form="unqualified" />		
+		</xsd:choice>
+		<xsd:attribute name="AfterClientPanelItemClicked" type="xsd:string" />
+		<xsd:attribute name="AfterClientPanelItemCollapsed" type="xsd:string" />
+		<xsd:attribute name="AfterClientPanelItemExpanded" type="xsd:string" />
+		<xsd:attribute name="AutoPostBack" type="xsd:enumBoolean" />
+		<xsd:attribute name="AutoPostBackOnExpandCollapse" type="xsd:enumBoolean" />
+		<xsd:attribute name="BeforeClientPanelItemClicked" type="xsd:string" />
+		<xsd:attribute name="BeforeClientPanelItemCollapsed" type="xsd:string" />
+		<xsd:attribute name="BeforeClientPanelItemExpanded" type="xsd:string" />
+		<xsd:attribute name="CausesValidation" type="xsd:enumBoolean" />
+		<xsd:attribute name="ClientMouseOut" type="xsd:string" />
+		<xsd:attribute name="ClientMouseOver" type="xsd:string" />
+		<xsd:attribute name="ContentFile" type="xsd:string" />
+		<xsd:attribute name="CssClass" type="xsd:string" />
+		<xsd:attribute name="CssFile" type="xsd:string" />
+		<xsd:attribute name="DataFieldID" type="xsd:string" />
+		<xsd:attribute name="DataFieldParentID" type="xsd:string" />
+		<xsd:attribute name="DataMember" type="xsd:string" />
+		<xsd:attribute name="Enabled" type="xsd:enumBoolean" />
+		<xsd:attribute name="ExpandEffect" type="xsd:expandEffect" />
+		<xsd:attribute name="ExpandEffectSettings" type="xsd:string" />
+		<xsd:attribute name="FullExpandedPanels" type="xsd:enumBoolean" />
+		<xsd:attribute name="HeaderCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderImagePosition" type="xsd:imagePosition" />
+		<xsd:attribute name="HeaderSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="HeaderTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="Height" type="xsd:string" />
+		<xsd:attribute name="ID" type="xsd:string" />
+		<xsd:attribute name="ImagesBaseDir" type="xsd:string" />
+		<xsd:attribute name="ItemCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemImagePosition" type="xsd:imagePosition" />
+		<xsd:attribute name="ItemSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextDisabledCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextHoverCollapsedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextHoverExpandedCssClass" type="xsd:string" />
+		<xsd:attribute name="ItemTextSelectedCssClass" type="xsd:string" />
+		<xsd:attribute name="OnPanelItemClick" type="xsd:string" />
+		<xsd:attribute name="OnPanelItemCollapse" type="xsd:string" />
+		<xsd:attribute name="OnPanelItemDataBound" type="xsd:string" />
+		<xsd:attribute name="OnPanelItemExpand" type="xsd:string" />
+		<xsd:attribute name="PersistStateInCookie" type="xsd:enumBoolean" />
+		<xsd:attribute name="PreloadLiteralID" type="xsd:string" />
+		<xsd:attribute name="RadControlsDir" type="xsd:string" />
+		<xsd:attribute name="RightToLeft" type="xsd:enumBoolean" />
+		<xsd:attribute name="Runat">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:xsd:string">
+				<xsd:enumeration value="server" />
+			</xsd:restriction>
+		</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="SingleExpandedPanel" type="xsd:enumBoolean" />
+		<xsd:attribute name="SkinID" type="xsd:string" />
+		<xsd:attribute name="SpaceBetweenPanelItems" type="xsd:string" />
+		<xsd:attribute name="Style" type="xsd:string" />
+		<xsd:attribute name="Theme" type="xsd:string" />
+		<xsd:attribute name="Visible" type="xsd:enumBoolean" />
+		<xsd:attribute name="Width" type="xsd:string" />
+	</xsd:complexType>
+
+	<xsd:simpleType name="ui4">
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="4294967295" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="enumBoolean">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="True" />
+			<xsd:enumeration value="False" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="imagePosition">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="TopLeft" />
+			<xsd:enumeration value="Top" />
+			<xsd:enumeration value="TopRight" />
+			<xsd:enumeration value="Right" />
+			<xsd:enumeration value="BottomRight" />
+			<xsd:enumeration value="Bottom" />
+			<xsd:enumeration value="BottomLeft" />
+			<xsd:enumeration value="Left" />
+			<xsd:enumeration value="BeforeLabel" />
+			<xsd:enumeration value="AfterLabel" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="expandEffect">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="None" />
+			<xsd:enumeration value="Barn" />
+			<xsd:enumeration value="Blinds" />
+			<xsd:enumeration value="CheckerBoard" />
+			<xsd:enumeration value="Fade" />
+			<xsd:enumeration value="GradientWipe" />
+			<xsd:enumeration value="Inset" />
+			<xsd:enumeration value="Iris" />
+			<xsd:enumeration value="Pixelate" />
+			<xsd:enumeration value="RadialWipe" />
+			<xsd:enumeration value="RandomBars" />
+			<xsd:enumeration value="RandomDissolve" />
+			<xsd:enumeration value="Slide" />
+			<xsd:enumeration value="Spiral" />
+			<xsd:enumeration value="Stretch" />
+			<xsd:enumeration value="Strips" />
+			<xsd:enumeration value="Wheel" />
+			<xsd:enumeration value="Zigzag" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

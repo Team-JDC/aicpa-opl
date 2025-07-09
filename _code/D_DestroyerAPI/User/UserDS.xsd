@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="UserDS" targetNamespace="http://tempuri.org/UserDS.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/UserDS.xsd" xmlns:mstns="http://tempuri.org/UserDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="UserDs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="CurrentFirmUsers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ACA" type="xs:string" />
+              <xs:element name="Code" type="xs:string" />
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Users">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" />
+              <xs:element name="LastLoginTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CurrentSessionId" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="UserDsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:CurrentFirmUsers" />
+      <xs:field xpath="mstns:ACA" />
+      <xs:field xpath="mstns:Code" />
+    </xs:unique>
+    <xs:unique name="UserDsKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Users" />
+      <xs:field xpath="mstns:UserId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Stocks>
+  <Stock>
+    <Company>ZAP</Company>
+    <Price>42.27 </Price>
+    <Difference>-0.32</Difference>
+    <Image>down.gif</Image>    
+  </Stock>
+
+  <Stock>
+    <Company>PFZ</Company>
+    <Price>19.16</Price>
+    <Difference>1.06 </Difference>
+    <Image>up.gif</Image>    
+  </Stock>
+
+  <Stock>
+    <Company>Other AICPA reSOURCE products available</Company>
+    <Price>37.15</Price>
+    <Difference>0.55</Difference>
+    <Image>up.gif</Image>    
+  </Stock>
+
+  <Stock>
+    <Company>TIN</Company>
+    <Price>2.80</Price>
+    <Difference>-0.11</Difference>
+    <Image>down.gif</Image>    
+  </Stock>
+
+  <Stock>
+    <Company>HOP</Company>
+    <Price>2.54</Price>
+    <Difference>-0.08</Difference>
+    <Image>down.gif</Image>    
+  </Stock>
+
+  <Stock>
+    <Company>BIP</Company>
+    <Price>12.93</Price>
+    <Difference>0.60</Difference>
+    <Image>up.gif</Image>    
+  </Stock>
+
+</Stocks>

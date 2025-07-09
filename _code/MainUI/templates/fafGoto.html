@@ -1,0 +1,67 @@
+﻿{#template MAIN}
+    <div class="tool-container" align="center">
+        <table cellpadding="0" cellspacing="5" style="font-size:12px">
+            <tr>
+                <td colspan="2" align="left"><h4 class="nopad">Go To</h4></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">Navigate directly to topics, subtopics, and sections</td>
+            </tr>
+            <tr>
+                <td colspan="2" height="20px" align="left">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="60px" align="left">Topic:</td>
+                <td align="left"  width="300">
+                    <select id="topic" onchange="doFafGotoDropDownChange($('#topic').val(), '');">
+                        <option></option>
+                        {#foreach $T.d.TopicGroups as TopicGroup}
+                        <option value="{$T.TopicGroup.Topics[0].TopicNum}">{$T.TopicGroup.Name}</option>
+                            {#foreach $T.TopicGroup.Topics as Topic}
+                                {#if $T.d.SelectedTopicNum == $T.Topic.TopicNum}
+                                <option value="{$T.Topic.TopicNum}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                {#else}
+                                <option value="{$T.Topic.TopicNum}">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                {#/if}
+                            {#/for}
+                        {#/for}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">Subtopic:</td>
+                <td align="left">
+                    <select id="subTopic" onchange="doFafGotoDropDownChange($('#topic').val(), $('#subTopic').val());">
+                        <option></option>
+                    {#foreach $T.d.Subtopics as Subtopic}
+                        {#if $T.d.SelectedSubTopicNum == $T.Subtopic.SubtopicNum}
+                        <option value="{$T.Subtopic.SubtopicNum}" selected="selected">{$T.Subtopic.SubtopicNum} - {$T.Subtopic.SubtopicTitle}</option>
+                        {#else}
+                        <option value="{$T.Subtopic.SubtopicNum}">{$T.Subtopic.SubtopicNum} - {$T.Subtopic.SubtopicTitle}</option>
+                        {#/if}
+                    {#/for}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">Section:</td>
+                <td align="left">
+                    <select id="section">
+                        <option></option>
+                    {#foreach $T.d.Sections as Section}
+                        <option value="{$T.Section.SectionNum}">{$T.Section.SectionNum} - {$T.Section.SectionTitle}</option>
+                    {#/for}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" height="10px" align="left">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-top:8px; border-top:1px solid #999;" align="right">
+                    <a href="#" onclick="doFafGotoSubmit($('#topic').val(), $('#subTopic').val(), $('#section').val());"><img src="images/btn-goto.gif" alt="Go To" border="0"/></a>
+                </td>
+            </tr>                
+        </table>        
+    </div>
+{#/template MAIN}

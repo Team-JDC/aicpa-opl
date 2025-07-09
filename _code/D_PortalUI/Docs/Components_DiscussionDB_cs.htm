@@ -1,0 +1,181 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> AICPA.Destroyer.UI.Portal;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // DiscussionDB Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates all data logic necessary to add/query/delete</font>
+<font color= "green">    // discussions within the Portal database.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> DiscussionDB {
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetTopLevelMessages Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // Returns details for all of the messages in the discussion specified by ModuleID.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetTopLevelMessages.htm" style="color:green">GetTopLevelMessages Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetTopLevelMessages(int moduleId) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetTopLevelMessages", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleId.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleId);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetThreadMessages Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // Returns details for all of the messages the thread, as identified by the Parent id string.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetThreadMessages.htm" style="color:green">GetThreadMessages Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetThreadMessages(String parent) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetThreadMessages", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterParent = new SqlParameter("@Parent", SqlDbType.NVarChar, 750);
+<font color= "blue">            </font>parameterParent.Value = parent;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterParent);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetSingleMessage Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetSingleMessage method returns the details for the message</font>
+<font color= "green">        // specified by the itemId parameter.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetSingleMessage.htm" style="color:green">GetSingleMessage Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetSingleMessage(int itemId) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetSingleMessage", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemId.Value = itemId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemId);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddMessage Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddMessage method adds a new message within the</font>
+<font color= "green">        // Discussions database table, and returns ItemID value as a result.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="AddMessage.htm" style="color:green">AddMessage Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>int AddMessage(int moduleId, int parentId, String userName, String title, String body) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(userName.Length < 1) {<font color= "blue"></font>
+<font color= "blue">                </font>userName = "unknown";
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_AddMessage", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemID.Direction = ParameterDirection.Output;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterTitle.Value = title;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterTitle);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterBody = new SqlParameter("@Body", SqlDbType.NVarChar, 3000);
+<font color= "blue">            </font>parameterBody.Value = body;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterBody);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterParentID = new SqlParameter("@ParentID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterParentID.Value = parentId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterParentID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterUserName.Value = userName;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUserName);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleID.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "blue">            return</font> (int) parameterItemID.Value;
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+<font color= "blue"></font>
+</pre>

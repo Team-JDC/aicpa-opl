@@ -1,0 +1,4 @@
+User Control:Discussion.ascx|DesktopModules_Discussion_ascx.htm, Discussion.ascx.cs|DesktopModules_Discussion_ascx_cs.htm
+Business Component:DiscussionDB.cs|Components_DiscussionDB_cs.htm
+Stored Procedures: AddMessage|AddMessage.htm,GetNextMessageId|GetNextMessageId.htm,GetPrevMessageId|GetPrevMessageId.htm,GetSingleMessage|GetSingleMessage.htm,GetThreadMessages|GetThreadMessages.htm,GetTopLevelMessages|GetTopLevelMessages.htm
+Edit Page:DiscussDetails.aspx|DesktopModules_DiscussDetails_aspx.htm, DiscussDetails.aspx.cs|DesktopModules_DiscussDetails_aspx_cs.htm

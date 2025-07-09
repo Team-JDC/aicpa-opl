@@ -1,0 +1,7 @@
+/* Change the width of the entire slider (without dynamic arrows) */
+	.coda-slider, .coda-slider .panel {width:100%;   }  
+	
+	/* Change margin and width of the slider (with dynamic arrows) */
+	.coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {width:1500px;  }
+	.coda-slider-wrapper.arrows .coda-slider { margin: 0 }
+

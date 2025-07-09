@@ -1,0 +1,110 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> DesktopDefault : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.HtmlControls.HtmlTableCell LeftPane;
+<font color= "blue">        protected </font>System.Web.UI.HtmlControls.HtmlTableCell ContentPane;
+<font color= "blue">        protected </font>System.Web.UI.HtmlControls.HtmlTableCell RightPane;
+<font color= "blue">    </font>
+<font color= "blue">        public </font>DesktopDefault() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue"></font>
+<font color= "green">            //*********************************************************************</font>
+<font color= "green">            //</font>
+<font color= "green">            // Page_Init Event Handler</font>
+<font color= "green">            //</font>
+<font color= "green">            // The Page_Init event handler executes at the very beginning of each page</font>
+<font color= "green">            // request (immediately before Page_Load).</font>
+<font color= "green">            //</font>
+<font color= "green">            // The Page_Init event handler below determines the tab index of the currently</font>
+<font color= "green">            // requested portal view, and then calls the PopulatePortalSection utility</font>
+<font color= "green">            // method to dynamically populate the left, center and right hand sections</font>
+<font color= "green">            // of the portal tab.</font>
+<font color= "green">            //</font>
+<font color= "green">            //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) HttpContext.Current.Items["PortalSettings"];
+<font color= "blue">        </font>
+<font color= "green">            // Ensure that the visiting user has access to the current page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles(portalSettings.ActiveTab.AuthorizedRoles) == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/AccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Dynamically inject a signin login module into the top left-hand corner</font>
+<font color= "green">            // of the home page if the client is not yet authenticated</font>
+<font color= "blue"></font><font color= "blue">            if </font>((Request.IsAuthenticated == false) && (portalSettings.ActiveTab.TabIndex == 0)) {<font color= "blue"></font>
+<font color= "blue">                </font>LeftPane.Controls.Add(Page.LoadControl("~/DesktopModules/SignIn.ascx"));
+<font color= "blue">                </font>LeftPane.Visible = true;             
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Dynamically Populate the Left, Center and Right pane sections of the portal page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(portalSettings.ActiveTab.Modules.Count > 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // Loop through each entry in the configuration system for this tab</font>
+<font color= "blue">                </font>foreach (ModuleSettings _moduleSettings in portalSettings.ActiveTab.Modules) {
+<font color= "blue">                </font>
+<font color= "blue">                    </font>Control parent = Page.FindControl(_moduleSettings.PaneName);
+<font color= "blue"></font>
+<font color= "green">                    // If no caching is specified, create the user control instance and dynamically</font>
+<font color= "green">                    // inject it into the page.  Otherwise, create a cached module instance that</font>
+<font color= "green">                    // may or may not optionally inject the module into the tree</font>
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                    if </font>((_moduleSettings.CacheTime) == 0) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                        </font>PortalModuleControl portalModule = (PortalModuleControl) Page.LoadControl(_moduleSettings.DesktopSrc);
+<font color= "blue">                   </font>
+<font color= "blue">                        </font>portalModule.PortalId = portalSettings.PortalId;                                  
+<font color= "blue">                        </font>portalModule.ModuleConfiguration = _moduleSettings;
+<font color= "blue">                   </font>
+<font color= "blue">                        </font>parent.Controls.Add(portalModule);
+<font color= "blue">                    </font>}
+<font color= "blue"></font><font color= "blue">                    else </font>{<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                        </font>CachedPortalModuleControl portalModule = new CachedPortalModuleControl();
+<font color= "blue">                   </font>
+<font color= "blue">                        </font>portalModule.PortalId = portalSettings.PortalId;                                 
+<font color= "blue">                        </font>portalModule.ModuleConfiguration = _moduleSettings;
+<font color= "blue"> </font>
+<font color= "blue">                        </font>parent.Controls.Add(portalModule);
+<font color= "blue">                    </font>}
+<font color= "blue"></font>
+<font color= "green">                    // Dynamically inject separator break between portal modules</font>
+<font color= "blue">                    </font>parent.Controls.Add(new LiteralControl("<" + "br" + ">"));
+<font color= "blue">                    </font>parent.Visible = true;
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue"></font>
+<font color= "blue">    </font>}    
+<font color= "blue"></font>}
+<font color= "blue"></font>
+</pre>

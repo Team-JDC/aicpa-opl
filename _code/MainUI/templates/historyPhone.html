@@ -1,0 +1,8 @@
+﻿{#template MAIN}
+    <a href="#"><span>History <i class="fa fa-angle-down"></i></span></a>
+    <ul class="submenu">
+        {#foreach $T.d.RecentDocs as Doc}
+               <li><a href="/content/link/{$T.Doc.TargetDoc}/{$T.Doc.TargetPtr}"><span>{$T.Doc.Title}<img src="/elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+        {#/for}
+    </ul>
+{#/template MAIN}

@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="wsAuthentication.asmx.cs" Class="D_AuthWS.Service1" %>

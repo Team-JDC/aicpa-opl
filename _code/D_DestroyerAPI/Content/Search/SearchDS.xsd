@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="SearchDS" targetNamespace="http://tempuri.org/SearchDS.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/SearchDS.xsd" xmlns:mstns="http://tempuri.org/SearchDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="SearchDs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Search">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SearchId" msdata:AutoIncrement="true" type="xs:int" />
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" />
+              <xs:element name="Name" type="xs:string" />
+              <xs:element name="SearchCriteria" type="xs:string" />
+              <xs:element name="LastModifiedDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DocumentKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Search" />
+      <xs:field xpath="mstns:SearchId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,97 @@
+.MenuGroup
+{
+    cursor: pointer;
+    cursor: hand;
+}
+.MainItem 
+{
+    padding-top:2px;
+    height:32px;
+    cursor: pointer;
+    cursor: hand;
+    font-size: 11px;
+    font-family: Arial, Verdana;
+    color: #333333;
+    width: 116px;
+    text-align:center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.MainItemOver
+{
+    height:32px;
+    cursor: pointer;
+    cursor: hand;
+    font-size: 11px;
+    font-family: Arial, Verdana;
+    color: #333333;
+    width: 97px;
+    margin-right:19px;
+    text-align:center;
+    border-top: 1px solid #6BC020;
+    border-left:1px solid #C5C5C5;
+    border-right:2px solid #A1A1A1;
+    background-image:url(Images/menuBg.gif);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.MenuItem
+{
+    width: 149px;
+    background-image:url(Images/menuBg.gif);
+    font-family: Arial, Verdana;
+    font-size:11px;
+    color:#333333;
+    cursor: pointer;
+    cursor: hand;
+    padding: 6px 0px 6px 7px;
+    border-left: 1px solid #C5C5C5;
+    border-right: 2px solid #C5C5C5;
+    text-align: left;
+}
+.MenuItemOver
+{
+    width: 149px;
+    background-image:url(Images/menuBg.gif);
+    font-family: Arial, Verdana;
+    font-size:11px;
+    color:#000000;
+    cursor: pointer;
+    cursor: hand;
+    padding: 6px 0px 6px 7px;
+    border-left: 1px solid #6BC020;
+    border-right: 2px solid #C5C5C5;
+    text-align: left;
+}
+.MainSeparator
+{
+    cursor: pointer;
+    cursor: hand;
+    padding-top:0px;
+    margin: 0px 4px 0px 4px;
+}
+
+.MenuSeparator
+{
+    border-right: 2px solid #C5C5C5;
+    margin: 0px;
+    line-height: 0px;
+    height: 2px;
+    background-image:url(Images/menuBg.gif);
+    border-left: 1px solid #C5C5C5;
+}
+
+.MenuItemClicked
+{
+    width: 149px;
+    background-image:url(Images/menuBg.gif);
+    font-family: Arial, Verdana;
+    font-size:11px;
+    color:#000000;
+    cursor: pointer;
+    cursor: hand;
+    padding: 6px 0px 6px 7px;
+    border-left: 1px solid #6BC020;
+    border-right: 2px solid #C5C5C5;
+    text-align: left;
+}

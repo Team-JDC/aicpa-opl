@@ -1,0 +1,36 @@
+﻿<div id="newDocLanding" class="titlepage-bg" style="padding:0 0 0 30px">
+
+    <h1>Start a new document using:</h1>
+
+    <div class="new-doc-container">
+        <div class="new-doc-icon current-doc" id="div-openCurrentAsNew">
+            <a href="#" onclick="openCurrentAsNewDocument();">
+                <p>Current Document</p>
+            </a>
+        </div>
+        <div class="new-doc-icon new-search">
+            <a href="#" onclick="loadBlankSearch();">
+                <p>New Search</p>
+            </a>
+        </div>
+        <div class="new-doc-icon quick-find">
+            <a href="#" onclick="loadQuickFind();">
+                <p>Quick Find</p>
+            </a>
+        </div>
+        <div class="new-doc-icon homepage">
+            <a href="#" onclick="loadHomePage();">
+                <p>Homepage</p>
+            </a>
+        </div>
+    </div>
+
+<script language="javascript" type="text/javascript">
+    $("#div-openCurrentAsNew").ready(function () {
+        if (!hasActiveDocument()) {
+            $("#div-openCurrentAsNew").hide();
+        }
+    });
+</script>
+
+</div>

@@ -1,0 +1,19 @@
+﻿{#template MAIN}
+<div id="leftcol" class="col-sm-9">
+    <div class="leftcol_inner">
+        <div class="leftcol_header">
+            <h1>{$T.d.Title}</h1>
+        </div>
+        <div class="leftcol_content">
+            <h2>Overview of this Collection</h2>
+            <p>{$T.d.Description}</p>
+            <h2>Books in this Collection</h2>
+            <ul class="toc">
+            {#foreach $T.d.Children as BreadcrumbNode}
+                <li><a href="/content/{$T.BreadcrumbNode.SiteNode.Type}/{$T.BreadcrumbNode.SiteNode.Id}">&raquo; {$T.BreadcrumbNode.SiteNode.Title}</a></li>
+            {#/for}
+            </ul>            
+        </div><!-- .leftcol_content -->
+    </div><!-- .leftcol_inner -->
+</div>
+{#/template MAIN}

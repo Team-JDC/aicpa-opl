@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<homePage>
+  <primarySection displayName="Accountant's Business Manual" imageUrl="images/homenav_toolbar_ABMOnline.gif" siteFolderName="Accountant's Business Manual" description="A concise, nontechnical reference designed to keep you knowledgeable on the wide array of constantly changing business, legal, tax, and financial issues that affect your clients.">
+    <book displayName="What's New" targetDoc="whatsnew_abm"/>
+    <book displayName="Accountant's Business Manual" targetDoc="abm"/>
+    <book displayName="Accountant's Business Manual Toolkit" targetDoc="abm-tk"/>
+  </primarySection>
+
+
+  <primarySection displayName="AICPA Audit &amp; Accounting Literature" imageUrl="images/homenav_toolbar_AICPA_Literature.gif" siteFolderName="AICPA Audit &amp; Accounting Literature" description="Your source for AICPA and PCAOB standards, guidance,  and practical tools to help you meet the challenges of today's increasingly complex financial and regulatory environment.">
+    <book displayName="What's New" tool="whatsNew"/>
+
+
+
+    <collection displayName="Alerts">
+      <book displayName="What's New" targetDoc="whatsnew_ara"/>
+      <book displayName="Communicating Internal Control—Understanding SAS 115" targetDoc="ara-icm"/>
+      <book displayName="Developments in Review, Compilation, and Financial Statement Preparation Engagements" targetDoc="ara-cra"/>
+      <book displayName="Employee Benefit Plans Industry Developments" targetDoc="ara-ebp"/>
+      <book displayName="Financial Institutions Industry Developments" targetDoc="ara-dep"/>
+      <book displayName="General Accounting and Auditing Developments " targetDoc="ara-gen"/>
+      <book displayName="Government Auditing Standards and Circular A-133 Developments" targetDoc="ara-sga"/>
+      <book displayName="Health Care Industry Developments" targetDoc="ara-hco"/>
+      <book displayName="Independence and Ethics Developments" targetDoc="ara-iet"/>
+      <book displayName="Insurance Industry Developments" targetDoc="ara-ins"/>
+      <book displayName="Investment Companies Industry Developments" targetDoc="ara-inv"/>
+      <book displayName="Not-for-Profit Industry Developments" targetDoc="ara-npo"/>
+      <book displayName="Real Estate and Construction Industry Developments" targetDoc="ara-con"/>
+      <book displayName="Service Organization Control Reports®: Considerations for User and Service Auditors" targetDoc="ara-sco"/>
+      <book displayName="State and Local Governmental Developments" targetDoc="ara-slg"/>
+      <book displayName="Understanding Responsibilities for Group Financial Statements" targetDoc="ara-grp"/>
+      <book displayName="Understanding Revenue Recognition: Changes to U.S. GAAP—2014" targetDoc="ara-rev"/>
+      <book displayName="Understanding the Clarified Auditing Standards" targetDoc="ara-cla"/>
+      <book displayName="Understanding the Financial Reporting Framework for Small-and Medium-Sized Entities" targetDoc="ara-sme"/>
+      <book displayName="Understanding the Risk Assessment Standards" targetDoc="ara-ras"/>
+    </collection>
+    <book displayName="Assessing and Responding to Audit Risk: International Auditing Standards" targetDoc="ras-isa"/>
+
+
+    <collection displayName="Audit and Accounting Manual">
+      <book displayName="What's New" targetDoc="whatsnew_aam"/>
+      <book displayName="Audit and Accounting Manual" targetDoc="aam"/>
+    </collection>
+
+
+    <book displayName="Audit Risk Assessment Tool " targetDoc="aratool"/>
+
+    <collection displayName="Best Practices in Presentation and Disclosure">
+      <book displayName="2012 U.S. GAAP Financial Statements" targetDoc="att-2012"/>
+      <book displayName="Employee Benefit Plans—Best Practices in Presentation and Disclosure" targetDoc="att-ebp"/>
+      <book displayName="IFRS Accounting Trends and Techniques U.S. Edition" targetDoc="ifrs_att-2011"/>
+      <book displayName="IFRS Accounting Trends and Techniques Global Edition" targetDoc="ifrs_attge-2011"/>
+      <book displayName="IFRS Financial Statements—Best Practices in Presentation and Disclosure" targetDoc="ifrs_bppd-2012"/>
+      <book displayName="Not-for-Profit Entities — Best Practices in Presentation and Disclosure" targetDoc="att-npo"/>
+    </collection>
+
+    <collection displayName="Checklists and Illustrative Financial Statements" targetdoc="chk-intro">
+      <book displayName="What's New" targetDoc="whatsnew_chk"/>
+      <book displayName="Corporations" targetDoc="chk-corp"/>
+      <book displayName="Defined Benefit Pension Plans" targetDoc="chk-dbp"/>
+      <book displayName="Defined Contribution Retirement Plans" targetDoc="chk-dcp"/>
+      <book displayName="Depository and Lending Institutions" targetDoc="chk-dep"/>
+      <book displayName="Health and Welfare Benefit Plans" targetDoc="chk-hwp"/>
+      <book displayName="Health Care Entities" targetDoc="chk-hco"/>
+      <book displayName="Investment Companies" targetDoc="chk-inv"/>
+      <book displayName="Life and Health Insurance Entities" targetDoc="chk-lhi"/>
+      <book displayName="Not-for-Profit Entities" targetDoc="chk-npo"/>
+      <book displayName="Property and Liability Insurance Entities" targetDoc="chk-pli"/>
+      <book displayName="Real Estate Ventures and Construction Contractors" targetDoc="chk-con"/>
+      <book displayName="State and Local Governments" targetDoc="chk-slg"/>
+    </collection>
+    <book displayName="Enterprise Risk Management: Guidance for Practical Implementation and Assessment" targetDoc="non-erm"/>
+
+    <book displayName="FRF for SMEs™ Accounting Framework With Implementation Resources" targetDoc="frf-sme"/>
+    <collection displayName="Guides">
+      <book displayName="What's New" targetDoc="whatsnew_aag"/>
+      <book displayName="Airlines" targetDoc="aag-air"/>
+      <book displayName="Analytical Procedures" targetDoc="aag-anp"/>
+      <book displayName="Assessing and Responding to Audit Risk in a Financial Statement Audit " targetDoc="aag-arr"/>
+      <book displayName="Assets Acquired to Be Used in Research and Development Activities" targetDoc="aag-rda"/>
+      <book displayName="Audit Sampling" targetDoc="aag-sam"/>
+      <book displayName="Auditing Revenue in Certain Industries" targetDoc="aag-rev"/>
+      <book displayName="Brokers and Dealers in Securities" targetDoc="aag-brd"/>
+      <book displayName="Compilation and Review Engagements" targetDoc="aag-crv"/>
+      <book displayName="Construction Contractors" targetDoc="aag-con"/>
+      <book displayName="Depository and Lending Institutions" targetDoc="aag-dep"/>
+      <book displayName="Derivative Instruments" targetDoc="aag-drv"/>
+      <book displayName="Employee Benefit Plans" targetDoc="aag-ebp"/>
+      <book displayName="Entities With Oil and Gas Producing Activities" targetDoc="aag-ogp"/>
+      <book displayName="Gaming" targetDoc="aag-cas"/>
+      <book displayName="Government Auditing Standards and Circular A-133 Audits" targetDoc="aag-gas"/>
+      <book displayName="Health Care Entities" targetDoc="aag-hco"/>
+      <book displayName="Investment Companies" targetDoc="aag-inv"/>
+      <book displayName="Life and Health Insurance Entities" targetDoc="aag-lhi"/>
+      <book displayName="Not-for-Profit Entities" targetDoc="aag-npo"/>
+      <book displayName="Property and Liability Insurance Entities" targetDoc="aag-pli"/>
+      <book displayName="Prospective Financial Information" targetDoc="aag-pro"/>
+      <book displayName="Reporting on Controls at a Service Organization (SOC 2)" targetDoc="aag-sop"/>
+      <book displayName="Service Organizations: Reporting on Controls at a Service Organization Relevant to User Entities’ Internal Control Over Financial Reporting" targetDoc="aag-aso"/>
+      <book displayName="Special Considerations in Auditing Financial Instruments" targetDoc="aag-afi"/>
+      <book displayName="State and Local Governments" targetDoc="aag-slv"/>
+      <book displayName="Testing Goodwill for Impairment" targetDoc="aag-gdw"/>
+      <book displayName="Valuation of Privately-Held-Company Equity Securities Issued as Compensation" targetDoc="aag-stk"/>
+
+    </collection>
+    <collection displayName="Measurement Criteria">
+      <book displayName="Principles and Criteria for XBRL-Formatted Information" targetDoc="xbrl"/>
+      <book displayName="Trust Services Principles and Criteria" targetDoc="tsp"/>
+    </collection>
+
+    <book displayName="Inside IFRS: Accounting and Financial Reporting Fundamentals " targetDoc="ifrs-afr"/>
+    <book displayName="Internal Control for Today’s Smart Business " targetDoc="coso-int"/>
+    <book displayName="AICPA Peer Review Program Manual" targetDoc="prp"/>
+
+    <collection displayName="PCAOB Standards and Related Rules">
+      <book displayName="What's New" targetDoc="whatsnew_pcaob"/>
+      <book displayName="PCAOB Standards and Related Rules" targetDoc="ps-pcaob"/>
+    </collection>
+
+    <collection displayName="Practice Aids and Tools">
+      <book displayName="What's New" targetDoc="whatsnew_pra"/>
+      <book displayName="Accounting and Financial Reporting Guidelines For Cash-and Tax-Basis Financial Statements " targetDoc="pra-ctb"/>
+      <book displayName="Applying OCBOA in State and Local Governmental Financial Statements " targetDoc="pra-ocb"/>
+      <book displayName="Audits of Futures Commission Merchants" targetDoc="pra-fcm"/>
+      <book displayName="Establishing and Maintaining a System of Quality Control for a CPA Firm's Accounting and Auditing Practice " targetDoc="pra-sqcs"/>
+      <book displayName="Independence Compliance: AICPA and GAO Requirements" targetDoc="pra-gao"/>
+      <book displayName="Independence Compliance: AICPA, SEC, and PCAOB Requirements" targetDoc="pra-sec"/>
+      <book displayName="Related-Party Considerations: A Case Study Approach" targetDoc="pra-rps"/>
+      <book displayName="SSARS No. 19 Toolkit " targetDoc="crv-tk"/>
+      <book displayName="The Auditor’s Report: Comprehensive Guidance and Examples " targetDoc="tool-arm"/>
+      <book displayName="The Engagement Letter: Best Practices and Examples" targetDoc="tool-egl"/>
+      <book displayName="Using a SOC 1&#8480; Report in a Financial Statement Audit " targetDoc="pra-ssae"/>
+      <book displayName="Using a SOC 1&#8480; Report in Audits of Employee Benefit Plans" targetDoc="pra-aso"/>
+    </collection>
+
+    <collection displayName="Professional Standards">
+      <book displayName="What's New" targetDoc="whatsnew_ps"/>
+      <book displayName="Professional Standards" targetDoc="ps"/>
+      <book displayName="Statements on Standards for Accounting and Review Services" targetDoc="ps_ssars"/>
+    </collection>
+    <book displayName="Archive—Statements of Position and Practice Bulletins" targetDoc="tpa-archive"/>
+    <collection displayName="Technical Questions and Answers">
+      <book displayName="What's New" targetDoc="whatsnew_tpa"/>
+      <book displayName="Technical Questions and Answers" targetDoc="tpa"/>
+    </collection>
+
+    <book displayName="Risk Assessment Standards: SAS No. 104 -- No. 111 " targetDoc="ras"/>
+    <book displayName="U.S. GAAP Financial Statements-Best Practices in Presentation and Disclosure" targetDoc="USGAAP"/>
+    <book displayName="U.S. GAAP Financial Statements—Best Practices in Presentation and Disclosure" targetDoc="att-2014"/>
+
+  </primarySection>
+
+  <primarySection displayName="FASB Accounting Standards Codification" imageUrl="images/homenav_toolbar_Fasb_Accounting_Standards_Codification.gif" siteFolderName="FASB Accounting Standards Codification" description="Access to all authoritative U.S. generally accepted accounting principles (GAAP) through a topically organized structure.">
+    <book displayName="What's New" targetDoc="whatsnew_fasb_asc"/>
+    <book displayName="Cross Reference" tool="fasb_cross_ref"/>
+    <book displayName="Go To" tool="fasb_goto_code"/>
+    <book displayName="Notice to Constituents" targetDoc="faf-noticeToConstituents"/>
+    <book displayName="General Principles" targetDoc="faf-generalPrinciples"/>
+    <book displayName="Presentation" targetDoc="faf-presentation"/>
+    <book displayName="Assets" targetDoc="faf-assets"/>
+    <book displayName="Liabilities" targetDoc="faf-liabilities"/>
+    <book displayName="Equity" targetDoc="faf-equity"/>
+    <book displayName="Revenue" targetDoc="faf-revenue"/>
+    <book displayName="Expenses" targetDoc="faf-expenses"/>
+    <book displayName="Broad Transactions" targetDoc="faf-broadTransactions"/>
+    <book displayName="Industry" targetDoc="faf-industry"/>
+    <book displayName="Master Glossary" targetDoc="faf-masterGlossary"/>
+    <book displayName="Exposure Drafts" targetDoc="faf-exposureDrafts"/>
+    <book displayName="Accounting Standards Updates" targetDoc="faf-codificationUpdates"/>
+    <book displayName="Other Exposure Documents" targetDoc="faf-otherExposureDocuments"/>
+    <book displayName="Maintenance Updates" targetDoc="faf-maintenanceUpdates"/>
+  </primarySection>
+
+  <primarySection displayName="Forensic &amp; Valuation Services Library" imageUrl="images/homenav_toolbar_FVS.gif" siteFolderName="Forensic and Valuation Services Library" description="The top destination for technical &amp; practice management guidance, tools, and resources for the forensic accountant and business valuation specialist.">
+    <book displayName="What's New" targetDoc="whatsnew_fvs"/>
+    <book displayName="A CPA’s Guide to Family Law Services" targetDoc="fvs-fls"/>
+    <book displayName="Assets Acquired to Be Used in Research and Development Activities" targetDoc="fvs-rda"/>
+    <book displayName="Business Valuations for Estate and Gift Tax Purposes" targetDoc="fvs-est"/>
+    <book displayName="Business Valuation Practice Management Toolkit" targetDoc="fvs-bvt"/>
+    <book displayName="Calculating Intellectual Property Infringement Damages" targetDoc="fvs-ipd"/>
+    <book displayName="Discount Rates, Risk, and Uncertainty in Economic Damages" targetDoc="fvs-edc"/>
+    <book displayName="Forensic Accounting—Fraud Investigations" targetDoc="fvs-frd"/>
+    <book displayName="Forensic &amp; Valuation Services: Engagement Letters" targetDoc="fvs-egl"/>
+    <book displayName="Forensic &amp; Valuation Services: Related Standards" targetDoc="fvs-ps"/>
+    <collection displayName="FVS Consulting Digest">
+      <book displayName="FVS Consulting Digest 2014" targetDoc="fvs-fcd2014"/>
+      <book displayName="FVS Consulting Digest 2015" targetDoc="fvs-fcd2015"/>
+    </collection>
+    <book displayName="Introduction to Civil Litigation" targetDoc="fvs-lit"/>
+    <book displayName="Measuring Damages Involving Individuals" targetDoc="fvs-mdi"/>
+    <book displayName="Mergers and Acquisitions Disputes" targetDoc="fvs-mad"/>
+    <book displayName="Serving as an Expert Witness or Consultant" targetDoc="fvs-sew"/>
+    <book displayName="Testing Goodwill for Impairment" targetDoc="fvs-gdw"/>
+    <book displayName="Valuation of Privately-Held-Company Equity Securities Issued as Compensation" targetDoc="fvs-stk"/>
+    <book displayName="VS Section 100 Toolkit" targetDoc="fvs-vstk"/>
+  </primarySection>
+
+  <primarySection displayName="GASB Library" imageUrl="images/homenav_toolbar_Gasb_Literature.gif" siteFolderName="GASB Library" description="A collection of authoritative literature and implementation guides issued by the Governmental Accounting Standards Board.">
+    <book displayName="What's New" targetDoc="whatsnew_gasb"/>
+    <book displayName="Codification of Governmental Accounting and Financial Reporting Standards" targetDoc="gasb-cod"/>
+    <book displayName="Original Pronouncements" targetDoc="gasb-op"/>
+    <book displayName="Implementation Guides" targetDoc="gasb-qa"/>
+    <book displayName="Topical Index" targetDoc="gasb-index"/>
+    <book displayName="Finding List of Original Pronouncements" targetDoc="gasb-find"/>
+    <book displayName="Effective Dates" targetDoc="gasb-effect"/>
+  </primarySection>
+
+  <primarySection displayName="Management of an Accounting Practice Handbook" imageUrl="images/homenav_toolbar_Emap.gif" siteFolderName="Management of an Accounting Practice Handbook" description="A collection of guidance and ready-to-use tools and exhibits that provide you with easy-to-implement solutions to solve your practice management dilemmas.">
+    <book displayName="What's New" targetDoc="whatsnew_emap"/>
+    <book displayName="Self Assessment Tool" targetDoc="emap-sa"/>
+    <book displayName="Part 1—Developing an Accounting Practice" targetDoc="emap-part1"/>
+    <book displayName="Part 2—Administration" targetDoc="emap-part2"/>
+    <book displayName="Part 3—Personnel" targetDoc="emap-part3"/>
+    <book displayName="Part 4—Owner Issues" targetDoc="emap-part4"/>
+    <book displayName="Part 5—Management Data" targetDoc="emap-part5"/>
+    <book displayName="List of Exhibits" targetDoc="emap-exh"/>
+    <book displayName="Acknowledgments" targetDoc="emap-ack"/>
+  </primarySection>
+
+  <primarySection displayName="Personal Financial Planning Services Library" imageUrl="images/homenav_toolbar_PFP.gif" siteFolderName="Personal Financial Planning Services Library" description="Access an extensive suite of technical and practice guides to assist you in advising your individual, family, and business owner clients in estate, retirement, tax, investment, and risk management planning.">
+    <book displayName="What's New" targetDoc="whatsnew_pfp"/>
+    <book displayName="A Guide to Financial Decisions: Implementing an End-of-Life Plan" targetDoc="pfp-gfd"/>
+    <book displayName="CPA’S Guide to Investment Advisory Business Models" targetDoc="pfp-iab"/>
+    <book displayName="Personal Financial Planning Services: Related Standards" targetDoc="pfp-ps"/>
+    <book displayName="Prudent Practices for Investment Advisors" targetDoc="pfp-pia"/>
+    <book displayName="Prudent Practices for Investment Stewards" targetDoc="pfp-pps"/>
+    <book displayName="Roadmap to Developing and Managing a CPA Personal Financial Planning Practice" targetDoc="pfp-rdm"/>
+    <book displayName="Statement on Standards in Personal Financial Planning Services Toolkit" targetDoc="pfp-toolkit"/>
+    <book displayName="The CPA's Guide to Developing and Managing a PFP Practice" targetDoc="pfp-dmp"/>
+    <book displayName="The CPA's Guide to Financial and Estate Planning Volume 1" targetDoc="pfp-fep1"/>
+    <book displayName="The CPA's Guide to Financial and Estate Planning Volume 2" targetDoc="pfp-fep2"/>
+    <book displayName="The CPA's Guide to Financial and Estate Planning Volume 3" targetDoc="pfp-fep3"/>
+    <book displayName="The CPA's Guide to Financial and Estate Planning Volume 4" targetDoc="pfp-fep4"/>
+    <book displayName="The CPA's Guide to Financing Retirement Healthcare" targetDoc="pip-umh"/>
+    <book displayName="The CPA’s Guide to Technology in a PFP Practice" targetDoc="pfp-cgt"/>
+    <book displayName="The CPA's Guide to Social Security Planning" targetDoc="pip-umr"/>
+  </primarySection>
+
+  <primarySection displayName="Archive Library" imageUrl="images/homenav_toolbar_Archive_Library.gif" siteFolderName="Archive Library" description="AICPA and FASB guidance superseded by the issuance of the FASB Accounting Standards Codification.">
+    <book displayName="Technical Practice Aids	" targetDoc="arch_tpa"/>
+
+    <collection displayName="Audit and Accounting Guides">
+      <book displayName="Agricultural Producers and Cooperatives" targetDoc="arch_aag-apc"/>
+      <book displayName="Airlines" targetDoc="arch_aag-air"/>
+      <book displayName="Brokers and Dealers in Securities" targetDoc="arch_aag-brd"/>
+      <book displayName="Casinos" targetDoc="arch_aag-cas"/>
+      <book displayName="Common Interest Realty Associations" targetDoc="arch_aag-cir"/>
+      <book displayName="Construction Contractors" targetDoc="arch_aag-con"/>
+      <book displayName="Depository and Lending Institutions" targetDoc="arch_aag-dep"/>
+      <book displayName="Employee Benefit Plans" targetDoc="arch_aag-ebp"/>
+      <book displayName="Entities With Oil and Gas Producing Activities" targetDoc="arch_aag-ogp"/>
+      <book displayName="Federal Government Contractors" targetDoc="arch_aag-fgc"/>
+      <book displayName="Health Care Organizations" targetDoc="arch_aag-hco"/>
+      <book displayName="Investment Companies" targetDoc="arch_aag-inv"/>
+      <book displayName="Life and Health Insurance Companies" targetDoc="arch_aag-lhi"/>
+      <book displayName="Not-for-Profit Organizations" targetDoc="arch_aag-npo"/>
+      <book displayName="Property and Liability Insurance Companies" targetDoc="arch_aag-pli"/>
+    </collection>
+
+    <collection displayName="Pre-Codification FASB Literature">
+      <book displayName="Original Pronouncements" targetDoc="fasb-op"/>
+      <book displayName="Original Pronouncements, as Amended" targetDoc="fasb-amended-op"/>
+      <book displayName="Current Text" targetDoc="fasb-ct"/>
+      <book displayName="EITF Abstracts" targetDoc="fasb-eitf"/>
+      <book displayName="Accounting for Derivative Instruments and Hedging Activities" targetDoc="fasb-deriv"/>
+      <book displayName="Topical Index" targetDoc="fasb-index"/>
+    </collection>
+  </primarySection>
+</homePage>

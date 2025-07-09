@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema id="SubscriptionDs" targetNamespace="http://tempuri.org/SubscriptionDs.xsd" elementFormDefault="qualified" xmlns="http://tempuri.org/SubscriptionDs.xsd" xmlns:mstns="http://tempuri.org/SubscriptionDs.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="SubscriptionDs">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Subscription">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubscriptionCode" type="xs:string" />
+              <xs:element name="Title" type="xs:string" />
+              <xs:element name="Description" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SubscriptionBook">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubscriptionCode" type="xs:string" />
+              <xs:element name="BookName" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="SubscriptionDsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Subscription" />
+      <xs:field xpath="mstns:SubscriptionCode" />
+    </xs:unique>
+    <xs:keyref name="SubscriptionSubscriptionBook" refer="SubscriptionDsKey1">
+      <xs:selector xpath=".//mstns:SubscriptionBook" />
+      <xs:field xpath="mstns:SubscriptionCode" />
+    </xs:keyref>
+    <xs:key name="SubscriptionDsKey2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SubscriptionBook" />
+      <xs:field xpath="mstns:SubscriptionCode" />
+      <xs:field xpath="mstns:BookName" />
+    </xs:key>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<PanelItems>
+	<PanelItem ID="Panel1" Text="www.CPA2Biz.com" Expanded="True">
+		<PanelItem ID="{bc8fbd90-b2fc-4724-92d5-e4ec69089249}" Text="Knuser10" ToolTip="Knuser10" Value="C2B" ImageCollapsed="woman4S.gif"/>
+		<PanelItem ID="{eac4f83d-b4b0-4357-a498-54c7df66feda}" Text="Destroyer3" ToolTip="Destroyer3" Value="C2B" ImageCollapsed="woman1S.gif"/>
+		<PanelItem ID="{897adce8-d7b2-48c0-ae65-24c5f420e8b4}" Text="DestroyerWD" ToolTip="Destroyer110" Value="C2B" ImageCollapsed="woman1S.gif"/>
+		
+	</PanelItem>
+	<PanelItem ID="Panel2" Text="CSC">
+		<PanelItem ID="7A68FF93-D61E-4572-B9EC-000000767382" Text="Employee Benefit Plan Audit Quality Center" ToolTip="Employee Benefit Plan Audit Quality Center" Value="CSC" Target="aag-ebp;ara-ebp" ImageCollapsed="ball_glass_redS.gif"/>
+		<PanelItem ID="47DED6DE-37FF-40B2-8DC1-0000166CD14C" Text="Governmental Audit Quality Center" ToolTip="Governmental Audit Quality Center" Value="CSC" Target="aag-slv;ara-slg" ImageCollapsed="ball_glass_yellowS.gif"/>
+		<PanelItem ID="32C4AA95-AFD8-4BAF-9632-0000BEE6EB76" Text="PCPS Firm Practice Management" ToolTip="PCPS Firm Practice Management" Value="CSC" Target="emap" ImageCollapsed="ball_glass_blueS.gif"/>
+		<PanelItem ID="62403128-1F2B-4DF7-A4A5-00004C7E1805" Text="Center for Public Company Audit Firms" ToolTip="Center for Public Company Audit Firms" Target="ps" Value="CSC" ImageCollapsed="ball_glass_greenS.gif"/>
+	</PanelItem>
+	<PanelItem ID="Panel3" Text="Exam Candidates">
+		<PanelItem ID="39ECD278-B77A-4A18-BB03-00005CB8DC89" Text="Exam Candidate" ToolTip="Exam Candidate" ImageCollapsed="exam.gif" Target="ps" Value="CSC" />
+		
+	</PanelItem>
+</PanelItems>
+
+
+

@@ -1,0 +1,20 @@
+﻿{#template MAIN}
+<div style="padding:25px 50px;">
+    <h2 class="borderbot">{$T.d.SelectedTitle}</h2>
+    <table cellpadding="4" cellspacing="0" width="100%">
+        <tr><th></th></tr>
+        {#foreach $T.d.QuickFindResultList as QuickFindResult}
+        <tr><td width="10%">
+        {#if $T.QuickFindResult.TargetDocument == ""}
+            {$T.QuickFindResult.Document}
+        {#else}
+            <a href="#" onclick="doLink('{$T.QuickFindResult.TargetDocument}', '{$T.QuickFindResult.TargetPointer}', true);">{$T.QuickFindResult.Document}</a>
+        {#/if}
+        </td></tr>
+        {#/for}
+        {#if $T.d.QuickFindResultList.length == 0}
+        <div id="quickFindResultsSubscriptionMessage" class="qfSubscriptionMsg"><img src="images/portal/main-lock_small.gif" alt="Locked Content" title="You do not have access to this content with your subscription." style="margin-right:5px;" />There are no Quick Find links accessible within your subscription for the selected taxonomy.</div>
+        {#/if}
+    </table>
+</div>
+{#/template MAIN}

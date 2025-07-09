@@ -1,0 +1,247 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Configuration;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue">using</font> AICPA.Destroyer.UI.Portal;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "green">    //</font>
+<font color= "green">    // LinkDB Class</font>
+<font color= "green">    //</font>
+<font color= "green">    // Class that encapsulates all data logic necessary to add/query/delete</font>
+<font color= "green">    // links within the Portal database.</font>
+<font color= "green">    //</font>
+<font color= "green">    //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">    public class</font> LinkDB {
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetLinks Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetLinks method returns a SqlDataReader containing all of the</font>
+<font color= "green">        // links for a specific portal module from the announcements</font>
+<font color= "green">        // database.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetLinks.htm" style="color:green">GetLinks Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetLinks(int moduleId) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetLinks", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterModuleId = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleId.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleId);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // GetSingleLink Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetSingleLink method returns a SqlDataReader containing details</font>
+<font color= "green">        // about a specific link from the Links database table.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="GetSingleLink.htm" style="color:green">GetSingleLink Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>SqlDataReader GetSingleLink(int itemId) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_GetSingleLink", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemId = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemId.Value = itemId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemId);
+<font color= "blue"></font>
+<font color= "green">            // Execute the command</font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>SqlDataReader result = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+<font color= "blue">            </font>
+<font color= "green">            // Return the datareader </font>
+<font color= "blue">            return</font> result;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // DeleteLink Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteLink method deletes a specified link from</font>
+<font color= "green">        // the Links database table.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="DeleteLink.htm" style="color:green">DeleteLink Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> DeleteLink(int itemID) {
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_DeleteLink", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemID.Value = itemID;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemID);
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // AddLink Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddLink method adds a new link within the</font>
+<font color= "green">        // links database table, and returns ItemID value as a result.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="AddLink.htm" style="color:green">AddLink Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public </font>int AddLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl, int viewOrder, String description) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(userName.Length < 1) {<font color= "blue"></font>
+<font color= "blue">                </font>userName = "unknown";
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_AddLink", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemID.Direction = ParameterDirection.Output;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterModuleID = new SqlParameter("@ModuleID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterModuleID.Value = moduleId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterModuleID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterUserName.Value = userName;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUserName);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterTitle.Value = title;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterTitle);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterDescription.Value = description;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterDescription);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterUrl.Value = url;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUrl);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterMobileUrl.Value = mobileUrl;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterMobileUrl);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterViewOrder.Value = viewOrder;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterViewOrder);
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue"></font>
+<font color= "blue">            return</font> (int)parameterItemID.Value;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // UpdateLink Method</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpdateLink method updates a specified link within</font>
+<font color= "green">        // the Links database table.</font>
+<font color= "green">        //</font>
+<font color= "green">        // Other relevant sources:</font>
+<font color= "green">        //     + <a href="UpdateLink.htm" style="color:green">UpdateLink Stored Procedure</a></font>
+<font color= "green">        //</font>
+<font color= "green">        //*********************************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        public void</font> UpdateLink(int moduleId, int itemId, String userName, String title, String url, String mobileUrl, int viewOrder, String description) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(userName.Length < 1) {<font color= "blue"></font>
+<font color= "blue">                </font>userName = "unknown";
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Create Instance of Connection and Command Object</font>
+<font color= "blue">            </font>SqlConnection myConnection = new SqlConnection(ConfigurationSettings.AppSettings["connectionString"]);
+<font color= "blue">            </font>SqlCommand myCommand = new SqlCommand("Portal_UpdateLink", myConnection);
+<font color= "blue"></font>
+<font color= "green">            // Mark the Command as a SPROC</font>
+<font color= "blue">            </font>myCommand.CommandType = CommandType.StoredProcedure;
+<font color= "blue"></font>
+<font color= "green">            // Add Parameters to SPROC</font>
+<font color= "blue">            </font>SqlParameter parameterItemID = new SqlParameter("@ItemID", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterItemID.Value = itemId;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterItemID);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUserName = new SqlParameter("@UserName", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterUserName.Value = userName;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUserName);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterTitle = new SqlParameter("@Title", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterTitle.Value = title;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterTitle);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterDescription = new SqlParameter("@Description", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterDescription.Value = description;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterDescription);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterUrl = new SqlParameter("@Url", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterUrl.Value = url;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterUrl);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterMobileUrl = new SqlParameter("@MobileUrl", SqlDbType.NVarChar, 100);
+<font color= "blue">            </font>parameterMobileUrl.Value = mobileUrl;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterMobileUrl);
+<font color= "blue"></font>
+<font color= "blue">            </font>SqlParameter parameterViewOrder = new SqlParameter("@ViewOrder", SqlDbType.Int, 4);
+<font color= "blue">            </font>parameterViewOrder.Value = viewOrder;
+<font color= "blue">            </font>myCommand.Parameters.Add(parameterViewOrder);
+<font color= "blue"></font>
+<font color= "blue">            </font>myConnection.Open();
+<font color= "blue">            </font>myCommand.ExecuteNonQuery();
+<font color= "blue">            </font>myConnection.Close();
+<font color= "blue">        </font>}
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+<font color= "blue"></font>
+</pre>

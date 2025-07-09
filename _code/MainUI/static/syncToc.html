@@ -1,0 +1,18 @@
+﻿<div style="padding:20px;">
+    <h1>Table of Contents</h1>
+
+    <ul id="mainToc">
+    </ul>
+</div>
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+    $("#mainToc").treeview({
+        url: "WS/Content.asmx/GetNodeToGrandChildren",
+        sync: true,
+        animated: "fast",
+        unique: true,
+        persist: "cookie"
+    });
+});
+</script>

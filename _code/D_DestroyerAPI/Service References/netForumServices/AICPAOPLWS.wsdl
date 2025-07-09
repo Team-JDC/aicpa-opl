@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.avectra.com/2005/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.avectra.com/2005/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AICPA netFORUM Web Service which returns any OPL subscriptions that the user may have.  Please refer to Avectra Xml Web Services release: http://www.avectra.com/2005/ -   For additional information or for questions concerning xWeb please navigate to netForum xWeb Online help at http://demo.avectra.com/xWebHelp/index.htm.  Please note: all xWeb message exchanges are recommended to occur over SSL.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.avectra.com/2005/">
+      <s:element name="AICPAGetOPLSubscriptions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptedCustomerKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AICPAGetOPLSubscriptionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AICPAGetOPLSubscriptionsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizationToken" type="tns:AuthorizationToken" />
+      <s:complexType name="AuthorizationToken">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AICPAGetOPLSubscriptionsSoapIn">
+    <wsdl:part name="parameters" element="tns:AICPAGetOPLSubscriptions" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsSoapOut">
+    <wsdl:part name="parameters" element="tns:AICPAGetOPLSubscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsAuthorizationToken">
+    <wsdl:part name="AuthorizationToken" element="tns:AuthorizationToken" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsHttpGetIn">
+    <wsdl:part name="EncryptedCustomerKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsHttpPostIn">
+    <wsdl:part name="EncryptedCustomerKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AICPAGetOPLSubscriptionsHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="AICPAOPLWSSoap">
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Decrypt Customer Key and get any OPL subscriptions the customer may have.</wsdl:documentation>
+      <wsdl:input message="tns:AICPAGetOPLSubscriptionsSoapIn" />
+      <wsdl:output message="tns:AICPAGetOPLSubscriptionsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AICPAOPLWSHttpGet">
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Decrypt Customer Key and get any OPL subscriptions the customer may have.</wsdl:documentation>
+      <wsdl:input message="tns:AICPAGetOPLSubscriptionsHttpGetIn" />
+      <wsdl:output message="tns:AICPAGetOPLSubscriptionsHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="AICPAOPLWSHttpPost">
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Decrypt Customer Key and get any OPL subscriptions the customer may have.</wsdl:documentation>
+      <wsdl:input message="tns:AICPAGetOPLSubscriptionsHttpPostIn" />
+      <wsdl:output message="tns:AICPAGetOPLSubscriptionsHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AICPAOPLWSSoap" type="tns:AICPAOPLWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <soap:operation soapAction="http://www.avectra.com/2005/AICPAGetOPLSubscriptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AICPAGetOPLSubscriptionsAuthorizationToken" part="AuthorizationToken" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:AICPAGetOPLSubscriptionsAuthorizationToken" part="AuthorizationToken" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AICPAOPLWSHttpGet" type="tns:AICPAOPLWSHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <http:operation location="/AICPAGetOPLSubscriptions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AICPAOPLWSHttpPost" type="tns:AICPAOPLWSHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AICPAGetOPLSubscriptions">
+      <http:operation location="/AICPAGetOPLSubscriptions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AICPAOPLWS">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AICPA netFORUM Web Service which returns any OPL subscriptions that the user may have.  Please refer to Avectra Xml Web Services release: http://www.avectra.com/2005/ -   For additional information or for questions concerning xWeb please navigate to netForum xWeb Online help at http://demo.avectra.com/xWebHelp/index.htm.  Please note: all xWeb message exchanges are recommended to occur over SSL.</wsdl:documentation>
+    <wsdl:port name="AICPAOPLWSSoap" binding="tns:AICPAOPLWSSoap">
+      <soap:address location="https://internaltestams.aicpa.org/xWeb/secure/AICPAOPLWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AICPAOPLWSHttpGet" binding="tns:AICPAOPLWSHttpGet">
+      <http:address location="https://internaltestams.aicpa.org/xWeb/secure/AICPAOPLWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AICPAOPLWSHttpPost" binding="tns:AICPAOPLWSHttpPost">
+      <http:address location="https://internaltestams.aicpa.org/xWeb/secure/AICPAOPLWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

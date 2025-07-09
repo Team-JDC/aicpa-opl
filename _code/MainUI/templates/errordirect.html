@@ -1,0 +1,32 @@
+﻿<div class="tool-container">
+		<div class="float">
+            <img src="images/portal/icon_warning_24.gif"> 
+        </div>
+		<h3 class="float" style="width:85%; margin:0 0 0 10px; padding:1px 0 4px 0;">
+            There was an error processing your request.
+        </h3>
+        <div class="clear" style="height:15px;"></div>
+		<p style="color:#000; margin-left:35px;">
+            Please contact customer support.<br />
+            <br />
+            <p id="request" style="display:none">
+            Invalid request:  TargetDoc: <span id="etargetdoc" style="font-weight:bold"></span>. TargetPtr: <span id="etargetptr"  style="font-weight:bold"></span>
+            </p>
+            <br />
+		</p>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        try {
+            $("#etargetdoc").html(LMSTargetDoc());
+            $("#etargetptr").html(LMSTargetPtr());
+            if (isLMSLink())
+                $("#request").show();
+        }
+        catch (ex) {
+            // let the link stay hidden
+        }
+    });
+</script>
+
+</div>

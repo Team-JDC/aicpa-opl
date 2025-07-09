@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta name="GENERATOR" content="Microsoft Visual Studio .NET 7.1">
+		<meta name="ProgId" content="VisualStudio.HTML">
+		<meta name="Originator" content="Microsoft Visual Studio .NET 7.1">
+		<script>
+		
+			var oEditId = window.opener.document.getElementById("Id");
+			var oEditStr = eval("window.opener.document.getElementById('"+oEditId.value+"')");
+			
+			function getValues()
+			{
+				var editHeader = window.opener.document.getElementById("EditWho").value;
+				var oFileDiv = document.getElementById("fileDiv").style;
+				document.getElementById("headerStr").innerText = editHeader;
+				
+				if(editHeader == "Location"){
+					var oTxtDiv = document.getElementById("textDiv").style;
+										
+					oTxtDiv.position = "absolute";
+					oTxtDiv.visibility = "hidden";
+					oFileDiv.visibility = "visible";
+					document.getElementById("filePath").value = oEditStr.value;
+
+				}else{
+					oFileDiv.position = "absolute";
+					document.getElementById("descContainer").value = oEditStr.value;
+				}
+				return;
+			}
+			
+			function getNewDesc()
+			{
+				if(window.opener.document.getElementById("EditWho").value != "Location")
+					oEditStr.value = document.getElementById("descContainer").value;
+				else
+					oEditStr.value = document.getElementById("filePath").value;
+				window.close();
+				return;
+			}
+		</script>
+	</head>
+	<body onload="getValues();">
+		<form enctype="multipart/form-data">
+		<table align=center border=0 cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td colspan=2 align=center><b><span id="headerStr">Description</span> Editor</b></td>
+			</tr>
+			<tr>
+				<td colspan="2" align=center>
+					<div id="fileDiv" style="position:relative;visibility:hidden">
+						<input type="file" id="filePath" name="filePath" size="30" value="test"><br><br>
+					</div>
+					<div id="textDiv" style="position:relative;visibility:visible">
+						<textarea cols="35" rows="7" id='descContainer'>
+						</textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align=center>
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><input type="button" value='OK' OnClick='getNewDesc();' style='WIDTH:150px'></td>
+							<td><input type="button" value='Cancel' OnClick='window.close();' style='WIDTH:150px'></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>

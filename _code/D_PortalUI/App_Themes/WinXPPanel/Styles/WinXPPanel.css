@@ -1,0 +1,97 @@
+.panelbarHeaderCollapsed
+{
+    MARGIN-TOP: 20px;
+    PADDING-LEFT: 21px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    BACKGROUND-IMAGE: url(../Img/HeaderCollapsedBg.gif);
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    BACKGROUND-REPEAT: no-repeat;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 25px
+}
+.panelbarHeaderHover
+{
+    MARGIN-TOP: 20px;
+    PADDING-LEFT: 21px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    BACKGROUND-IMAGE: url(../Img/HeaderCollapsedBg.gif);
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #373737;
+    BACKGROUND-REPEAT: no-repeat;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 25px
+}
+.panelbarHeaderExpand
+{
+    MARGIN-TOP: 20px;
+    PADDING-LEFT: 21px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 11px;
+    BACKGROUND-IMAGE: url(../Img/expandBg.gif);
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #ffffff;
+    BACKGROUND-REPEAT: no-repeat;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 25px
+}
+.panelbarItem
+{
+    BORDER-RIGHT: 1px solid;
+    PADDING-LEFT: 21px;
+    FONT-SIZE: 11px;
+    BORDER-LEFT: 1px solid;
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #215dc6;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d7def8;
+    TEXT-DECORATION: none
+}
+.panelbarItemHover
+{
+    BORDER-RIGHT: 1px solid;
+    PADDING-LEFT: 21px;
+    FONT-SIZE: 11px;
+    BORDER-LEFT: 1px solid;
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #000000;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d7def8;
+    TEXT-DECORATION: none
+}
+
+.panelbarItemSelected
+{
+    BORDER: 1px solid #215dc6;
+    PADDING-LEFT: 21px;
+    FONT-SIZE: 11px;
+    BORDER-LEFT: 1px solid;
+    WIDTH: 189px;
+    CURSOR: pointer;
+    COLOR: #000000;
+    FONT-FAMILY: Arial,Verdana;
+    HEIGHT: 19px;
+    BACKGROUND-COLOR: #d7def8;
+    TEXT-DECORATION: none
+}
+
+.outerPanelbar
+{
+    BORDER-RIGHT: #2151b2 1px solid;
+    BORDER-TOP: #2151b2 1px solid;
+    PADDING-LEFT: 20px;
+    PADDING-BOTTOM: 20px;
+    BORDER-LEFT: #2151b2 1px solid;
+    WIDTH: 209px;
+    BORDER-BOTTOM: #2151b2 1px solid;
+    BACKGROUND-COLOR: #d7def8
+}

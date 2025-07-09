@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema elementFormDefault="qualified"
+    xmlns:destroyer="http://www.knowlysis.com/Destroyer/Makefile" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Makefile">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Book">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="BookFolder" type="BookFolderType" maxOccurs="unbounded"/>
+                                <xs:element name="Document" type="DocumentType" maxOccurs="unbounded"/>
+                            </xs:choice>
+                            <xs:element name="Resources" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Resource" minOccurs="1" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="Uri" type="xs:string" use="required"/>
+                                                <xs:attribute name="Name" type="xs:ID" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Name" type="xs:ID" use="required"/>
+                        <xs:attribute name="Title" type="xs:string" use="required"/>
+                        <xs:attribute name="Copyright" type="xs:string" use="required"/>
+                        <xs:attribute name="Description" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="DocumentType">
+        <xs:sequence>
+            <xs:sequence>
+                <xs:element name="DocumentFormat" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence/>
+                        <xs:attribute name="Uri" type="xs:string" use="required"/>
+                        <xs:attribute name="Content-Type" type="xs:string" use="required"/>
+                        <xs:attribute name="Primary" type="xs:boolean" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DocumentAnchor" type="DocumentAnchorType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Document" type="DocumentType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:ID" use="required"/>
+        <xs:attribute name="Title" type="xs:string" use="required"/>
+        <xs:attribute name="External" type="xs:string" use="optional"/>
+        <xs:attribute name="BookName" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="DocumentAnchorType">
+        <xs:sequence>
+            <xs:element name="DocumentAnchor" type="DocumentAnchorType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:ID" use="required"/>
+        <xs:attribute name="Title" type="xs:string" use="required"/>
+        <xs:attribute name="Hidden" type="xs:boolean" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="BookFolderType">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="BookFolder" type="BookFolderType"/>
+                <xs:element name="Document" type="DocumentType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:ID" use="required"/>
+        <xs:attribute name="Title" type="xs:string" use="required"/>
+        <xs:attribute name="Uri" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:schema>

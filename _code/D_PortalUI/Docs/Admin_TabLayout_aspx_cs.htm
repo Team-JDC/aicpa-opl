@@ -1,0 +1,509 @@
+<html><head><link rel=stylesheet href=style.css></head><body><div class=SourcePanel style='font-size:12'><pre style='background-color:white'>
+<font color= "blue">using</font> System;
+<font color= "blue">using</font> System.Collections;
+<font color= "blue">using</font> System.ComponentModel;
+<font color= "blue">using</font> System.Data;
+<font color= "blue">using</font> System.Drawing;
+<font color= "blue">using</font> System.Web;
+<font color= "blue">using</font> System.Web.SessionState;
+<font color= "blue">using</font> System.Web.UI;
+<font color= "blue">using</font> System.Web.UI.WebControls;
+<font color= "blue">using</font> System.Web.UI.HtmlControls;
+<font color= "blue">using</font> System.Data.SqlClient;
+<font color= "blue"></font>
+<font color= "blue">namespace</font> AICPA.Destroyer.UI.Portal {
+<font color= "blue"></font>
+<font color= "blue">    public class</font> TabLayout : System.Web.UI.Page {
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox tabName;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBoxList authRoles;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.CheckBox showMobile;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox mobileTabName;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.DropDownList moduleType;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.TextBox moduleTitle;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ListBox leftPane;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ListBox contentPane;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ListBox rightPane;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton applyBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.LinkButton AddModuleBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton LeftUpBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton LeftRightBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton LeftDownBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton LeftEditBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton LeftDeleteBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentUpBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentLeftBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentRightBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentDownBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentEditBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton ContentDeleteBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton RightUpBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton RightLeftBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton RightDownBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton RightEditBtn;
+<font color= "blue">        protected </font>System.Web.UI.WebControls.ImageButton RightDeleteBtn;
+<font color= "blue">    </font>
+<font color= "blue">        </font>int tabId = 0;
+<font color= "blue">        protected </font>ArrayList leftList;
+<font color= "blue">        protected </font>ArrayList contentList;
+<font color= "blue">        protected </font>ArrayList rightList;
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Page_Load server event handler on this page is used</font>
+<font color= "green">        // to populate a tab's layout settings on the page</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Load(object sender, System.EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Verify that the current user has access to access this page</font>
+<font color= "blue"></font><font color= "blue">            if </font>(PortalSecurity.IsInRoles("Admins") == false) {<font color= "blue"></font>
+<font color= "blue">                </font>Response.Redirect("~/Admin/EditAccessDenied.aspx");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Determine Tab to Edit</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Request.Params["tabid"] != null) {<font color= "blue"></font>
+<font color= "blue">                </font>tabId = Int32.Parse(Request.Params["tabid"]);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // If first visit to the page, update all entries</font>
+<font color= "blue"></font><font color= "blue">            if </font>(Page.IsPostBack == false) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>BindData();
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The AddModuleToPane_Click server event handler on this page is used</font>
+<font color= "green">        // to add a new portal module into the tab</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> AddModuleToPane_Click(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // All new modules go to the end of the contentpane</font>
+<font color= "blue">            </font>ModuleItem m = new ModuleItem();
+<font color= "blue">            </font>m.ModuleTitle = moduleTitle.Text;
+<font color= "blue">            </font>m.ModuleDefId = Int32.Parse(moduleType.SelectedItem.Value);
+<font color= "blue">            </font>m.ModuleOrder = 999;
+<font color= "blue">        </font>
+<font color= "green">            // save to database</font>
+<font color= "blue">            </font>Configuration config = new Configuration();
+<font color= "blue">            </font>m.ModuleId = config.AddModule(tabId, m.ModuleOrder, "ContentPane", m.ModuleTitle, m.ModuleDefId, 0, "Admins", false);
+<font color= "blue">        </font>
+<font color= "green">            // Obtain portalId from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // reload the portalSettings from the database</font>
+<font color= "blue">            </font>HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, tabId);
+<font color= "blue">        </font>
+<font color= "green">            // reorder the modules in the content pane</font>
+<font color= "blue">            </font>ArrayList modules = GetModules("ContentPane");
+<font color= "blue">            </font>OrderModules(modules);
+<font color= "blue">        </font>
+<font color= "green">            // resave the order</font>
+<font color= "blue">            </font>foreach (ModuleItem item in modules) {
+<font color= "blue">                </font>config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, "ContentPane");
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Redirect to the same page to pick up changes</font>
+<font color= "blue">            </font>Response.Redirect(Request.RawUrl);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The UpDown_Click server event handler on this page is</font>
+<font color= "green">        // used to move a portal module up or down on a tab's layout pane</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> UpDown_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>String cmd = ((ImageButton)sender).CommandName;
+<font color= "blue">            </font>String pane = ((ImageButton)sender).CommandArgument;
+<font color= "blue">            </font>ListBox _listbox = (ListBox) Page.FindControl(pane);
+<font color= "blue">               </font>
+<font color= "blue">            </font>ArrayList modules = GetModules(pane);
+<font color= "blue">        </font>
+<font color= "blue"></font><font color= "blue">            if </font>(_listbox.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>int delta;
+<font color= "blue">                </font>int selection = -1; 
+<font color= "blue">            </font>
+<font color= "green">                // Determine the delta to apply in the order number for the module</font>
+<font color= "green">                // within the list.  +3 moves down one item; -3 moves up one item</font>
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>(cmd == "down") {<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue">                    </font>delta = 3;
+<font color= "blue"></font><font color= "blue">                    if </font>(_listbox.SelectedIndex < _listbox.Items.Count-1)<font color= "blue"></font>
+<font color= "blue">                        </font>selection = _listbox.SelectedIndex + 1;
+<font color= "blue">                </font>}
+<font color= "blue"></font><font color= "blue">                else </font>{<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue">                    </font>delta = -3;
+<font color= "blue"></font><font color= "blue">                    if </font>(_listbox.SelectedIndex > 0)<font color= "blue"></font>
+<font color= "blue">                        </font>selection = _listbox.SelectedIndex - 1;
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                </font>ModuleItem m;
+<font color= "blue">                </font>m = (ModuleItem) modules[_listbox.SelectedIndex];
+<font color= "blue">                </font>m.ModuleOrder += delta; 
+<font color= "blue">            </font>
+<font color= "green">                // reorder the modules in the content pane</font>
+<font color= "blue">                </font>OrderModules(modules);
+<font color= "blue">        </font>
+<font color= "green">                // resave the order</font>
+<font color= "blue">                </font>Configuration config = new Configuration();
+<font color= "blue">                </font>foreach (ModuleItem item in modules) {
+<font color= "blue">                    </font>config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, pane);
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>
+<font color= "green">            // Redirect to the same page to pick up changes</font>
+<font color= "blue">            </font>Response.Redirect(Request.RawUrl);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The RightLeft_Click server event handler on this page is</font>
+<font color= "green">        // used to move a portal module between layout panes on</font>
+<font color= "green">        // the tab page</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> RightLeft_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>String sourcePane = ((ImageButton)sender).Attributes["sourcepane"];
+<font color= "blue">            </font>String targetPane = ((ImageButton)sender).Attributes["targetpane"];
+<font color= "blue">            </font>ListBox sourceBox = (ListBox) Page.FindControl(sourcePane);
+<font color= "blue">            </font>ListBox targetBox = (ListBox) Page.FindControl(targetPane);
+<font color= "blue">         </font>
+<font color= "blue"></font><font color= "blue">            if </font>(sourceBox.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">                // get source arraylist</font>
+<font color= "blue">                </font>ArrayList sourceList = GetModules(sourcePane);
+<font color= "blue">        </font>
+<font color= "green">                // get a reference to the module to move</font>
+<font color= "green">                // and assign a high order number to send it to the end of the target list</font>
+<font color= "blue">                </font>ModuleItem m = (ModuleItem) sourceList[sourceBox.SelectedIndex];
+<font color= "blue">            </font>
+<font color= "green">                // add it to the database</font>
+<font color= "blue">                </font>Configuration config = new Configuration();
+<font color= "blue">                </font>config.UpdateModuleOrder(m.ModuleId, 998, targetPane);
+<font color= "blue"></font>
+<font color= "green">                // delete it from the source list</font>
+<font color= "blue">                </font>sourceList.RemoveAt(sourceBox.SelectedIndex);
+<font color= "blue"></font>
+<font color= "green">                // Obtain portalId from Current Context</font>
+<font color= "blue">                </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">                // reload the portalSettings from the database</font>
+<font color= "blue">                </font>HttpContext.Current.Items["PortalSettings"] = new PortalSettings(portalSettings.PortalId, tabId);
+<font color= "blue">            </font>
+<font color= "green">                // reorder the modules in the source pane</font>
+<font color= "blue">                </font>sourceList = GetModules(sourcePane);
+<font color= "blue">                </font>OrderModules(sourceList);
+<font color= "blue">            </font>
+<font color= "green">                // resave the order</font>
+<font color= "blue">                </font>foreach (ModuleItem item in sourceList) {
+<font color= "blue">                    </font>config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, sourcePane);
+<font color= "blue">                </font>}           
+<font color= "blue">            </font>
+<font color= "green">                // reorder the modules in the target pane</font>
+<font color= "blue">                </font>ArrayList targetList = GetModules(targetPane);
+<font color= "blue">                </font>OrderModules(targetList);
+<font color= "blue">                        </font>
+<font color= "green">                // resave the order</font>
+<font color= "blue">                </font>foreach (ModuleItem item in targetList) {
+<font color= "blue">                    </font>config.UpdateModuleOrder(item.ModuleId, item.ModuleOrder, targetPane);
+<font color= "blue">                </font>}           
+<font color= "blue">            </font>
+<font color= "green">                // Redirect to the same page to pick up changes</font>
+<font color= "blue">                </font>Response.Redirect(Request.RawUrl);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The Apply_Click server event handler on this page is</font>
+<font color= "green">        // used to save the current tab settings to the database and </font>
+<font color= "green">        // then redirect back to the main admin page.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Apply_Click(Object Sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Save changes then navigate back to admin.  </font>
+<font color= "blue">            </font>String id = (String)((LinkButton)Sender).ID;
+<font color= "blue">        </font>
+<font color= "blue">            </font>SaveTabData();
+<font color= "blue"></font>
+<font color= "green">            // redirect back to the admin page</font>
+<font color= "blue">        </font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue">            </font>int adminIndex = portalSettings.DesktopTabs.Count-1;        
+<font color= "blue">       </font>
+<font color= "blue">            </font>Response.Redirect("~/DesktopDefault.aspx?tabindex=" + adminIndex.ToString() + "&tabid=" + ((TabStripDetails)portalSettings.DesktopTabs[adminIndex]).TabId);       
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The TabSettings_Change server event handler on this page is</font>
+<font color= "green">        // invoked any time the tab name or access security settings</font>
+<font color= "green">        // change.  The event handler in turn calls the "SaveTabData"</font>
+<font color= "green">        // helper method to ensure that these changes are persisted</font>
+<font color= "green">        // to the portal configuration file.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> TabSettings_Change(Object sender, EventArgs e) {
+<font color= "blue"></font>
+<font color= "green">            // Ensure that settings are saved</font>
+<font color= "blue">            </font>SaveTabData();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The SaveTabData helper method is used to persist the</font>
+<font color= "green">        // current tab settings to the database.</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> SaveTabData() {
+<font color= "blue">    </font>
+<font color= "green">            // Construct Authorized User Roles String</font>
+<font color= "blue">            </font>String authorizedRoles = "";
+<font color= "blue"></font>
+<font color= "blue">            </font>foreach(ListItem item in authRoles.Items) {
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">                if </font>(item.Selected == true) {<font color= "blue"></font>
+<font color= "blue">                    </font>authorizedRoles = authorizedRoles + item.Text + ";";
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue"></font>
+<font color= "green">            // update Tab info in the database</font>
+<font color= "blue">            </font>Configuration config = new Configuration();
+<font color= "blue">            </font>config.UpdateTab(portalSettings.PortalId, tabId, tabName.Text, portalSettings.ActiveTab.TabOrder, authorizedRoles, mobileTabName.Text, showMobile.Checked);
+<font color= "blue">        </font>}
+<font color= "blue">    </font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The EditBtn_Click server event handler on this page is</font>
+<font color= "green">        // used to edit an individual portal module's settings</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> EditBtn_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>String pane = ((ImageButton)sender).CommandArgument;
+<font color= "blue">            </font>ListBox _listbox = (ListBox) Page.FindControl(pane);
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_listbox.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>int mid = Int32.Parse(_listbox.SelectedItem.Value);
+<font color= "blue">            </font>
+<font color= "green">                // Redirect to module settings page</font>
+<font color= "blue">                </font>Response.Redirect("ModuleSettings.aspx?mid=" + mid + "&tabid=" + tabId);
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The DeleteBtn_Click server event handler on this page is</font>
+<font color= "green">        // used to delete an portal module from the page</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> DeleteBtn_Click(Object sender, ImageClickEventArgs e) {
+<font color= "blue"></font>
+<font color= "blue">            </font>String pane = ((ImageButton)sender).CommandArgument;
+<font color= "blue">            </font>ListBox _listbox = (ListBox) Page.FindControl(pane);
+<font color= "blue">            </font>ArrayList modules = GetModules(pane);
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(_listbox.SelectedIndex != -1) {<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "blue">                </font>ModuleItem m = (ModuleItem) modules[_listbox.SelectedIndex];
+<font color= "blue"></font><font color= "blue">                if </font>(m.ModuleId > -1) {<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "green">                    // must delete from database too</font>
+<font color= "blue">                    </font>Configuration config = new Configuration();
+<font color= "blue">                    </font>config.DeleteModule(m.ModuleId);
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Redirect to the same page to pick up changes</font>
+<font color= "blue">            </font>Response.Redirect(Request.RawUrl);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The BindData helper method is used to update the tab's</font>
+<font color= "green">        // layout panes with the current configuration information</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> BindData() {
+<font color= "blue"></font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue">            </font>TabSettings tab = portalSettings.ActiveTab;
+<font color= "blue"></font>
+<font color= "green">            // Populate Tab Names, etc.</font>
+<font color= "blue">            </font>tabName.Text = tab.TabName;
+<font color= "blue">            </font>mobileTabName.Text = tab.MobileTabName;
+<font color= "blue">            </font>showMobile.Checked = tab.ShowMobile;
+<font color= "blue"></font>
+<font color= "green">            // Populate checkbox list with all security roles for this portal</font>
+<font color= "green">            // and "check" the ones already configured for this tab</font>
+<font color= "blue">            </font>RolesDB rolesObj = new RolesDB();
+<font color= "blue">            </font>SqlDataReader roles = rolesObj.GetPortalRoles(portalSettings.PortalId);
+<font color= "blue"></font>
+<font color= "green">            // Clear existing items in checkboxlist</font>
+<font color= "blue">            </font>authRoles.Items.Clear();
+<font color= "blue"></font>
+<font color= "blue">            </font>ListItem allItem = new ListItem();
+<font color= "blue">            </font>allItem.Text = "All Users";
+<font color= "blue"></font>
+<font color= "blue"></font><font color= "blue">            if </font>(tab.AuthorizedRoles.LastIndexOf("All Users") > -1) {<font color= "blue"></font>
+<font color= "blue">                </font>allItem.Selected = true;
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "blue">            </font>authRoles.Items.Add(allItem);
+<font color= "blue"></font>
+<font color= "blue">            </font>while(roles.Read()) {
+<font color= "blue"></font>
+<font color= "blue">                </font>ListItem item = new ListItem();
+<font color= "blue">                </font>item.Text = (String) roles["RoleName"];
+<font color= "blue">                </font>item.Value = roles["RoleID"].ToString();
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>((tab.AuthorizedRoles.LastIndexOf(item.Text)) > -1) {<font color= "blue"></font>
+<font color= "blue">                    </font>item.Selected = true;
+<font color= "blue">                </font>}
+<font color= "blue"></font>
+<font color= "blue">                </font>authRoles.Items.Add(item);
+<font color= "blue">            </font>}
+<font color= "blue"></font>
+<font color= "green">            // Populate the "Add Module" Data</font>
+<font color= "blue">            </font>Configuration config = new Configuration();
+<font color= "blue">            </font>moduleType.DataSource = config.GetModuleDefinitions(portalSettings.PortalId);
+<font color= "blue">            </font>moduleType.DataBind();
+<font color= "blue"></font>
+<font color= "green">            // Populate Right Hand Module Data</font>
+<font color= "blue">            </font>rightList = GetModules("RightPane");
+<font color= "blue">            </font>rightPane.DataBind();
+<font color= "blue"></font>
+<font color= "green">            // Populate Content Pane Module Data</font>
+<font color= "blue">            </font>contentList = GetModules("ContentPane");
+<font color= "blue">            </font>contentPane.DataBind();
+<font color= "blue"></font>
+<font color= "green">            // Populate Left Hand Pane Module Data</font>
+<font color= "blue">            </font>leftList = GetModules("LeftPane");
+<font color= "blue">            </font>leftPane.DataBind();
+<font color= "blue">        </font>}
+<font color= "blue">    </font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The GetModules helper method is used to get the modules</font>
+<font color= "green">        // for a single pane within the tab</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private </font>ArrayList GetModules (String pane) {
+<font color= "blue">    </font>
+<font color= "green">            // Obtain PortalSettings from Current Context</font>
+<font color= "blue">            </font>PortalSettings portalSettings = (PortalSettings) Context.Items["PortalSettings"];
+<font color= "blue">            </font>ArrayList paneModules = new ArrayList();
+<font color= "blue">        </font>
+<font color= "blue">            </font>foreach (ModuleSettings module in portalSettings.ActiveTab.Modules) {
+<font color= "blue">            </font>
+<font color= "blue"></font><font color= "blue">                if </font>((module.PaneName).ToLower() == pane.ToLower()) {<font color= "blue"></font>
+<font color= "blue">            </font>
+<font color= "blue">                    </font>ModuleItem m = new ModuleItem();
+<font color= "blue">                    </font>m.ModuleTitle = module.ModuleTitle;
+<font color= "blue">                    </font>m.ModuleId = module.ModuleId;
+<font color= "blue">                    </font>m.ModuleDefId = module.ModuleDefId;
+<font color= "blue">                    </font>m.ModuleOrder = module.ModuleOrder;
+<font color= "blue">                    </font>paneModules.Add(m);
+<font color= "blue">                </font>}
+<font color= "blue">            </font>}
+<font color= "blue">        </font>
+<font color= "blue">            return</font> paneModules;
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "green">        //*******************************************************</font>
+<font color= "green">        //</font>
+<font color= "green">        // The OrderModules helper method is used to reset the display</font>
+<font color= "green">        // order for modules within a pane</font>
+<font color= "green">        //</font>
+<font color= "green">        //*******************************************************</font>
+<font color= "blue"></font>
+<font color= "blue">        private void</font> OrderModules (ArrayList list) {
+<font color= "blue">    </font>
+<font color= "blue">            </font>int i = 1;
+<font color= "blue">        </font>
+<font color= "green">            // sort the arraylist</font>
+<font color= "blue">            </font>list.Sort();
+<font color= "blue">        </font>
+<font color= "green">            // renumber the order</font>
+<font color= "blue">            </font>foreach (ModuleItem m in list) {
+<font color= "blue">        </font>
+<font color= "green">                // number the items 1, 3, 5, etc. to provide an empty order</font>
+<font color= "green">                // number when moving items up and down in the list.</font>
+<font color= "blue">                </font>m.ModuleOrder = i;
+<font color= "blue">                </font>i += 2;
+<font color= "blue">            </font>}
+<font color= "blue">        </font>}
+<font color= "blue">        </font>
+<font color= "blue">        public </font>TabLayout() {
+<font color= "blue">            </font>Page.Init += new System.EventHandler(Page_Init);
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        private void</font> Page_Init(object sender, EventArgs e) {
+<font color= "green">            //</font>
+<font color= "green">            // CODEGEN: This call is required by the ASP.NET Web Form Designer.</font>
+<font color= "green">            //</font>
+<font color= "blue">            </font>InitializeComponent();
+<font color= "blue">        </font>}
+<font color= "blue"></font>
+<font color= "blue">        </font>#region Web Form Designer generated code
+<font color= "green">        /// <summary></font>
+<font color= "green">        /// Required method for Designer support - do not modify</font>
+<font color= "green">        /// the contents of this method with the code editor.</font>
+<font color= "green">        /// </summary></font>
+<font color= "blue">        private void</font> InitializeComponent() {    
+<font color= "blue">            </font>this.AddModuleBtn.Click += new System.EventHandler(this.AddModuleToPane_Click);
+<font color= "blue">            </font>this.LeftUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.LeftRightBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
+<font color= "blue">            </font>this.LeftDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.LeftEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
+<font color= "blue">            </font>this.LeftDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.ContentUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.ContentLeftBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
+<font color= "blue">            </font>this.ContentRightBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
+<font color= "blue">            </font>this.ContentDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.ContentEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
+<font color= "blue">            </font>this.ContentDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.RightUpBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.RightLeftBtn.Click += new System.Web.UI.ImageClickEventHandler(this.RightLeft_Click);
+<font color= "blue">            </font>this.RightDownBtn.Click += new System.Web.UI.ImageClickEventHandler(this.UpDown_Click);
+<font color= "blue">            </font>this.RightEditBtn.Click += new System.Web.UI.ImageClickEventHandler(this.EditBtn_Click);
+<font color= "blue">            </font>this.RightDeleteBtn.Click += new System.Web.UI.ImageClickEventHandler(this.DeleteBtn_Click);
+<font color= "blue">            </font>this.applyBtn.Click += new System.EventHandler(this.Apply_Click);
+<font color= "blue">            </font>this.tabName.TextChanged += new System.EventHandler(this.TabSettings_Change);
+<font color= "blue">            </font>this.authRoles.SelectedIndexChanged += new System.EventHandler(this.TabSettings_Change);
+<font color= "blue">            </font>this.showMobile.CheckedChanged += new System.EventHandler(this.TabSettings_Change);
+<font color= "blue">            </font>this.mobileTabName.TextChanged += new System.EventHandler(this.TabSettings_Change);
+<font color= "blue">            </font>this.Load += new System.EventHandler(this.Page_Load);
+<font color= "blue"></font>
+<font color= "blue">        </font>}
+<font color= "blue">        </font>#endregion
+<font color= "blue">    </font>}
+<font color= "blue"></font>}
+</pre>

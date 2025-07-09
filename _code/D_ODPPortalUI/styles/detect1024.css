@@ -1,0 +1,21 @@
+/* Change the width of the entire slider (without dynamic arrows) */
+	.coda-slider, .coda-slider .panel {width:100%;   }  
+	
+	/* Change margin and width of the slider (with dynamic arrows) */
+	.coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel {width:920px;  }
+	.coda-slider-wrapper.arrows .coda-slider { margin: 0 }
+	
+
+div.breadcrumbs-container {  max-width:640px; padding:34px 0 0 0; position:relative;  float:left; z-index:999;}
+
+.breadCrumb
+{
+	margin: 0;
+	padding: 0 0 0 0;
+	height: 31px;
+	max-width:640px;
+	background:url(../images/breadcrumb-bg.gif) repeat-x top left;
+}
+#ie6 .breadCrumb {width:640px; }
+.breadCrumb div {max-width:640px; }
+#ie6 .breadCrumb div {max-width:640px; }

@@ -1,0 +1,16 @@
+﻿{#template MAIN}
+{#if $T.d.PreviousDocument != null}
+<a href="/content/link/{$T.d.PreviousDocument.TargetDoc}/{$T.d.PreviousDocument.TargetPtr}" class="btn" id="phonePrev"><i class="fa fa-chevron-circle-left orange"></i> Previous</a>
+{#else}
+<a href="" class="btn disabled" id="phonePrev"><i class="fa fa-chevron-circle-left orange"></i> Previous</a>
+
+{#/if}
+
+{#if $T.d.NextDocument != null}
+<a href="/content/link/{$T.d.NextDocument.TargetDoc}/{$T.d.NextDocument.TargetPtr}" class="btn" id="phoneNext">Next <i class="fa fa-chevron-circle-right orange"></i></a>
+{#else}
+<a href="" class="btn disabled" id="phoneNext" >Next <i class="fa fa-chevron-circle-right orange"></i></a>
+
+{#/if}
+
+{#/template MAIN}

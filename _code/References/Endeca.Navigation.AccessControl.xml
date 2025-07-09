@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Endeca.Navigation.AccessControl</name>
+    </assembly>
+    <members>
+        <member name="T:Endeca.Navigation.AccessControl.ILoginModule">
+            <summary>
+            LoginModule Interface - implemented by authentication and
+            authorization providers.
+            </summary>
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.ILoginModule.Init(Endeca.Navigation.AccessControl.IAuthCredentialRequestHandler,System.Collections.Specialized.StringDictionary)">
+            <summary>
+            Initialize the module.
+            </summary>
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.ILoginModule.Login">
+            <summary>
+            Perform initial authentication. Save authorization
+            information until Commit or Abort.
+            </summary>
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.ILoginModule.Logout(Endeca.Navigation.AccessControl.IENEUser)">
+            Logout the user. Remove all credntial information
+            and remove authorization information
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.ILoginModule.Commit(Endeca.Navigation.AccessControl.IENEUser)">
+            
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.IENEUser">
+            <summary>
+            Interface of the user object 
+            </summary>
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.IAuthCredentialRequest">
+            <summary>
+            Base interface for authentication information requests.
+            </summary>
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.SimpleCredentialRequest">
+            <summary>
+            The base class of credential requests that are settable
+            with a String value. All credential requests that are to
+            be used from the <see cref="T:Endeca.Navigation.AccessControl.LoginManager"/> string array
+            constructor should extend this class.
+            </summary>
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.PasswordRequest">
+            <summary>
+            A simple password credential requestor. This may be used with
+            the <see cref="T:Endeca.Navigation.AccessControl.LoginManager"/> string array constructor.
+            </summary>
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.PasswordRequest.#ctor">
+            <summary>
+            Default contructor
+            </summary>
+        </member>
+        <member name="P:Endeca.Navigation.AccessControl.PasswordRequest.Password">
+            
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.UsernameRequest">
+            A simple user credential requestor. This may be used
+            with the LoginManager.Login(String[], String[]) method.
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.IAuthCredentialRequestHandler">
+            <summary>
+            Interface implemented by clients of the ILoginManager
+            interface to provide authentication credentials
+            </summary>
+        </member>
+        <member name="M:Endeca.Navigation.AccessControl.IAuthCredentialRequestHandler.ServiceRequests(Endeca.Navigation.AccessControl.IAuthCredentialRequest[])">
+            Requests that the handler service the given
+            requests. Throws an UnsupportedCredentialException
+            if the request could not be serviced by the
+            handler, or other exception if an error occurs.
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.StaticCredentialRequestHandler">
+            <summary>
+            A simple request handler that uses a username and password
+            </summary>
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.UnsupportedCredentialException">
+            Exception thrown by an IAuthCredentialRequestHandler when
+            an unknown credential request is encountered.
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.FailedLoginException">
+            The base type of exceptions thrown by the LoginModules
+            when authentication fails.
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.LoginException">
+            The base type of exceptions thrown by the LoginManager
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.StaticCredReq">
+            <summary>
+            Internal only class used to convert String credential arrays
+            into a request handler.
+            </summary>
+        </member>
+        <member name="T:Endeca.Navigation.AccessControl.LoginManager">
+            <summary>
+            The
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1077 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F4AA7B8-6536-4A97-B862-5B6322321A85}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>DestroyerAPI</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AICPA.Destroyer</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <WebReference_EnableProperties>true</WebReference_EnableProperties>
+    <WebReference_EnableSQLTypes>false</WebReference_EnableSQLTypes>
+    <WebReference_EnableLegacyEventingModel>true</WebReference_EnableLegacyEventingModel>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/DestroyerAPI/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>3</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'arat.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\arat.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DestroyerAPI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'etpoc.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\etpoc.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DestroyerAPI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ethics|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Ethics\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DestroyerAPI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CosoStage|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CosoStage\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DestroyerAPI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\opl2015.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\DestroyerAPI.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'opl2015ci.knowlysis.com|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\opl2015ci.knowlysis.com\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>DestroyerAPI.dll.xml</DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetAF">
+      <Name>DotNetAF</Name>
+      <HintPath>External\Bin\DotNetAF.dll</HintPath>
+    </Reference>
+    <Reference Include="Endeca.Navigation, Version=6.0.1.7395, Culture=neutral, PublicKeyToken=6d02be8724ca751c, processorArchitecture=MSIL" />
+    <Reference Include="libAICPAAuthClient">
+      <Name>libAICPAAuthClient</Name>
+      <HintPath>External\Bin\libAICPAAuthClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.mshtml">
+      <Name>Microsoft.mshtml</Name>
+      <HintPath>C:\Program Files\Microsoft.NET\Primary Interop Assemblies\Microsoft.mshtml.dll</HintPath>
+      <AssemblyFolderKey>hklm\primary interop assemblies</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MainUI\Bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install">
+      <Name>System.Configuration.Install</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\SqlHelper\SqlHelper.csproj">
+      <Name>SqlHelper</Name>
+      <Project>{5CC91EE4-3CB0-44A1-8A80-5EB8592194E7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\Book.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\BookCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\BookDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\BookDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Book\BookFolderDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookFolderDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Book\BookTocNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\BookTocNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\BookTocNodeDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookTocNodeDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Book\IBook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\IBookCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\IBookDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\IBookTocNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Book\IBookTocNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\ContentWrapper.cs" />
+    <Compile Include="Content\Document\Document.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentAnchor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentAnchorCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Document\DocumentFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\DocumentFormatCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentAnchor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentAnchorCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Document\IDocumentFormatCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\IPrimaryContentContainer.cs" />
+    <Compile Include="Content\ITocNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\ITocNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\ContentLink.cs" />
+    <Compile Include="Content\PrimaryContentContainer.cs" />
+    <Compile Include="Content\Search\ISearchCriteria.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\ISearchDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\ISearchResults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\SearchCollection.cs" />
+    <Compile Include="Content\Search\SearchCriteria.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\SearchDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Search\SearchDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Search\SearchResults.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\DataIndexingService.cs" />
+    <Compile Include="Content\Site\ISite.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteFolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteIndex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteTocNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\ISiteTocNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\Site.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Site\SiteFolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteFolderDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteFolderDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Site\SiteIndex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteTocNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteTocNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Site\SiteTocNodeDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteTocNodeDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Content\Subscription\ISubscription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\ISubscriptionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\ISubscriptionDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\Subscription.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\SubscriptionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\SubscriptionDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Content\Subscription\SubscriptionDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubscriptionDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ReportDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\netForumServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\AESEncryption.cs" />
+    <Compile Include="Shared\AICPAEncryption.cs" />
+    <Compile Include="Shared\BaseDestroyerBpc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\BaseDestroyerDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\D_Exception.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shared\Log.cs" />
+    <Compile Include="Shared\Security.cs" />
+    <Compile Include="Shared\UserDef.cs" />
+    <Compile Include="User\Bookmark\Bookmark.cs" />
+    <Compile Include="User\Bookmark\BookmarkDalc.cs" />
+    <Compile Include="User\Bookmark\BookmarkDS.Designer.cs" />
+    <Compile Include="User\Bookmark\BookmarkDSNew.cs">
+      <DependentUpon>BookmarkDSNew.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Bookmark\BookmarkDSNew.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookmarkDSNew.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Bookmark\IBookmark.cs" />
+    <Compile Include="User\Event\Event.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Event\EventDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Event\EventDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Event\EventDSNew.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventDSNew.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Event\IEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Event\IEventDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Feedback\Feedback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Feedback\FeedbackDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Feedback\FeedbackDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeedbackDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Feedback\IFeedback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Feedback\IFeedbackCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Feedback\IFeedbackDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\Firm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\FirmCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\FirmDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\FirmDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FirmDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Firm\IFirm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\IFirmCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Firm\IFirmDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\IUser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\IUserDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\IUserSecurity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\IUserSecurityDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\NewUserDS.cs">
+      <DependentUpon>NewUserDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\NewUserDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewUserDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Note\INote.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Note\INoteDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Note\Note.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Note\NoteDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\Note\NoteDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\NotificationSubscription\INotificationSubscriptionDALC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\NotificationSubscription\NotificationSubscriptionDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotificationSubscriptionDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Organization\IOrganization.cs" />
+    <Compile Include="User\Organization\Organazation.cs" />
+    <Compile Include="User\Organization\OrganizationDAL.cs" />
+    <Compile Include="User\Organization\OrganizationDS.cs">
+      <DependentUpon>OrganizationDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\Organization\OrganizationDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrganizationDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\TrustAllCertificatePolicy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\User.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\UserDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\UserDSNew.cs">
+      <DependentUpon>UserDSNew.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserDSNew.Designer.cs">
+      <DependentUpon>UserDSNew.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="User\UserMail.cs" />
+    <Compile Include="User\UserPreferences\IUserPreference.cs" />
+    <Compile Include="User\UserPreferences\IUserPreferenceDalc.cs" />
+    <Compile Include="User\UserPreferences\UserPreference.cs" />
+    <Compile Include="User\UserPreferences\UserPreferenceDalc.cs" />
+    <Compile Include="User\UserPreferences\UserPreferencesDictionary.cs" />
+    <Compile Include="User\UserPreferences\UserPreferencesDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserPreferencesDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserSecurity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="User\UserSecurityDalc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web References\C2BSecurityService\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Web References\C2BSubscriptionWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\cpa2biz.AuthService.com\Reference.cs">
+      <DependentUpon>Reference.map</DependentUpon>
+      <SubType>code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Content Include="Content\Book\BookDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Book\BookFolderDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookFolderDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Book\BookTocNodeDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookTocNodeDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Document\DocumentDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DocumentDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\D_Makefile.xsd" />
+    <Content Include="Content\MakeFileTemplate.xml" />
+    <Content Include="Content\Search\SearchDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SearchDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Site\SiteDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SiteDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Site\SiteFolderDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SiteFolderDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Site\SiteTocNodeDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SiteTocNodeDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\Subscription\SubscriptionDs.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubscriptionDs.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="External\Bin\DotNetAF.dll" />
+    <Content Include="External\Bin\Endeca.Navigation.AccessControl.dll" />
+    <Content Include="External\Bin\Endeca.Navigation.dll" />
+    <Content Include="External\Bin\Interop.utlAccred.dll" />
+    <Content Include="External\Bin\libAICPAAuthClient.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\hxcsrv.exe" />
+    <Content Include="External\ndoc\bin\net\1.0\Interop.MSHelpCompiler.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Core.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Core.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.JavaDoc.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.JavaDoc.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Latex.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Latex.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.LinearHtml.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.LinearHtml.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Msdn.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Msdn.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Msdn2.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Msdn2.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.NativeHtmlHelp2.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.NativeHtmlHelp2.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Xml.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Documenter.Xml.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.ExtendedUI.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.ExtendedUI.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Test.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.Test.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.VisualStudio.dll" />
+    <Content Include="External\ndoc\bin\net\1.0\NDoc.VisualStudio.xml" />
+    <Content Include="External\ndoc\bin\net\1.0\NDocConsole.exe" />
+    <Content Include="External\ndoc\bin\net\1.0\NDocGui.exe" />
+    <Content Include="External\ndoc\bin\net\1.1\Interop.MSHelpCompiler.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Core.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Core.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.JavaDoc.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.JavaDoc.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Latex.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Latex.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.LinearHtml.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.LinearHtml.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Msdn.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Msdn.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Msdn2.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Msdn2.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.NativeHtmlHelp2.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.NativeHtmlHelp2.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Xml.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Documenter.Xml.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.ExtendedUI.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.ExtendedUI.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Test.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.Test.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.VisualStudio.dll" />
+    <Content Include="External\ndoc\bin\net\1.1\NDoc.VisualStudio.xml" />
+    <Content Include="External\ndoc\bin\net\1.1\NDocConsole.exe" />
+    <Content Include="External\ndoc\bin\net\1.1\NDocGui.exe" />
+    <Content Include="External\ndoc\Extensions.xsl" />
+    <None Include="Web References\C2BSubscriptionWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\C2BSubscriptionWebService\SubscriptionService.disco" />
+    <None Include="Content\Book\BookDs.xsc">
+      <DependentUpon>BookDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Book\BookFolderDs.xsc">
+      <DependentUpon>BookFolderDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Book\BookTocNodeDs.xsc">
+      <DependentUpon>BookTocNodeDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Document\DocumentDS.xsc">
+      <DependentUpon>DocumentDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Search\SearchDS.xsc">
+      <DependentUpon>SearchDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteDS.xsc">
+      <DependentUpon>SiteDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteFolderDs.xsc">
+      <DependentUpon>SiteFolderDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteTocNodeDs.xsc">
+      <DependentUpon>SiteTocNodeDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Subscription\SubscriptionDs.xsc">
+      <DependentUpon>SubscriptionDs.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="Service References\netForumServices\AICPA.Destroyer.netForumServices.AuthorizationToken.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\netForumServices\AICPAOPLWS.disco" />
+    <None Include="Service References\netForumServices\configuration91.svcinfo" />
+    <None Include="Service References\netForumServices\configuration.svcinfo" />
+    <None Include="Service References\netForumServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="User\Event\EventDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EventDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="User\Feedback\FeedbackDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FeedbackDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="User\Firm\FirmDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FirmDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="User\Note\NoteDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NoteDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="User\NotificationSubscription\NotificationSubscriptionDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NotificationSubscriptionDS.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="User\UserDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDS.Designer.cs</LastGenOutput>
+    </Content>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Content\Book\BookDs.xsx">
+      <DependentUpon>BookDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Book\BookFolderDs.xsx">
+      <DependentUpon>BookFolderDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Book\BookTocNodeDs.xsx">
+      <DependentUpon>BookTocNodeDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Document\DocumentDS.xsx">
+      <DependentUpon>DocumentDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\D_Makefile.xsx">
+      <DependentUpon>D_Makefile.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Search\SearchDS.xsx">
+      <DependentUpon>SearchDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteDS.xsx">
+      <DependentUpon>SiteDS.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteFolderDs.xsx">
+      <DependentUpon>SiteFolderDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Site\SiteTocNodeDs.xsx">
+      <DependentUpon>SiteTocNodeDs.xsd</DependentUpon>
+    </None>
+    <None Include="Content\Subscription\SubscriptionDs.xsx">
+      <DependentUpon>SubscriptionDs.xsd</DependentUpon>
+    </None>
+    <None Include="External\ndoc\bin\net\1.0\NDocGui.exe.manifest" />
+    <None Include="External\ndoc\bin\net\1.1\NDocGui.exe.manifest" />
+    <None Include="External\ndoc\Destroyer.ndoc" />
+    <None Include="External\ndoc\Generate HTML Documentation.bat" />
+    <None Include="External\ndoc\Generate HTML JavaDoc.bat" />
+    <None Include="External\ndoc\Generate MSDN Documentation.bat" />
+    <None Include="External\ndoc\Generate MSDN2003 Documentation.bat" />
+    <None Include="External\ndoc\Generate VS Documentation.bat" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\netForumServices\AICPAOPLWS.wsdl" />
+    <None Include="User\Bookmark\BookmarkDS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="User\Bookmark\BookmarkDS.xsx">
+      <DependentUpon>BookmarkDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Bookmark\BookmarkDSNew.xsc">
+      <DependentUpon>BookmarkDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\Bookmark\BookmarkDSNew.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookmarkDSNew.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User\Bookmark\BookmarkDSNew.xss">
+      <DependentUpon>BookmarkDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\Event\EventDS.xsc">
+      <DependentUpon>EventDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Event\EventDS.xsx">
+      <DependentUpon>EventDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Event\EventDSNew.xsc">
+      <DependentUpon>EventDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\Event\EventDSNew.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EventDSNew.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User\Event\EventDSNew.xss">
+      <DependentUpon>EventDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\Feedback\FeedbackDS.xsc">
+      <DependentUpon>FeedbackDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Feedback\FeedbackDS.xsx">
+      <DependentUpon>FeedbackDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Firm\FirmDS.xsc">
+      <DependentUpon>FirmDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Firm\FirmDS.xsx">
+      <DependentUpon>FirmDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\NewUserDS.xsc">
+      <DependentUpon>NewUserDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\NewUserDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewUserDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User\NewUserDS.xss">
+      <DependentUpon>NewUserDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Note\NoteDS.xsc">
+      <DependentUpon>NoteDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Note\NoteDS.xsx">
+      <DependentUpon>NoteDS.xsd</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="User\NotificationSubscription\NotificationSubscriptionDS.xsc">
+      <DependentUpon>NotificationSubscriptionDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\NotificationSubscription\NotificationSubscriptionDS.xsx">
+      <DependentUpon>NotificationSubscriptionDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Organization\OrganizationDS.xsc">
+      <DependentUpon>OrganizationDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\Organization\OrganizationDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrganizationDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="User\Organization\OrganizationDS.xss">
+      <DependentUpon>OrganizationDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserDS.xsc">
+      <DependentUpon>UserDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserDS.xsx">
+      <DependentUpon>UserDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserDSNew.xsc">
+      <DependentUpon>UserDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserDSNew.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserDSNew.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User\UserDSNew.xss">
+      <DependentUpon>UserDSNew.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserPreferences\UserPreferencesDS.xsc">
+      <DependentUpon>UserPreferencesDS.xsd</DependentUpon>
+    </None>
+    <None Include="User\UserPreferences\UserPreferencesDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserPreferencesDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User\UserPreferences\UserPreferencesDS.xss">
+      <DependentUpon>UserPreferencesDS.xsd</DependentUpon>
+    </None>
+    <None Include="Web References\C2BSecurityService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\C2BSecurityService\Service1.disco" />
+    <None Include="Web References\C2BSecurityService\Service1.wsdl" />
+    <None Include="Web References\C2BSubscriptionWebService\SubscriptionService.wsdl" />
+    <None Include="Web References\cpa2biz.AuthService.com\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\cpa2biz.AuthService.com\SubscriptionService.disco" />
+    <None Include="Web References\cpa2biz.AuthService.com\SubscriptionService.wsdl" />
+    <WebReferenceUrl Include="http://localhost/C2BSubscriptionService/Service1.asmx">
+      <RelPath>Web References\C2BSecurityService\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://63.236.50.103/C2BSubscriptionService/SubscriptionService.asmx%3fop=GetOnlinePlatformAuthInfo">
+      <RelPath>Web References\cpa2biz.AuthService.com\</RelPath>
+      <UrlBehavior>Static</UrlBehavior>
+    </WebReferenceUrl>
+    <WebReferences Include="Web References\" />
+    <WebReferenceUrl Include="https://66.243.40.91/C2BSubscriptionServiceNew/SubscriptionService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\C2BSubscriptionWebService\</RelPath>
+      <UpdateFromURL>https://66.243.40.91/C2BSubscriptionServiceNew/SubscriptionService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>DestroyerAPI_C2BSubscriptionWebService_SubscriptionService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\netForumServices\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
