@@ -1982,9 +1982,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\Thumbs.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="resources\pfptoolkit\Checklist - Documentation.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
