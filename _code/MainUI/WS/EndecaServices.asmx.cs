@@ -748,7 +748,7 @@ namespace MainUI.WS
 
             DimensionSearchResult dsr = dsc.Execute();
 
-            ReadOnlyDictionary<string, ReadOnlyCollection<DimensionValue>> byDimension =
+            Endeca.Data.ReadOnlyDictionary<string, ReadOnlyCollection<DimensionValue>> byDimension =
             dsr.DimensionValues.ByDimensionName;
             string dimensions = "";
             // You can iterate over the dictionary and print out the name of the dimension 
