@@ -1,27 +1,19 @@
-﻿
-/** 
-* (06/15/10) Ben Bytheway: This function handles loading the template for the 
-* FAF tools.
-*/
+﻿// --- FAF Tools Integration ---
+
 function loadFafTools() {
-    if (hasActiveDocument() && isCurrentViewScreen()) {
-        loadTemplate("WS/DocumentTools.asmx/GetBookTools", "{id:" + getActiveDocumentId() + ", type:'" + getActiveDocumentType() + "'}", "templates/fafToolbar.html", "Toolbar-Tools-Faf");
-    } else {
-        loadTemplate("WS/DocumentTools.asmx/GetBookTools", "{id:-1, type:'Site'}", "templates/fafToolbar.html", "Toolbar-Tools-Faf");
-    }
-    //showFAFTools();
+    const isDocView = hasActiveDocument() && isCurrentViewScreen();
+    const params = isDocView ? `{id:${getActiveDocumentId()}, type:'${getActiveDocumentType()}'}` : `{id:-1, type:'Site'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetBookTools", params, "templates/fafToolbar.html", "Toolbar-Tools-Faf");
 }
 
 function setFafCopyright() {
-    setCopyright("Copyright &copy; 2009-" + getCurrentCopyrightYear() + ", Financial Accounting Standards Board, Norwalk, Connecticut. All Rights Reserved.");
+    setCopyright(`Copyright © 2009-${getCurrentCopyrightYear()}, Financial Accounting Standards Board, Norwalk, Connecticut. All Rights Reserved.`);
 }
 
 function doFafGotoLink() {
-    clearCurrentView(); // update the back button status
-    //setToolAsCurrentView(toolName_gotoCode, "");
+    clearCurrentView();
     hideDocumentSpecificButtons();
     setFafCopyright();
-    
     loadTemplate("WS/DocumentTools.asmx/GetGotoInformation", "{topicNum:'', subNum:''}", "templates/fafGoto.html", "document-container");
 }
 
@@ -31,96 +23,58 @@ function loadCrossReference() {
 }
 
 function getCrossReferenceLink(standard, topic, subtopic) {
-
     hideDocumentSpecificButtons();
     setFafCopyright();
-    loadTemplate("WS/DocumentTools.asmx/GetStandardsForCrossReference", "{standard:'" + standard + "', topic:'" + topic + "', subTopic:'" + subtopic + "'}", "templates/toolsCrossReference.html", "document-container");
+    const params = `{standard:'${standard}', topic:'${topic}', subTopic:'${subtopic}'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetStandardsForCrossReference", params, "templates/toolsCrossReference.html", "document-container");
 }
 
 function getCrossReferenceResults(standard, number, topic, subtopic, section) {
-    if ((standard == '') && (topic == '')) {
-        $('#standardPrompt').css("color", "red");
-        $('#topicPrompt').css("color", "red");
+    if (!standard && !topic) {
+        $('#standardPrompt, #topicPrompt').css("color", "red");
         $('#crossRefInputError').show();
-    } 
-    else {
-        updateCurrentTool_crossRef(standard, number, topic, subtopic, section); // save params in back button history
-
-        $('#crossRefInputError').hide();
-        loadTemplate("WS/DocumentTools.asmx/GetCrossReferenceResults", "{standard:'" + standard + "', number:'" + number + "', topic:'" + topic + "', subTopic:'" + subtopic + "', section:'" + section + "'}", "templates/resultsCrossReference.html", "cross-ref-results");
+        return;
     }
+
+    updateCurrentTool_crossRef(standard, number, topic, subtopic, section);
+    $('#crossRefInputError').hide();
+
+    const params = `{standard:'${standard}', number:'${number}', topic:'${topic}', subTopic:'${subtopic}', section:'${section}'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetCrossReferenceResults", params, "templates/resultsCrossReference.html", "cross-ref-results");
 }
 
 function loadCrossReferenceFromValues(toolParams) {
     setToolAsCurrentView(toolName_crossRef, toolParams);
-
     hideDocumentSpecificButtons();
     setFafCopyright();
-    loadTemplate("WS/DocumentTools.asmx/GetStandardsForCrossReference", "{standard:'" + toolParams.standard + "', topic:'" + toolParams.topic + "', subTopic:'" + toolParams.subtopic + "'}", "templates/toolsCrossReference.html", "document-container", toolParams, loadCrossReferenceFromValuesCallback);
+    const params = `{standard:'${toolParams.standard}', topic:'${toolParams.topic}', subTopic:'${toolParams.subtopic}'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetStandardsForCrossReference", params, "templates/toolsCrossReference.html", "document-container", toolParams, loadCrossReferenceFromValuesCallback);
 }
 
 function loadCrossReferenceFromValuesCallback(toolParams) {
-    if (toolParams.number) {
-        $("#number").val(toolParams.number);
-    }
+    if (toolParams.number) $('#number').val(toolParams.number);
+    if (toolParams.section) $('#section').val(toolParams.section);
 
-    if (toolParams.section) {
-        $("#section").val(toolParams.section);
-    }
-
-    loadTemplate("WS/DocumentTools.asmx/GetCrossReferenceResults", "{standard:'" + toolParams.standard + "', number:'" + toolParams.number + "', topic:'" + toolParams.topic + "', subTopic:'" + toolParams.subtopic + "', section:'" + toolParams.section + "'}", "templates/resultsCrossReference.html", "cross-ref-results");
+    const params = `{standard:'${toolParams.standard}', number:'${toolParams.number}', topic:'${toolParams.topic}', subTopic:'${toolParams.subtopic}', section:'${toolParams.section}'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetCrossReferenceResults", params, "templates/resultsCrossReference.html", "cross-ref-results");
 }
 
 function doFafGotoSubmit(topicNum, subNum, sectNum) {
-    var targetPtr = "";
-    var targetDoc = "";
-    var firstChar = topicNum.charAt(0);
+    const targetDocMap = {
+        '1': 'faf-generalprinciples',
+        '2': 'faf-presentation',
+        '3': 'faf-assets',
+        '4': 'faf-liabilities',
+        '5': 'faf-equity',
+        '6': 'faf-revenue',
+        '7': 'faf-expenses',
+        '8': 'faf-broadTransactions',
+        '9': 'faf-industry'
+    };
 
-    switch (firstChar) {
-        case "1":
-            targetDoc = "faf-generalprinciples";
-            break;
-        case "2":
-            targetDoc = "faf-presentation";
-            break;
-        case "3":
-            targetDoc = "faf-assets";
-            break;
-        case "4":
-            targetDoc = "faf-liabilities";
-            break;
-        case "5":
-            targetDoc = "faf-equity";
-            break;
-        case "6":
-            targetDoc = "faf-revenue";
-            break;
-        case "7":
-            targetDoc = "faf-expenses";
-            break;
-        case "8":
-            targetDoc = "faf-broadTransactions";
-            break;
-        case "9":
-            targetDoc = "faf-industry";
-            break;
-        default:
-            targetDoc = "faf-";
-            break;
-    }
-
-    //alert(targetDoc);
-
-    if (subNum != "") {
-        targetPtr = topicNum + "-" + subNum;
-    }
-    else {
-        targetPtr = "topic_" + topicNum;
-    }
-
-    if (sectNum != "") {
-        targetPtr = targetPtr + "-" + sectNum;
-    }
+    const targetDoc = targetDocMap[topicNum.charAt(0)] || 'faf-';
+    let targetPtr = subNum ? `${topicNum}-${subNum}` : `topic_${topicNum}`;
+    if (sectNum) targetPtr += `-${sectNum}`;
 
     doLink(targetDoc, targetPtr, true);
 }
@@ -130,7 +84,7 @@ function doFafWhatLinksHereLink() {
     hideDocumentSpecificButtons();
     setFafCopyright();
     if (hasActiveDocument()) {
-        fillContentPaneFromUrl("Handlers/DownloadDocument.ashx?docid=" + getActiveDocumentId() + "&d_ft=" + 17);
+        fillContentPaneFromUrl(`Handlers/DownloadDocument.ashx?docid=${getActiveDocumentId()}&d_ft=17`);
     }
 }
 
@@ -139,24 +93,12 @@ function doFafArchiveLink() {
     hideDocumentSpecificButtons();
     setFafCopyright();
     if (hasActiveDocument()) {
-        fillContentPaneFromUrl("Handlers/DownloadDocument.ashx?docid=" + getActiveDocumentId() + "&d_ft=" + 18);
+        fillContentPaneFromUrl(`Handlers/DownloadDocument.ashx?docid=${getActiveDocumentId()}&d_ft=18`);
     }
 }
 
-/**
-* This is the event handler for click on the "doc" button on the faf tools menu.
-* The use case is that you have clicked something like archive, and want to go back to the doc
-*/
 function doFafDocumentLink() {
-    if (hasActiveDocument()) {
-        var id = getActiveDocumentId();
-        var type = getActiveDocumentType();
-
-        doScreenLink(getActiveScreenIndex());
-    }
-    else {
-        doHomePageLink();
-    }
+    hasActiveDocument() ? doScreenLink(getActiveScreenIndex()) : doHomePageLink();
 }
 
 function doFafJoinSectionsLink() {
@@ -168,183 +110,117 @@ function doFafJoinSectionsLink() {
 
 function doJoinSectionsQuery(topicNum, sectionNum, content, includeSubtopics) {
     updateCurrentTool_joinSections(topicNum, sectionNum, content, includeSubtopics);
-
-    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsResults", "{topicNum:'" + topicNum + "', sectionNum:'" + sectionNum + "', includeSubtopics:" + includeSubtopics + "}", "templates/fafJoinSectionsResults.html", "fafJoinSectionsResults");
+    const params = `{topicNum:'${topicNum}', sectionNum:'${sectionNum}', includeSubtopics:${includeSubtopics}}`;
+    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsResults", params, "templates/fafJoinSectionsResults.html", "fafJoinSectionsResults");
 }
 
 function doJoinSectionsFromValues(toolParams) {
     setToolAsCurrentView(toolName_joinSections, toolParams);
-
     hideDocumentSpecificButtons();
     setFafCopyright();
-    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsInformation", "{topicNum:'" + toolParams.topicNum + "', content:'" + toolParams.content + "', includeSubtopics:" + toolParams.includeSubtopics + "}", "templates/fafJoinSections.html", "document-container", toolParams, doJoinSectionsFromValuesCallback);
+    const params = `{topicNum:'${toolParams.topicNum}', content:'${toolParams.content}', includeSubtopics:${toolParams.includeSubtopics}}`;
+    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsInformation", params, "templates/fafJoinSections.html", "document-container", toolParams, doJoinSectionsFromValuesCallback);
 }
 
 function doJoinSectionsFromValuesCallback(toolParams) {
-    if (toolParams.sectionNum) {
-        $("#section").val(toolParams.sectionNum);
-    }
-
-    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsResults", "{topicNum:'" + toolParams.topicNum + "', sectionNum:'" + toolParams.sectionNum + "', includeSubtopics:" + toolParams.includeSubtopics + "}", "templates/fafJoinSectionsResults.html", "fafJoinSectionsResults");
+    if (toolParams.sectionNum) $('#section').val(toolParams.sectionNum);
+    const params = `{topicNum:'${toolParams.topicNum}', sectionNum:'${toolParams.sectionNum}', includeSubtopics:${toolParams.includeSubtopics}}`;
+    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsResults", params, "templates/fafJoinSectionsResults.html", "fafJoinSectionsResults");
 }
 
-var g_lastJoinSectionsUrl;
+let g_lastJoinSectionsUrl = '';
 
 function doJoinSections(showSources) {
     setShowSources(showSources);
     setPrintButton(true);
 
-    //get all of the document stuff ready
-    //var checkBoxes = (".join-section-checkbox:checked");
-    var checkBoxes = $("#join-sections-results-table-div input.join-section-checkbox:checked");
+    const $checkboxes = $("#join-sections-results-table-div input.join-section-checkbox:checked");
+    if ($checkboxes.length === 0) return alert("You must select at least one document to join");
 
-    if (checkBoxes.length < 1) {
-        alert("You must select at least one document to join");
-        return;
-    }
-
-    var queryString = "";
-    var title = "";
-
-    for (var i = 0; i < checkBoxes.length; i++) {
-        
-        var firstChar = $(checkBoxes[i]).val().charAt(0);
-        var targetDoc = "";
-
-        switch (firstChar) {
-            case "1":
-                targetDoc = "faf-";
-                break;
-            case "2":
-                targetDoc = "faf-presentation";
-                break;
-            case "3":
-                targetDoc = "faf-assets";
-                break;
-            case "4":
-                targetDoc = "faf-liabilities";
-                break;
-            case "5":
-                targetDoc = "faf-equity";
-                break;
-            case "6":
-                targetDoc = "faf-revenue";
-                break;
-            case "7":
-                targetDoc = "faf-expenses";
-                break;
-            case "8":
-                targetDoc = "faf-broadTransactions";
-                break;
-            case "9":
-                targetDoc = "faf-industry";
-                break;
-            default:
-                targetDoc = "faf-";
-                break;
-        }
-
-        queryString += "&targetdoc=" + targetDoc + "&targetptr=" + $(checkBoxes[i]).val() + "";
-        title += targetDoc + " " + $(checkBoxes[i]).val() + ", ";
-    }
+    let queryString = '', title = '';
+    $checkboxes.each(function () {
+        const val = $(this).val();
+        const firstChar = val.charAt(0);
+        const targetDocMap = {
+            '1': 'faf-',
+            '2': 'faf-presentation',
+            '3': 'faf-assets',
+            '4': 'faf-liabilities',
+            '5': 'faf-equity',
+            '6': 'faf-revenue',
+            '7': 'faf-expenses',
+            '8': 'faf-broadTransactions',
+            '9': 'faf-industry'
+        };
+        const targetDoc = targetDocMap[firstChar] || 'faf-';
+        queryString += `&targetdoc=${targetDoc}&targetptr=${val}`;
+        title += `${targetDoc} ${val}, `;
+    });
 
     hideFAFTools(true);
 
-    var joinSectionsUrl = queryString;
-
     if (getShowSources()) {
-        joinSectionsUrl += "&show_sources";
-        $("#sourcesPrint").attr('checked', true);
+        queryString += "&show_sources";
+        $("#sourcesPrint").prop("checked", true);
     }
+    if (getActiveScreen().showHighlight) queryString += "&hilite";
 
-    if (getActiveScreen().showHighlight) {
-        joinSectionsUrl += "&hilite";
-    }
+    const anchor = getActiveScreen().hitAnchor;
+    if (anchor) queryString += `&hitanchor=${anchor}`;
 
-    var hitAnchor = "";
+    g_lastJoinSectionsUrl = encodeURIComponent(queryString);
+    $("#sourcesPrint").prop("disabled", true);
 
-    if (getActiveScreen().hitAnchor != null) {
-        joinSectionsUrl += "&hitanchor=" + getActiveScreen().hitAnchor;
-        hitAnchor = "&hitanchor=" + getActiveScreen().hitAnchor;
-    }
-
-    $("#sourcesPrint").attr('disabled', true);
-    g_lastJoinSectionsUrl = escape(joinSectionsUrl);
-
-    fillContentPaneFromUrl("Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor +"&d_hh=" + getActiveScreen().showHighlight + queryString);
+    fillContentPaneFromUrl(`Handlers/GetDocuments.ashx?show_sources=${getShowSources()}${anchor ? `&hitanchor=${anchor}` : ''}&d_hh=${getActiveScreen().showHighlight}${queryString}`);
 }
 
 function doJoinChildren(targetDoc, targetPtr) {
-    var toolParams = { targetDoc: targetDoc, targetPtr: targetPtr };
+    const toolParams = { targetDoc, targetPtr };
     setToolAsCurrentView(toolName_joinChildren, toolParams);
-
     hideDocumentSpecificButtons();
     setFafCopyright();
-    var params = "{ targetDoc:'" + targetDoc + "', targetPointer:'" + targetPtr + "'}";
+    const params = `{ targetDoc:'${targetDoc}', targetPointer:'${targetPtr}'}`;
     callWebService("WS/Content.asmx/GetNodeToGrandChildrenByTargetDocTargetPointer", params, doJoinChildrenResult, ajaxFailed);
 }
 
 function doJoinChildrenResult(breadcrumbNode) {
     setPrintButton(true);
-    var queryString = "";
+    let queryString = `&id=${breadcrumbNode.SiteNode.Id}&type=${breadcrumbNode.SiteNode.Type}`;
 
-    queryString += "&id=" + breadcrumbNode.SiteNode.Id + "&type=" + breadcrumbNode.SiteNode.Type + "";
-
-    for (var i = 0; i < breadcrumbNode.Children.length; i++) {
-        queryString += "&id=" + breadcrumbNode.Children[i].SiteNode.Id + "&type=" + breadcrumbNode.Children[i].SiteNode.Type + "";
-    }
+    breadcrumbNode.Children.forEach(child => {
+        queryString += `&id=${child.SiteNode.Id}&type=${child.SiteNode.Type}`;
+    });
 
     hideFAFTools(true);
 
-    var joinSectionsUrl = queryString;
-    if (getShowSources())
-        joinSectionsUrl += "&show_sources";
-    if (getActiveScreen().showHighlight)
-        joinSectionsUrl += "&hilite";
+    if (getShowSources()) queryString += "&show_sources";
+    if (getActiveScreen().showHighlight) queryString += "&hilite";
+    const anchor = getActiveScreen().hitAnchor;
+    if (anchor) queryString += `&hitanchor=${anchor}`;
 
-    var hitAnchor = "";
-    if (getActiveScreen().hitAnchor != null) {
-        joinSectionsUrl += "&hitanchor=" + getActiveScreen().hitAnchor;
-        hitAnchor = "&hitanchor=" + getActiveScreen().hitAnchor;
-    }
-
-
-    g_lastJoinSectionsUrl = escape(joinSectionsUrl);
-
-    fillContentPaneFromUrl("Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getActiveScreen().showHighlight + queryString);
+    g_lastJoinSectionsUrl = encodeURIComponent(queryString);
+    fillContentPaneFromUrl(`Handlers/GetDocuments.ashx?show_sources=${getShowSources()}${anchor ? `&hitanchor=${anchor}` : ''}&d_hh=${getActiveScreen().showHighlight}${queryString}`);
 }
 
 function toggleShowSources() {
-    if (getShowSources()) {
-        setShowSources(false);
-        $("#sourcesPrint").attr('checked', false);
-    } else {
-        setShowSources(true);
-        $("#sourcesPrint").attr('checked', true);
-    }
+    const show = !getShowSources();
+    setShowSources(show);
+    $("#sourcesPrint").prop("checked", show);
 
     if (hasActiveDocument()) {
-        // 2010-08-05 sburton: because we just redirect them back to the current document
-        // we would end up with two entries in our history.  So we'll call a clear method now.
         clearCurrentViewWithoutRecording();
-
-        var id = getActiveDocumentId();
-        var type = getActiveDocumentType();
-
         doScreenLink(getActiveScreenIndex());
-    }
-    else {
+    } else {
         doHomePageLink();
     }
 }
 
-//***********************************************************************************
-// onchange handlers
-//***********************************************************************************
 function doFafGotoDropDownChange(topicNum, subNum) {
-    loadTemplate("WS/DocumentTools.asmx/GetGotoInformation", "{topicNum:'" + topicNum + "', subNum:'" + subNum + "'}", "templates/fafGoto.html", "document-container");
+    const params = `{topicNum:'${topicNum}', subNum:'${subNum}'}`;
+    loadTemplate("WS/DocumentTools.asmx/GetGotoInformation", params, "templates/fafGoto.html", "document-container");
 }
 
 function doFafJoinSectionsChange(topicNum, content, includeSubtopics) {
-    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsInformation", "{topicNum:'" + topicNum + "', content:'" + content + "', includeSubtopics:" + includeSubtopics + "}", "templates/fafJoinSections.html", "document-container");
+    const params = `{topicNum:'${topicNum}', content:'${content}', includeSubtopics:${includeSubtopics}}`;
+    loadTemplate("WS/DocumentTools.asmx/GetJoinSectionsInformation", params, "templates/fafJoinSections.html", "document-container");
 }

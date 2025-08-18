@@ -50,7 +50,7 @@ function goToPrevious() {
 var hitcount = 0;
 var currentHit = 0;
 
-$(document).ready(function () {
+$(function () {
 
     var showButton = ($('#hhighlight').length != 0);
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
         var wordsArrayIndex = 0;
         $.each(words.split(" "), function (idx, val) {
             val = val.replace(/\+/g, "\\s+");
-            val = $.trim(val);
+            val = val.trim();
             val = val.toLowerCase();
             if (val != "" && $.inArray(val, wordsArray) == -1) {
                 wordsArray[wordsArrayIndex] = val;
@@ -126,7 +126,7 @@ $(document).ready(function () {
 
 });
 
-$(document).click(function (obj) {
+$(function (obj) {
     var elementclicked = obj.srcElement;
 //    if ((elementclicked.pathname != null && elementclicked.pathname.indexOf("GetDocument.ashx") != -1) ||
 //        (elementclicked.parentElement != null && elementclicked.parentElement.pathname != null && elementclicked.parentElement.pathname.indexOf("GetDocument.ashx") != -1)) {

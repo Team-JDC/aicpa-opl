@@ -235,7 +235,7 @@ namespace MainUI.Handlers
                         fullHtml += " .joinSectionsTopic,.joinSectionsSubtopic { display:none;}";
                         fullHtml += "</style>";
 
-                        fullHtml += "<script type=\"text/javascript\" src=\"/js/jquery/jquery-1.11.2.min.js\"></script>";
+                        fullHtml += "<script type=\"text/javascript\" src=\"/js/jquery/jquery-3.7.1.min.js\"></script>";
                         fullHtml += "<SCRIPT language='JavaScript'>";
                         fullHtml += "$(document).ready(function () {  $(\"body\").css(\"background\", \"white\"); \r\n$(\"div[id$='-large']\").css(\"display\", \"block\");\r\n $(\"div[id$='-small']\").css(\"display\", \"none\"); \r\n$(\"img[src='resources/table-minus.gif']\").css(\"display\", \"none\");\r\n";                        
                         fullHtml += "$(\".joinSectionsTopic\").hide(); \r\n $(\".joinSectionsTopic\").remove(); \r\n";

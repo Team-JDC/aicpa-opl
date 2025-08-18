@@ -310,6 +310,7 @@
     <Content Include="elements\js\clamp.js" />
     <Content Include="elements\js\jquery-1.9.1.min.js" />
     <Content Include="elements\js\jquery.easing.1.3.js" />
+    <Content Include="elements\js\jquery.easing.min.js" />
     <Content Include="elements\js\main.js" />
     <Content Include="elements\js\modernizr.custom.19057.js" />
     <Content Include="images\add-note.png" />
@@ -362,11 +363,19 @@
     <Content Include="js\coso_code.js" />
     <Content Include="js\director.js" />
     <Content Include="js\director.min.js" />
+    <Content Include="js\jquery-3.7.1.min.js" />
+    <Content Include="js\jquery.cookie.min.js" />
+    <Content Include="js\jquery.easing.min.js" />
     <Content Include="js\jquery.history.js" />
     <Content Include="js\jquery.history.min.js" />
     <Content Include="js\jquery.sparkle.js" />
-    <Content Include="js\jquery\jquery-1.11.2.js" />
-    <Content Include="js\jquery\jquery-1.11.2.min.js" />
+    <Content Include="js\jquery\jquery-3.7.1.js" />
+    <Content Include="js\jquery\jquery-3.7.1.min.js" />
+    <Content Include="js\jquery\jquery-migrate-3.5.0.js" />
+    <Content Include="js\js.cookie.min.js" />
+    <Content Include="js\odp2015_globalvars.js" />
+    <Content Include="js\odp2015_handlers.js" />
+    <Content Include="js\odp2015_wsHelper.js" />
     <Content Include="js\opl2015\base64.js" />
     <Content Include="js\opl2015\Brightcoveexperiences.js" />
     <Content Include="js\opl2015\documenttools.js" />
@@ -374,6 +383,7 @@
     <Content Include="js\opl2015\globalVariables.js" />
     <Content Include="js\opl2015\handlers.js" />
     <Content Include="js\opl2015\highlight.js" />
+    <Content Include="videos\online-professional-library.mp4" />
     <Content Include="js\opl2015\plainToc.js" />
     <Content Include="js\opl2015\searchHelper.js" />
     <Content Include="js\opl2015\webServiceHelpers.js" />
@@ -530,9 +540,6 @@
     <Content Include="js\textOperations.js" />
     <Content Include="js\tools.js" />
     <Content Include="js\visualize.jQuery.js" />
-    <Content Include="js\ZeroClipboard.js" />
-    <Content Include="js\ZeroClipboard.min.js" />
-    <Content Include="js\ZeroClipboard.swf" />
     <Content Include="LMSLargeContent.aspx" />
     <Content Include="LMSBadcontent.aspx" />
     <Content Include="Error.aspx" />
@@ -1003,7 +1010,6 @@
     <Content Include="js\includeInIframe.js" />
     <Content Include="js\jquery-ui-1.7.3.custom.min.js" />
     <Content Include="js\jquery.cluetip.js" />
-    <Content Include="js\jquery.cookie.js" />
     <Content Include="js\jquery.highlight-3-mod.js" />
     <Content Include="js\jquery.highlight-3.js" />
     <Content Include="js\jquery.js" />
@@ -1020,6 +1026,7 @@
     <Content Include="media\player.swf" />
     <Content Include="media\swfobject.js" />
     <Content Include="nfTestLogin.aspx" />
+    <Content Include="resources\js.cookie.min.js" />
     <Content Include="resources\pfptoolkit\ar\Mouse.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1278,6 +1285,14 @@
     <Content Include="resources\pfptoolkit\Utilities.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\ZeroClipboard.js" />
+    <Content Include="Scripts\ZeroClipboard.min.js" />
+    <Content Include="Scripts\ZeroClipboard.swf" />
     <Content Include="SeamlessLoginOld.aspx" />
     <Content Include="SearchPage.aspx" />
     <Content Include="SendPassword.aspx" />
@@ -2067,6 +2082,8 @@
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Web.2015 PROD.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

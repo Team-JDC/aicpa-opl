@@ -19,10 +19,8 @@
 <link rel="stylesheet" type="text/css" href="Handlers/GetResource.ashx?type=subscription_access" />
 <link rel="stylesheet" type="text/css" href="Styles/ethics.css" />
 <link rel="stylesheet" type="text/css" href="Styles/coso.css" />
-
 <script type="text/javascript" src="js/globalVariables.js"></script>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.easing.min.js"></script>
 <script type="text/javascript" src="js/detect.js"></script>
 <script type="text/javascript" src="js/jQuery-jtemplates.min.js"></script>
 <script type="text/javascript" src="js/accordian-javascript.js"> </script>
@@ -104,7 +102,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script src="resources/jquery.cookie.js" type="text/javascript"></script>
+<script src="resources/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>

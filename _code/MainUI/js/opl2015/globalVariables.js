@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
 file: globalVariables.js
 This file defines any global variables necessary to maintain state information on the client.
 *******************************************************************************/
@@ -35,100 +35,56 @@ function getCurrentScrollbarPosition() {
     return position;
 }
 
+// OLD
+// var value = $.cookie(SHOWSOURCES_COOKIENAME);
+// $.cookie(SHOWSOURCES_COOKIENAME, show);
+
+// ✅ NEW
 function getShowSources() {
-    var value = $.cookie(SHOWSOURCES_COOKIENAME);
-    return (value == null ? false : value == "true");
+    return Cookies.get(SHOWSOURCES_COOKIENAME) === "true";
 }
 
 function setShowSources(show) {
-    $.cookie(SHOWSOURCES_COOKIENAME, show);    
+    Cookies.set(SHOWSOURCES_COOKIENAME, show, { expires: 30 });
 }
 
 function getShowHighlights() {
-    var value = $.cookie(SHOWHIGHLIGHTS_COOKIENAME);
-    return (value == null ? false : value == "true");
+    return Cookies.get(SHOWHIGHLIGHTS_COOKIENAME) === "true";
 }
 
 function setShowHighlights(show) {
-    $.cookie(SHOWHIGHLIGHTS_COOKIENAME, show);
+    Cookies.set(SHOWHIGHLIGHTS_COOKIENAME, show, { expires: 30 });
 }
+
 function setActiveDocument(sitenode) {
-    $.cookie(ACTIVEDOCUMENT_COOKIENAME, sitenode);
+    Cookies.set(ACTIVEDOCUMENT_COOKIENAME, JSON.stringify(sitenode), { expires: 30 });
 }
 
 function hasActiveDocument() {
-    var hasDoc = false;
-    var siteNode = $.cookie(ACTIVEDOCUMENT_COOKIENAME);
-    if (siteNode && siteNode.Id != -1) {
-        hasDoc = true;
+    let siteNode = Cookies.get(ACTIVEDOCUMENT_COOKIENAME);
+    try {
+        siteNode = siteNode ? JSON.parse(siteNode) : null;
+    } catch (e) {
+        return false;
     }
-
-    return hasDoc;
-}
-
-// Gets the 0 (ZERO!) based index of the active screen
-function getActiveScreenIndex() {
-//    console.log(g_activeScreenIndex);
-//    return g_activeScreenIndex;
-}
-
-// Sets the 0 (ZERO!) based index of the active screen
-function setActiveScreenIndex(newIndex) {
-//    if (newIndex < 0 || newIndex > getMyScreenCount() - 1) {
-//        throw "new screen index is not valid";
-//    }
-
-//    g_activeScreenIndex = newIndex;
-}
-
-// resets the activeScreenIndex to -1 -- so it doesn't have one
-function clearActiveScreenIndex() {
-    g_activeScreenIndex = -1;
+    return siteNode && siteNode.Id !== -1;
 }
 
 function getActiveDocumentId() {
-
-    var siteNode = $.cookie(ACTIVEDOCUMENT_COOKIENAME);
-    if (siteNode) {
-        return siteNode.Id;
-    } else { return -1 }
-}
-
-function getActiveDocumentType() {
-    var siteNode = $.cookie(ACTIVEDOCUMENT_COOKIENAME);
-    if (siteNode) {
-        return siteNode.Type;
-    } else {
-        return -1 
+    try {
+        const siteNode = JSON.parse(Cookies.get(ACTIVEDOCUMENT_COOKIENAME) || '{}');
+        return siteNode.Id || -1;
+    } catch {
+        return -1;
     }
 }
 
-function setActiveDocumentType(type) {
-    alert("setActiveDocumentType is deprecated");
-}
-
-
-
-//=========================================
-// TOC STATE
-//=========================================
-
-var g_tocStateId = -1;
-var g_tocStateType = "Site";
-
-function setTocStateId(id) {
-    g_tocStateId = id;
-}
-
-function getTocStateId() {
-    return g_tocStateId;
-}
-
-function setTocStateType(type) {
-    g_tocStateType = type;
-}
-
-function getTocStateType() {
-    return g_tocStateType;
+function getActiveDocumentType() {
+    try {
+        const siteNode = JSON.parse(Cookies.get(ACTIVEDOCUMENT_COOKIENAME) || '{}');
+        return siteNode.Type || -1;
+    } catch {
+        return -1;
+    }
 }
 

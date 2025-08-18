@@ -14,7 +14,8 @@
     //*******************************************************************************
 
     // when you click on a search link or on the search link icon
-    function doSearchLink(id, type, useNewScreen) {
+function doSearchLink(id, type, useNewScreen) {
+    console.log(id, type)
         //setLoading(true);
         updateHitDocButtons(id, type);
         
@@ -59,18 +60,21 @@
                 type: "POST",
                 url: "WS/EndecaServices.asmx/EndecaNextHitDoc",
                 dataType: "json",
-                data: "{id:" + id + ", type: '" + type + "'}",
+                data: JSON.stringify({ id: id, type: type }),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.d.Id != -1) {
                         $('#nextHitDoc').removeClass("disabled");
-                        $('#nextHitDoc').unbind("click");
-                        $('#nextHitDoc').click(function () {
+                        //$('#nextHitDoc').unbind("click");
+                        //$('#nextHitDoc').click(function () {
+                        //    doSearchLink(data.d.Id, data.d.Type, false);
+                        //});
+                        $('#nextHitDoc').off("click").on("click", function () {
                             doSearchLink(data.d.Id, data.d.Type, false);
                         });
                     } else {
                         $('#nextHitDoc').addClass("disabled");
-                        $('#nextHitDoc').unbind("click");
+                        $('#nextHitDoc').off("click");
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -85,18 +89,22 @@
                 type: "POST",
                 url: "WS/EndecaServices.asmx/EndecaPrevHitDoc",
                 dataType: "json",
-                data: "{id:" + id + ", type: '" + type + "'}",
+                data: JSON.stringify({ id: id, type: type }),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.d.Id != -1) {
                         $('#prevHitDoc').removeClass("disabled");
-                        $('#prevHitDoc').unbind("click");
-                        $('#prevHitDoc').click(function () {
+                        //$('#prevHitDoc').unbind("click");
+                        //$('#prevHitDoc').click(function () {
+                        //    doSearchLink(data.d.Id, data.d.Type, false);
+                        //});
+                        $('#prevHitDoc').off("click").on("click", function () {
                             doSearchLink(data.d.Id, data.d.Type, false);
                         });
+
                     } else {
                         $('#prevHitDoc').addClass("disabled");
-                        $('#prevHitDoc').unbind("click");
+                        $('#prevHitDoc').off("click");
                     }
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -657,10 +665,11 @@
         var noteText = $("#iframe-main").contents().find(addTextAreaIdJQuery).val();
         var titleText = $("#iframe-main").contents().find(addTextInputIdJQuery).val();
 
-        if (titleText == "") {
+        if (titleText.trim() === "") {
             alert("Please enter some text for the title");
         }
-        if (noteText == "") {
+
+        if (titleText.trim() === "") {
             alert("Please enter some text for the note");
             return;
         }
@@ -894,18 +903,19 @@
             $("#iframe-main").contents().find("div.editNoteDiv").remove();
             $("#iframe-main").contents().find(containerIdJQuery).append(editDivs);
             $("#iframe-main").contents().find("div.editNoteDiv").hide();
-            $("#content-container a.cluetip").click(function () {
-                var divId = $(this).attr("rel");
-                //Create original container id.
-                var containerID = divId.replace(/#edit-div-[0-9]+-/, "#").replace(/\./g, "\\.");
+            $("#content-container a.cluetip").on("click", function () {
+                let divId = $(this).attr("rel");
+                const containerID = divId.replace(/#edit-div-[0-9]+-/, "#").replace(/\./g, "\\.");
                 divId = divId.replace(/\./g, "\\.");
                 fixNote(containerID, divId);
             });
+
             $("#iframe-main").contents().find(containerIdJQuery).find("#" + anchorId.replace(/\./g, "\\.")).remove();
             $("#iframe-main").contents().find(containerIdJQuery).append(anchor);
-            $("a.cluetip").click( function () {
-                        $(document).trigger('hideCluetip');
-                    });
+            $("a.cluetip").on("click", function () {
+                $(document).trigger('hideCluetip');
+            });
+
             $("#cluetip").remove();
             $("#iframe-main").contents().find("#" + anchorId.replace(/\./g, "\\.")).cluetip({ activation: 'click', sticky: true, local: true, hideLocal: true, clickThrough: true, topOffset: 0, leftOffset: 25, closePosition: 'title', cluezIndex: 99
                 
@@ -946,10 +956,11 @@
         var noteText = $("#iframe-main").contents().find(editTextAreaIdJQuery).val();
         var titleText = $("#iframe-main").contents().find(addTextInputIdJQuery).val();
 
-        if (titleText == "") {
+        if (titleText.trim() === "") {
             alert("Please enter some text for the title");
         }
-        if (noteText == "") {
+
+        if (titleText.trim() === "") {
             alert("Please enter some text for the note.\nIf you are trying to remove the note, please click the delete button.");
             return;
         }
@@ -1110,11 +1121,13 @@ function doQuickFindDropDownOnChange(sender, selectedOption)
 {
     if (sender == 'documentType')
     {
-        $('#subjectMatter').val('').attr('selected', 'selected');
+        /*$('#subjectMatter').val('').attr('selected', 'selected');*/
+        $('#subjectMatter').val('').prop('selected', true);
     }
     else
     {
-        $('#documentType').val('').attr('selected', 'selected');
+        /*$('#documentType').val('').attr('selected', 'selected');*/
+        $('#documentType').val('').prop('selected', true);
     }
 
     hideDocumentSpecificButtons();
@@ -1194,6 +1207,7 @@ function createNewScreenIfRequestedOrNoActiveScreen(useNewScreen) {
 }
 
 function doAdvSearchCheck(keyInfo) {
+    console.log(keyInfo)
     if (keyInfo == 13) {
         document.getElementById('advancedsearch').focus();
         document.getElementById('advancedsearch').click(); 
@@ -1288,15 +1302,20 @@ function setMyDocumentsTab(visible) {
     }
 }
 
-$(document).ready(function () {
-    $(".noteTip").cluetip({ activation: 'click', sticky: true, local: true, hideLocal: true, topOffset: 0, leftOffset: 0, closePosition: 'title',
+$(function () {
+    $(".noteTip").cluetip({
+        activation: 'click',
+        sticky: true,
+        local: true,
+        hideLocal: true,
+        topOffset: 0,
+        leftOffset: 0,
+        closePosition: 'title',
         onShow: function () {
             $(document).one('mousedown', function () {
                 $(document).trigger('hideCluetip');
             });
         }
-
     });
-
-
 });
+

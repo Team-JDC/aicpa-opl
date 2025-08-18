@@ -1,134 +1,121 @@
-﻿//function scrollToCurrentHitLocation(hitlocation) {
-//    var anchorElement = null;
+﻿// hit-highlighter.js (Modernized with Comments and jQuery 3.7.1 Compatibility)
 
-//    var found = $("span[id='"+hitlocation+"']:first");
+let hitcount = 0;
+let currentHit = 0;
 
-//    if (found.length > 0) {
-//        anchorElement = found[0];
-//    }
-//    if (anchorElement) {
-//        anchorElement.scrollIntoView(true);
-//        $('#' + hitlocation).addClass("highlight2");
-//    }
-//}
-
+/**
+ * Scrolls smoothly to the given highlighted element by ID.
+ * Adds highlight class to visually indicate focus.
+ * @param {string} prop - The ID of the target hit element.
+ */
 function scrollToCurrentHitLocation(prop) {
-    //scroll to the top if the selector doesn't exists...
-    if ($("#" + prop).length > 0) {
-
-        $('html,body').animate({ scrollTop: $("#" + prop).offset().top - 50 }, 'slow');
-
-        $('#' + prop).addClass("highlight2");
+    const $target = $('#' + prop);
+    if ($target.length) {
+        $('html, body').animate({ scrollTop: $target.offset().top - 50 }, 'slow');
+        $target.addClass('highlight2');
     }
 }
 
+/**
+ * Determines if there is a next hit to navigate to.
+ * @returns {boolean}
+ */
 function isNextVisible() {
-    return currentHit < (hitcount - 1);
+    return currentHit < hitcount - 1;
 }
 
+/**
+ * Determines if there is a previous hit to navigate to.
+ * @returns {boolean}
+ */
 function isPrevVisible() {
     return currentHit > 0;
 }
 
+/**
+ * Navigates to the next highlighted hit.
+ */
 function goToNext() {
-    $("#hitlocation" + currentHit).removeClass("highlight2");
-    if (isNextVisible()) {
-        currentHit = currentHit + 1;
-    }
-    scrollToCurrentHitLocation("hitlocation" + currentHit);
+    $('#hitlocation' + currentHit).removeClass('highlight2');
+    if (isNextVisible()) currentHit++;
+    scrollToCurrentHitLocation('hitlocation' + currentHit);
 }
 
+/**
+ * Navigates to the previous highlighted hit.
+ */
 function goToPrevious() {
-    $("#hitlocation" + currentHit).removeClass("highlight2");
-    if (isPrevVisible()) {
-        currentHit = currentHit - 1;
-    }
-    scrollToCurrentHitLocation("hitlocation" + currentHit);
+    $('#hitlocation' + currentHit).removeClass('highlight2');
+    if (isPrevVisible()) currentHit--;
+    scrollToCurrentHitLocation('hitlocation' + currentHit);
 }
 
-var hitcount = 0;
-var currentHit = 0;
+$(function () {
+    const $highlightInput = $('#hhighlight');
+    const showButton = $highlightInput.length > 0;
 
-$(document).ready(function () {
-
-    var showButton = ($('#hhighlight').length != 0);
     if (showButton) {
         parent.showInnerSearchButtons();
 
-        var words = $('#hhighlight').attr('value');
-        var anchor = $('#hitanchor').attr('value');
+        const words = $highlightInput.val() || '';
+        const anchor = $('#hitanchor').val() || '';
 
-        var wordsArray = new Array();
-        var wordsArrayIndex = 0;
-        $.each(words.split(" "), function (idx, val) {
-            val = val.replace(/\+/g, "\\s+");
-            val = $.trim(val);
-            val = val.toLowerCase();
-            if (val != "" && $.inArray(val, wordsArray) == -1) {
-                wordsArray[wordsArrayIndex] = val;
-                wordsArrayIndex = wordsArrayIndex + 1;
+        const wordsArray = [];
+        $.each(words.split(' '), function (_, val) {
+            val = val.replace(/\+/g, '\\s+').trim().toLowerCase();
+            if (val && !wordsArray.includes(val)) {
+                wordsArray.push(val);
             }
         });
 
+        // Remove previous highlights
+        $('body').removeHighlight();
 
-        $('body').removeHighlight(); // remove old highlights
-
-        $.each(wordsArray, function (idx, val) {
+        // Highlight search terms
+        wordsArray.forEach(val => {
             $('body').highlight(val);
         });
 
-        //highlight
-        var count = 0;
-        $(".highlight").each(function (i, obj) {
-            $(obj).attr("id", "hitlocation" + i);
-            hitcount = hitcount + 1;
+        // Assign IDs to each highlight and count them
+        $('.highlight').each(function (i) {
+            $(this).attr('id', 'hitlocation' + i);
+            hitcount++;
         });
 
-        if (hitcount > 0) {
-            //     $("<div id='header'><div id='prev'><a href='#'>Prev</a></div><div id='next'><a href='#first'>Next</a></div></div>").prependTo("body");
-        }
+        // Determine current hit based on anchor position if available
+        let anchorLoc = -1;
+        if (anchor) {
+            const html = $('body').html();
+            const anchorText = `name="${anchor}"`;
+            let anchorIndex = html.indexOf(anchorText);
 
-        //Method for Next, Prev
-        var anchorLoc = -1;
-        if (anchor != "") {
-            var anchortxt = "name=\"" + anchor + "\"";
-            var anchorIndex = $('body').html().indexOf(anchortxt);
-            // see http://api.jquery.com/html/  "This method uses the browser's innerHTML property. 
-            //      Some browsers may not return HTML that exactly replicates the HTML source in an original document. 
-            //      For example, Internet Explorer sometimes leaves off the quotes around attribute values if they contain only alphanumeric characters"
-            if (anchorIndex == -1) {
-                var tempAnchor = anchortxt.replace(/\"/gi, ""); //anchortxt.replace("\"", "");
-                anchorIndex = $('body').html().indexOf(tempAnchor);
+            if (anchorIndex === -1) {
+                anchorIndex = html.indexOf(anchorText.replace(/"/g, ''));
             }
 
-            var index = 0;
-            var pos = 0;
-            while ((index < hitcount) && (pos < anchorIndex)) {
-                pos = $('body').html().indexOf("hitlocation" + index);
+            let index = 0;
+            let pos = 0;
+            while (index < hitcount && pos < anchorIndex) {
+                pos = html.indexOf('hitlocation' + index);
                 if (pos < anchorIndex) index++;
             }
-            if (index < hitcount)
-                anchorLoc = index;
+
+            if (index < hitcount) anchorLoc = index;
         }
 
-        if (anchorLoc > -1) {
-            currentHit = anchorLoc;
-        }
-
-
-        scrollToCurrentHitLocation("hitlocation" + currentHit);
-
+        if (anchorLoc > -1) currentHit = anchorLoc;
+        scrollToCurrentHitLocation('hitlocation' + currentHit);
     } else {
         parent.hideInnerSearchButtons();
     }
-
 });
 
-$(document).click(function (obj) {
-    var elementclicked = obj.srcElement;
-    if ((elementclicked.pathname != null && elementclicked.pathname.indexOf("GetDocument.ashx") != -1) ||
-        (elementclicked.parentElement != null && elementclicked.parentElement.pathname != null && elementclicked.parentElement.pathname.indexOf("GetDocument.ashx") != -1)) {
+
+// Hide highlight buttons if user clicks a link to download a document
+$(document).on('click', function (event) {
+    const element = event.target;
+    const path = element?.pathname || element?.parentElement?.pathname || '';
+    if (path.includes('GetDocument.ashx')) {
         parent.hideInnerSearchButtons();
     }
 });
-

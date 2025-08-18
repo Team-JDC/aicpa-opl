@@ -1,77 +1,55 @@
-/*
- * D_Popup
- * Scott Burton, Knowlysis
- * Based on some methods from JTip (By Cody Lindley (http://www.codylindley.com))
- *
- * Requires JQuery
+/**
+ * D_Popup Tooltip Handler
+ * Originally by Scott Burton, Knowlysis
+ * Modernized for jQuery 3.7.1
  */
 
-//on page load (as soon as its ready) call JT_init
-$(document).ready(DPopup_init);
+$(function () {
+    $("a.fasb-tooltip, a.xbrlReference")
+        .on('mouseenter', function () { showPopup(this); })
+        .on('mouseleave', function () { hidePopup(this); });
+});
 
-function DPopup_init()
-{
-    $("a.fasb-tooltip").hover(function () { DPopup_show(this) }, function () { DPopup_hide(this) });
-    $("a.xbrlReference").hover(function () { DPopup_show(this) }, function () { DPopup_hide(this) });
+
+function showPopup(link) {
+    const $popup = $(link).find("span.popupSpan");
+    const popupWidth = 350;
+    const headerOffset = 350;
+
+    const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const linkLeft = getAbsoluteLeft(link);
+    const linkTop = getAbsoluteTop(link) - headerOffset;
+
+    const hasRightSpace = windowWidth - linkLeft;
+    const popupLeft = hasRightSpace > (popupWidth + 75)
+        ? linkLeft - 450
+        : linkLeft - popupWidth + 15;
+
+    $popup.css({
+        left: `${popupLeft}px`,
+        top: `${linkTop}px`,
+        width: popupWidth
+    }).show();
 }
 
-function DPopup_show(link){
-	var de = document.documentElement;
-	var w = self.innerWidth || (de&&de.clientWidth) || document.body.clientWidth;
-
-	var hasArea = w - getAbsoluteLeft(link);
-	var clickElementy = getAbsoluteTop(link)-350; //set y position (the -350 is because of the header)
-	//alert(hasArea);
-	
-
-	var popupWidth = 350;
-	
-	if(hasArea > (popupWidth + 75))
-	{
-		var clickElementx = getAbsoluteLeft(link)-450; //set x position
-	}
-	else
-	{
-		var clickElementx = getAbsoluteLeft(link) - popupWidth + 15; //set x position
-	}
-	
-	$(link).find("span.popupSpan").css({left: clickElementx+"px", top: clickElementy+"px", width:popupWidth});
-	$(link).find("span.popupSpan").show();
+function hidePopup(link) {
+    $(link).find("span.popupSpan").hide();
 }
 
-function DPopup_hide(link)
-{
-	$(link).find("span.popupSpan").hide();
+function getAbsoluteLeft(element) {
+    let left = element.offsetLeft;
+    while (element.offsetParent) {
+        element = element.offsetParent;
+        left += element.offsetLeft;
+    }
+    return left;
 }
 
-
-function getElementWidth(o)
-{
-	return o.offsetWidth;
+function getAbsoluteTop(element) {
+    let top = element.offsetTop;
+    while (element.offsetParent) {
+        element = element.offsetParent;
+        top += element.offsetTop;
+    }
+    return top;
 }
-
-function getAbsoluteLeft(o)
-{
-	// Get an object left position from the upper left viewport corner
-	oLeft = o.offsetLeft            // Get left position from the parent object
-	while(o.offsetParent!=null) {   // Parse the parent hierarchy up to the document element
-		oParent = o.offsetParent    // Get parent object reference
-		oLeft += oParent.offsetLeft // Add parent left position
-		o = oParent
-	}
-	return oLeft
-}
-
-function getAbsoluteTop(o)
-{
-	// Get an object top position from the upper left viewport corner
-	oTop = o.offsetTop            // Get top position from the parent object
-	while(o.offsetParent!=null) { // Parse the parent hierarchy up to the document element
-		oParent = o.offsetParent  // Get parent object reference
-		oTop += oParent.offsetTop // Add parent top position
-		o = oParent
-}
-//alert(oTop);
-	return oTop
-}
-

@@ -1,173 +1,159 @@
-﻿
-// Dev
-
-//This function is to do an advanced search.
+﻿// Perform an advanced search using the provided parameters
 function doAdvancedNavigationalSearch(dimensionId, keywords, searchMode, maxHits, pageSize, pageOffset, showExcerpts, showUnsubscribed, nonauthoritative, callback) {
-    clearCurrentView(); // update the back button status
-    //content-container
-
-    //alert('Dimension ID = ' + dimensionId.toString());
-
-
-
-
-    var txt = keywords;
-    var tbox = document.getElementById('searchTerms');
-    if (tbox) {
-        tbox.value = txt;
-    }
-
+    clearCurrentView();
     clearMyScreensHitHighlighting();
     hideDocumentSpecificButtons();
 
-    if (keywords == "") {
+    if (!keywords) {
         alert("Please Enter Search Terms");
         return false;
     }
 
-    var temp = keywords;
-    keywords = temp.replace(/'/g, '\\\''); //escape single quotes so they can be passed to Endeca without breaking the javascript
+    // Set textbox value if present
+    const $searchBox = $('#searchTerms');
+    if ($searchBox.length) $searchBox.val(keywords);
 
-    var filterUnsubscribed;
+    // Escape single quotes for safe transmission
+    const safeKeywords = keywords.replace(/'/g, "\\'");
 
-    if ($('#showUnsubscribed').attr('checked') == true) filterUnsubscribed = 0;
-    else filterUnsubscribed = 1;
+    const filterUnsubscribed = $('#showUnsubscribed').is(':checked') ? 0 : 1;
 
-    var params = "{dimensionId:'" + dimensionId + "', keywords:'" + keywords + "', searchMode:" + searchMode + ", maxHits:" + maxHits + ", pageSize:" + pageSize + ", pageOffset:" + pageOffset + ", showExcerpts:" + showExcerpts + ", filterUnsubscribed:" + filterUnsubscribed + ", nonauthoritative: " + nonauthoritative+"}";
-
-    //alert(params);
+    const params = JSON.stringify({
+        dimensionId,
+        keywords: safeKeywords,
+        searchMode,
+        maxHits,
+        pageSize,
+        pageOffset,
+        showExcerpts,
+        filterUnsubscribed,
+        nonauthoritative
+    });
 
     loadTemplate('WS/EndecaServices.asmx/EndecaAdvancedSearch', params, 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
-    if (document.images) {
-        var resultTrue = new Image();
-        resultTrue.src = "images/btn-results.gif";
 
-        var searchResultsButton = document.images["searchResultsButton"];
-        var source = "";
-        if (searchResultsButton) {
-            source = searchResultsButton.src;
-        }
-        var ethicsImg = "images/results2.png";
-        if (source.indexOf(ethicsImg) == -1)
-            searchResultsButton.src = resultTrue.src;
+    // Update button image if needed
+    const searchResultsButton = document.images["searchResultsButton"];
+    if (searchResultsButton && !searchResultsButton.src.includes("images/results2.png")) {
+        searchResultsButton.src = "images/btn-results.gif";
     }
-    if (callback) {
-        callback();
-    }
-    //$('#content-container').scrollTop();
-    $("#content-container").animate({ "scrollTop": 0 });
+
+    if (callback) callback();
+
+    $("#content-container").animate({ scrollTop: 0 });
 }
 
-function doHitResult(id, type, keywords, searchMode, container) {   
-    var hideContainer = $('#' + container).is(':visible');
-    $('#' + container).slideToggle();
+// Toggle and optionally load detailed search hit result
+function doHitResult(id, type, keywords, searchMode, container) {
+    const $container = $(`#${container}`);
+    const isVisible = $container.is(':visible');
 
-    if (hideContainer) return;
-    
-    var params = "{id:" + id + ", type:'" + type + "', keywords:'"+keywords+"', searchMode:" + searchMode + "}";
-    loadTemplate('WS/DocumentTools.asmx/GetHitDetail', params, 'templates/hitDetail.html', container, '',null, true);
+    $container.slideToggle();
 
+    if (!isVisible) {
+        const params = JSON.stringify({ id, type, keywords, searchMode });
+        loadTemplate('WS/DocumentTools.asmx/GetHitDetail', params, 'templates/hitDetail.html', container, '', null, true);
+    }
 }
 
-
-
+// Load search results based on current criteria
 function getResults() {
-    clearCurrentView(); // update the back button status
-
+    clearCurrentView();
     hideDocumentSpecificButtons();
-    loadTemplate('WS/EndecaServices.asmx/EndecaSearchWithCurrentCriteria', '{}', 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
 
-//    var params = "{dimensionId:'" + dimensionId + "', keywords:'" + keywords + "', searchMode:" + searchMode + ", maxHits:" + maxHits + ", pageSize:" + pageSize + ", pageOffset:" + pageOffset + ", showExcerpts:" + showExcerpts + ", filterUnsubscribed:" + filterUnsubscribed + "}";
-//    loadTemplate('WS/EndecaServices.asmx/EndecaAdvancedSearch', params, 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
+    loadTemplate('WS/EndecaServices.asmx/EndecaSearchWithCurrentCriteria', '{}', 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
 }
 
-//This function loads a blank search form when user links directly to Adv search without triggering basic search first.
+// Load the advanced search form (blank)
 function loadBlankSearch() {
-    clearCurrentView(); // update the back button status
-    //setToolAsCurrentView(toolName_blankSearch, ""); // update the back button status
-
+    clearCurrentView();
     hideDocumentSpecificButtons();
+
     loadTemplate('WS/EndecaServices.asmx/DoBlankSearch', '{}', 'templates/blankSearch.html', 'document-container', '', setUpSearchAutocomplete);
 }
 
-
-// clears bacic search textbox is default search term is still there, otherwise it's left alone.
-// will need to change function if default search term is changed.
+// Clear or focus the search box depending on its value
 function clearSearchBox() {
-    if ($('#searchTerms').val() == "New Search") {
-        $('#searchTerms[value]').val("");
-    }
-    else {
-        $('#searchTerms').select();
-    }
+    const $searchBox = $('#searchTerms');
+    if ($searchBox.val() === "New Search") {
+        $searchBox.val("");
+    } else {
+        $searchBox.select();
 }
 
+// Save current search parameters under a user-defined name
 function saveSearch(dimensionId, keywords, searchMode, maxHits, pageSize, pageOffset, showExcerpts, showUnsubscribed) {
-    var filterUnsubscribed;
-    if ($('#showUnsubscribed').attr('checked') == true) filterUnsubscribed = 0;
-    else filterUnsubscribed = 1;
-    var searchName = $('#searchNameBox').val();
-    if (searchName == "") {
+    const filterUnsubscribed = $('#showUnsubscribed').is(':checked') ? 0 : 1;
+    const searchName = $('#searchNameBox').val();
+
+    if (!searchName) {
         alert("Please Enter Search Name");
-        document.getElementById('searchNameBox').focus();
+        $('#searchNameBox').focus();
+        return;
     }
-    var params = "{searchName:'" + searchName + "', dimensionId:'" + dimensionId + "', keywords:'" + keywords + "', searchMode:" + searchMode + ", maxHits:" + maxHits + ", pageSize:" + pageSize + ", pageOffset:" + pageOffset + ", showExcerpts:" + showExcerpts + ", filterUnsubscribed:" + filterUnsubscribed + "}";
+
+    const params = JSON.stringify({
+        searchName,
+        dimensionId,
+        keywords,
+        searchMode,
+        maxHits,
+        pageSize,
+        pageOffset,
+        showExcerpts,
+        filterUnsubscribed
+    });
+
     loadTemplate('WS/SearchServices.asmx/SaveUserSearch', params, 'templates/savedSearches.html', 'document-container');
 }
 
+// Delete a saved search by name
 function deleteSavedSearch(name) {
-    var params = "{name:'" + name + "'}";
+    const params = JSON.stringify({ name });
     loadTemplate('WS/SearchServices.asmx/DeleteUserSavedSearch', params, 'templates/savedSearches.html', 'document-container');
 }
 
+// Show rename dialog for a saved search
 function renameSavedSearchPrompt(name) {
     $('#nameSearchWindow').show();
     $('#oldName').val(name);
-    $('#searchNameBox').val(name);
-    document.getElementById('searchNameBox').focus();
+    $('#searchNameBox').val(name).focus();
 }
 
+// Rename a saved search
 function renameSavedSearch() {
-    var newName = $('#searchNameBox').val()
-    if (newName == "") {
+    const newName = $('#searchNameBox').val();
+
+    if (!newName) {
         alert("Please Enter New Search Name");
-        document.getElementById('searchNameBox').focus();
+        $('#searchNameBox').focus();
         return false;
     }
-    var params = "{name:'" + $('#oldName').val() + "', newName:'" + newName + "'}";
+
+    const params = JSON.stringify({
+        name: $('#oldName').val(),
+        newName
+    });
+
     loadTemplate('WS/SearchServices.asmx/RenameUserSavedSearch', params, 'templates/savedSearches.html', 'document-container');
 }
 
+// Trigger name prompt if keywords exist
 function nameSearch(keywords) {
-    if (keywords == "") {
+    if (!keywords) {
         alert("Please Enter Search Terms");
     } else {
         $('#nameSearchWindow').show();
     }
 }
 
+// Hide the name search modal
 function cancelNameSearch() {
     $('#nameSearchWindow').hide();
 }
 
+// Setup autocomplete for the advanced search terms input (placeholder, not active)
 function setUpSearchAutocomplete() {
-//    if ($('#searchTermsAdvanced').length > 0) {
-//        $.ajax({
-//            type: "POST",
-//            url: "WS/SearchServices.asmx/GetSuggestedSearchTerms",
-//            dataType: "json",
-//            data: "{}",
-//            contentType: "application/json; charset=utf-8",
-//            success: function (data) {
-//                $("#searchTermsAdvanced").autocomplete({
-//                    source: data.d,
-//                    minlength: 3,
-//                    maxResults: 30
-//                });
-//            },
-//            error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                alert(textStatus);
-//            }
-//        });
-//    }
+    // To be implemented if needed
+    // Uncomment and update endpoint to enable jQuery UI autocomplete
 }

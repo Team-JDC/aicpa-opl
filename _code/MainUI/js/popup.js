@@ -1,269 +1,185 @@
-﻿var popupStatus = 0;
+﻿let popupStatus = 0;
 
-//loading popup with jQuery magic!
-function loadPopup(){
-	//loads popup only if it is disabled
-    if (popupStatus == 0) {
-        
-		$("#backgroundPopup").css({
-			"opacity": "0.7"
-		});
-		$("#backgroundPopup").fadeIn("slow");
-		$("#popupContact").fadeIn("slow");
-		popupStatus = 1;
-	}
+// Show the print popup (if not already open)
+function loadPopup() {
+    if (popupStatus === 0) {
+        $("#backgroundPopup").css("opacity", "0.7").fadeIn("slow");
+        $("#popupContact").fadeIn("slow");
+        popupStatus = 1;
+    }
 }
 
-//disabling popup with jQuery magic!
-function disablePopup(){
-	//disables popup only if it is enabled
-	if(popupStatus==1){
-	    $("#printContent").empty();
-        $("#backgroundPopup").fadeOut("slow");
-        $("#popupContact").fadeOut("slow");
+// Hide the print popup (if open)
+function disablePopup() {
+    if (popupStatus === 1) {
+        $("#printContent").empty();
+        $("#backgroundPopup, #popupContact").fadeOut("slow");
 
-        $("#pdfPrint").attr('checked', false);
-        $("#subpagesPrint").attr('checked', false);
-        $("#sourcesPrint").attr('checked', false);
+        $("#pdfPrint, #subpagesPrint, #sourcesPrint").prop("checked", false).prop("disabled", false);
 
-        $("#subpagesPrint").removeAttr('disabled');
-
-        $("#sourcesPrint").removeAttr('disabled');
-
-		popupStatus = 0;
-	}
+        popupStatus = 0;
+    }
 }
 
+// Remove any joined section buttons before printing
 function removeJoinButtonsPrint() {
-    $("#printContent").contents().find(".joinSectionsTopic").hide();
-    $("#printContent").contents().find(".joinSectionsTopic").remove();
-    $("#printContent").contents().find(".joinSectionsSubtopic").hide();
-    $("#printContent").contents().find(".joinSectionsSubtopic").remove();
+    const $frameContents = $("#printContent").contents();
+    $frameContents.find(".joinSectionsTopic, .joinSectionsSubtopic").remove();
 }
 
+// Called after print content is loaded
 function finishLoadingContent() {
     removeJoinButtonsPrint();
 }
 
-//centering popup
-function centerPopup2(){
-	//request data for centering
-
-	//centering
-	$("#popupContact").css({
-		"position": "absolute",
-		"top": 0
-	});
-
+// Position the popup on screen
+function centerPopup2() {
+    $("#popupContact").css({
+        position: "absolute",
+        top: 0
+    });
 }
 
+// Load print tools status and update the "show sources" checkbox
 function updatePrintSourcesCheckbox() {
-    callWebService("WS/DocumentTools.asmx/GetBookTools", "{id:" + getActiveDocumentId() + ", type:'" + getActiveDocumentType() + "'}", updatePrintSourcesCheckboxHandler, ajaxFailed);
+    const id = getActiveDocumentId();
+    const type = getActiveDocumentType();
+
+    callWebService(
+        "WS/DocumentTools.asmx/GetBookTools",
+        `{id:${id}, type:'${type}'}`,
+        updatePrintSourcesCheckboxHandler,
+        ajaxFailed
+    );
 }
 
+// Count the number of subdocuments to determine if a warning is needed
 function countSubDocuments() {
-    if ($("#subpagesPrint:checked").length > 0) {
-        callWebService("WS/Content.asmx/countSubDocuments", "{docId:" + getActiveDocumentId() + "}", subDocumentCountHandler, ajaxFailed);
+    if ($("#subpagesPrint").is(":checked")) {
+        callWebService(
+            "WS/Content.asmx/countSubDocuments",
+            `{docId:${getActiveDocumentId()}}`,
+            subDocumentCountHandler,
+            ajaxFailed
+        );
     }
 }
 
+// Handles document count response for subpages
+function subDocumentCountHandler(count) {
+    const DOC_WARN_LEVEL = 9;
+    let proceed = true;
 
-function subDocumentCountHandler(msg) {
-    //this is the minimum number of documents before a popup will warn the user that joining them may take a minute.
-    var DOC_WARN_LEVEL = 9;
-
-
-    var count = msg;
-    var test = 1;
-
-    if (count > DOC_WARN_LEVEL) 
-    {
-        test = confirm("The application will have to put together "+count+" documents and may become unresponsive for a few minutes.");
+    if (count > DOC_WARN_LEVEL) {
+        proceed = confirm(`The application will have to put together ${count} documents and may become unresponsive for a few minutes.`);
     }
-    if (test) {
-        var printSubDocs = "true";
 
-        var printPDF = "";
-        var showCodificationSources = "";
+    if (proceed) {
+        const printPDF = $("#pdfPrint").is(":checked") ? "true" : "";
+        const showSources = $("#sourcesPrint").is(":checked") ? "true" : "";
 
-        if ($("#sourcesPrint:checked").length > 0) {
-            showCodificationSources = "true";
+        let url = `PrintDocument.ashx?id=${getActiveDocumentId()}&type=${getActiveDocumentType()}&printSubdocuments=true&showCodificationSources=${showSources}&printToPDF=${printPDF}`;
 
-        }
+        if (g_currentView?.toolName === toolName_joinSections || g_currentView?.toolName === toolName_joinChildren) {
+            if (g_lastJoinSectionsUrl) {
+                $("#subpagesPrint").prop("checked", true).prop("disabled", true);
+                $("#sourcesPrint").prop("disabled", true);
 
-        if ($("#pdfPrint:checked").length > 0)
-            printPDF = "true";
-
-        var windowUrl = "PrintDocument.ashx?id=" + getActiveDocumentId() + "&type=" + getActiveDocumentType() + "&printSubdocuments=" + printSubDocs + "&showCodificationSources=" + showCodificationSources + "&printToPDF=" + printPDF;
-
-        if (g_currentView != null && (g_currentView.toolName == toolName_joinSections || g_currentView.toolName == toolName_joinChildren) && g_lastJoinSectionsUrl) {
-            $("#subpagesPrint").attr('checked', true);
-            $("#subpagesPrint").attr('disabled', true);
-            $("#sourcesPrint").attr('disabled', true);
-            if (showCodificationSources) {
-                windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl + "%26show_sources";
-            } else {
-                if (g_lastJoinSectionsUrl.indexOf("%26show_sources") > 0)
-                    windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl.replace("%26show_sources", "");
-                else
-                    windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl;
+                const showSrcTag = "%26show_sources";
+                url += `&joinSectionsUrl=${showSources ? g_lastJoinSectionsUrl + showSrcTag :
+                    g_lastJoinSectionsUrl.replace(showSrcTag, "")}`;
             }
-
         }
-        $('#printContent').load(windowUrl, finishLoadingContent);
 
-
+        $("#printContent").load(url, finishLoadingContent);
+    } else {
+        $("#subpagesPrint").prop("checked", false);
     }
-    else {
-        $("#subpagesPrint").attr('checked', false);
-    }
-    
 }
 
+// Determine visibility of source checkbox
 function updatePrintSourcesCheckboxHandler(msg) {
-    /*if (msg.ShowFafTools && msg.ViewSources) {
-        setPrintSourcesCheckbox(true);
+    const docPrefix = getMyScreens()[getActiveScreenIndex()].targetDoc?.substring(0, 3).toUpperCase();
+
+    if (["FVS", "PFP"].includes(docPrefix)) {
+        $("#pdfPrintOuterDiv").hide();
+        setPrintSourcesCheckbox(false);
     } else {
-        setPrintSourcesCheckbox(false);
-    }*/
-    var testTargetDoc = getMyScreens()[getActiveScreenIndex()].targetDoc;
-    if (testTargetDoc.length > 2 && ((testTargetDoc.substring(0, 3).toUpperCase() == "FVS")||(testTargetDoc.substring(0, 3).toUpperCase() == "PFP"))) {
-        $('#pdfPrintOuterDiv').hide();
-        setPrintSourcesCheckbox(false);
-    }
-    else {
-        $('#pdfPrintOuterDiv').show();
-        if (testTargetDoc.substring(0, 3).toUpperCase() == "FAF") {
-            setPrintSourcesCheckbox(true);
-        }
-        else {
-            setPrintSourcesCheckbox(false);
-        }
-        
+        $("#pdfPrintOuterDiv").show();
+        setPrintSourcesCheckbox(docPrefix === "FAF");
     }
 }
 
+// Show or hide the source checkbox
 function setPrintSourcesCheckbox(visible) {
-
-    if (visible && (disableShowCodReferences == false) ) {
-        $('#sourcesPrintDiv').show();
+    if (visible && disableShowCodReferences === false) {
+        $("#sourcesPrintDiv").show();
     } else {
-        $('#sourcesPrintDiv').hide();
+        $("#sourcesPrintDiv").hide();
     }
 }
 
+// Load print content with appropriate flags and checkboxes
+function loadPrintContent() {
+    const showSources = $("#sourcesPrint").is(":checked") ? "true" : "";
+    const isJoined = getActiveDocumentVCT();
 
-//CONTROLLING EVENTS IN jQuery
-$(document).ready(function () {
-    //LOADING POPUP
+    if (isJoined) {
+        $("#subpagesPrint").prop("checked", true);
+    }
+
+    if ($("#subpagesPrint").is(":checked")) {
+        countSubDocuments();
+    } else {
+        const printPDF = $("#pdfPrint").is(":checked") ? "true" : "";
+
+        let url = `PrintDocument.ashx?id=${getActiveDocumentId()}&type=${getActiveDocumentType()}&printSubdocuments=false&showCodificationSources=${showSources}&printToPDF=${printPDF}`;
+
+        if (g_currentView?.toolName === toolName_joinSections || g_currentView?.toolName === toolName_joinChildren) {
+            if (g_lastJoinSectionsUrl) {
+                $("#subpagesPrint").prop("checked", true).prop("disabled", true);
+                $("#sourcesPrint").prop("disabled", true);
+
+                const showSrcTag = "%26show_sources";
+                url += `&joinSectionsUrl=${showSources ? g_lastJoinSectionsUrl + showSrcTag :
+                    g_lastJoinSectionsUrl.replace(showSrcTag, "")}`;
+            }
+        }
+
+        $("#printContent").load(url, finishLoadingContent);
+    }
+}
+
+// Attach event handlers
+$(function () {
     setPrintSourcesCheckbox(false);
 
-    //Click the button event!
-
-
-    $("#button").click(function () {
+    $("#button, #printBtn").on("click", function () {
         if (hasActiveDocument()) {
-            //centering with css
             centerPopup2();
-            //load popup
             loadPopup();
-
-            //update the print sources stuff
             updatePrintSourcesCheckbox();
-
-            // Adding code to correctly populate popup
             loadPrintContent();
         }
     });
 
-    $("#printBtn").click(function () {
-        if (hasActiveDocument()) {
-            //centering with css
-            centerPopup2();
-            //load popup
-            loadPopup();
-
-            //update the print sources stuff
-            updatePrintSourcesCheckbox();
-
-            // Adding code to correctly populate popup
-            loadPrintContent();
-        }
-    });
-
-    $("#addBookmarkbtn").click(function () {
+    $("#addBookmarkbtn").on("click", function () {
         if (hasActiveDocument()) {
             addPageBookmark(getActiveDocumentId(), getActiveDocumentType());
         }
     });
 
-    $("#deleteBookmarkbtn").click(function () {
+    $("#deleteBookmarkbtn").on("click", function () {
         if (hasActiveDocument()) {
             deletePageBookmark(getActiveDocumentId(), getActiveDocumentType());
         }
     });
 
-    //CLOSING POPUP
-    //Click the x event!
-    $("a.popupContactClose").click(function () {
-        disablePopup();
-    });
-    //Click out event!
-    $("#backgroundPopup").click(function () {
-        disablePopup();
-    });
-    //Press Escape event!
-    $(document).keypress(function (e) {
-        if (e.keyCode == 27 && popupStatus == 1) {
+    $("a.popupContactClose, #backgroundPopup").on("click", disablePopup);
+
+    $(document).on("keydown", function (e) {
+        if (e.key === "Escape" && popupStatus === 1) {
             disablePopup();
         }
     });
-
 });
-
-
-
-function loadPrintContent() {
-    var showCodificationSources = "";
-    if ($("#sourcesPrint:checked").length > 0) {
-        showCodificationSources = "true";
-
-    }
-
-    var joined = getActiveDocumentVCT();
-
-    var printSubDocs = "";
-    if (joined) {
-        $("#subpagesPrint").attr('checked', 'checked');
-    }
-    if ($("#subpagesPrint:checked").length > 0) {
-        printSubDocs = "true";
-        countSubDocuments();
-
-    }
-    else {
-        var printPDF = "";
-        if ($("#pdfPrint:checked").length > 0)
-            printPDF = "true";
-
-        var windowUrl = "PrintDocument.ashx?id=" + getActiveDocumentId() + "&type=" + getActiveDocumentType() + "&printSubdocuments=" + printSubDocs + "&showCodificationSources=" + showCodificationSources + "&printToPDF=" + printPDF;
-
-        if (g_currentView != null && (g_currentView.toolName == toolName_joinSections || g_currentView.toolName == toolName_joinChildren) && g_lastJoinSectionsUrl) {
-            $("#subpagesPrint").attr('checked', true);
-            $("#subpagesPrint").attr('disabled', true);
-            $("#sourcesPrint").attr('disabled', true);
-            if (showCodificationSources) {
-                windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl + "%26show_sources";
-            } else {
-                if (g_lastJoinSectionsUrl.indexOf("%26show_sources") > 0)
-                    windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl.replace("%26show_sources", "");
-                else
-                    windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl;
-            }
-
-        }
-        $('#printContent').load(windowUrl, finishLoadingContent);
-
-    }
-
-}

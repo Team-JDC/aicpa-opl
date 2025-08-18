@@ -72,7 +72,7 @@
         </div><!-- #page -->
 		<!--<script type="text/javascript" src="elements/js/jquery-1.9.1.min.js"></script>-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script type='text/javascript' src='/elements/js/jquery.easing.1.3.js'></script>
+		<script type='text/javascript' src='/elements/js/jquery.easing.min.js'></script>
 		<script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/elements/js/main.js"></script>
     </body>

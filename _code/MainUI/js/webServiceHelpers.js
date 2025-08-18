@@ -38,7 +38,7 @@ function function_exists(function_name) {
 
 
 
-$().ready(function () {
+$(function () {
     addUnloadEvent();
     loadHomeNavToolbar();
     hideInnerSearchButtons();
@@ -441,8 +441,8 @@ function showHideNextPrevButtons() {
         //$("#nextHit").show();
         $("#nextHit").removeClass("disabled");
         //$("#nextHit").attr("href", "#");
-        $("#nextHit").unbind("click");
-        $("#nextHit").click(function () {
+        $("#nextHit").off("click");
+        $("#nextHit").on('click', function () {
             if (document.getElementById('iframe-main').contentWindow.goToNext) {
                 document.getElementById('iframe-main').contentWindow.goToNext();
                 showHideNextPrevButtons();
@@ -452,7 +452,7 @@ function showHideNextPrevButtons() {
     else {
         //$("#nextHit").hide();
         $("#nextHit").addClass("disabled");
-        $("#nextHit").unbind("click");
+        $("#nextHit").off("click");
         //$("#nextHit").attr("href", "");
     }
 
@@ -460,8 +460,8 @@ function showHideNextPrevButtons() {
         //$("#prevHit").show();
         $("#prevHit").removeClass("disabled");
         //$("#nextHit").attr("href", "#");
-        $("#prevHit").unbind("click");
-        $("#prevHit").click(function () {
+        $("#prevHit").off("click");
+        $("#prevHit").on('click',function () {
             if (document.getElementById('iframe-main').contentWindow.goToPrevious) {
                 document.getElementById('iframe-main').contentWindow.goToPrevious();
 
@@ -472,7 +472,7 @@ function showHideNextPrevButtons() {
     else {
         //$("#prevHit").hide();
         $("#prevHit").addClass("disabled");
-        $("#prevHit").unbind("click");
+        $("#prevHit").off("click");
         //$("#nextHit").attr("href", "");
     }
 }
@@ -926,53 +926,42 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
             //            });
 
             // sburton: Begin section for scrollbar binding
-            $('#iframe-main').unbind("load");
-            $('#iframe-main').bind("load", function () {
-                // make sure this only gets called once, by unbinding it now
-                $('#iframe-main').unbind("load");
-                $('#iframe-main').ready(function () {
-                    doProcessFeatures();
-                    doDocumentReadyMethods();
-                });
+            $('#iframe-main').off("load");
+            $('#iframe-main').on("load", function () {
+                $('#iframe-main').off("load"); // Only run once
 
+                doProcessFeatures();
+                doDocumentReadyMethods();
 
                 if (anchor || scrollbarPosition) {
-                    //                        $('#document-container').ready(function () {
-                    $('#iframe-main').ready(function () {
-                        window.doScrollTimerCallback = function () {
-                            clearInterval(theTimer);
-                            theTimer = null;
-                            showHideNextPrevButtons();
-
-                            if ($("#iframe-main").contents().find("#hitlocation0").length > 0) {
-                                //Don't scroll we have already done it. We display prev and next buttons
-                            } else if (scrollbarPosition) {
-                                scrollToPosition(scrollbarPosition);
-                            }
-                            else {
-                                scrollToAnchor(anchor);
-                            }
-
-                            setLoading(false);
-
-                        };
-
-                        theTimer = setInterval(checkTimer, timerInterval);
-                        checkTimerCount = 0;
-
+                    window.doScrollTimerCallback = function () {
+                        clearInterval(theTimer);
+                        theTimer = null;
                         showHideNextPrevButtons();
 
+                        const $content = $("#iframe-main").contents();
+                        if ($content.find("#hitlocation0").length > 0) {
+                            // Already handled
+                        } else if (scrollbarPosition) {
+                            scrollToPosition(scrollbarPosition);
+                        } else {
+                            scrollToAnchor(anchor);
+                        }
 
+                        setLoading(false);
+                    };
 
-                        checkTimer();
-                    }); // $('#document-container').ready
-                } // end if (anchor || scrollbarPosition)
-                else {
+                    theTimer = setInterval(checkTimer, timerInterval);
+                    checkTimerCount = 0;
+
+                    showHideNextPrevButtons();
+                    checkTimer();
+                } else {
                     scrollToAnchor();
                     setLoading(false);
                 }
-
-            });           // end of load call back function
+            });
+        // end of load call back function
 
             // sburton: End section for scrollbar binding
 
@@ -1147,7 +1136,7 @@ function fillDocumentContainerFromUrlPrevious(url) {
 //        alert("loaded");
 //    });
     $('#iframe-main').load(function () {
-        $('#iframe-main').unbind('load');
+        $('#iframe-main').off('load');
         setLoading(false);
         doDocumentReadyMethods();
         animatePreviousIframe();
@@ -1175,7 +1164,7 @@ function fillDocumentContainerFromUrlNext(url) {
     // sburton: firefox doesn't like this way
     // window.frames["iframe-main"].location = url;
     $('#iframe-main').load(function () {
-        $('#iframe-main').unbind('load');
+        $('#iframe-main').off('load');
         setLoading(false);
         doDocumentReadyMethods();
         animateNextIframe();
@@ -1193,14 +1182,19 @@ function filliFrameFromUrl(url, callback) {
     setLoading(true);
     iframe.src = url;
 
-    $('#iframe-main').bind('load', function () {
-        $('#iframe-main').unbind('load');
+    $('#iframe-main').on('load', function handler() {
+        // Unbind this handler after the first execution
+        $('#iframe-main').off('load', handler);
+
         setLoading(false);
+
         if (callback) {
             callback();
         }
-        $('#iframe-main').fadeIn('600');
+
+        $('#iframe-main').fadeIn(600); // no quotes around duration
     });
+
 }
 
 
@@ -1208,7 +1202,7 @@ function fillDocumentContainerFromUrl(url) {
     $('#iframe-main').hide();
     $('#document-container').show();
     $('#document-container').load(url, function () {
-        $('#iframe-main').unbind('load');
+        $('#iframe-main').off('load');
         setLoading(false);
     });
 }
@@ -1217,7 +1211,7 @@ function fillBackupContainerFromUrl(url) {
     $('#iframe-main').hide();
     $('#backup-document-container').show();
     $('#backup-document-container').load(url, function () {
-        $('#iframe-main').unbind('load');
+        $('#iframe-main').off('load');
         setLoading(false);
     });
 }
@@ -1230,7 +1224,7 @@ function fillContentPaneFromUrl(url) {
     
     $('#backup-document-container').hide();
     $('#document-container').load(url, function () {
-        $('#iframe-main').unbind('load');
+        $('#iframe-main').off('load');
         setLoading(false);
     });
 }
@@ -1386,8 +1380,8 @@ function keepSessionAliveCallback() {
     // right now we don't have anything that needs to happen
 }
 
-$(document).ready(function () {
-    $("#printButton").click(function () {
+$(function () {
+    $("#printButton").on('click',function () {
         if (hasActiveDocument()) {
             var showCodificationSources = "";
             if ($("#sourcesPrint:checked").length > 0)
@@ -1473,11 +1467,8 @@ function sendToCatalog(domain, userGuid, destDoc, destPtr) {
         }
     }
 
-    fromUrl = escape(fromUrl);
-    fromUrl = fromUrl.replace(/\./g, "%2E");
-    toUrl = escape(toUrl);
-    toUrl = toUrl.replace(/\./g, "%2E");
-
+    fromUrl = encodeURIComponent(fromUrl).replace(/\./g, "%2E");
+    toUrl = encodeURIComponent(toUrl).replace(/\./g, "%2E");
     if (typeof (window.opener) != "undefined" && window.opener.closed == false) {
         var url = window.location.protocol + "//" + "stagingenv.cpa2biz.com/myaccount/myonlinesubscription_resourceredirect.jsp?Domain=" + domain + "&returnurl=" + fromUrl + "&linkurl=" + toUrl;
         logout();
