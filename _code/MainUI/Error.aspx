@@ -95,7 +95,9 @@
     </div>
     <!-- #page -->
     <!--<script type="text/javascript" src="elements/js/jquery-1.9.1.min.js"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha384-aV9ZlPl+2Cx4UeYtVSu3z1x8ZfQKrBpCGE1GfF/nv9MAl0cL9XbYgH4J6VnC4qQz"
+        crossorigin="anonymous"></script>
     <script type='text/javascript' src='/elements/js/jquery.easing.min.js'></script>
     <script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/elements/js/main.js"></script>
