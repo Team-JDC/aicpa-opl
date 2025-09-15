@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml;
 using Elasticsearch.Net;
 using Nest;
 namespace MainUI.Shared.Elastic
@@ -15,19 +16,20 @@ namespace MainUI.Shared.Elastic
         {
             var settings = new ConnectionSettings(new Uri(elasticUri))
                 .DefaultIndex(indexName)
-                .ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(apiKey));
-                //.DisableDirectStreaming(); //optional 
+                .ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(apiKey))
+                .DefaultFieldNameInferrer(p => p); // prevents camelCase conversion
+            //.DisableDirectStreaming(); //optional 
             _client = new ElasticClient(settings);
         }
 
         public async Task<SearchResultResponse> SearchAsync(
-            string keywords,
-            int maxHits,
-            int searchMode,
-            int pageSize,
-            int pageOffset,
-            bool showExcerpts,
-            bool filterUnsubscribed)
+       string keywords,
+       int maxHits,
+       int searchMode,
+       int pageSize,
+       int pageOffset,
+       bool showExcerpts,
+       bool filterUnsubscribed)
         {
 
             // Determine query type based on search mode
@@ -56,7 +58,7 @@ namespace MainUI.Shared.Elastic
             }
 
             //var json = _client.RequestResponseSerializer.SerializeToString(contentQuery);
-           // Console.WriteLine(json);
+            //Console.WriteLine(json);
 
             // Perform Elasticsearch query
             var response = await _client.SearchAsync<ElasticDocument>(s => s
@@ -86,24 +88,54 @@ namespace MainUI.Shared.Elastic
                 )
             );
 
+
+
+            var firstHit = response.Hits.FirstOrDefault();
+            var dimensionResults = new List<DimensionNavigationResult>();
+            var selectedDimensionResults = new List<DimensionNavigationResult>();
+
             // Extract facets
-            var facets = response.Aggregations.Terms("by_subscription_code")?.Buckets
-                .Select(b => new DimensionNavigationResult
+            var xml = firstHit?.Source?.DimensionXml;
+            if (!string.IsNullOrWhiteSpace(xml))
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml(xml);
+
+                // Selected Dimensions
+                var selectedNodes = doc.SelectNodes("//SelectedDimensions/Dimension");
+                foreach (XmlNode node in selectedNodes)
                 {
-                    DimensionId = b.Key,
-                    DimensionName = b.Key,
-                    DimensionValue = b.DocCount.ToString()
-                }).ToList() ?? new List<DimensionNavigationResult>();
+                    var dim = new DimensionNavigationResult
+                    {
+                        DimensionId = node.SelectSingleNode("Id")?.InnerText,
+                        DimensionName = node.SelectSingleNode("Name")?.InnerText,
+                        DimensionValue = "", // optional: populate with weight if available
+                        DimensionCompletePath = node.SelectSingleNode("DimensionCompletePath")?.InnerXml
+                    };
+                    selectedDimensionResults.Add(dim);
+                }
 
-            var firstDoc = response.Documents.FirstOrDefault();
-
+                // Refinement Dimensions
+                var refinementNodes = doc.SelectNodes("//RefinementDimensions/Dimension/DimensionValue");
+                foreach (XmlNode node in refinementNodes)
+                {
+                    var dim = new DimensionNavigationResult
+                    {
+                        DimensionId = node.SelectSingleNode("Id")?.InnerText,
+                        DimensionName = node.SelectSingleNode("Name")?.InnerText,
+                        DimensionValue = node.SelectSingleNode("RecordCount")?.InnerText ?? "0",
+                        DimensionCompletePath = node.SelectSingleNode("DimensionCompletePath")?.InnerXml
+                    };
+                    dimensionResults.Add(dim);
+                }
+            }
 
             //Console.WriteLine(response.DebugInformation);
             return new SearchResultResponse
             {
                 HitCount = (int)response.Total,
                 DisplayOffset = pageOffset,
-                DisplayResults = pageOffset + response.Documents.Count,
+                DisplayResults = pageOffset + response.Hits.Count,
                 Excerpts = showExcerpts ? 1 : 0,
                 Unsubscribed = filterUnsubscribed ? 1 : 0,
                 SearchResults = response.Hits.Select((hit, i) => new SearchResult
@@ -118,11 +150,11 @@ namespace MainUI.Shared.Elastic
                     ResultEnumeration = i + pageOffset,
                     InSubscription = hit.Source.InSubscription
                 }).ToList(),
-                DimensionResults = facets,
-                SelectedDimensionResults = new List<DimensionNavigationResult>(),
+                DimensionResults = dimensionResults,
+                SelectedDimensionResults = selectedDimensionResults,
                 SearchTerm = keywords,
                 SearchMode = searchMode,
-                DimensionXml = firstDoc?.DimensionXml ?? "",
+                DimensionXml = firstHit?.Source?.DimensionXml ?? "",
                 WordIntepretations = string.Join(", ", keywords.Split(' ')),
                 nonauthoritative = 0
             };
