@@ -1,6 +1,8 @@
 
 var g_TargetDoc = "";
 var g_TargetPtr = "";
+let g_tocStateId = -1;
+let g_tocStateType = "Site";
 
 
 var getStackTrace = function () {
@@ -117,7 +119,7 @@ function fillContentPaneFromUrl(url) {
 
     //$('#backup-document-container').hide();
     $('#document-container').load(url, function () {
-        $('#document-container').unbind('load');
+        $('#document-container').off('load');
         setLoading(false);
     });
 }
@@ -130,7 +132,7 @@ function fillLeftContentPaneFromUrl(url) {
 
     //$('#backup-document-container').hide();
     $('#document-container-left').load(url, function () {
-        $('#document-container-left').unbind('load');
+        $('#document-container-left').off('load');
         $('#document-container-left').show();
         setLoading(false);
     });
@@ -165,13 +167,24 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
         if (siteNode.Type == "SiteFolder") {
             //scrollToAnchor(); // scroll div to the top
             loadTemplate("/WS/Content.asmx/GetSiteFolderDetails", "{id:" + siteNode.Id + "}", "/templates/siteFolderTitlePage2.html", "document-container-left");
-            $('#document-container-left').ready(function () {
-                if (getShowHighlights()) {
-                    showInnerSearchButtons();
+            // Ensure the DOM is fully loaded before checking highlight settings
+            $(function () {
+                const $docLeft = $('#document-container-left');
+
+                if (!$docLeft.length) return; // Exit if the container doesn't exist
+
+                // Check whether highlight display is enabled via cookie
+                const showHighlights = getShowHighlights?.();
+
+                if (showHighlights) {
+                    // Show the inner search buttons if highlights are enabled
+                    showInnerSearchButtons?.();
                 } else {
-                    hideInnerSearchButtons();
+                    // Otherwise, hide them
+                    hideInnerSearchButtons?.();
                 }
-            })
+            });
+
         } else {
             var anchor = null;
            
@@ -189,35 +202,44 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
                 $('#backup-document-container')[0].innerHTML = ""; // most effecient...potential for jQuery memory leaks
             }
             $('#document-container-left').load(url, function () {
-                $('#document-container-left').unbind('load');
+                $('#document-container-left').off('load');
                 $('#document-container-left').show();
 
 
-                $('#document-container-left').ready(function () {
-                    //Show the bookmark if it is possible. 
-                    enableBookmarkButtonsByIdType(siteNode.Id, siteNode.Type);
-                    if (getShowHighlights()) {
-                        updateHitDocButtons(siteNode.Id, siteNode.Type);
-                    } else {
-                        hideInnerSearchButtons();
+                $(function () {
+                    const $docLeft = $('#document-container-left');
+                    if (!$docLeft.length) return; // Exit if element not found
+
+                    // Ensure siteNode is defined and valid
+                    if (typeof siteNode?.Id !== 'undefined' && typeof siteNode?.Type !== 'undefined') {
+                        enableBookmarkButtonsByIdType(siteNode.Id, siteNode.Type);
+
+                        if (getShowHighlights?.()) {
+                            updateHitDocButtons(siteNode.Id, siteNode.Type);
+                        } else {
+                            hideInnerSearchButtons?.();
+                        }
                     }
-                    if (anchor || scrollbarPosition) {
+
+                    // Setup scrolling logic if anchor or scroll position is specified
+                    if (typeof anchor !== 'undefined' || typeof scrollbarPosition !== 'undefined') {
                         window.doScrollTimerCallback = function () {
                             clearInterval(theTimer);
                             theTimer = null;
-                            if (scrollbarPosition) {
-                            } else {
+
+                            if (!scrollbarPosition) {
                                 scrollToAnchor(anchor);
                             }
+
                             setLoading(false);
-                        }; //window.doScrollTimerCallback
+                        };
 
                         theTimer = setInterval(checkTimer, timerInterval);
                         checkTimerCount = 0;
-
                         checkTimer();
-                    } // if (anchor...
-                }); // $('#document-container').ready
+                    }
+                });
+
 
                 setLoading(false);
             });            
@@ -541,7 +563,7 @@ function loadToc(syncToc, id, type) {
 function fillDocumentContainerFromUrl(url) {    
     $('#document-container-left').show();
     $('#document-container-left').load(url, function () {
-        $('#document-container-left').unbind('load');
+        $('#document-container-left').off('load');
         setLoading(false);
     });
 }
@@ -787,14 +809,22 @@ function applyTemplate(msg, templateUrl, containerId, nonfilter) {
         $('#' + containerId).setTemplateURL(templateUrl);
     }
     $('#' + containerId).processTemplate(msg);
-    $('#' + containerId).ready(function () {
+    // Ensure the container exists and apply logic after DOM is ready
+    $(function () {
+        const $container = $('#' + containerId);
+        if (!$container.length) return; // Exit if container is not found
+
+        // Stop loading spinner or overlay
         setLoading(false);
-        if (getShowHighlights()) {
-            showInnerSearchButtons();
+
+        // Toggle inner search buttons based on highlight state
+        if (getShowHighlights?.()) {
+            showInnerSearchButtons?.();
         } else {
-            hideInnerSearchButtons();
+            hideInnerSearchButtons?.();
         }
-    })
+    });
+
 }
 
 
@@ -974,6 +1004,22 @@ function loadMobileBreadcrumbAjaxFailure(jqXHR, textStatus, errorThrown, docnum)
 
 function loadPFP() {
     fillLeftContentPaneFromUrl("/templates/loadpfptoolkit.htm");
+}
+
+function setTocStateId(id) {
+    g_tocStateId = id;
+}
+
+function getTocStateId() {
+    return g_tocStateId;
+}
+
+function setTocStateType(type) {
+    g_tocStateType = type;
+}
+
+function getTocStateType() {
+    return g_tocStateType;
 }
 
 

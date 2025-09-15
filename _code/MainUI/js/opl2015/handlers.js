@@ -132,10 +132,9 @@ function addNote(targetDoc, targetPtr) {
     var addNoteTextIdJQuery = "#modalTextArea";
     $(addNoteTitleIdJQuery).val("");
     $(addNoteTextIdJQuery).val("");
-    $("#btnModalSave").bind("click", function (e) {
-        $("#btnModalSave").unbind("click");
-        var tdoc = targetDoc;
-        var tptr = targetPtr;
+    $("#btnModalSave").off("click").on("click", function (e) {
+        const tdoc = targetDoc;
+        const tptr = targetPtr;
         saveNote(tdoc, tptr);
     });
     $("#myModal").modal("toggle");
@@ -622,7 +621,7 @@ function noteEscape(value) {
 //        }
 
         $("#sourcesPrint").attr('disabled', true);
-        g_lastJoinSectionsUrl = escape(joinSectionsUrl);
+        g_lastJoinSectionsUrl = encodeURIComponent(joinSectionsUrl);
 
         fillContentPaneFromUrl("/Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
     }
@@ -686,7 +685,7 @@ function noteEscape(value) {
         }
 
 //remove this
-$("#printBtn").click(function () {
+$("#printBtn").on("click", function () {
     if (hasActiveDocument()) {
         //centering with css
         centerPopup2();

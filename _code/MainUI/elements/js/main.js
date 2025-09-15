@@ -83,228 +83,68 @@ window.onload = function() {
 	
 }
 
-$(document).ready(function () {
+$(function () { // Modern shorthand for $(document).ready
 
-    //TOGGLE ADVANCED SEARCH
+    // Toggle Advanced Search
     $('#main_search .toggle_advanced').on('click', function (e) {
         e.preventDefault();
-
         $('#main_search').toggleClass('active');
         $('#advanced_search').toggleClass('active');
     });
 
-    $('body').bind('touchstart', function () {
+    // Empty touchstart for iOS compatibility? Still fine.
+    $('body').on('touchstart', function () { });
+
+    // Touch handler for .touch elements
+    $(document).on('click', '.touch', function () {
+        var me = $(this);
+        $('.touch .hover_on').each(function () {
+            if ($(this).parents('.primary_nav').length === 0) {
+                $(this).removeClass('hover_on').addClass('hover_off');
+            }
+        });
     });
-	
-	$(document).on('click','.touch', function () {
-		var me = $(this);
-		$('.touch .hover_on').each(function (index, val) {
-			var t = me;
-			if ($(val).parents('.primary_nav').length == 0) {
-				$(this).removeClass('hover_on').addClass('hover_off');
-			}
-			// if (t.parents('.primary_nav').length == 0) {
-				// $(this).removeClass('hover_on').addClass('hover_off');
-			// }
-		})
-	});
 
-
-
+    // Touch/click navigation toggles
     $('.primary_nav li .top_level').on('touchstart click', function (e) {
         e.preventDefault();
         var t = $(this);
-
         $('.primary_nav li.last').removeClass('hover_on').addClass('hover_off');
         $('.primary_nav li .top_level').not(t).parent().removeClass('hover_on').addClass('hover_off');
-        if (t.parent().hasClass('hover_on')) {
-            t.parent().removeClass('hover_on').addClass('hover_off');
-        } else {
-            t.parent().removeClass('hover_off').addClass('hover_on');
-        }
+
+        t.parent().toggleClass('hover_on hover_off');
     });
 
     $('#mobile_search_btn').on('touchstart', function (e) {
         e.preventDefault();
-        var t = $(this),
-            p = t.closest('.primary_nav > li');
-
+        var p = $(this).closest('.primary_nav > li');
         $('.primary_nav > li').not(p).removeClass('hover_on').addClass('hover_off');
-        if (p.hasClass('hover_on')) {
-            p.removeClass('hover_on').addClass('hover_off');
-        } else {
-            p.removeClass('hover_off').addClass('hover_on');
-        }
+        p.toggleClass('hover_on hover_off');
     });
 
-    $('#search_wrapper .toggle_advanced').bind('touchstart', function (e) {
+    $('#search_wrapper .toggle_advanced').on('touchstart', function (e) {
         e.preventDefault();
-        var t = $(this),
-            p = t.closest('.primary_nav > li');
-
+        var p = $(this).closest('.primary_nav > li');
         $('.primary_nav > li').not(p).removeClass('hover_on').addClass('hover_off');
-        if (p.hasClass('hover_on')) {
-            p.removeClass('hover_on').addClass('hover_off');
-        } else {
-            p.removeClass('hover_off').addClass('hover_on');
-        }
+        p.toggleClass('hover_on hover_off');
     });
 
-    function hoverIn(me) {
-        var t = $(me);
-        if (t.has('.submenu')) {
-            var s = t.children('.submenu');
-            s.slideDown();
-        }
-    }
-
-    function hoverOut(me) {
-        var t = $(me);
-        if (t.has('.submenu')) {
-            var s = t.children('.submenu');
-            s.slideUp();
-        }
-    }
-
+    // Hover behavior (for non-touch devices)
     $('.no-touch')
-        .on('mouseenter', '.primary_nav > li > .submenu li', function() {hoverIn(this);})
-        .on('mouseleave', '.primary_nav > li > .submenu li', function () { hoverOut(this); });
+        .on('mouseenter', '.primary_nav > li > .submenu li', function () {
+            var s = $(this).children('.submenu');
+            if (s.length) s.slideDown();
+        })
+        .on('mouseleave', '.primary_nav > li > .submenu li', function () {
+            var s = $(this).children('.submenu');
+            if (s.length) s.slideUp();
+        });
 
-    /*$('.touch #primary_nav > li > .submenu li').bind('touchstart', function(e) {
-    e.preventDefault();
-    var t = $(this);
-        
-    $('#primary_nav > li > .submenu li').not(t).removeClass('hover_on').addClass('hover_off');
-    if( t.hasClass('hover_on') ) {
-    t.removeClass('hover_on').addClass('hover_off');
-    } else {
-    t.removeClass('hover_off').addClass('hover_on');
-    }
-    });*/
-
-
-    //    $('body').on('contentchange', '#toc.tools .acc_head', function () {
-    //        acc_headClick(this);
-    //    }
-    //MAIN TOC ACCORDION, LVL 1
-
+    // Accordion behavior
     $('body').on('click', '#toc.tools .acc_head', function () {
         acc_headClick(this);
     });
 
-    function acc_contentClick(me, e) {
-        e.preventDefault();
-        var h = $(me),
-	        p = $(me).closest('.acc_content'),
-	        hc = h.next(),
-	        not_hc = p.find('.acc_sub1').not(hc);
-
-        not_hc.slideUp();
-        hc.slideToggle();
-        if (h.hasClass('active')) {
-            h.removeClass('active');
-        } else {
-            h.addClass('active');
-        }
-        $('#toc.tools .acc_content > ul > li > div').not(h).removeClass('active');
-    }
-
-    //    //MAIN TOC ACCORDION, LVL 2    
-    //    $('body').on('click', '#toc.tools .acc_content > ul > li > div', function (e) {
-    //        acc_contentClick(this,e);
-    //    });
-
-    //    function acc_sub1Click(me,e) {
-    //        e.preventDefault();
-    //        var h = $(me),
-    //	        p = $(me).closest('.acc_sub1'),
-    //	        hc = h.next(),
-    //	        not_hc = p.find('.acc_sub2').not(hc);
-
-    //        not_hc.slideUp();
-    //        hc.slideToggle();
-    //        if (h.hasClass('active')) {
-    //            h.removeClass('active');
-    //        } else {
-    //            h.addClass('active');
-    //        }
-    //        $('#toc.tools .acc_sub1 > li > a').not(h).removeClass('active');
-    //    }
-
-    //    //MAIN TOC ACCORDION, LVL 3
-    //    $('body').on('click', '#toc.tools .acc_sub1 > li > a', function (e) {
-    //        acc_sub1Click(this,e);
-    //    });
-
-    //    function acc_sub2Click(me, e) {
-    //        e.preventDefault();
-    //        var h = $(me),
-    //	        p = $(me).closest('.acc_sub2'),
-    //	        hc = h.next(),
-    //	        not_hc = p.find('.acc_sub3').not(hc);
-
-    //        not_hc.slideUp();
-    //        hc.slideToggle();
-    //        if (h.hasClass('active')) {
-    //            h.removeClass('active');
-    //        } else {
-    //            h.addClass('active');
-    //        }
-    //        $('#toc.tools .acc_sub2 > li > a').not(h).removeClass('active');
-    //    }
-
-    //    //MAIN TOC ACCORDION, LVL 4
-    //    $('#toc.tools .acc_sub2 > li > a').on('click', function (e) {
-    //        acc_sub2Click(this,e)
-    //    });
-
-    //Truncate the next/prev titles
-    //    var module = document.getElementById("prevTitle");
-    //    $clamp(module, {clamp: 2});
-    //    var module2 = document.getElementById("nextTitle");
-    //    $clamp(module2, {clamp: 2});
-
-
-    // Sticky header
-    //http://codepen.io/senff/pen/ayGvD
-    //https://github.com/senff/Sticky-Anything
-    //$('#primary_nav_outer').addClass('original').clone().insertAfter('#primary_nav_outer').addClass('cloned').css('position', 'fixed').css('top', '0').css('margin-top', '0').css('z-index', '500').removeClass('original').hide();
-    //stickMenu();
-    //scrollIntervalID = setInterval(stickIt, 10);
-
-
-    //function stickIt() {
-
-    //    var orgElementPos = $('.original').offset();
-    //    orgElementTop = orgElementPos.top;
-
-    //    if ($(window).scrollTop() >= (orgElementTop)) {
-    //        // scrolled past the original position; now only show the cloned, sticky element.
-
-    //        // Cloned element should always have same left position and width as original element.     
-    //        orgElement = $('.original');
-    //        coordsOrgElement = orgElement.offset();
-    //        leftOrgElement = coordsOrgElement.left;
-    //        widthOrgElement = orgElement.css('width');
-
-    //        $('.cloned').css('left', leftOrgElement + 'px').css('top', 0).css('width', widthOrgElement + 'px').css('right', '0px').show();
-    //        $('.original').css('visibility', 'hidden');
-    //    } else {
-    //        // not scrolled past the menu; only show the original menu.
-    //        $('.cloned').hide();
-    //        $('.original').css('visibility', 'visible');
-    //    }
-    //}
-
-    //---FIXED RIGHT COLUMN---//
-
-
-    //var top = $('.widget').offset().top;
-
-    //$(document).scroll(function () {
-    //    $('.widget').css('position', '');
-    //    var top = $('.widget').offset().top;
-    //    $('.widget').css('position', 'absolute'); $('.widget').css('top', Math.max(top, $(document).scrollTop()));
-    //});
+    // Sticky right column
     $('#document-container-right').affix();
 });

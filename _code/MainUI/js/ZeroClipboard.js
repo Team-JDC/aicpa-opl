@@ -23,7 +23,7 @@
   var _elementMouseOver = function(event) {
     if (!ZeroClipboard.prototype._singleton) return;
     if (!event) {
-      event = window.event;
+      event = window.events;
     }
     var target;
     if (this !== window) {

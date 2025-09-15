@@ -1,18 +1,23 @@
-﻿function loadBreadCrumb(id, type) {
-    loadTemplate("WS/Content.asmx/GetFullBreadcrumb", "{id:" + id + ",type:'" + type + "'}", 'templates/cosofullBreadcrumb.html', 'breadcrumbContainer');
+﻿/**
+ * COSO UI Utilities (jQuery 3.7.1 Compatible)
+ * ------------------------------------------
+ * Breadcrumb, TOC loading, bookmarks, search and toolbar helpers.
+ */
+
+// -------------------------
+// Breadcrumb & TOC Loaders
+// -------------------------
+
+function loadBreadCrumb(id, type) {
+    const params = JSON.stringify({ id, type });
+    loadTemplate("WS/Content.asmx/GetFullBreadcrumb", params, "templates/cosofullBreadcrumb.html", "breadcrumbContainer");
 }
 
-
-function loadToc(syncToc, id, type) {
-    if (id == undefined)
-        id = getTocStateId();
-    if (type == undefined)
-        type = getTocStateType();
+function loadToc(syncToc = false, id = getTocStateId(), type = getTocStateType()) {
     if (!syncToc) {
-        if ((id) && (type)) {
-            var params = { id: id, type: type };
+        if (id && type) {
+            const params = { id, type };
             setToolAsCurrentView(toolName_toc, params);
-            //set TOC to last state
             setTocStateId(id);
             setTocStateType(type);
         } else {
@@ -22,10 +27,9 @@ function loadToc(syncToc, id, type) {
 
     hideDocumentSpecificButtons();
 
-    if ((id) && (type)) {
-        if ((id != -1) && (type != "Site"))
-            fillDocumentContainerFromUrl("static/cosoPlainSyncTocReload.html");
-        else fillDocumentContainerFromUrl("static/cosoPlainToc.html");
+    const isSiteRoot = (id === -1 || type === "Site");
+    if (id && type) {
+        fillDocumentContainerFromUrl(isSiteRoot ? "static/cosoPlainToc.html" : "static/cosoPlainSyncTocReload.html");
     } else if (hasActiveScreen() && syncToc) {
         fillDocumentContainerFromUrl("static/cosoPlainSyncToc.html");
     } else {
@@ -33,10 +37,114 @@ function loadToc(syncToc, id, type) {
     }
 }
 
-// Public global variables
-(function ($) {
-jQuery.fn.jBreadCrumb.defaults =
-    {
+// -------------------------
+// My Screens (Toolbar)
+// -------------------------
+
+function loadMyScreens() {
+    const screens = getMyScreens();
+    const activeIndex = hasActiveScreen() ? getActiveScreenIndex() : -1;
+
+    const message = { d: screens, activeIndex };
+    applyTemplate(message, "templates/cosoDocuments.html", "Toolbar-MyDocuments");
+    $("#documentcount").text(getMyScreenCount());
+}
+
+function setMyDocumentsTab(visible) {
+    if (!visible) return;
+
+    if (isToolbarHidden()) doToolbarToggle();
+
+    $(".tabs li").removeClass("active");
+    $(".tab_content").hide();
+    //$("#Tab-MyDocuments").addClass("active");
+    //$("#Toolbar-MyDocuments").fadeIn();
+}
+
+// -------------------------
+// Legacy Launch (if used)
+// -------------------------
+
+function doNextGenerationLink(guid, domain, referringSite) {
+    const url = `/coso/ResourceSeamlessLogin.aspx?hidEncPersGUID=${guid}&hidSourceSiteCode=${referringSite}&hidDomain=${domain}&hidURL=coso.aspx&prod=coso`;
+    const attngWindow = window.open(url, "coso");
+    attngWindow?.focus();
+}
+
+// -------------------------
+// Home Page Loader
+// -------------------------
+
+function loadHomePage() {
+    setToolAsCurrentView(toolName_homePage, "");
+    loadTemplate("WS/HomePage.asmx/GetHomePageData", "{}", "static/cosoPlainToc.html", "document-container");
+}
+
+// -------------------------
+// Search (Enter Key Handler)
+// -------------------------
+
+function doSearchCheck(keyCode) {
+    if (keyCode === 13) {
+        const searchTerms = document.getElementById('searchTerms')?.value || "";
+        doAdvancedNavigationalSearch('', searchTerms, 1, 100, 10, 0, 1, 1, 0, () => {
+            $('#searchResultButtonLink').show();
+        });
+    }
+}
+
+// -------------------------
+// Title Shortening Utility
+// -------------------------
+
+docscreen.prototype.titleLimit = function (len) {
+    let result = this.targetDoc
+        ? `${this.targetDoc} - ${this.siteNode.Title}`
+        : this.siteNode.Title;
+
+    if (len && result.length > len) {
+        result = `${result.substring(0, len - 1)}&hellip;`;
+    }
+    return result;
+};
+
+// -------------------------
+// Bookmarks
+// -------------------------
+
+function saveBookmarkCoso() {
+    if (!hasActiveDocument()) {
+        alert("Bookmarks are not allowed on this document");
+        return;
+    }
+
+    const title = $('#addBookmarkTitleInput').val();
+    const params = JSON.stringify({
+        id: getActiveDocumentId(),
+        type: getActiveDocumentType(),
+        bookmarkTitle: title
+    });
+
+    callWebService("WS/UserPreferences.asmx/SaveBookmarkByBookIdDocType", params, addPageBookmarkResultHandler, ajaxFailed);
+    closeAddBookmark();
+}
+
+// -------------------------
+// Help
+// -------------------------
+
+function loadHelp() {
+    clearCurrentView();
+    hideDocumentSpecificButtons();
+    loadTemplate("WS/HomePage.asmx/GetHelpVisibility", "{}", "templates/COSOhelp.html", "document-container");
+}
+
+// -------------------------
+// jBreadCrumb Defaults Init
+// -------------------------
+
+(($) => {
+    $.fn.jBreadCrumb.defaults = {
         maxFinalElementLength: 400,
         minFinalElementLength: 200,
         minimumCompressionElements: 4,
@@ -49,101 +157,3 @@ jQuery.fn.jBreadCrumb.defaults =
         previewWidth: 50
     };
 })(jQuery);
-
-function loadMyScreens() {
-    var screens = getMyScreens();
-
-    var activeIndex = -1;
-    if (hasActiveScreen()) {
-        activeIndex = getActiveScreenIndex();
-    }
-
-    var message = { d: screens, activeIndex: activeIndex };
-
-    applyTemplate(message, "templates/cosoDocuments.html", "Toolbar-MyDocuments");    
-    $("#documentcount").html(getMyScreenCount());
-}
-
-function setMyDocumentsTab(visible) {
-    if (visible) {
-        if (isToolbarHidden()) {
-            doToolbarToggle();
-        }
-
-        $(".tabs li").removeClass("active"); //Remove any "active" class
-        //$("#Tab-MyDocuments").addClass("active"); //Add "active" class to selected tab
-        $(".tab_content").hide(); //Hide all tab content
-        //$("#Toolbar-MyDocuments").fadeIn(); //Fade in the active ID content
-    } else {
-        // currently there is no reason to implement this side of things
-    }
-}
-//this is probably obsolete and needs to be deleted.
-function doNextGenerationLink(guid, domain, referringSite) {
-    attngWindow = window.open("/coso/ResourceSeamlessLogin.aspx?hidEncPersGUID=" + guid + "&hidSourceSiteCode=" + referringSite + "&hidDomain=" + domain + "&hidURL=coso    .aspx&prod=coso", "coso");
-    attngWindow.focus();
-}
-
-function loadHomePage() {
-    setToolAsCurrentView(toolName_homePage, "");
-    // Parameters for loadTemplate...
-    //           serviceUrl, paramString, templateUrl, containerId, paramsForMsg, callback, nonfilter
-    loadTemplate("WS/HomePage.asmx/GetHomePageData", "{}", "static/cosoPlainToc.html", "document-container");
-}
-
-//No search button autosubmit when the enter button is clicked
-function doSearchCheck(keyInfo) {
-    if (keyInfo == 13) {
-        //document.getElementById('search').focus();
-        //document.getElementById('search').click();
-        doAdvancedNavigationalSearch('', document.getElementById('searchTerms').value, 1, 100, 10, 0, 1, 1, 0,
-        function () {
-            $('#searchResultButtonLink').show();
-        });
-    }
-}
-
-/*****************************************************
-    This is a prototype for the doscscreen that is used
-    in the cosoDocuments template.  It will limit truncate
-    a string and add a '...' if the len is provided
-
-    input: len (optional) - length to limit the string to
-    output: (string) - original string that is truncated
- *****************************************************/
-docscreen.prototype.titleLimit = function (len) {
-    var result = "";
-    if (this.targetDoc == "") {
-        result = this.siteNode.Title;
-    } else {
-        result = this.targetDoc + " - " + this.siteNode.Title;
-    }
-
-    
-    if (len) {
-        if (result.length > len) {
-            result = result.substr(0, len - 1) + '&hellip;';
-        }        
-    }
-    return result;
-};
-
-function saveBookmarkCoso() {
-    if (hasActiveDocument()) {
-        var paramsString = "{id:'" + getActiveDocumentId() + "', type:'" + getActiveDocumentType() + "', bookmarkTitle:'" + $('#addBookmarkTitleInput').val() + "'}";
-        callWebService("WS/UserPreferences.asmx/SaveBookmarkByBookIdDocType", paramsString, addPageBookmarkResultHandler, ajaxFailed);
-        closeAddBookmark();
-    } else {
-        alert('Bookmarks are not allowed on this document');
-    }
-}
-
-function loadHelp() {
-    clearCurrentView(); // update the back button status
-    //setToolAsCurrentView(toolName_help, "");
-    hideDocumentSpecificButtons();
-    loadTemplate("WS/HomePage.asmx/GetHelpVisibility", "{}", "templates/COSOhelp.html", "document-container");
-}
-
-
-

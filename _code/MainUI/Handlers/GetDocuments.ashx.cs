@@ -288,7 +288,7 @@ namespace MainUI.Handlers
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/notes.css' />\r\n";
 
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='resources/jquery.treeview.css' />\r\n";
-            newCssAndJs += "<script type='text/javascript' src='/js/jquery/jquery-1.11.2.min.js'></script>\r\n";
+            newCssAndJs += "<script type='text/javascript' src='/js/jquery/jquery-3.7.1.min.js'></script>\r\n";
             newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>\r\n";
 
             if ((referringSite == ReferringSite.Ethics || (referringSite == ReferringSite.EthicsUser)))

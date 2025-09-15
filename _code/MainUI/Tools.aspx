@@ -13,6 +13,7 @@
         var tDoc = '<asp:Literal ID="lTargetDoc" runat="server" Text="<%$RouteValue:targetdoc%>" />';
         var tPtr = '<asp:Literal ID="lTargetPtr" runat="server" Text="<%$RouteValue:targetptr%>" />';
         var nType = '<asp:Literal ID="lNodeType" runat="server" Text="<%$RouteValue:nodetype%>" />';
+        var g_NodeTypeArray = ['guidance', 'policy', 'standard'];
 
         //debugger;
         showDocumentToolbar(false);

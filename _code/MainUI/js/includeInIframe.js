@@ -7,14 +7,13 @@
 
 }
 
-$(document).mousemove(function (e) {
+$(document).on("mousemove", function (e) {
     if (top.drag && top.drag.state) {
         top.setBoxOffset((e.clientX + top.iframeOffset.left) - top.drag.indivx, (e.clientY + top.iframeOffset.top) - top.drag.indivy);
     }
 });
 
-
-$(document).mouseup(function () {
+$(document).on("mouseup", function (e) {
     if (top.drag && top.drag.state) {
         //drag.elem.style.backgroundColor = '#808';
         top.drag.state = false;

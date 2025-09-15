@@ -16,7 +16,11 @@ function loadHelp() {
     doLink('opl-help', 'opl-help', true);
     //loadTemplate("WS/HomePage.asmx/GetHelpVisibility", "{}", "templates/help.html", "document-container");
 }
-
+function clearAndLoadTemplate(url, data, template, container, cb = '', cb2 = '') {
+    clearCurrentView();
+    hideDocumentSpecificButtons();
+    loadTemplate(url, data, template, container, cb, cb2);
+}
 function loadPreferences() {
     if (typeof d_referringSite != 'undefined' && d_referringSite == "Ethics") {
         doUserLogin(loadPreferences);
@@ -51,7 +55,7 @@ function loadBlankSearch() {
     loadTemplate('WS/EndecaServices.asmx/DoBlankSearch', '{}', 'templates/ethicsblankSearch.htm', 'document-container', '', setUpSearchAutocomplete);
 
 }
-
+// I think this function missed
 function doNotesLink(recordback) {
     if (typeof d_referringSite != 'undefined' && d_referringSite == "Ethics") {
         doUserLogin(doNotesLink);
@@ -160,7 +164,7 @@ function makeSearchNextPrevDraggable() {
 //        top: 75
     //    });
 
-    box.mousedown(function (e) {
+    box.on("mousedown", function (e) {
         if (!drag.state) {
             iframeOffset = $("#iframe-main").offset();
             drag.elem = this;
@@ -173,7 +177,7 @@ function makeSearchNextPrevDraggable() {
 }
 
 
-$(document).mousemove(function (e) {
+$(document).on("mousemove", function (e) {
     if (drag.state) {
         setBoxOffset(e.pageX - drag.indivx, e.pageY - drag.indivy);
     }
@@ -190,12 +194,12 @@ function setBoxOffset(leftPosition, topPosition) {
     });
 }
 
-$(document).mouseup(function () {
+$(document).on("mouseup", function () {
     if (drag.state) {
-        //drag.elem.style.backgroundColor = '#808';
         drag.state = false;
     }
 });
+
 
 function afterLoadContentBySiteNode(siteNode) {
     updateArrowsForDocument();
@@ -334,10 +338,7 @@ function isUserLoggedIn() {
 }
 
 function doUserLogin(callback) {
-    $("#backgroundPopup").css({
-        "opacity": "0.7"
-    });
-    $("#backgroundPopup").fadeIn("slow");
+    $("#backgroundPopup").css("opacity", "0.7").fadeIn("slow");
     $("#popupLogin").fadeIn("slow");
     loginCallBack = callback;
 }
@@ -348,9 +349,8 @@ function showEthicsRegister() {
 }
 
 function doLoginCallBack() {
-    if (loginCallBack)
-        loginCallBack();
-    loginCallBack = null;
+  if (typeof loginCallBack === 'function') loginCallBack();
+  loginCallBack = null;
 }
 
 function tryEthicsRegister() {
@@ -416,29 +416,16 @@ function sendEthicsPassword() {
 }
 
 function disableUserLogin() {
-    $("#backgroundPopup").fadeOut("slow");
-    $("#popupLogin").fadeOut("slow");
-
-    $('#UserNameTextBox').val('');
-    $('#PasswordTextBox').val('');
-    $('#RegUserNameTextBox').val('');
-    $('#FirstNameTextBox').val('');
-    $('#LastNameTextBox').val('');
-    $('#RegPasswordTextBox').val('');
-    $('#ConfirmPasswordTextBox').val('');
-
-    $('#ErrorLabel').text('');
-    $('#RegErrorLabel').text('');
-
+    $("#backgroundPopup, #popupLogin").fadeOut("slow");
+    $("#UserNameTextBox, #PasswordTextBox, #RegUserNameTextBox, #FirstNameTextBox, #LastNameTextBox, #RegPasswordTextBox, #ConfirmPasswordTextBox").val('');
+    $('#ErrorLabel, #RegErrorLabel').text('');
     $('#ethicsLogin').show();
     $('#ethicsRegister').hide();
 }
 
 //Press Escape event!
-$(document).keypress(function (e) {
-    if (e.keyCode == 27) {
-        disableUserLogin();
-    }
+$(document).on("keypress", function (e) {
+    if (e.key === "Escape") disableUserLogin();
 });
 
 function removeJoinButtons() {
@@ -716,17 +703,16 @@ function loadPdf() {
 function OnReadyEvent() {
     SetDisableEnableDefinitionPopupCheckbox();
 
-    $("#disableDefPopupId").change(function () {
-
+    $("#disableDefPopupId").on("change", function () {
         if (this.checked) {
             $.cookie("disablepopup", "true", { expires: 30 });
-        }
-        else {
+        } else {
             $.cookie("disablepopup", "", { expires: 30 });
         }
 
         DisablePopupContent();
     });
+
 }
 
 function DisablePopupContent() {

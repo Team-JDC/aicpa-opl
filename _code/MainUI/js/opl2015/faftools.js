@@ -107,7 +107,7 @@ function doJoinChildrenResult(breadcrumbNode, params) {
 //    }
 
 
-    g_lastJoinSectionsUrl = escape(joinSectionsUrl);
+    g_lastJoinSectionsUrl = encodeURIComponent(joinSectionsUrl);
 
     fillLeftContentPaneFromUrl("/Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
 }

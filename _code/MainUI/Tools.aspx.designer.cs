@@ -7,36 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MainUI {
-    
-    
-    public partial class Tools {
-        
+namespace MainUI
+{
+
+
+    public partial class Tools
+    {
+
         /// <summary>
-        /// lTarg22etDoc control.
+        /// lToolType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lTarg22etDoc;
-        
+        protected global::System.Web.UI.WebControls.Literal lToolType;
+
         /// <summary>
-        /// lTa22rgetDoc control.
+        /// lTargetDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lTa22rgetDoc;
-        
+        protected global::System.Web.UI.WebControls.Literal lTargetDoc;
+
         /// <summary>
-        /// lTarget22Doc control.
+        /// lTargetPtr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lTarget22Doc;
+        protected global::System.Web.UI.WebControls.Literal lTargetPtr;
+
+        /// <summary>
+        /// lNodeType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lNodeType;
     }
 }

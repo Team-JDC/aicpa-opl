@@ -1,176 +1,137 @@
-﻿/*******************************************************************************
-file: globalVariables.js
-This file defines any global variables necessary to maintain state information on the client.
-*******************************************************************************/
+﻿// globalVariables.js (Refactored with Modern Syntax and Comments)
 
-var LMS_DOC_PAGE = "lmsdoc.aspx";
-//used to disable the "show codifications references"
-var disableShowCodReferences = false;
+/**
+ * Global state and helper utilities for tracking active screens, documents, and TOC state.
+ */
 
-var g_tocNodeChildLimit = 30;
-var g_activeScreenIndex = -1;
-var g_myScreens = null;
-var g_showSources = false;
-var g_pageTypes = {
+const LMS_DOC_PAGE = "lmsdoc.aspx";
+let disableShowCodReferences = false;
+
+const g_tocNodeChildLimit = 30;
+let g_activeScreenIndex = -1;
+let g_myScreens = [];
+let g_showSources = false;
+
+const g_pageTypes = {
     HOME_PAGE: "home_page",
     SCREEN: "screen",
     SEARCH_RESULTS: "search_results"
-}
+};
 
+// --- Screens Management ---
 function getMyScreens() {
-    if (g_myScreens == null) {
-        g_myScreens = new Array();
-    }
-
     return g_myScreens;
-}
-
-function RemoveEmptyScreens() {
-    for (var i = 0, len = g_myScreens.length; i < len; ++i) {
-        if (!g_myScreens[i].siteNode) {
-            g_myScreens.splice(i, 1);
-            //delete (g_myScreens[i]);
-            len--;
-            i--;
-        }
-    }
 }
 
 function setMyScreens(screenCollection) {
     g_myScreens = screenCollection;
 }
 
-function getActiveDocumentId() {
-    if (!hasActiveDocument()) {
-        throw "No active document.";
-    }
-    return getActiveScreen().siteNode.Id;
+function getMyScreenCount() {
+    return g_myScreens.length;
 }
 
-function setActiveDocumentId(docId) {
-    alert("setActiveDocumentId is deprecated.");
+function addNewScreen(screen) {
+    g_myScreens.push(screen);
+    return g_myScreens.length - 1;
 }
 
-function hasActiveDocument() {
-    var hasDoc = false;
-
-    if (hasActiveScreen()) {
-        var screen = getActiveScreen();
-
-        if (screen.siteNode != null && screen.siteNode.Id != null) {
-            hasDoc = true;
-        }
-    }
-
-    return hasDoc;
+function removeScreen(index) {
+    g_myScreens.splice(index, 1);
 }
 
-function getActiveDocumentVCT() {
-    if (!hasActiveDocument()) {
-        throw "No active document.";
-    }
-
-    return getActiveScreen().viewCompleteTopic;
+function RemoveEmptyScreens() {
+    g_myScreens = g_myScreens.filter(screen => screen.siteNode);
 }
 
-function getActiveDocumentType() {
-    if (!hasActiveDocument()) {
-        throw "No active document.";
-    }
-
-    return getActiveScreen().siteNode.Type;
-}
-
-function setActiveDocumentType(type) {
-    alert("setActiveDocumentType is deprecated");
-}
-
-// Gets the 0 (ZERO!) based index of the active screen
+// --- Active Screen Handling ---
 function getActiveScreenIndex() {
     return g_activeScreenIndex;
 }
 
-// Sets the 0 (ZERO!) based index of the active screen
 function setActiveScreenIndex(newIndex) {
-    if (newIndex < 0 || newIndex > getMyScreenCount() - 1) {
-        throw "new screen index is not valid";
+    if (newIndex < 0 || newIndex >= getMyScreenCount()) {
+        throw new Error("Invalid screen index");
     }
-
     g_activeScreenIndex = newIndex;
 }
 
-// resets the activeScreenIndex to -1 -- so it doesn't have one
 function clearActiveScreenIndex() {
     g_activeScreenIndex = -1;
 }
 
 function hasActiveScreen() {
-    return !(getActiveScreenIndex() == -1);
+    return g_activeScreenIndex !== -1;
 }
 
 function getActiveScreen() {
-    if (!hasActiveScreen()) {
-        throw "No active screen.";
+    if (!hasActiveScreen()) throw new Error("No active screen.");
+    return g_myScreens[g_activeScreenIndex];
+}
+
+// --- Active Document Helpers ---
+function hasActiveDocument() {
+    try {
+        const screen = getActiveScreen();
+        return screen?.siteNode?.Id != null;
+    } catch {
+        return false;
     }
-
-    return getMyScreens()[getActiveScreenIndex()];
 }
 
-// adds a new screen to the end of the myScreens collection
-// does NOT automatically make this the active screen
-// returns the index of the newly added screen
-function addNewScreen(screen) {
-    var newIndex = getMyScreenCount();
-    getMyScreens()[newIndex] = screen;
-    return newIndex;
+function getActiveDocumentId() {
+    if (!hasActiveDocument()) throw new Error("No active document.");
+    return getActiveScreen().siteNode.Id;
 }
 
-// removes screen at the given index and moves all others up in the list.
-// if the screen to be removed is the active screen, the active screen will be set null
-function removeScreen(index) {
-    getMyScreens().splice(index, 1);
+function getActiveDocumentType() {
+    if (!hasActiveDocument()) throw new Error("No active document.");
+    return getActiveScreen().siteNode.Type;
 }
 
-function getMyScreenCount() {
-    return getMyScreens().length;
+function getActiveDocumentVCT() {
+    if (!hasActiveDocument()) throw new Error("No active document.");
+    return getActiveScreen().viewCompleteTopic;
 }
 
+function setActiveDocumentId() {
+    console.warn("setActiveDocumentId is deprecated.");
+}
+
+function setActiveDocumentType() {
+    console.warn("setActiveDocumentType is deprecated.");
+}
+
+// --- Scrollbar Position ---
+function getCurrentScrollbarPosition() {
+    return $("#iframe-main").contents().find("body").scrollTop();
+}
+
+// --- docscreen Object Constructor ---
 function docscreen() {
     this.scrollbarPosition = null;
     this.showHighlight = false;
     this.siteNode = null;
     this.targetDoc = "";
     this.hitAnchor = null;
-    this.viewCompleteTopic = false; //    
+    this.viewCompleteTopic = false;
 
-    this.clone = (function () {
-        var newScreen = new docscreen();
+    this.clone = () => {
+        const newScreen = new docscreen();
         newScreen.siteNode = this.siteNode;
         newScreen.showHighlight = this.showHighlight;
         newScreen.hitAnchor = this.hitAnchor;
         newScreen.scrollbarPosition = this.scrollbarPosition;
-        newScreen.viewCompleteTopic = this.viewCompleteTopic;        
-
+        newScreen.viewCompleteTopic = this.viewCompleteTopic;
         return newScreen;
-    });
+    };
 
-    this.recordScrollbarPosition = (function () {
+    this.recordScrollbarPosition = () => {
         this.scrollbarPosition = getCurrentScrollbarPosition();
-    });
+    };
 }
 
-function getCurrentScrollbarPosition() {
-    var position = $("#iframe-main").contents().find("body").scrollTop();
-
-    //    var documentContainerPosition = $("#content-container").scrollTop();
-    //    //var contentInnerPosition = $("#content-inner").scrollTop();
-
-    //    //var position = (documentContainerPosition > contentInnerPosition) ? documentContainerPosition : contentInnerPosition;
-    //    var position = documentContainerPosition;
-
-    return position;
-}
-
+// --- Source Toggle State ---
 function getShowSources() {
     return g_showSources;
 }
@@ -179,11 +140,9 @@ function setShowSources(show) {
     g_showSources = show;
 }
 
-//=========================================
-// TOC STATE
-//=========================================
-var g_tocStateId = -1;
-var g_tocStateType = "Site";
+// --- TOC State ---
+let g_tocStateId = -1;
+let g_tocStateType = "Site";
 
 function setTocStateId(id) {
     g_tocStateId = id;

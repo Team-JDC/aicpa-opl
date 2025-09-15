@@ -175,13 +175,13 @@ function doNextHitDoc(id, type) {
             success: function (data) {
                 if (data.d.Id != -1) {
                     $('#nextHitDoc').removeClass("disabled");
-                    $('#nextHitDoc').unbind("click");
-                    $('#nextHitDoc').click(function () {
+                    $('#nextHitDoc').off("click");
+                    $('#nextHitDoc').on("click", function () {
                         doSearchLink(data.d.Id, data.d.Type, false);
                     });
                 } else {
                     $('#nextHitDoc').addClass("disabled");
-                    $('#nextHitDoc').unbind("click");
+                    $('#nextHitDoc').off("click");
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -203,13 +203,13 @@ function doPrevHitDoc(id, type) {
             success: function (data) {
                 if (data.d.Id != -1) {
                     $('#prevHitDoc').removeClass("disabled");
-                    $('#prevHitDoc').unbind("click");
-                    $('#prevHitDoc').click(function () {
+                    $('#prevHitDoc').off("click");
+                    $('#prevHitDoc').on("click", function () {
                         doSearchLink(data.d.Id, data.d.Type, false);
                     });
                 } else {
                     $('#prevHitDoc').addClass("disabled");
-                    $('#prevHitDoc').unbind("click");
+                    $('#prevHitDoc').off("click");
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
