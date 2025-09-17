@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
 using Elastic.Clients.Elasticsearch.Nodes;
 using Elastic.Clients.Elasticsearch;
+using HtmlIndexerElastic.Cache;
+using System.Threading.Channels;
 
 namespace HtmlIndexerElastic
 {
@@ -26,11 +28,11 @@ namespace HtmlIndexerElastic
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json", optional: false)
                  .Build();
-       
+
             string rootFolderPath = config["SourceFolder"];
             string indexName = string.IsNullOrWhiteSpace(config["Elasticsearch:Index"]) ? "html_pages" : config["Elasticsearch:Index"];
             string mode = (config["Elasticsearch:Mode"] ?? string.Empty).ToLowerInvariant();
-
+            string cachedJsonFilePath = config["CachedJsonFile"];
             if (!Directory.Exists(rootFolderPath))
             {
                 Console.WriteLine(string.IsNullOrWhiteSpace(rootFolderPath)
@@ -100,21 +102,54 @@ namespace HtmlIndexerElastic
 
             try
             {
-                await indexer.EnsureIndexAsync();
-
-                var htmlFiles = Directory.GetFiles(rootFolderPath, "*.html", SearchOption.AllDirectories);
-                Console.WriteLine($"Found {htmlFiles.Length} HTML files to index.");
-
-                foreach (var file in htmlFiles)
+                // await indexer.EnsureIndexAsync();
+                var hasher = new FileHasher(cachedJsonFilePath);
+                Console.WriteLine("> Started to check with files modified");
+                var changedFiles = hasher.GetChangedFiles(rootFolderPath);
+                var deletedFiles = hasher.DeletedFiles;
+                Console.WriteLine($"> Found {changedFiles?.Count()} changed files.");
+                if (changedFiles?.Count() == 0 && deletedFiles.Count==0)
                 {
-                    await indexer.IndexHtmlAsync(file);
+                    Console.WriteLine("✅ No files changed. Skipping indexing.");
+                    return;
                 }
+                Console.WriteLine("> Indexing Started");
+                if(changedFiles?.Count() > 0)
+                {
+                    foreach (var file in changedFiles)
+                    {
+                        await indexer.IndexHtmlAsync(file);
+                    }
+                }
+
+                if (deletedFiles?.Count() > 0)
+                {
+                    foreach (var (path, docId) in hasher.DeletedFiles)
+                    {
+                        await indexer.DeleteFromElasticAsync(docId);
+                    }
+                     
+                }
+
+
+                if (hasher.HasChanges)
+                    hasher.Save();
+                Console.WriteLine("> Indexing complete.");
+
+                //var htmlFiles = Directory.GetFiles(rootFolderPath, "*.html", SearchOption.AllDirectories);
+                //Console.WriteLine($"Found {htmlFiles.Length} HTML files to index.");
+
+                //foreach (var file in htmlFiles)
+                //{
+                //    await indexer.IndexHtmlAsync(file);
+                //}
             }
             finally
             {
                 indexer.Dispose();
             }
         }
-         
-    } 
+
+
+    }
 }
