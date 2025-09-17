@@ -14,22 +14,24 @@ namespace MainUI.Shared.Elastic
 
         public ElasticSearchService(string elasticUri, string indexName, string apiKey = null)
         {
-            var settings = new ConnectionSettings(new Uri(elasticUri))
+            var pool = new SingleNodeConnectionPool(new Uri(elasticUri));
+
+            var connectionSettings = new ConnectionSettings(pool)
                 .DefaultIndex(indexName)
                 .ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(apiKey))
-                .DefaultFieldNameInferrer(p => p); // prevents camelCase conversion
-            //.DisableDirectStreaming(); //optional 
-            _client = new ElasticClient(settings);
+                //.DisableDirectStreaming() //optional 
+                .DefaultFieldNameInferrer(p => p); // 👈 prevents camelCase conversion
+            _client = new ElasticClient(connectionSettings);
         }
 
         public async Task<SearchResultResponse> SearchAsync(
-       string keywords,
-       int maxHits,
-       int searchMode,
-       int pageSize,
-       int pageOffset,
-       bool showExcerpts,
-       bool filterUnsubscribed)
+                 string keywords,
+                 int maxHits,
+                 int searchMode,
+                 int pageSize,
+                 int pageOffset,
+                 bool showExcerpts,
+                 bool filterUnsubscribed)
         {
 
             // Determine query type based on search mode
