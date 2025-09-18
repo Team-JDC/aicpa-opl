@@ -65,8 +65,9 @@ namespace MainUI
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            
-          RegisterRoutes(RouteTable.Routes);
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+            RegisterRoutes(RouteTable.Routes);
         }
 
         protected void Session_Start(object sender, EventArgs e)

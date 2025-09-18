@@ -20,7 +20,7 @@ namespace MainUI.WS
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [ToolboxItem(false)]
     [ScriptService]
-    public class ElasticSearchService : AicpaService
+    public class ElasticSearchService : WebService
     {
        
         private static readonly string elasticUrl = ConfigurationManager.AppSettings["ElasticSearchEndpoint"];
