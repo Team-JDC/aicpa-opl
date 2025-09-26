@@ -39,7 +39,7 @@ namespace HtmlIndexerElastic.Cache
             }
         }
 
-        public IEnumerable<string> GetChangedFiles(string folder)
+        public async Task<IEnumerable<string>> GetChangedFiles(string folder)
         {
            
             var changed = new List<string>();
@@ -50,7 +50,7 @@ namespace HtmlIndexerElastic.Cache
                 var computedHash = ComputeHash(file);
                 if (!_hashCache.ContainsKey(file) || _hashCache[file].Hash != computedHash)
                 {
-                    var docId = indexerHelper.GenerateDocIdFromPath(file);
+                    var docId = await indexerHelper.GenerateDocIdFromPath(file);
                     changed.Add(file);
                     _hashCache[file] = new FileIndexInfo { Hash = computedHash, DocId = docId };
                     HasChanges = true;

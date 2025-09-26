@@ -102,47 +102,70 @@ namespace HtmlIndexerElastic
 
             try
             {
-                // await indexer.EnsureIndexAsync();
-                var hasher = new FileHasher(cachedJsonFilePath);
-                Console.WriteLine("> Started to check with files modified");
-                var changedFiles = hasher.GetChangedFiles(rootFolderPath);
-                var deletedFiles = hasher.DeletedFiles;
-                Console.WriteLine($"> Found {changedFiles?.Count()} changed files.");
-                if (changedFiles?.Count() == 0 && deletedFiles.Count==0)
-                {
-                    Console.WriteLine("✅ No files changed. Skipping indexing.");
-                    return;
-                }
-                Console.WriteLine("> Indexing Started");
-                if(changedFiles?.Count() > 0)
-                {
-                    foreach (var file in changedFiles)
-                    {
-                        await indexer.IndexHtmlAsync(file);
-                    }
-                }
-
-                if (deletedFiles?.Count() > 0)
-                {
-                    foreach (var (path, docId) in hasher.DeletedFiles)
-                    {
-                        await indexer.DeleteFromElasticAsync(docId);
-                    }
-                     
-                }
-
-
-                if (hasher.HasChanges)
-                    hasher.Save();
-                Console.WriteLine("> Indexing complete.");
-
-                //var htmlFiles = Directory.GetFiles(rootFolderPath, "*.html", SearchOption.AllDirectories);
-                //Console.WriteLine($"Found {htmlFiles.Length} HTML files to index.");
-
-                //foreach (var file in htmlFiles)
+                #region File hasher logic - Commented for now
+                //var hasher = new FileHasher(cachedJsonFilePath);
+                //Console.WriteLine("> Started to check with files modified");
+                //var changedFiles = await hasher.GetChangedFiles(rootFolderPath);
+                //var deletedFiles = hasher.DeletedFiles;
+                //Console.WriteLine($"> Found {changedFiles?.Count()} changed files.");
+                //if (changedFiles?.Count() == 0 && deletedFiles.Count == 0)
                 //{
-                //    await indexer.IndexHtmlAsync(file);
+                //    Console.WriteLine("✅ No files changed. Skipping indexing.");
+                //    return;
                 //}
+                //Console.WriteLine("> Indexing Started");
+                //if (changedFiles?.Count() > 0)
+                //{
+                //    foreach (var file in changedFiles)
+                //    {
+                //        await indexer.IndexHtmlAsync(file);
+                //    }
+                //}
+
+                //if (deletedFiles?.Count() > 0)
+                //{
+                //    foreach (var (path, docId) in hasher.DeletedFiles)
+                //    {
+                //        await indexer.DeleteFromElasticAsync(docId);
+                //    }
+
+                //}
+
+
+                //if (hasher.HasChanges)
+                //    hasher.Save();
+                //Console.WriteLine("> Indexing complete.");
+
+                #endregion
+
+
+                Console.WriteLine($"> Started to delete all the docs in the index {indexName}");
+
+                if (await indexer.IndexHasDocumentsAsync())
+                {
+                    await indexer.DeleteAllFromElasticAsync();
+                }
+                else
+                {
+                    Console.WriteLine("✅ Index is already empty. Skipping delete.");
+                }
+                 
+                while (await indexer.IndexHasDocumentsAsync())
+                {
+                    Console.WriteLine("⏳ Waiting for deletion to complete...");
+                    await Task.Delay(1000); // wait and re-check
+                }
+
+                Console.WriteLine("> Indexing Started");
+
+                var changed = new List<string>();
+                var files = Directory.GetFiles(rootFolderPath, "*.html", SearchOption.AllDirectories);
+
+                foreach (var file in files)
+                {
+                    await indexer.IndexHtmlAsync(file);
+                }
+                Console.WriteLine("> Indexing complete.");
             }
             finally
             {
