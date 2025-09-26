@@ -1,10 +1,12 @@
-﻿using Elastic.Clients.Elasticsearch.Nodes;
+﻿using Elastic.Clients.Elasticsearch;
+using Elastic.Clients.Elasticsearch.Nodes;
 using HtmlAgilityPack;
 using HtmlIndexerElastic.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -119,6 +121,49 @@ namespace HtmlIndexerElastic
 
             Console.WriteLine($"📊 Index '{_indexName}' contains {count} document(s).");
             return count > 0;
+        }
+        public async Task BulkIndexHtmlAsync(IEnumerable<string> filePaths, int batchSize = 500)
+        {
+            var batch = new List<string>();
+            int count = 0;
+             
+
+            foreach (var path in filePaths)
+            {
+                var doc = await _indexerHelper.BuildDocumentAsync(path); 
+                string docId = $"{doc.Id}_{doc.BookId}".Replace("/", "_").Replace(" ", "_");
+                string meta = $"{{ \"index\": {{ \"_index\": \"{_indexName}\", \"_id\": \"{docId}\" }} }}"; 
+                string json = System.Text.Json.JsonSerializer.Serialize(doc);
+
+                batch.Add(meta);
+                batch.Add(json);
+                count++;
+
+
+                if (count % batchSize == 0)
+                {
+                    await SendBulkAsync(batch);
+                    batch.Clear();
+                }
+            }
+
+            if (batch.Count > 0)
+            {
+                await SendBulkAsync(batch);
+            }
+        }
+
+        private async Task SendBulkAsync(List<string> batch)
+        {
+            string ndjson = string.Join("\n", batch) + "\n";
+            var content = new StringContent(ndjson, Encoding.UTF8, "application/x-ndjson");
+            var response = await _client.PostAsync($"{_endpoint}/_bulk", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
+                Console.WriteLine($"✅ Bulk index success: {batch.Count / 2} docs.");
+            else
+                Console.WriteLine($"❌ Bulk index error: {result}");
         }
 
     }

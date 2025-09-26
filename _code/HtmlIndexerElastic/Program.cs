@@ -161,10 +161,15 @@ namespace HtmlIndexerElastic
                 var changed = new List<string>();
                 var files = Directory.GetFiles(rootFolderPath, "*.html", SearchOption.AllDirectories);
 
-                foreach (var file in files)
-                {
-                    await indexer.IndexHtmlAsync(file);
-                }
+                // commented out sending 1 request per file
+                //foreach (var file in files)
+                //{
+                //    await indexer.IndexHtmlAsync(file);
+                //}
+
+                // this will bulk upload 500 files per request
+                await indexer.BulkIndexHtmlAsync(files);
+
                 Console.WriteLine("> Indexing complete.");
             }
             finally
