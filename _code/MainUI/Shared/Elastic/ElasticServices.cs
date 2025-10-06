@@ -280,6 +280,10 @@ namespace MainUI.Shared.Elastic
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async System.Threading.Tasks.Task<string[]> BlankDimensionsAsync()
         { 
             var contentRoot = (ConfigurationManager.AppSettings["ContentRootNode"] ?? string.Empty).Trim();
