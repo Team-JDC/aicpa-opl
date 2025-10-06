@@ -111,12 +111,23 @@ namespace MainUI
                 return _MyLibraryList;
             }
         }
-        
 
 
-        
+        private WS.ElasticSearchService _ElasticSearchService = null;
+        private WS.ElasticSearchService ElasticSearchServices
+        {
+            get
+            {
+                if (_ElasticSearchService == null)
+                {
+                    _ElasticSearchService = new WS.ElasticSearchService();
+                }
+                return _ElasticSearchService;
+            }
+        }
+
         #endregion
-        
+
         protected void Page_Init(object sender, EventArgs e)
         {
 
@@ -160,7 +171,8 @@ namespace MainUI
             StringBuilder sb = new StringBuilder();
             try
             {
-                MainUI.WS.EndecaServices.SearchResultResponse sr = EndecaService.DoBlankSearch();
+                //MainUI.WS.EndecaServices.SearchResultResponse sr = EndecaService.DoBlankSearch();
+                MainUI.Shared.Elastic.SearchResultResponse sr = ElasticSearchServices.DoBlankSearch();
                 //foreach (Shared.SiteNode sn in MyLibrary)
                 //{
                 //    sb.Append(string.Format("<option>{0}</option>", sn.Title));

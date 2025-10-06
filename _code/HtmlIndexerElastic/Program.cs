@@ -16,6 +16,8 @@ using Elastic.Clients.Elasticsearch.Nodes;
 using Elastic.Clients.Elasticsearch;
 using HtmlIndexerElastic.Cache;
 using System.Threading.Channels;
+using AICPA.Destroyer.Shared;
+using static HtmlIndexerElastic.HtmlIndexerBase;
 
 namespace HtmlIndexerElastic
 {
@@ -33,6 +35,10 @@ namespace HtmlIndexerElastic
             string indexName = string.IsNullOrWhiteSpace(config["Elasticsearch:Index"]) ? "html_pages" : config["Elasticsearch:Index"];
             string mode = (config["Elasticsearch:Mode"] ?? string.Empty).ToLowerInvariant();
             string cachedJsonFilePath = config["CachedJsonFile"];
+            string destroyerConnectionString = config["ConnectionStrings:DestroyerConnection"];
+             
+            // warm the cache ONCE at startup (no DB calls during file loop)
+            DestroyerCache.LoadAll(destroyerConnectionString);
             if (!Directory.Exists(rootFolderPath))
             {
                 Console.WriteLine(string.IsNullOrWhiteSpace(rootFolderPath)
@@ -168,8 +174,8 @@ namespace HtmlIndexerElastic
                 //}
 
                 // this will bulk upload 500 files per request
-                await indexer.BulkIndexHtmlAsync(files);
-
+                // await indexer.BulkIndexHtmlAsync(files, destroyerConnectionString);
+                await indexer.BulkIndexHtmlAsync(files, destroyerConnectionString);
                 Console.WriteLine("> Indexing complete.");
             }
             finally

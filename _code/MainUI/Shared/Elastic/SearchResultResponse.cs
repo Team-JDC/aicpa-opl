@@ -5,6 +5,7 @@ using System.Web;
 
 namespace MainUI.Shared.Elastic
 {
+    [Serializable]
     public class SearchResultResponse
     {
         public string DimensionId { get; set; }

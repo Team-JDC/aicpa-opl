@@ -489,10 +489,12 @@
     <Compile Include="Shared\BaseDestroyerDalc.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Shared\DestroyerCache.cs" />
     <Compile Include="Shared\D_Exception.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Shared\Log.cs" />
+    <Compile Include="Shared\PathBuilders.cs" />
     <Compile Include="Shared\Security.cs" />
     <Compile Include="Shared\UserDef.cs" />
     <Compile Include="User\Bookmark\Bookmark.cs" />

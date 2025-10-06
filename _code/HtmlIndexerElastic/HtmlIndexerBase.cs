@@ -26,7 +26,7 @@ namespace HtmlIndexerElastic
         protected readonly HttpClient _client;
         protected readonly string _endpoint;
         protected readonly string _indexName;
-         IndexerHelper _indexerHelper =new IndexerHelper();
+        IndexerHelper _indexerHelper = new IndexerHelper();
         protected HtmlIndexerBase(string endpoint, string indexName)
         {
             _endpoint = endpoint?.TrimEnd('/') ?? throw new ArgumentNullException(nameof(endpoint));
@@ -37,20 +37,20 @@ namespace HtmlIndexerElastic
 
         public void Dispose() => _client?.Dispose();
 
-        
+
         public async Task IndexHtmlAsync(string filePath)
         {
-            var indexDoc = await _indexerHelper.BuildDocumentAsync(filePath);//_indexerHelper.ParseHtml(filePath);
+            var indexDoc = await _indexerHelper.BuildDocumentAsync(filePath,"");//_indexerHelper.ParseHtml(filePath);
             var json = JsonConvert.SerializeObject(indexDoc);
             //var docId = ($"{indexDoc.BookId}_{indexDoc.Id}")
             //    .Replace('/', '_')
             //    .Replace('\\', '_')
             //    .Replace(' ', '_');
-            var docId = $"{indexDoc.BookId}_{indexDoc.Id}"; 
+            var docId = $"{indexDoc.BookId}_{indexDoc.Id}";
             var response = await _client.PutAsync(
                 $"{_endpoint}/{_indexName}/_doc/{docId}",
                 new StringContent(json, Encoding.UTF8, "application/json")
-            ); 
+            );
             if (!response.IsSuccessStatusCode)
             {
                 var respText = await response.Content.ReadAsStringAsync();
@@ -62,12 +62,12 @@ namespace HtmlIndexerElastic
             }
         }
 
-        
+
 
         public async Task DeleteFromElasticAsync(string docId)
-        { 
+        {
             var response = await _client.DeleteAsync($"{_endpoint}/{_indexName}/_doc/{docId}");
-           
+
             if (!response.IsSuccessStatusCode)
             {
                 var error = await response.Content.ReadAsStringAsync();
@@ -122,19 +122,20 @@ namespace HtmlIndexerElastic
             Console.WriteLine($"📊 Index '{_indexName}' contains {count} document(s).");
             return count > 0;
         }
-        public async Task BulkIndexHtmlAsync(IEnumerable<string> filePaths, int batchSize = 500)
+        public async Task BulkIndexHtmlAsync(IEnumerable<string> filePaths,string connectionString, int batchSize=500 )
         {
             var batch = new List<string>();
             int count = 0;
-             
+
 
             foreach (var path in filePaths)
             {
-                var doc = await _indexerHelper.BuildDocumentAsync(path); 
-                string docId = $"{doc.Id}_{doc.BookId}".Replace("/", "_").Replace(" ", "_");
-                string meta = $"{{ \"index\": {{ \"_index\": \"{_indexName}\", \"_id\": \"{docId}\" }} }}"; 
+                var doc = await _indexerHelper.BuildDocumentAsync(path, connectionString); 
+                string docId = MakeDocId(doc);
+                string meta = $"{{ \"index\": {{ \"_index\": \"{_indexName}\", \"_id\": \"{docId}\" }} }}";
                 string json = System.Text.Json.JsonSerializer.Serialize(doc);
-
+                //Console.WriteLine($"meta: {meta}\n");
+                 
                 batch.Add(meta);
                 batch.Add(json);
                 count++;
@@ -157,7 +158,7 @@ namespace HtmlIndexerElastic
         {
             string ndjson = string.Join("\n", batch) + "\n";
             var content = new StringContent(ndjson, Encoding.UTF8, "application/x-ndjson");
-            var response = await _client.PostAsync($"{_endpoint}/_bulk", content);
+            var response = await _client.PostAsync($"{_endpoint}/_bulk?refresh=false", content);
             string result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
@@ -165,7 +166,27 @@ namespace HtmlIndexerElastic
             else
                 Console.WriteLine($"❌ Bulk index error: {result}");
         }
+ 
+          
 
+        private static string MakeDocId(ElasticDocument d)
+        {
+            // canonical: BookId + "_" + DocumentId (Id)
+            var book = (d.BookId.Trim() ?? "").Trim();
+            var doc = d.Id.ToString(System.Globalization.CultureInfo.InvariantCulture).Trim();
+            var raw = $"{doc}_{book}";
+
+            // normalize
+            return raw
+                .Trim()
+                .ToLowerInvariant()
+                .Replace('/', '_')
+                .Replace('\\', '_')
+                .Replace(':', '_')
+                .Replace(' ', '_');
+        }
+
+       
     }
 
 }
