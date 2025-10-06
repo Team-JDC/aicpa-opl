@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using AICPA.Destroyer.Shared;
+using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace HtmlIndexerElastic.Util
     {
         public async Task<string> GenerateDocIdFromPath(string path)
         {
-           // var indexDoc = await BuildDocumentAsync(path);//_indexerHelper.ParseHtml(filePath); 
+            // var indexDoc = await BuildDocumentAsync(path);//_indexerHelper.ParseHtml(filePath); 
 
             var html = await File.ReadAllTextAsync(path);
             var hdoc = new HtmlDocument();
@@ -32,7 +33,7 @@ namespace HtmlIndexerElastic.Util
             var docId = GetMeta("destroyer_document_id");
 
             var Id = $"{bookId}_{docId}";
-         
+
             return Id;
         }
         public ElasticDocument ParseHtml(string filePath)
@@ -71,7 +72,7 @@ namespace HtmlIndexerElastic.Util
                                  ?.GetAttributeValue("title", null);
             var htmlDocTitle = htmlDoc.DocumentNode.SelectSingleNode("//title")?.InnerText?.Trim();
 
-          
+
 
             var doc = new ElasticDocument
             {
@@ -85,33 +86,18 @@ namespace HtmlIndexerElastic.Util
                 BookName = GetMeta("destroyer_book_name"),
                 SiteHierarchy = hierarchy,
                 InSubscription = true, // adjust as needed
-                //DimensionXml = BuildDimensionXml(hierarchy, subs),
-               // SitePath = BuildReferencePathXml(hierarchy)
+                                       //DimensionXml = BuildDimensionXml(hierarchy, subs),
+                                       // SitePath = BuildReferencePathXml(hierarchy)
             };
-            doc.ReferencePath = PathBuilders.BuildReferencePathFriendly(chain, names, htmlBookTitle, htmlDocTitle);
-            doc.SitePath = PathBuilders.BuildSitePathXmlFriendly(chain, names, htmlBookTitle, htmlDocTitle);
+            doc.ReferencePath = AICPA.Destroyer.Shared.PathBuilders.BuildReferencePathFriendly(chain, htmlBookTitle, htmlDocTitle);
+            doc.SitePath = AICPA.Destroyer.Shared.PathBuilders.BuildSitePathXmlFriendly(chain, htmlBookTitle, htmlDocTitle);
 
             return doc;
         }
 
         #region Private Methods
 
-        private static string GenerateReferencePath(List<SiteHierarchyNode> hierarchy)
-        {
-            return string.Join(" > ", hierarchy.Select(h => $"{h.Type}:{h.Id}"));
-        }
 
-        private static string BuildReferencePathXml(List<SiteHierarchyNode> hierarchy)
-        {
-            var sb = new StringBuilder();
-            sb.Append("<ReferencePath>");
-            foreach (var node in hierarchy)
-            {
-                sb.AppendFormat(@"<Site{0} Id=""{1}"" Name=""{0}_{1}"" Title=""{0} {1}"" />", node.Type, node.Id);
-            }
-            sb.Append("</ReferencePath>");
-            return sb.ToString();
-        }
 
         private static string BuildDimensionXml(List<SiteHierarchyNode> hierarchy, string[] subscriptionCodes)
         {
@@ -153,8 +139,128 @@ namespace HtmlIndexerElastic.Util
         }
         #endregion
 
+        public async Task<ElasticDocument> BuildDocumentAsync(string file, string connectionString)
+        {
+            var html = await File.ReadAllTextAsync(file);
+            var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(html);
 
-        public   async Task<ElasticDocument> BuildDocumentAsync(string file)
+            var meta = doc.DocumentNode.SelectNodes("//head/meta") ?? new HtmlNodeCollection(null);
+
+            string bookId = meta.FirstOrDefault(m => m.GetAttributeValue("name", "") == "destroyer_book_id")
+                                 ?.GetAttributeValue("content", "");
+            string bookName = meta.FirstOrDefault(m => m.GetAttributeValue("name", "") == "destroyer_book_name")
+                                 ?.GetAttributeValue("content", "");
+            string documentId = meta.FirstOrDefault(m => m.GetAttributeValue("name", "") == "destroyer_document_id")
+                                 ?.GetAttributeValue("content", "");
+            string documentName = meta.FirstOrDefault(m => m.GetAttributeValue("name", "") == "destroyer_document_name")
+                                 ?.GetAttributeValue("content", "");
+
+            string documentTitle = string.Empty;
+
+            var subs = meta.Where(m => m.GetAttributeValue("name", "") == "destroyer_subscription_code")
+                           .Select(m => m.GetAttributeValue("content", ""))
+                           .Where(s => !string.IsNullOrWhiteSpace(s))
+                           .Distinct(StringComparer.OrdinalIgnoreCase)
+                           .ToArray();
+
+            var hierarchyTokens = meta.Where(m => m.GetAttributeValue("name", "") == "destroyer_site_hierarchy")
+                                      .Select(m => m.GetAttributeValue("content", ""))
+                                      .Where(s => !string.IsNullOrWhiteSpace(s))
+                                      .ToList();
+
+
+
+            // Grab titles from HTML when available
+            var htmlBookTitle = doc.DocumentNode.SelectSingleNode("//head/link[@rel='home']")
+                                 ?.GetAttributeValue("title", null);
+            var htmlDocTitle = doc.DocumentNode.SelectSingleNode("//title")?.InnerText?.Trim();
+
+            // Body text for search
+            var bodyText = doc.DocumentNode.SelectSingleNode("//body")?.InnerText?.Trim() ?? "";
+
+            // --- Build nested SiteHierarchy with Level + Title (SQL cache + HTML fallbacks) ---
+            var siteHierarchy = new List<SiteHierarchyNode>();
+            int folderDepth = 0;
+
+            foreach (var tok in hierarchyTokens)
+            {
+                var parts = tok.Split(':'); if (parts.Length != 2) continue;
+                var type = parts[0]; var id = parts[1];
+                var node = new SiteHierarchyNode { Type = type, Id = id };
+
+                switch (type)
+                {
+                    case "Site":
+                        node.Level = 0;
+                        node.Title = (DestroyerCache.SiteTitleById.ContainsKey(id)) ? DestroyerCache.SiteTitleById[id].Title : $"Site {id}"; 
+                        node.Name = (DestroyerCache.SiteTitleById.ContainsKey(id)) ? DestroyerCache.SiteTitleById[id].Name : $"Site {id}";
+                        break;
+
+                    case "SiteFolder":
+                        node.Level = ++folderDepth; // 1,2,... 
+                        node.Title = (DestroyerCache.FolderTitleById.ContainsKey(id)) ? DestroyerCache.FolderTitleById[id].Title : $"SiteFolder {id}";
+                        node.Name = (DestroyerCache.FolderTitleById.ContainsKey(id)) ? DestroyerCache.FolderTitleById[id].Name : $"SiteFolder {id}";
+                        break;
+
+                    case "Book":
+                        node.Level = folderDepth + 1; // after folders
+                                                      //node.Title = !string.IsNullOrWhiteSpace(htmlBookTitle)
+                                                      //                ? htmlBookTitle
+                                                      //                : (TryGet(DestroyerCache.BookTitleById, id) ?? bookName ?? $"Book {id}");
+                        node.Name = bookName; 
+                        node.Title = (DestroyerCache.BookTitleById.ContainsKey(id)) ? DestroyerCache.BookTitleById[id].Title : $"Book {id}";
+                        break;
+
+                    case "Document":
+                        node.Level = folderDepth + 2;
+                        //node.Title = !string.IsNullOrWhiteSpace(htmlDocTitle) ? htmlDocTitle : (documentName ?? $"Document {id}");
+                        node.Name = documentName;
+                        node.Title = DestroyerCache.GetDocumentTitle(Convert.ToInt32(id), connectionString) ?? documentName ?? htmlDocTitle;
+                        documentTitle = node.Title;
+                        break;
+                }
+
+                siteHierarchy.Add(node);
+            }
+
+            // --- Build friendly ReferencePath & Endeca-like SitePath XML ---
+            string referencePath = string.Join(" > ",
+                siteHierarchy.Select(n => string.IsNullOrWhiteSpace(n.Title) ? $"{n.Type} {n.Id}" : n.Title));
+
+            var sb = new StringBuilder().Append("<ReferencePath>");
+            foreach (var n in siteHierarchy)
+            {
+                sb.Append("<").Append(n.Type)
+                  .Append(" Id=\"").Append(E(n.Id)).Append("\"");
+                if (!string.IsNullOrWhiteSpace(n.Title))
+                    sb.Append(" Title=\"").Append(E(n.Title)).Append("\"");
+                if (!string.IsNullOrWhiteSpace(n.Name))
+                    sb.Append(" Name=\"").Append(E(n.Name)).Append("\"");
+                sb.Append(" />");
+            }
+            sb.Append("</ReferencePath>");
+            string sitePathXml = sb.ToString();
+
+            // --- Build the ES document matching the new mapping ---
+            var esDoc = new ElasticDocument
+            {
+                Id = long.Parse(documentId),
+                Name = documentName ?? Path.GetFileNameWithoutExtension(file),
+                Title = documentTitle ?? htmlDocTitle ?? "",
+                Content = bodyText,
+                BookId = bookId,
+                BookName = bookName ?? htmlBookTitle ?? "",
+                SubscriptionCodes = subs,
+                InSubscription = subs.Length > 0,
+                DocumentStatus = "success",
+                ReferencePath = referencePath,
+                SitePath = sitePathXml,
+                SiteHierarchy = siteHierarchy
+            };
+
+            return esDoc;
+        }
+        public async Task<ElasticDocument> BuildDocumentAsyncOld(string file)
         {
             var html = await File.ReadAllTextAsync(file);
             var hdoc = new HtmlDocument();
@@ -230,7 +336,7 @@ namespace HtmlIndexerElastic.Util
             var bodyText = hdoc.DocumentNode.SelectSingleNode("//body")?.InnerText?.Trim() ?? "";
 
             // Optional enrich: Site name + Endeca dimension id (for facets to match Endeca)
-           // var siteId = hierarchy.FirstOrDefault(h => h.Type.Equals("Site", StringComparison.OrdinalIgnoreCase))?.Id;
+            // var siteId = hierarchy.FirstOrDefault(h => h.Type.Equals("Site", StringComparison.OrdinalIgnoreCase))?.Id;
             //var siteName = (siteId != null) ? SiteName(siteId) : null;
             //var endecaDimId = (siteId != null) ? EndecaDimId(siteId) : null;
 
@@ -238,12 +344,12 @@ namespace HtmlIndexerElastic.Util
             var dimXml = BuildDimensionXmlFromSubs(subs, hierarchy);
 
             var doc = new ElasticDocument
-            { 
+            {
                 Id = long.Parse(docId),
                 Name = GetMeta("destroyer_document_name"),
                 Title = title,
                 Content = bodyText,
-               // ReferencePath = referencePath,
+                // ReferencePath = referencePath,
                 SubscriptionCodes = subs,
                 BookId = bookId,
                 BookName = GetMeta("destroyer_book_name") ?? "",
@@ -253,14 +359,14 @@ namespace HtmlIndexerElastic.Util
                 //SitePath = sitePath
             };
 
-            doc.ReferencePath = PathBuilders.BuildReferencePathFriendly(chain, names, htmlBookTitle, htmlDocTitle);
-            doc.SitePath = PathBuilders.BuildSitePathXmlFriendly(chain, names, htmlBookTitle, htmlDocTitle);
+            doc.ReferencePath = AICPA.Destroyer.Shared.PathBuilders.BuildReferencePathFriendly(chain, htmlBookTitle, htmlDocTitle);
+            doc.SitePath = AICPA.Destroyer.Shared.PathBuilders.BuildSitePathXmlFriendly(chain, htmlBookTitle, htmlDocTitle);
 
 
             return doc;
         }
         // Mirrors your sample: build DimensionXml from subscription codes; keeps Refined dimensions
-        private   string BuildDimensionXmlFromSubs(string[] subs, List<SiteHierarchyNode> hierarchy)
+        private string BuildDimensionXmlFromSubs(string[] subs, List<SiteHierarchyNode> hierarchy)
         {
             var site = hierarchy.FirstOrDefault(h => h.Type == "Site");
             var book = hierarchy.FirstOrDefault(h => h.Type == "Book");
@@ -305,7 +411,9 @@ namespace HtmlIndexerElastic.Util
             sb.Append("</RefinementDimensions></Dimensions>");
             return sb.ToString();
         }
-         
+        static string TryGet(IReadOnlyDictionary<string, string> map, string key)
+   => (map != null && map.TryGetValue(key, out var s) && !string.IsNullOrWhiteSpace(s)) ? s : null;
 
+        static string E(string s) => System.Security.SecurityElement.Escape(s ?? "");
     }
 }

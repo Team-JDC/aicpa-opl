@@ -2,7 +2,9 @@
 
 using AICPA.Destroyer.User.Event;
 using MainUI.Shared;
+using MainUI.Shared.Elastic;
 using System;
+using System.Configuration;
 using System.Web;
 using System.Web.Routing;
 
@@ -66,7 +68,7 @@ namespace MainUI
         protected void Application_Start(object sender, EventArgs e)
         {
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
-
+            AICPA.Destroyer.Shared.DestroyerCache.LoadAll(ConfigurationManager.AppSettings["DbConnectionString"]);
             RegisterRoutes(RouteTable.Routes);
         }
 

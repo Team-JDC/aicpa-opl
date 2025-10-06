@@ -20,10 +20,15 @@ namespace HtmlIndexerElastic
         public bool InSubscription { get; set; } = true;
        // public string DimensionXml { get; set; }
         public string SitePath { get; set; } // XML or breadcrumb-style
+        public string DocumentStatus { get; set; }
     }
     public class SiteHierarchyNode
     {
-        public string Type { get; set; }
-        public string Id { get; set; }
+     
+        public string Type { get; set; }   // "Site" | "SiteFolder" | "Book" | "Document"
+        public string Id { get; set; }     // e.g. "344", "28027", ...
+        public int Level { get; set; }  // 0=Site, 1=top-level folder, 2=child folder, Book=last+1, Document=last+2
+        public string Name { get; set; }   // optional (if you have machine names)
+        public string Title { get; set; }  // human label resolved from SQL or HTML
     }
 }

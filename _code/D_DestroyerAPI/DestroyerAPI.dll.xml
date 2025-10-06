@@ -3166,6 +3166,14 @@
             <param name = "searchCriteria">The search criteria.</param>
             <param name = "endecaQueryResults">The endeca query results.</param>
         </member>
+        <member name="M:AICPA.Destroyer.Content.Search.SearchResults.#ctor(AICPA.Destroyer.Content.Site.ISite,AICPA.Destroyer.Content.Search.ISearchCriteria,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="site"></param>
+            <param name="searchCriteria"></param>
+            <param name="elasticSearchResults"></param>
+        </member>
         <member name="P:AICPA.Destroyer.Content.Search.SearchResults.SearchCriteria">
             <summary>
               The search criteria used to generate the search results.
