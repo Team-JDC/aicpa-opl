@@ -55,20 +55,76 @@ namespace MainUI.Shared.Elastic
 
             // Selected "dimensions": if caller gives Site/Folder ids, add filters here.
             // Example: if sc.DimensionIds contains siteId(s), filter SiteHierarchy nested elements matching Level=0 and that Id.
-            foreach (var dimId in sc.DimensionIds ?? Array.Empty<string>())
+            //foreach (var dimId in sc.DimensionIds ?? Array.Empty<string>())
+            //{
+            //    // Example: treat numbers >= 30000 as SiteFolder ids and < 30000 as Site ids (replace with your own rule)
+            //    filters.Add(new NestedQuery
+            //    {
+            //        Path = "SiteHierarchy",
+            //        Query = new BoolQuery
+            //        {
+            //            Must = new QueryContainer[]
+            //            {
+            //        new TermQuery { Field = "SiteHierarchy.Type",  Value =  "SiteFolder" },
+            //        new TermQuery { Field = "SiteHierarchy.Id",    Value = dimId }
+            //            }
+            //        }
+            //    });
+            //}
+            
+
+            foreach (var token in sc.DimensionIds ?? Array.Empty<string>())
             {
-                // Example: treat numbers >= 30000 as SiteFolder ids and < 30000 as Site ids (replace with your own rule)
+                // Supported tokens:
+                //   "SiteFolder:28070" / "Site:345" / "Book:7263" / "Document:2151146"
+                //   "28070"                  (Id only)
+                //   "Audit & Accounting Literature" (Name only)
+                //   "28070|Audit & Accounting Literature" (Id|Name)
+                string type = null, id = null, name = null;
+
+                var t = token?.Trim() ?? string.Empty;
+
+                if (t.Contains("|"))
+                {
+                    var parts = t.Split(new[] { '|' }, 2);
+                    id = parts[0].Trim();
+                    name = parts[1].Trim();
+                }
+                else if (t.Contains(":"))
+                {
+                    var parts = t.Split(new[] { ':' }, 2);
+                    type = parts[0].Trim();   // "Site", "SiteFolder", "Book", "Document"
+                    id = parts[1].Trim();
+                }
+                else if (IsDigits(t))
+                {
+                    id = t;                   // numeric id, don't assume the type
+                }
+                else
+                {
+                    name = t;                 // name-only
+                }
+
+                var must = new List<QueryContainer>();
+
+                if (!string.IsNullOrEmpty(id))
+                    must.Add(new TermQuery { Field = "SiteHierarchy.Id", Value = id });
+
+                if (!string.IsNullOrEmpty(name))
+                    must.Add(new TermQuery { Field = "SiteHierarchy.Name", Value = name });
+
+                // Only add Type if it was provided; DO NOT infer it
+                if (!string.IsNullOrEmpty(type))
+                    must.Add(new TermQuery { Field = "SiteHierarchy.Type", Value = type });
+
+                // Optionally enforce only top-level folders:
+                // if (string.Equals(type, "SiteFolder", StringComparison.OrdinalIgnoreCase))
+                //     must.Add(new TermQuery { Field = "SiteHierarchy.Level", Value = 1 });
+
                 filters.Add(new NestedQuery
                 {
                     Path = "SiteHierarchy",
-                    Query = new BoolQuery
-                    {
-                        Must = new QueryContainer[]
-                        {
-                    new TermQuery { Field = "SiteHierarchy.Type",  Value = dimId.StartsWith("SiteFolder") ? "SiteFolder" : "Site" },
-                    new TermQuery { Field = "SiteHierarchy.Id",    Value = dimId.Replace("SiteFolder:","").Replace("Site:","") }
-                        }
-                    }
+                    Query = new BoolQuery { Must = must }
                 });
             }
 
@@ -107,30 +163,104 @@ namespace MainUI.Shared.Elastic
                 ? h.Fields(f => f.Field("Content").FragmentSize(160).NumberOfFragments(1)
                                 .PreTags("<b class='endeca_term'>").PostTags("</b>"))
                 : null;
-             
+
+
+            var shoulds = new List<QueryContainer>();
+
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                // Title exact phrase >>> strongest
+                shoulds.Add(new MatchPhraseQuery { Field = "Title", Query = keywords, Boost = 5 });
+
+                // Content exact phrase >>
+                shoulds.Add(new MatchPhraseQuery { Field = "Content", Query = keywords, Boost = 2 });
+
+                // Best-field query across Title/Content/Name >
+                shoulds.Add(new MultiMatchQuery
+                {
+                    Query = keywords,
+                    Type = TextQueryType.BestFields,
+                    Fields = new[] { "Title^3", "Content^1", "Name^1.5" },
+                    Operator = (sc.SearchType == AICPA.Destroyer.Shared.SearchType.AnyWords) ? Operator.Or : Operator.And,
+                    TieBreaker = 0.2
+                });
+
+                // Small fuzzy net for AnyWords to catch typos
+                if (sc.SearchType == AICPA.Destroyer.Shared.SearchType.AnyWords)
+                    shoulds.Add(new MatchQuery { Field = "Content", Query = keywords, Fuzziness = Fuzziness.Auto, Boost = 0.3 });
+            }
+
+            var finalQuery = new BoolQuery
+            {
+                    Must = new List<QueryContainer> { contentQuery }, // <-- wrap single item
+                    Filter = (filters != null && filters.Count > 0) ? filters : null,
+                    Should = (shoulds != null && shoulds.Count > 0) ? shoulds : null,
+                    MinimumShouldMatch = (shoulds != null && shoulds.Count > 0)
+               ? new MinimumShouldMatch(1)   // require at least one 'should' to match
+               : null
+            };
+
 
             // 5) execute
-            var response = await _client.SearchAsync<ElasticDocument>(s => s
-                .From(sc.PageOffset)
-                .Size(sc.PageSize)
-                .TrackTotalHits(true)
-                .Query(q => q.Bool(b => b.Must(contentQuery).Filter(filters.ToArray())))
-                .Aggregations(aggs)
-                .Highlight(hi)
-                .Suggest(su => su
-                // Phrase suggester ("did you mean")
-                .Phrase("dym", ph => ph
-                    .Field("Content")
-                    .Text(keywords)
-                    .Size(1)
-                    // optional direct generator to improve suggestions
-                    .DirectGenerator(dg => dg
-                        .Field("Content")
-                        .SuggestMode(SuggestMode.Always)
-                        .MinWordLength(3)
-                    )
-                ))
-            );
+
+
+            //var response = await _client.SearchAsync<ElasticDocument>(s => s
+            //    .From(sc.PageOffset)
+            //    .Size(sc.PageSize)
+            //    .TrackTotalHits(true)
+            //    .Query(q => finalQuery)
+            //    .Aggregations(aggs)
+            //    .Highlight(hi)
+            //    .Rescore(r => r.Rescore(rr => new Rescore
+            //    {
+            //        WindowSize = 200,
+            //        Query = new RescoreQuery
+            //        {
+            //            // <<< THIS is the correct property name
+            //            Query = new MatchPhraseQuery
+            //            {
+            //                Field = new Field("Title"), // or Infer.Field<ElasticDocument>(d => d.Title)
+            //                Query = keywords,
+            //                Slop = 0
+            //            },
+            //            QueryWeight = 0.7,
+            //            RescoreQueryWeight = 3.0,
+            //            ScoreMode = ScoreMode.Total
+            //        }
+            //    }))
+            //);
+            var response = await _client.SearchAsync<ElasticDocument>(s =>
+            {
+                s = s.From(sc.PageOffset)
+                     .Size(sc.PageSize)
+                     .TrackTotalHits(true)
+                     .Query(q => finalQuery)
+                     .Highlight(hi)
+                     .Aggregations(aggs);
+
+                if (!string.IsNullOrWhiteSpace(keywords))
+                {
+                    s = s.Rescore(r => r.Rescore(rr => new Rescore
+                    {
+                        WindowSize = 200,
+                        Query = new RescoreQuery
+                        {
+                            // <<< THIS is the correct property name
+                            Query = new MatchPhraseQuery
+                            {
+                                Field = new Field("Title"), // or Infer.Field<ElasticDocument>(d => d.Title)
+                                Query = keywords,
+                                Slop = 0
+                            },
+                            QueryWeight = 0.7,
+                            RescoreQueryWeight = 3.0,
+                            ScoreMode = ScoreMode.Total
+                        }
+                    }));
+                }
+                return s;
+            });
+
 
             // 6) selected “site/library” (for SelectedDimensionResults)
             // choose: provided in sc.DimensionIds or auto-pick the site from the first hit
@@ -178,7 +308,7 @@ namespace MainUI.Shared.Elastic
 
             // 9) DimensionResults (refinements list)
             var dimResults = folderBuckets
-                   .OrderByDescending(x => x.Count)
+                   .OrderBy(x => x.Count)
                    .Select(x => new DimensionNavigationResult
                    {
                        DimensionId = x.FolderId,        // filter key
@@ -367,5 +497,6 @@ namespace MainUI.Shared.Elastic
             //   return new[] { concat };
             return ids.Distinct(StringComparer.Ordinal).ToArray();
         }
+        static bool IsDigits(string s) => !string.IsNullOrWhiteSpace(s) && s.All(char.IsDigit);
     }
 }
