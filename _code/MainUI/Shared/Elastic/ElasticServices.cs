@@ -78,25 +78,30 @@ namespace MainUI.Shared.Elastic
             // Endeca filtered out unsuccessful docs
             filters.Add(new TermQuery { Field = "DocumentStatus", Value = "success" });
 
-            // 3) aggregations (Endeca-like top-level SiteFolders)
+            // 3) aggregations (top-level SiteFolders, with friendly Name)
             Func<AggregationContainerDescriptor<ElasticDocument>, IAggregationContainer> aggs = a => a
                 .Nested("site_h", n => n
-                    .Path("SiteHierarchy")
+                    .Path(p => p.SiteHierarchy)
                     .Aggregations(aa => aa
                         .Filter("top_level_sitefolders", f => f
                             .Filter(q => q.Bool(b => b.Must(
                                 m => m.Term(t => t.Field("SiteHierarchy.Type").Value("SiteFolder")),
                                 m => m.Term(t => t.Field("SiteHierarchy.Level").Value(1))
                             )))
-                        .Aggregations(aaa => aaa
-                            .Terms("by_site_folder", t => t
-                                .Field("SiteHierarchy.Id")
-                                .Size(100)
+                            .Aggregations(aaa => aaa
+                                .Composite("by_site_folder", c => c
+                                    .Size(1000) // adjust if needed
+                                    .Sources(ss => ss
+                                        .Terms("fid", t => t.Field("SiteHierarchy.Id"))
+                                        .Terms("fname", t => t.Field("SiteHierarchy.Name")) // <-- friendly
+                                                                                            // If Name is TEXT with a keyword subfield, use:
+                                                                                            // .Terms("fname", t => t.Field("SiteHierarchy.Name.keyword"))
+                                    )
+                                )
                             )
                         )
                     )
-                ));
-
+                );
             // 4) highlight & suggest (snippets, dym)
             Func<HighlightDescriptor<ElasticDocument>, IHighlight> hi = h => sc.Excerpts
                 ? h.Fields(f => f.Field("Content").FragmentSize(160).NumberOfFragments(1)
@@ -139,23 +144,28 @@ namespace MainUI.Shared.Elastic
                 selectedSiteTitle = !string.IsNullOrWhiteSpace(firstHitSite.Title) ? firstHitSite.Title : ("Site " + selectedSiteId);
             }
 
-            // 7) build refinement buckets (folderId → title + count)
-            var folderBuckets = new List<(string FolderId, string FolderTitle, long Count)>();
-            var topFolders = response.Aggregations.Nested("site_h")?
-                                           .Filter("top_level_sitefolders")?
-                                           .Terms("by_site_folder");
-            if (topFolders != null)
+            // 7) build refinement buckets (folderId → folderName + count)
+            var folderBuckets = new List<(string FolderId, string FolderName, long Count)>();
+
+            var comp = response.Aggregations
+                .Nested("site_h")?
+                .Filter("top_level_sitefolders")?
+                .Composite("by_site_folder");
+
+            if (comp != null)
             {
-                foreach (var b in topFolders.Buckets)
+                foreach (var b in comp.Buckets)
                 {
-                    var fid = b.Key as string ?? b.Key.ToString();
-                    // title from nested titles if present in hits; better: from your SQL cache
-                    string ftitle = null;
-                    // (If you’ve pre-enriched titles in SiteHierarchy, consider peeking one hit to resolve fid→title.)
-                    ftitle = "SiteFolder " + fid;
-                    folderBuckets.Add((fid, ftitle, b.DocCount ?? 0));
+                    var fid = b.Key.TryGetValue("fid", out string fidObj) ? fidObj?.ToString() : null;
+                    var fname = b.Key.TryGetValue("fname", out string nameObj) ? nameObj?.ToString() : null;
+
+                    if (string.IsNullOrEmpty(fid)) continue;
+                    var label = !string.IsNullOrWhiteSpace(fname) ? fname : $"SiteFolder {fid}";
+
+                    folderBuckets.Add((fid, label, b.DocCount ?? 0));
                 }
             }
+
 
             // 8) Endeca-like SelectedDimensionResults (note Endeca swaps fields)
             var selectedSite = new DimensionNavigationResult
@@ -168,42 +178,52 @@ namespace MainUI.Shared.Elastic
 
             // 9) DimensionResults (refinements list)
             var dimResults = folderBuckets
-                .OrderByDescending(x => x.Count)
-                .Select(x => new DimensionNavigationResult
-                {
-                    DimensionId = x.FolderId,
-                    DimensionName = x.FolderTitle,     // label
-                    DimensionValue = x.Count.ToString()
-                }).ToList();
+                   .OrderByDescending(x => x.Count)
+                   .Select(x => new DimensionNavigationResult
+                   {
+                       DimensionId = x.FolderId,        // filter key
+                       DimensionName = x.FolderName,      // <-- friendly label (e.g., "Audit & Accounting Literature")
+                       DimensionValue = x.Count.ToString()
+                   })
+                   .ToList();
+
 
             // 10) Endeca-like DimensionXml (with &lt; &gt; encoded)
             string DimensionXmlEncoded()
             {
+                string XE(string s) => System.Security.SecurityElement.Escape(s ?? "");
+
                 var sb = new StringBuilder();
                 sb.Append("<Dimensions>");
                 sb.Append("<SelectedDimensions><Dimension>");
-                sb.Append("<Name>").Append(selectedSiteTitle).Append("</Name><Id>").Append(selectedSiteId).Append("</Id>");
+                sb.Append("<Name>").Append(XE(selectedSiteTitle)).Append("</Name><Id>")
+                  .Append(XE(selectedSiteId)).Append("</Id>");
                 sb.Append("<DimensionAncestors />");
                 sb.Append("<DimensionCompletePath>");
                 sb.Append("<Dimension><Name>destroyer_site_hierarchy</Name><Id>site_folders</Id></Dimension>");
-                sb.Append("<Dimension><Name>").Append(selectedSiteTitle).Append("</Name><Id>").Append(selectedSiteId).Append("</Id></Dimension>");
+                sb.Append("<Dimension><Name>").Append(XE(selectedSiteTitle)).Append("</Name><Id>")
+                  .Append(XE(selectedSiteId)).Append("</Id></Dimension>");
                 sb.Append("</DimensionCompletePath></Dimension></SelectedDimensions>");
 
                 sb.Append("<RefinementDimensions><Dimension>");
                 sb.Append("<Name>destroyer_site_hierarchy</Name><Id>site_folders</Id>");
-                foreach (var (fid, ftitle, cnt) in folderBuckets.Where(b => b.Count > 0))
-                    sb.Append("<DimensionValue><Name>").Append(ftitle).Append("</Name><Id>")
-                      .Append(fid).Append("</Id><RecordCount>").Append(cnt).Append("</RecordCount></DimensionValue>");
+                foreach (var (fid, fname, cnt) in folderBuckets.Where(b => b.Count > 0))
+                {
+                    sb.Append("<DimensionValue><Name>").Append(XE(fname)).Append("</Name><Id>")
+                      .Append(XE(fid)).Append("</Id><RecordCount>").Append(cnt)
+                      .Append("</RecordCount></DimensionValue>");
+                }
                 sb.Append("<DimensionAncestors />");
                 sb.Append("<DimensionCompletePath>");
                 sb.Append("<Dimension><Name>destroyer_site_hierarchy</Name><Id>site_folders</Id></Dimension>");
-                sb.Append("<Dimension><Name>").Append(selectedSiteTitle).Append("</Name><Id>")
-                  .Append(selectedSiteId).Append("</Id></Dimension>");
+                sb.Append("<Dimension><Name>").Append(XE(selectedSiteTitle)).Append("</Name><Id>")
+                  .Append(XE(selectedSiteId)).Append("</Id></Dimension>");
                 sb.Append("</DimensionCompletePath></Dimension></RefinementDimensions>");
                 sb.Append("</Dimensions>");
 
-                return sb.ToString().Replace("&", "\u0026").Replace("<", "\u003c").Replace("/>", "\u003e\u003c");
+                return sb.ToString();
             }
+
 
             // 11) map hits (use your already-enriched paths; fallback to rebuild)
             var results = new List<SearchResult>();
