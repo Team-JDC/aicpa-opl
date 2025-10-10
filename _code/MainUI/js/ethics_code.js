@@ -52,7 +52,7 @@ function loadBlankSearch() {
     //setToolAsCurrentView(toolName_blankSearch, ""); // update the back button status
 
     hideDocumentSpecificButtons();
-    loadTemplate('WS/EndecaServices.asmx/DoBlankSearch', '{}', 'templates/ethicsblankSearch.htm', 'document-container', '', setUpSearchAutocomplete);
+    loadTemplate('WS/ElasticSearchService.asmx/DoBlankSearch', '{}', 'templates/ethicsblankSearch.htm', 'document-container', '', setUpSearchAutocomplete);
 
 }
 // I think this function missed

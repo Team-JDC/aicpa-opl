@@ -58,7 +58,7 @@ function doSearchLink(id, type, useNewScreen) {
         if (id && type)
             $.ajax({
                 type: "POST",
-                url: "WS/EndecaServices.asmx/EndecaNextHitDoc",
+                url: "WS/ElasticSearchService.asmx/ElasticNextHitDoc",
                 dataType: "json",
                 data: JSON.stringify({ id: id, type: type }),
                 contentType: "application/json; charset=utf-8",
@@ -87,7 +87,7 @@ function doSearchLink(id, type, useNewScreen) {
         if (id && type)
             $.ajax({
                 type: "POST",
-                url: "WS/EndecaServices.asmx/EndecaPrevHitDoc",
+                url: "WS/ElasticSearchService.asmx/ElasticPrevHitDoc",
                 dataType: "json",
                 data: JSON.stringify({ id: id, type: type }),
                 contentType: "application/json; charset=utf-8",
