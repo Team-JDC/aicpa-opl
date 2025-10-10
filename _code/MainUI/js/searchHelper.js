@@ -30,7 +30,7 @@ function doAdvancedNavigationalSearch(dimensionId, keywords, searchMode, maxHits
         nonauthoritative
     });
 
-    loadTemplate('WS/EndecaServices.asmx/EndecaAdvancedSearch', params, 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
+    loadTemplate('WS/ElasticSearchService.asmx/ElasticAdvancedSearch', params, 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
 
     // Update button image if needed
     const searchResultsButton = document.images["searchResultsButton"];
@@ -61,7 +61,7 @@ function getResults() {
     clearCurrentView();
     hideDocumentSpecificButtons();
 
-    loadTemplate('WS/EndecaServices.asmx/EndecaSearchWithCurrentCriteria', '{}', 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
+    loadTemplate('WS/ElasticSearchService.asmx/ElasticSearchWithCurrentCriteria', '{}', 'templates/searchResults.html', 'document-container', '', setUpSearchAutocomplete);
 }
 
 // Load the advanced search form (blank)
@@ -69,7 +69,7 @@ function loadBlankSearch() {
     clearCurrentView();
     hideDocumentSpecificButtons();
 
-    loadTemplate('WS/EndecaServices.asmx/DoBlankSearch', '{}', 'templates/blankSearch.html', 'document-container', '', setUpSearchAutocomplete);
+    loadTemplate('WS/ElasticSearchService.asmx/DoBlankSearch', '{}', 'templates/blankSearch.html', 'document-container', '', setUpSearchAutocomplete);
 }
 
 // Clear or focus the search box depending on its value

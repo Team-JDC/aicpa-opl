@@ -384,3 +384,6 @@ CoverageReport/
 
 *.svn
 .svn/*
+/_code/D_ODPPortalUI/javascripts/jquery-3.7.1.min.js
+/_code/D_ODPPortalUI/javascripts/jquery.easing.min.js
+/_code/D_ODPPortalUI/js/jquery.easing.min.js

@@ -57,7 +57,7 @@ function getResults() {
 
 function doSearchWithCurrentCriteria() {
     setLoading(true);
-    loadTemplateDual('/WS/EndecaServices.asmx/EndecaSearchWithCurrentCriteria', '{}', [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
+    loadTemplateDual('/WS/ElasticSearchService.asmx/ElasticSearchWithCurrentCriteria', '{}', [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
                                                                               { 'templateUrl': '/templates/odp2015/searchQuery.html', 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
 }
 
@@ -94,7 +94,7 @@ function doAdvancedNavigationalSearchInt(dimensionId, keywords, searchMode, maxH
     //console.log(params);
 
 
-    loadTemplateDual('/WS/EndecaServices.asmx/EndecaAdvancedSearch', params, [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
+    loadTemplateDual('/WS/ElasticSearchService.asmx/ElasticAdvancedSearch', params, [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
                                                                               { 'templateUrl': '/templates/odp2015/searchQuery.html', 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
 
 //    loadTemplate('/WS/EndecaServices.asmx/EndecaAdvancedSearch', params, '/templates/odp2015/searchResults.html', 'divLeftColInner', '', setUpSearchAutocomplete);
@@ -168,7 +168,7 @@ function doNextHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "/WS/EndecaServices.asmx/EndecaNextHitDoc",
+            url: "/WS/ElasticSearchService.asmx/ElasticNextHitDoc",
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
@@ -196,7 +196,7 @@ function doPrevHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "/WS/EndecaServices.asmx/EndecaPrevHitDoc",
+            url: "/WS/ElasticSearchService.asmx/ElasticPrevHitDoc",
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
