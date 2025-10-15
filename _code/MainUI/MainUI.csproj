@@ -1903,6 +1903,7 @@
     <Compile Include="Shared\DomainStringHelpers.cs" />
     <Compile Include="Shared\Elastic\ElasticDocument.cs" />
     <Compile Include="Shared\Elastic\ElasticServices.cs" />
+    <Compile Include="Shared\Elastic\SearchHelper.cs" />
     <Compile Include="Shared\Elastic\SearchResultResponse.cs" />
     <Compile Include="Shared\EnumHelper.cs" />
     <Compile Include="Shared\FormatOption.cs" />

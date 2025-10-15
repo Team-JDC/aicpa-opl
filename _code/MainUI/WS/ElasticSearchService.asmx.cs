@@ -24,7 +24,7 @@ namespace MainUI.WS
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [ToolboxItem(false)]
     [ScriptService]
-    public class ElasticSearchService : AicpaService
+   public class ElasticSearchService : AicpaService
     {
 
         private static readonly string elasticUrl = ConfigurationManager.AppSettings["ElasticSearchEndpoint"];
@@ -64,8 +64,8 @@ namespace MainUI.WS
             ISearchCriteria searchCriteria = new SearchCriteria(dimensionIds, keywords, searchType, maxHits, pageSize,
                                                        pageOffset, "", showExcerptsBool, filterUnsubscribedBool,
                                                        null);
-            ContextManager.SearchCriteria = searchCriteria;
-            CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
+           ContextManager.SearchCriteria = searchCriteria;
+           CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
             var res = elastic.SearchAsync(searchCriteria).GetAwaiter().GetResult();
 
             // Post-process to match legacy Endeca response semantics

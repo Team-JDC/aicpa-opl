@@ -34,4 +34,8 @@ namespace MainUI.Shared.Elastic
         public string Name { get; set; }   // optional (if you have machine names)
         public string Title { get; set; }  // human label resolved from SQL or HTML
     }
+    public sealed class OnlyHierarchy
+    {
+        public List<SiteHierarchyNode> SiteHierarchy { get; set; }
+    }
 }
