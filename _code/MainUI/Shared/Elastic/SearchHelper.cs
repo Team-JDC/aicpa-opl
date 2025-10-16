@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Nest;
+using Elasticsearch.Net;
 namespace MainUI.Shared.Elastic
 {
     public static class SearchHelper
@@ -16,6 +17,7 @@ namespace MainUI.Shared.Elastic
             public  NodeType Type;
             public string Id;       // normalized numeric id, e.g., "345"
             public string Title;    // best label we could derive (optional)
+            public double? level;
         }
 
         public static async Task<ResolvedNode> ResolveNodeAsync(IElasticClient client, string rawId)
@@ -109,7 +111,8 @@ namespace MainUI.Shared.Elastic
             {
                 Type = nodeType,
                 Id = id,
-                Title = title ?? $"Id {id}"
+                Title = title ?? $"Id {id}",
+                level=minLv
             };
         }
          

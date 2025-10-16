@@ -83,15 +83,46 @@ namespace MainUI.Shared.Elastic
                             switch (sel.Type)
                             {
                                 case SearchHelper.NodeType.SiteFolder:
-                                    // facet books under this folder
-                                    return aa.Filter("books_scope", f => f
-                                            .Filter(q => q.Term("SiteHierarchy.Type", "Book"))
+
+
+                                    // We’ll ask for *both*:
+                                    //  (A) child sitefolders at the next level
+                                    //  (B) books (as a fallback when there are no more folders)
+                                    // We’ll ask for *both*:
+                                    //  (A) child sitefolders at the next level
+                                    //  (B) books (as a fallback when there are no more folders)
+                                    return aa
+                                        // (A) child sitefolders
+                                        .Filter("child_folders", f => f
+                                            .Filter(q => q.Bool(b => b.Must(
+                                                m => m.Term(t => t.Field("SiteHierarchy.Type").Value("SiteFolder")),
+                                                m => m.Term(t => t.Field("SiteHierarchy.Level").Value(sel.level + 1))
+                                            )))
+                                        .Aggregations(aaa => aaa.Composite("by_child_folder", c => c
+                                            .Size(1000)
+                                            .Sources(ss => ss
+                                                .Terms("fid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
+                                                .Terms("fname", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
+                                            ))))
+                                        // (B) books under this branch (fallback)
+                                        .Filter("books_scope", f => f
+                                            .Filter(q => q.Term(t => t.Field("SiteHierarchy.Type").Value("Book")))
                                         .Aggregations(aaa => aaa.Composite("by_book", c => c
                                             .Size(1000)
                                             .Sources(ss => ss
                                                 .Terms("bid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
                                                 .Terms("btitle", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
-                                            ))));
+                                            )))); 
+
+                                //// facet books under this folder
+                                //return aa.Filter("books_scope", f => f
+                                //        .Filter(q => q.Term("SiteHierarchy.Type", "Book"))
+                                //    .Aggregations(aaa => aaa.Composite("by_book", c => c
+                                //        .Size(1000)
+                                //        .Sources(ss => ss
+                                //            .Terms("bid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
+                                //            .Terms("btitle", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
+                                //        ))));
                                 //case SearchHelper.NodeType.Book:
                                 //    // facet documents (optional)
                                 //    return aa.Filter("docs_scope", f => f
@@ -105,17 +136,30 @@ namespace MainUI.Shared.Elastic
                                 case SearchHelper.NodeType.Site:
                                 default:
                                     // root site (or unknown) → facet level-1 site folders
+
                                     return aa.Filter("level1_folders", f => f
-                                            .Filter(q => q.Bool(b => b.Must(
-                                                m => m.Term(t => t.Field("SiteHierarchy.Type").Value("SiteFolder")),
-                                                m => m.Term(t => t.Field("SiteHierarchy.Level").Value(1))
-                                            )))
-                                        .Aggregations(aaa => aaa.Composite("by_site_folder", c => c
-                                            .Size(1000)
-                                            .Sources(ss => ss
-                                                .Terms("fid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
-                                                .Terms("fname", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
-                                            ))));
+                                        .Filter(q => q.Bool(b => b.Must(
+                                            m => m.Term(t => t.Field("SiteHierarchy.Type").Value("SiteFolder")),
+                                            m => m.Term(t => t.Field("SiteHierarchy.Level").Value(1))
+                                        )))
+                                    .Aggregations(aaa => aaa.Composite("by_site_folder", c => c
+                                        .Size(1000)
+                                        .Sources(ss => ss
+                                            .Terms("fid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
+                                            .Terms("fname", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
+                                        ))));
+
+                                    //return aa.Filter("level1_folders", f => f
+                                    //        .Filter(q => q.Bool(b => b.Must(
+                                    //            m => m.Term(t => t.Field("SiteHierarchy.Type").Value("SiteFolder")),
+                                    //            m => m.Term(t => t.Field("SiteHierarchy.Level").Value(1))
+                                    //        )))
+                                    //    .Aggregations(aaa => aaa.Composite("by_site_folder", c => c
+                                    //        .Size(1000)
+                                    //        .Sources(ss => ss
+                                    //            .Terms("fid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
+                                    //            .Terms("fname", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
+                                    //        ))));
                             }
                         })
                     );
@@ -174,106 +218,223 @@ namespace MainUI.Shared.Elastic
             {
                 case SearchHelper.NodeType.SiteFolder:
                     {
-                        axis = "books";
-                        var comp = response.Aggregations.Nested("site_h")?
-                                    .Filter("books_scope")?
-                                    .Composite("by_book");
-                        var ordered = comp?.Buckets
-                            .OrderBy(b => b.DocCount)  // by count
-                            .ThenBy(b => b.Key["btitle"]?.ToString()) // tie-breaker
-                            .ToList();
-                        if (comp != null)
+                        // First try CHILD SITEFOLDERS (next level)
+                        var childComp = response.Aggregations
+                            .Nested("site_h")?
+                            .Filter("child_folders")?
+                            .Composite("by_child_folder");
+
+                        var childBuckets = childComp?.Buckets?.ToList() ?? new List<CompositeBucket>();
+
+                        if (childBuckets.Count > 0)
                         {
+                            // We found deeper sitefolders → facet those
+                            axis = "site_folders";
+                            var ordered = childBuckets
+                                .OrderByDescending(b => b.DocCount ?? 0)
+                                .ThenBy(b => b.Key.TryGetValue("fname", out string nm) ? nm?.ToString() : null)
+                                .ToList();
+
                             foreach (var b in ordered)
                             {
-                                object idObj, titleObj;
-                                b.Key.TryGetValue("bid", out idObj);
-                                b.Key.TryGetValue("btitle", out titleObj);
-                                var bid = idObj != null ? idObj.ToString() : null;
-                                var btitle = titleObj != null ? titleObj.ToString() : null;
-                                if (string.IsNullOrEmpty(bid)) continue;
-
-                                var label = !string.IsNullOrWhiteSpace(btitle) ? btitle : ("Book " + bid);
-                                var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
-                                dimResults.Add(new DimensionNavigationResult
-                                {
-                                    DimensionId = bid,
-                                    DimensionName = label,
-                                    DimensionValue = cnt.ToString()
-                                });
-                                refinementItems.Add(Tuple.Create(bid, label, cnt));
-                            }
-                        }
-                        break;
-                    }
-                //case SearchHelper.NodeType.Book:
-                //    {
-                //        axis = "documents";
-                //        var comp = response.Aggregations.Nested("site_h")?
-                //                    .Filter("docs_scope")?
-                //                    .Composite("by_doc");
-                //        if (comp != null)
-                //        {
-                //            foreach (var b in comp.Buckets)
-                //            {
-                //                object idObj, titleObj;
-                //                b.Key.TryGetValue("did", out idObj);
-                //                b.Key.TryGetValue("dtitle", out titleObj);
-                //                var did = idObj != null ? idObj.ToString() : null;
-                //                var dtitle = titleObj != null ? titleObj.ToString() : null;
-                //                if (string.IsNullOrEmpty(did)) continue;
-
-                //                var label = !string.IsNullOrWhiteSpace(dtitle) ? dtitle : ("Document " + did);
-                //                var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
-                //                dimResults.Add(new DimensionNavigationResult
-                //                {
-                //                    DimensionId = did,
-                //                    DimensionName = label,
-                //                    DimensionValue = cnt.ToString()
-                //                });
-                //                refinementItems.Add(Tuple.Create(did, label, cnt));
-                //            }
-                //        }
-                //        break;
-                //    }
-                case SearchHelper.NodeType.Site:                
-                    {
-                        axis = "site_folders";
-                        var comp = response.Aggregations.Nested("site_h")?
-                                    .Filter("level1_folders")?
-                                    .Composite("by_site_folder");
-                        var ordered = comp?.Buckets
-                          .OrderBy(b => b.DocCount)  // by count
-                          .ThenBy(b => b.Key["fname"]?.ToString()) // tie-breaker
-                          .ToList();
-                        if (comp != null)
-                        {
-                            foreach (var b in comp.Buckets)
-                            {
-                                object idObj, titleObj;
-                                b.Key.TryGetValue("fid", out idObj);
-                                b.Key.TryGetValue("fname", out titleObj);
-                                var fid = idObj != null ? idObj.ToString() : null;
-                                var fname = titleObj != null ? titleObj.ToString() : null;
+                                b.Key.TryGetValue("fid", out object idObj);
+                                b.Key.TryGetValue("fname", out object titleObj);
+                                var fid = idObj?.ToString();
+                                var fname = titleObj?.ToString();
                                 if (string.IsNullOrEmpty(fid)) continue;
 
-                                var label = !string.IsNullOrWhiteSpace(fname) ? fname : ("SiteFolder " + fid);
-                                var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
+                                var label = !string.IsNullOrWhiteSpace(fname) ? fname : $"SiteFolder {fid}";
+                                var cnt = b.DocCount ?? 0;
+
                                 dimResults.Add(new DimensionNavigationResult
                                 {
                                     DimensionId = fid,
                                     DimensionName = label,
                                     DimensionValue = cnt.ToString()
                                 });
-                                refinementItems.Add(Tuple.Create(fid, label, cnt));
+                                refinementItems.Add(Tuple.Create(fid, label, (long)cnt));
                             }
+                        }
+                        else
+                        {
+                            // No more sitefolders under this branch → facet BOOKS
+                            axis = "books";
+                            var comp = response.Aggregations
+                                .Nested("site_h")?
+                                .Filter("books_scope")?
+                                .Composite("by_book");
+
+                            var ordered = comp?.Buckets?
+                                .OrderByDescending(b => b.DocCount ?? 0)
+                                .ThenBy(b => b.Key.TryGetValue("btitle", out string nm) ? nm?.ToString() : null)
+                                .ToList() ?? new List<CompositeBucket>();
+
+                            foreach (var b in ordered)
+                            {
+                                b.Key.TryGetValue("bid", out object idObj);
+                                b.Key.TryGetValue("btitle", out object titleObj);
+                                var bid = idObj?.ToString();
+                                var btitle = titleObj?.ToString();
+                                if (string.IsNullOrEmpty(bid)) continue;
+
+                                var label = !string.IsNullOrWhiteSpace(btitle) ? btitle : $"Book {bid}";
+                                var cnt = b.DocCount ?? 0;
+
+                                dimResults.Add(new DimensionNavigationResult
+                                {
+                                    DimensionId = bid,
+                                    DimensionName = label,
+                                    DimensionValue = cnt.ToString()
+                                });
+                                refinementItems.Add(Tuple.Create(bid, label, (long)cnt));
+                            }
+                        }
+
+                        break;
+                    }
+
+                case SearchHelper.NodeType.Site:
+                default:
+                    {
+                        axis = "site_folders";
+                        var comp = response.Aggregations
+                            .Nested("site_h")?
+                            .Filter("level1_folders")?
+                            .Composite("by_site_folder");
+
+                        var ordered = comp?.Buckets?
+                            .OrderByDescending(b => b.DocCount ?? 0)
+                            .ThenBy(b => b.Key.TryGetValue("fname", out string nm) ? nm?.ToString() : null)
+                            .ToList() ?? new List<CompositeBucket>();
+
+                        foreach (var b in ordered)
+                        {
+                            b.Key.TryGetValue("fid", out object idObj);
+                            b.Key.TryGetValue("fname", out object titleObj);
+                            var fid = idObj?.ToString();
+                            var fname = titleObj?.ToString();
+                            if (string.IsNullOrEmpty(fid)) continue;
+
+                            var label = !string.IsNullOrWhiteSpace(fname) ? fname : $"SiteFolder {fid}";
+                            var cnt = b.DocCount ?? 0;
+
+                            dimResults.Add(new DimensionNavigationResult
+                            {
+                                DimensionId = fid,
+                                DimensionName = label,
+                                DimensionValue = cnt.ToString()
+                            });
+                            refinementItems.Add(Tuple.Create(fid, label, (long)cnt));
                         }
                         break;
                     }
-                default:
-                    //do nothing
-                    break;
             }
+            //switch (sel.Type)
+            //{
+            //    case SearchHelper.NodeType.SiteFolder:
+            //        {
+
+
+            //            axis = "books";
+            //            var comp = response.Aggregations.Nested("site_h")?
+            //                        .Filter("books_scope")?
+            //                        .Composite("by_book");
+            //            var ordered = comp?.Buckets
+            //                .OrderBy(b => b.DocCount)  // by count
+            //                .ThenBy(b => b.Key["btitle"]?.ToString()) // tie-breaker
+            //                .ToList();
+            //            if (comp != null)
+            //            {
+            //                foreach (var b in ordered)
+            //                {
+            //                    object idObj, titleObj;
+            //                    b.Key.TryGetValue("bid", out idObj);
+            //                    b.Key.TryGetValue("btitle", out titleObj);
+            //                    var bid = idObj != null ? idObj.ToString() : null;
+            //                    var btitle = titleObj != null ? titleObj.ToString() : null;
+            //                    if (string.IsNullOrEmpty(bid)) continue;
+
+            //                    var label = !string.IsNullOrWhiteSpace(btitle) ? btitle : ("Book " + bid);
+            //                    var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
+            //                    dimResults.Add(new DimensionNavigationResult
+            //                    {
+            //                        DimensionId = bid,
+            //                        DimensionName = label,
+            //                        DimensionValue = cnt.ToString()
+            //                    });
+            //                    refinementItems.Add(Tuple.Create(bid, label, cnt));
+            //                }
+            //            }
+            //            break;
+            //        }
+            //    //case SearchHelper.NodeType.Book:
+            //    //    {
+            //    //        axis = "documents";
+            //    //        var comp = response.Aggregations.Nested("site_h")?
+            //    //                    .Filter("docs_scope")?
+            //    //                    .Composite("by_doc");
+            //    //        if (comp != null)
+            //    //        {
+            //    //            foreach (var b in comp.Buckets)
+            //    //            {
+            //    //                object idObj, titleObj;
+            //    //                b.Key.TryGetValue("did", out idObj);
+            //    //                b.Key.TryGetValue("dtitle", out titleObj);
+            //    //                var did = idObj != null ? idObj.ToString() : null;
+            //    //                var dtitle = titleObj != null ? titleObj.ToString() : null;
+            //    //                if (string.IsNullOrEmpty(did)) continue;
+
+            //    //                var label = !string.IsNullOrWhiteSpace(dtitle) ? dtitle : ("Document " + did);
+            //    //                var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
+            //    //                dimResults.Add(new DimensionNavigationResult
+            //    //                {
+            //    //                    DimensionId = did,
+            //    //                    DimensionName = label,
+            //    //                    DimensionValue = cnt.ToString()
+            //    //                });
+            //    //                refinementItems.Add(Tuple.Create(did, label, cnt));
+            //    //            }
+            //    //        }
+            //    //        break;
+            //    //    }
+            //    case SearchHelper.NodeType.Site:                
+            //        {
+            //            axis = "site_folders";
+            //            var comp = response.Aggregations.Nested("site_h")?
+            //                        .Filter("level1_folders")?
+            //                        .Composite("by_site_folder");
+            //            var ordered = comp?.Buckets
+            //              .OrderBy(b => b.DocCount)  // by count
+            //              .ThenBy(b => b.Key["fname"]?.ToString()) // tie-breaker
+            //              .ToList();
+            //            if (comp != null)
+            //            {
+            //                foreach (var b in comp.Buckets)
+            //                {
+            //                    object idObj, titleObj;
+            //                    b.Key.TryGetValue("fid", out idObj);
+            //                    b.Key.TryGetValue("fname", out titleObj);
+            //                    var fid = idObj != null ? idObj.ToString() : null;
+            //                    var fname = titleObj != null ? titleObj.ToString() : null;
+            //                    if (string.IsNullOrEmpty(fid)) continue;
+
+            //                    var label = !string.IsNullOrWhiteSpace(fname) ? fname : ("SiteFolder " + fid);
+            //                    var cnt = b.DocCount.HasValue ? b.DocCount.Value : 0L;
+            //                    dimResults.Add(new DimensionNavigationResult
+            //                    {
+            //                        DimensionId = fid,
+            //                        DimensionName = label,
+            //                        DimensionValue = cnt.ToString()
+            //                    });
+            //                    refinementItems.Add(Tuple.Create(fid, label, cnt));
+            //                }
+            //            }
+            //            break;
+            //        }
+            //    default:
+            //        //do nothing
+            //        break;
+            //}
 
             // 6) SelectedDimensionResults
             var selected = SearchHelper.BuildSelectedChain(response, sel.Id);
