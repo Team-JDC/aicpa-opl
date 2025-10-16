@@ -401,7 +401,6 @@
     <Content Include="js\jquery.sparkle.js" />
     <Content Include="js\jquery\jquery-3.7.1.js" />
     <Content Include="js\jquery\jquery-3.7.1.min.js" />
-    <Content Include="js\jquery\jquery-migrate-3.5.0.js" />
     <Content Include="js\js.cookie.min.js" />
     <Content Include="js\odp2015_globalvars.js" />
     <Content Include="js\odp2015_handlers.js" />
