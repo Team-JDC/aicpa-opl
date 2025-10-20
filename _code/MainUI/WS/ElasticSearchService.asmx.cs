@@ -2,21 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
-using System.Linq;
-using System.Text;
+using System.Linq; 
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Net.Http;
-using Newtonsoft.Json;
-
 using AICPA.Destroyer.Shared;
 using MainUI.Shared;
-using Nest;
-using Endeca.Data;
 using MainUI.Shared.Elastic;
-using AICPA.Destroyer.Content.Search;
-using Winnovative.WnvHtmlConvert.PdfDocument;
+using AICPA.Destroyer.Content.Search; 
 using System.Text.RegularExpressions;
 namespace MainUI.WS
 {

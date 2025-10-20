@@ -112,7 +112,7 @@ namespace MainUI.Shared.Elastic
                                             .Sources(ss => ss
                                                 .Terms("bid", t => t.Field("SiteHierarchy.Id").Order(SortOrder.Ascending))
                                                 .Terms("btitle", t => t.Field("SiteHierarchy.Title").Order(SortOrder.Ascending))
-                                            )))); 
+                                            ))));
 
                                 //// facet books under this folder
                                 //return aa.Filter("books_scope", f => f
@@ -446,7 +446,7 @@ namespace MainUI.Shared.Elastic
                 .OrderBy(n => n.Level)
                 .FirstOrDefault();
 
-      
+
             // 7) DimensionXml
             var siteTitle = firstSite != null ? firstSite.Title : null;
             var siteId = firstSite != null ? firstSite.Id : null;
@@ -475,7 +475,8 @@ namespace MainUI.Shared.Elastic
                 ReferencePath = hit.Source.ReferencePath,
                 SitePath = hit.Source.SitePath,
                 ResultEnumeration = i + sc.PageOffset,
-                InSubscription = hit.Source.InSubscription
+                InSubscription = hit.Source.InSubscription,
+                Type = NodeType.Document.ToString()
             }).ToList();
 
             return new SearchResultResponse
@@ -496,7 +497,7 @@ namespace MainUI.Shared.Elastic
                 nonauthoritative = 0
             };
         }
-         
+
         // --- Endeca BlankDimensions() equivalent ---
         public string[] BlankDimensions()
         {
@@ -577,6 +578,6 @@ namespace MainUI.Shared.Elastic
             //   return new[] { concat };
             return ids.Distinct(StringComparer.Ordinal).ToArray();
         }
-       
+
     }
 }
