@@ -20,6 +20,22 @@ img {
     color: #41B6E6;
 }
 
+.pending-text
+{
+	background-color:#fdf0ea;
+	
+}
+
+.pending-text table tr:nth-child(even) {
+   background-color:#fdf0ea;
+   background:#fdf0ea;
+}
+
+.pending-text-title
+{
+	border-bottom: 1px solid #C4C4C4;
+}
+
 #temp_click {
     position:absolute;
     right:0;
@@ -206,11 +222,12 @@ a:hover {
 }
 
 p.ps_box_shade a {
-    display: list-item;
     list-style-type: none;
 }
 
-p {
+
+
+p, div.ps_para_number, div.normal-paragraph {
     margin:0 0 20px 0;
 }
 hr {
@@ -2113,6 +2130,8 @@ tr:nth-child(even) {
     background: #f9faf8;
 }
 
+
+
 /******** BREADCRUMBS ***********************************************************/
 #opl_breadcrumbs {
     padding:0 10px;
@@ -2996,12 +3015,16 @@ tr:nth-child(even) {
 .detail .titlepage div {display:inline; }
 .notesButtons i {font-size: 21px;}
 .ps_para_number {font-size:16px;}
+p {font-size:16px;}
+.normal-paragraph {font-size:16px;}
 .ps_main_heading {margin-left:0; }
 .notesButtons {display:inline; float: left; padding-right: 10px; }
 .editNote {margin-left:3px; }
 .hidenote {display:none; }
 .title span {margin-left:0; }
+.gasbtitle span {margin-left:0; }
 h2.title {font-size:24px; }
+h2.gasbtitle {font-size:24px; }
 h3.title {font-size:20px; }
 h4.title {font-size:17px; }
 h5.title {font-size:14px; }
@@ -3009,8 +3032,15 @@ h6.title {font-size:14px; }
 h7.title {font-size:14px; }
 h2.title, h3.title {
     text-transform: none;
-    display:inline;
+	display:inline;
     padding-bottom:15px;
+    line-height:1.4em;
+    color:#41B6E6;
+}
+h2.gasbtitle, h3.gasbtitle {
+    text-transform: none;
+	
+    padding-top:15px;
     line-height:1.4em;
     color:#41B6E6;
 }
@@ -3038,12 +3068,12 @@ h7.title  {
     display:inline;
     text-transform:none;
 }
-.ps_para_number {display:inline; }
+
 .ps_para_number + p {display:block; padding-top:15px; }
 .invisible{display:none;}
 .ps_main_heading {margin-top:15px; }
 ol, ul {clear:both; display:block; }
-li > p {margin-bottom:0; } 
+li > p {margin-bottom:10px; } 
 
 .ps_box  {
     border-radius:4px;
@@ -3052,8 +3082,22 @@ li > p {margin-bottom:0; }
     margin-top:15px;
     display: block !important;
 }
+
+.ps_box_center  {
+    border-radius:4px;
+    border:1px solid #ccc;
+    padding:15px;
+    margin-top:15px;
+    display: block !important;
+	text-align:center;
+}
 .itemizedlist {margin-top:10px; }
 .itemizedlist li {padding-bottom:8px; }
+
+blockquote {
+	font-size:13px !important;
+	
+}
 
 /*=====OLD STYLES====*/
 
@@ -3080,7 +3124,7 @@ li > p {margin-bottom:0; }
 }
 .shade
 {
-    background-color:#f1f1f1;
+    background-color:#A9A9A9;
 }
 
 .strikethrough
@@ -3091,7 +3135,7 @@ li > p {margin-bottom:0; }
 {
     padding:10px;
     border:1px solid #e5e5e5;
-    background-color:#f1f1f1;
+    background-color:#A9A9A9;
 }
 
 
@@ -3099,14 +3143,14 @@ li > p {margin-bottom:0; }
 {
     padding:10px;
     border:1px solid #e5e5e5;
-    background-color:#f1f1f1;
+    background-color:#A9A9A9;
 }
 
 .ps_box_italics_center
 {
     padding:10px;
     border:1px solid #e5e5e5;
-    background-color:#f1f1f1;
+    background-color:#A9A9A9;
     text-align: center;
     display: block;
 }
