@@ -1,7 +1,7 @@
 body {font-face:Arial; }
 #search-advanced {
 font-family:Arial;
-background: #e5ebf5;
+background: #41B6E6 ;
 border-top:1px solid #ccc;
 border-bottom:1px solid #ccc;
 padding:15px 10px 10px 25px;
@@ -142,7 +142,7 @@ text-decoration:none;
 }
 
 #wrapper ul a:hover {
-color:#ff6700;
+color:#000000;
 text-decoration:none;
 }
 

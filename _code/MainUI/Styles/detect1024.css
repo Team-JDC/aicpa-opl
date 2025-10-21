@@ -6,7 +6,7 @@
 	.coda-slider-wrapper.arrows .coda-slider { margin: 0 }
 	
 
-div.breadcrumbs-container {width:98.5%; padding-left:8px; z-index:999; height: 31px; background:url(../images/breadcrumb-bg.gif) repeat-x top left;}
+div.breadcrumbs-container {width:98.5%; position:relative; margin-top:78px; padding-left:8px; z-index:999; height: 31px; background:url(../images/breadcrumb-bg.gif) repeat-x top left;}
 
 .breadCrumb
 {

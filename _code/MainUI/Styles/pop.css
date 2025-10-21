@@ -18,7 +18,7 @@ _position:absolute; /* hack for internet explorer 6
 width:650px;*/
 height:600px;
 background:#FFFFFF;
-border:2px solid #cecece;
+border:2px solid #777777;
 z-index:9999999;
 padding:0;
 overflow:auto;
@@ -42,8 +42,8 @@ position:fixed;
 _position:absolute; /* hack for internet explorer 6
 width:650px;*/
 height:320px;
-background:#FFFFFF;
-border:2px solid #cecece;
+background:#777777;
+border:2px solid #666666;
 z-index:9999999;
 padding:0;
 overflow:auto;
