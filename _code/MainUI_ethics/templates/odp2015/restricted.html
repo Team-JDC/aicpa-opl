@@ -1,0 +1,63 @@
+﻿{#template MAIN}
+{*   *******  NOTE THIS IS THE ODP2015/restricted.html   *******   *}
+<div id="leftcol" class="col-sm-12">
+    <div class="leftcol_inner">
+        <div class="leftcol_header">
+            <h1>OUR APOLOGIES</h1>
+        </div>
+        <div class="leftcol_content">            
+            <p>You do not have access to the document <i><b>{$T.d.Document.Title}</b></i> in the publication <i><b>{$T.d.Book.Title}</b></i> as you have requested.</p>
+
+            {#if !$T.d.ShowStoreLink && !$T.d.ShowPhoneContact}
+            <ul class="upsell">
+                <li>Return to your <b><a href="#" onclick="doPreviousLocationLink('{$T.d.client.pageType}');">previous location</a></b>.</li>
+            </ul>
+            {#/if}
+
+            {#if $T.d.ShowStoreLink && !$T.d.ShowPhoneContact}
+            <h3 style="padding:0; margin:0;">Please do one of the following:</h3>
+            <ul class="upsell">
+                <li>Return to your <b><a onclick="history.go(-1);">previous location</a></b>.</li>                
+                <br />
+                <li>
+                    Visit the <a href="https://future.aicpa.org/home" target="_blank">AICPA Store</a> to purchase this online publication. To easily locate this online publication in the store:
+                    <br />
+                    <ul>
+                        <li>Use the links on the left side of the homepage to navigate; or</li>
+                        <li>Perform a search</li>
+                    </ul>
+                    <br />
+                    After you complete the purchase, return to the AICPA Online Professional Library by selecting the My Subscriptions button at the top of the page.
+                </li>
+            </ul>
+            {#/if}
+
+            {#if $T.d.ShowPhoneContact}
+            <div>
+                {#if $T.d.MissingLibraryName == "GASB"}
+                <h3>
+                    To obtain
+                    access to this {$T.d.MissingLibraryName} title, you must upgrade your subscription to include the
+                    {$T.d.MissingLibraryName} Library.<br><br>
+                    To upgrade, please call <span class="orange">1-888-777-7077</span> (9am to 6pm ET,Monday-Friday).<br>
+                </h3>
+                {#else}
+                <h3>
+                    To obtain access to the {$T.d.MissingLibraryName}, you must upgrade your subscription.<br><br>
+                    To upgrade, please call <span class="orange">1-888-777-7077</span> (9am to 6pm ET,Monday-Friday).<br>
+                </h3>
+                {#/if}
+                <p style="font-size:10px; text-align:left;">
+                    [Please
+                    Note: You will be charged for a new 1-year subscription and a credit will be
+                    issued for the unused portion of your current subscription.]
+                </p>
+                <p style="font-size:10px; text-align:left;">
+                    Return to your <b><a href="#" onclick="doPreviousLocationLink('{$T.d.client.pageType}');">previous location</a></b>.
+                </p>
+            </div>
+            {#/if}
+        </div><!-- .leftcol_content -->
+    </div><!-- .leftcol_inner -->
+</div>
+{#/template MAIN}

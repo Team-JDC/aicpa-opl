@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<tipsAndTechniques>
+    <ttValue type="tech" position="top" anchor="">
+        <ttImgTop/>        
+        <ttText>
+			Improve your experience navigating between pages by hiding the table of contents
+        </ttText>
+        <ttImgBtm>
+			images/portal/hide_toc2.gif
+        </ttImgBtm>
+    </ttValue>
+    <ttValue type="tech" position="bottom" anchor="">
+        <ttImgTop/>
+        <ttText>
+			Find an AICPA pronouncement easily by using Quick Find 
+        </ttText>
+        <ttImgBtm/>        
+    </ttValue>
+    <ttValue type="tech" position="top" anchor="">
+        <ttImgTop/>        
+        <ttText>
+			Use the Refine Your Search option to zero in on the information you are looking for
+        </ttText>
+        <ttImgBtm/>        
+    </ttValue>
+    <ttValue type="tip" position="bottom" anchor="Search">
+        <ttImgTop/>        
+        <ttText>
+			Need help formulating your search? Check out the Help feature  
+        </ttText>
+        <ttImgBtm/>        
+    </ttValue>
+    <ttValue type="tip" position="top" anchor="tocExpand">
+        <ttImgTop/>
+        <ttText>
+			Expand the table of contents pane using 
+        </ttText>
+        <ttImgBtm>
+			images/portal/tocExpand.gif
+        </ttImgBtm>        
+    </ttValue>
+    <ttValue type="tip" position="bottom" anchor="noSub">
+        <ttImgTop>
+			images/portal/main-lock_small.gif
+        </ttImgTop>         
+        <ttText>
+			indicates documents that are not included in your subscription 
+        </ttText> 
+        <ttImgBtm/>
+    </ttValue>                                   
+    <ttValue type="tip" position="top" anchor="whatisamended">
+        <ttImgTop>
+        </ttImgTop>         
+        <ttText>
+            What is FASB Original Pronouncements?
+        </ttText> 
+        <ttImgBtm/>
+    </ttValue>                                   
+</tipsAndTechniques>

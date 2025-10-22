@@ -1,0 +1,156 @@
+﻿{#template MAIN}
+
+<div id="HOME" style="margin-left:20px;">
+    <div class="home-left">
+        <!-- <h3 class="home-cta"><a href="videoLibrary.html" target="_blank" >View introductory and help videos here.</a></h3>         -->
+        
+        <ul class="tabs2">
+        {#foreach $T.d.Children as HomePageNode}
+            <li>
+                <div class="home-book">
+                    {#if $T.HomePageNode.SiteFolderName}
+                    <a onclick="doSiteFolderLink('{$T.HomePageNode.SiteFolderName}', true);" class="float">
+                    {#else}
+                    <span class="float" style="width:80%;">
+                    {#/if}
+
+                        {#if $T.HomePageNode.ImageUrl}
+                            <img class="icon" src="{$T.HomePageNode.ImageUrl}" alt="{$T.HomePageNode.DisplayName}" title="{$T.HomePageNode.DisplayName}"  />
+                        {#/if}
+                        <h2>{$T.HomePageNode.DisplayName} &raquo;</h2>
+                        <p>
+                            {#if $T.HomePageNode.Description}
+                                {$T.HomePageNode.Description}
+                            {#/if}
+                        </p> 
+                    {#if $T.HomePageNode.SiteFolderName}
+                    </a>
+                    {#else}
+                    </span>
+                    {#/if}
+                    <div class="openClose"><a href="#" onclick="$('#HomePageSlider-{$T.HomePageNode$index}-links').slideToggle(); if ($(this).hasClass('activeBtn')) $(this).removeClass('activeBtn'); else $(this).addClass('activeBtn');"></a></div>
+                    <div class="clear"></div>
+                    <div id="HomePageSlider-{$T.HomePageNode$index}-links" class="home-links closed">   
+                            <ul class="home-book-books float">
+                            {#foreach $T.HomePageNode.Children as ChildHomePageNode begin=0 count=Math.ceil($T.HomePageNode.Children.length/2)}
+                                {#include COLUMN root=$T}
+                            {#/for}
+                            </ul> 
+                            <ul class="home-book-books float">
+                            {#foreach $T.HomePageNode.Children as ChildHomePageNode begin=Math.ceil($T.HomePageNode.Children.length/2) count=$T.HomePageNode.Children.length - Math.ceil($T.HomePageNode.Children.length/2)}
+                                {#include COLUMN root=$T}
+                            {#/for}
+                            </ul>
+                     </div>                     
+                </div>
+            </li>
+        {#/for}
+                        
+
+        {#if $T.d.IsCoso}
+        <li><div class="home-book">
+        <a href="#" onclick="top.doCosoLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'COSO')" class="float">
+        <span class="float" style="width:80%;">
+        <img class="icon" src="images/homenav_toolbar_COSO.gif" alt="COSO Collection" title="COSO Collection"  />
+        <h2>COSO Collection &raquo;</h2>
+        
+        <p>The COSO Collection will open in a new window.</p>
+        </span>
+        </a> 
+        <div class="clear"></div>
+        </div>
+        </li>
+        {#/if}
+                        
+        </ul>
+    </div>
+    <div class="home-right">
+        <h2>AICPA Publications Resources</h2>
+        <ul class="tabs2" style="margin-right:20px;">
+        {#if $T.d.IsWhatsnewInMySubscription}
+            <li><a href="#" onclick="loadWhatsNew();"><p class="float">What's New?</p><span><img src="images/icon-new.gif" alt="What's New?" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+        {#/if}
+            <li><a href="#" onclick="loadToc();"><p class="float">Table of Contents</p> <span><img src="images/icon-toc.gif" alt="Table of Contents" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+        {#if $T.d.ShowSearch}
+            <li><a href="#" onclick="loadBlankSearch();"><p class="float">Advanced Search</p> <span><img src="images/icon-search.gif" alt="Advanced Search" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+        {#/if}
+
+            {#if $T.d.DisplayQuickFind}
+            <li><a href="#" onclick="loadQuickFind();"><p class="float">Quick Find</p> <span><img src="images/icon-find.gif" alt="Quick Find" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+            {#/if}
+            {#if $T.d.IsFafInMySubscription}
+            <li><a href="#" onclick="doFafGotoLink();"><p class="float">FASB ASC Go To</p> <span><img src="images/icon-faf.gif" alt="Go To" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+            <li><a href="#" onclick="loadCrossReference();"><p class="float">FASB ASC Cross Reference</p> <span><img src="images/icon-cross.gif" alt="Cross Reference" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+            {#/if}
+            <li><a href="#" onclick="loadHelp();"><p class="float">Help</p> <span><img src="images/icon-help.gif" alt="Help" border="0" /></span></a></li>
+            <div class="clear-home-right"></div>
+            <!-- <li><a href="#" onclick="doLinkToForum();">Forum <span><img src="images/icon-forum.gif" alt="Forum" border="0" /></span></a></li> -->
+        </ul>
+        <div class="clear"></div>
+        <img class="home-pic" src="images/home-pic2.jpg" alt="" border="0" width="200" />
+    </div>
+    
+</div>
+{#/template MAIN}
+
+{#template COLUMN}
+    {#if $T.ChildHomePageNode.Children}
+    <li class="folder">
+        <a href="#" onclick="$('#HomePageCollection-{$T.HomePageNode$index}-{$T.ChildHomePageNode$index}').slideToggle();">{$T.ChildHomePageNode.DisplayName}</a>
+        <div id="HomePageCollection-{$T.HomePageNode$index}-{$T.ChildHomePageNode$index}" style="display:none">
+            <ul>
+                {#foreach $T.ChildHomePageNode.Children as GrandChildNode}
+                    {#if $T.GrandChildNode.Children}
+                    <li class="folder">
+                    <a href="#" onclick="$('#HomePageCollection-{$T.HomePageNode$index}-{$T.ChildHomePageNode$index}-{$T.GrandChildNode$index}').slideToggle();">{$T.GrandChildNode.DisplayName}</a>
+                    <div id="HomePageCollection-{$T.HomePageNode$index}-{$T.ChildHomePageNode$index}-{$T.GrandChildNode$index}" style="display:none">
+
+                    <ul>
+                    {#foreach $T.GrandChildNode.Children as GreatGrandChildNode}
+                    <li>
+                        {#if $T.GreatGrandChildNode.Tool == 'att-ng-tool' && $T.d.IsNGToolInMySubscription}
+                        <a href="#" onclick="doNextGenerationLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'CSC');" >{$T.GrandChildNode.DisplayName}</a>
+                        {#else}
+                        {#if $T.GreatGrandChildNode.TargetDoc!='whatsnew_exacct'}<a href="#" onclick="doLink('{$T.GreatGrandChildNode.TargetDoc}', '{$T.GreatGrandChildNode.TargetPointer}', true);">{$T.GreatGrandChildNode.DisplayName} ghkkuhgghjk</a>{#/if}
+                        {#/if}
+                    </li>
+
+                    {#/for}
+                    </ul>
+                    </div>
+                    </li>
+                    {#else}
+                    <li>
+                        {#if $T.GrandChildNode.Tool == 'att-ng-tool' && $T.d.IsNGToolInMySubscription}
+                        <a href="#" onclick="doNextGenerationLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'CSC');" >{$T.GrandChildNode.DisplayName}</a>
+                        {#else}
+                        {#if $T.GrandChildNode.TargetDoc!='whatsnew_exacct'}<a href="#" onclick="doLink('{$T.GrandChildNode.TargetDoc}', '{$T.GrandChildNode.TargetPointer}', true);">{$T.GrandChildNode.DisplayName}</a>{#/if}
+                        {#/if}
+                    </li>
+                    
+                    {#/if}
+                {#/for}
+            </ul>
+        </div>
+    </li>
+    {#elseif $T.ChildHomePageNode.Tool}
+        {#if $T.ChildHomePageNode.Tool == "whatsNew"  && $T.d.IsWhatsnewInMySubscription}
+        <li><a href="#" onclick="loadWhatsNew();">{$T.ChildHomePageNode.DisplayName}</a></li>
+        {#elseif $T.ChildHomePageNode.Tool == "fasb_cross_ref"}
+        <li><a href="#" onclick="loadCrossReference();">{$T.ChildHomePageNode.DisplayName}</a></li>
+        {#elseif $T.ChildHomePageNode.Tool == "fasb_goto_code"}
+        <li><a href="#" onclick="doFafGotoLink();">{$T.ChildHomePageNode.DisplayName}</a></li>
+        {#elseif $T.ChildHomePageNode.Tool == 'att-ng-tool'  && $T.d.IsNGToolInMySubscription}
+        <li><a href="#" onclick="doNextGenerationLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'CSC');" >{$T.ChildHomePageNode.DisplayName}</a></li>
+        {#/if}
+
+    {#elseif $T.ChildHomePageNode.TargetDoc && $T.ChildHomePageNode.TargetPointer && $T.ChildHomePageNode.TargetDoc!='whatsnew_exacct'}
+        <li><a href="#" onclick="doLink('{$T.ChildHomePageNode.TargetDoc}', '{$T.ChildHomePageNode.TargetPointer}', true);">{$T.ChildHomePageNode.DisplayName}</a></li>
+    {#/if}
+{#/template COLUMN}

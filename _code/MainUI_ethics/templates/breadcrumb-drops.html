@@ -1,0 +1,7 @@
+﻿{#template MAIN}
+    <ul class="drop">
+    {#foreach $T.d as SiteNode}
+        <li><a href="#" onclick="doBreadcrumbLink({$T.SiteNode.Id}, '{$T.SiteNode.Type}'), $('li').parents('.drop-div').slideUp();">{Left($T.SiteNode.Title, 50)}</a></li>
+    {#/for}	
+    </ul>
+{#/template MAIN}

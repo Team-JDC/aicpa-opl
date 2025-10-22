@@ -1,0 +1,15 @@
+﻿.notesButtons .editNote, .addNote
+{
+	display: none;
+}
+
+.contentLink img
+{
+	display: none;
+}
+
+.document-wrapper {padding:10px; }
+#ie .document-wrapper {padding:10px 10px 10px 10px; }
+div.book {padding-left:10px; padding-right:0px; }
+div.section {padding-left:10px; padding-right:0px; }
+div.chapter {padding-left:10px; padding-right:0px; }

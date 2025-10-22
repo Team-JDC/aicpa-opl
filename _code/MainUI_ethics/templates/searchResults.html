@@ -1,0 +1,283 @@
+﻿{#template MAIN}
+
+
+                            <div class="leftcol_header">
+                                <p>
+                                    Search results for:
+                                    <a href="" class="btn" data-toggle="modal" data-target="#mySaveNoteModal">Save this search</a>
+                                    <span>{$T.d.SearchTerm}</span>
+                                </p>
+                            </div>
+                            <div class="leftcol_content">
+                                <div class="results_header">
+                                    <div class="results_header_inner">
+                                        <p class="within">Search Filters: 
+                                            <br>                
+                                            {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}                                            
+                                                <!--{$T.DimensionNavigationResult$index-1} --   --> 
+                                                {#if $T.DimensionNavigationResult$index == 0}
+                                                <a href="#" class="btn off"><i class="fa "></i>{$T.DimensionNavigationResult.DimensionValue}</a>                                                
+                                                {#else}
+                                                <a href="#{$T.d.SelectedDimensionResults[$T.DimensionNavigationResult$index - 1 ].DimensionName}" class="btn off" onclick="doAdvancedNavigationalSearch('{$T.d.SelectedDimensionResults[$T.DimensionNavigationResult$index - 1 ].DimensionName}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});"><i class="fa fa-times"></i>{$T.DimensionNavigationResult.DimensionValue}</a>                                                
+                                                {#/if}
+                                            {#/for}
+                                        </p>
+                                        <div class="found_docs">
+                                            <p data-toggle="collapse"  href="#filters" aria-expanded="false" aria-controls="filters" id="triggerFilters" class="collapsed">
+                                                <i class="fa fa-plus" id="expandFilters"></i>
+                                                <i class="fa fa-minus" id="collapseFilters"></i> 
+                                                Add Filter
+                                            </p>
+                                            <div id="filters" class="panel-collapse collapse clearfix">
+                                                <ul class="col-sm-6">
+                                                {#foreach $T.d.DimensionResults as DimensionNavigationResult}
+                                                  <!-- {$T.DimensionNavigationResult.DimensionName} -->
+                                                  <!--  {$T.DimensionNavigationResult$index} -->
+                                                  <!--  {($T.d.DimensionResults.length / 2)} -->
+                                                    {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}                                                    
+                                                        {#if $T.DimensionNavigationResult$index < ($T.d.DimensionResults.length / 2)}
+                                                            <li>
+                                                                <a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a>                                                                
+                                                            </li>
+                                                        {#/if}                                                    
+                                                    {#/if}
+                                                {#/for}
+                                                </ul>
+                                                
+                                                <ul class="col-sm-6">
+                                                {#foreach $T.d.DimensionResults as DimensionNavigationResult}
+                                                <!-- {$T.DimensionNavigationResult.DimensionName} -->
+                                                    {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}                                                    
+                                                        {#if $T.DimensionNavigationResult$index >= ($T.d.DimensionResults.length / 2)}
+                                                            <li>
+                                                                <a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a>                                                                
+                                                            </li>                                                            
+                                                        {#/if}                                                    
+                                                    {#/if}
+                                                {#/for}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="results">
+                                
+                                    <p class="total_results"><span>{$T.d.HitCount}</span> search results:</p>
+                                    <div class="clearfix">                                    
+                                        <div class="pages">Page<input type="text" name="pageOffset" value="{Math.ceil(($T.d.DisplayOffset + 1) / 10)}" />of <span>{Math.floor($T.d.HitCount / 10)}</span></div>
+                                        <div class="prev_next">
+                                            {#if $T.d.DisplayOffset >= 10}
+                                                <a class="btn prev" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev Page</a>
+                                            {#/if}
+                                            {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                                                <a class="btn next" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next Page</a>                                            
+                                            {#/if}
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <ol>
+                                    {#foreach $T.d.SearchResults as SearchResult}
+                                        {#if $T.SearchResult.InSubscription}
+                                        <li>
+                                            <a class="title" href="#" onclick="doSearchLink({$T.SearchResult.Id}, '{$T.SearchResult.Type}', false);return false;">{$T.SearchResult.Title}</a>
+                                            <p class="meta">Path: {$T.SearchResult.ReferencePath}</p>
+                                            <p class="summary">{unencodeHtml($T.SearchResult.Snippet)}</p>
+                                        </li>
+                                        {#else}
+                                        <li>
+                                            <img alt="locked content" src="/images/portal/main-lock_small.gif" border="0"/>
+                                            <a class="title" href="" onclick="gotoUpsellPage({$T.SearchResult.Id}, '{$T.SearchResult.Type}', 'search_results')">{$T.SearchResult.Title}</a>
+                                        </li>
+
+                                        {#/if}     
+                                    {#/for}
+                                    </ol>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="prev_next">
+                                        {#if $T.d.DisplayOffset >= 10}
+                                            <a class="btn prev" href="#" onclick="onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev Page</a>
+                                        {#/if}
+                                        {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                                            <a class="btn next" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next Page</a>                                            
+                                        {#/if}
+                                    </div>
+                                </div>
+                            </div><!-- .leftcol_content -->
+                            
+
+
+{******************************************************************************
+
+    {#if $T.d.DimensionId != "-1"}
+        <div style="">
+            <div id="search-advanced" >
+                    <p class="search-advanced">Advanced Search:</p>
+                    <input type="text" class="search" id="searchTermsAdvanced" value="{$T.d.SearchTerm}" autocomplete="off" onkeydown="doAdvSearchCheck(event.keyCode);" />
+                    <label>Type:</label>
+                    <select id="searchMode">
+                    {#if $T.d.SearchMode == 1}
+                        <option value="1" selected="selected">All Words</option>
+                        {#else}
+                        <option value="1">All Words</option>
+                    {#/if}
+                    {#if $T.d.SearchMode == 2}
+                        <option value="2" selected="selected">Any Words</option>
+                        {#else}
+                        <option value="2">Any Words</option>
+                    {#/if}
+                    {#if $T.d.SearchMode == 3} 
+                        <option value="3" selected="selected">Exact Phrase</option>
+                        {#else}
+                        <option value="3">Exact Phrase</option>
+                    {#/if}
+                     {#if $T.d.SearchMode == 4} 
+                        <option value="4" selected="selected">Boolean Search</option>
+                        {#else}
+                        <option value="4">Boolean Search</option>
+                    {#/if}
+                    </select>
+                       <label>Collection:</label>
+                    <select id="dimensionId">                        
+                        {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}
+                        <option id="{$T.DimensionNavigationResult.DimensionName}"  value="{$T.DimensionNavigationResult.DimensionName}" >{Left($T.DimensionNavigationResult.DimensionValue, 50)}</option> 
+                        {#/for}
+                        {#foreach $T.d.DimensionResults as DimensionNavigationResult}
+                         {#if $T.DimensionNavigationResult.DimensionValue == "" && $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
+                            <option id="{$T.DimensionNavigationResult.DimensionId}" value="{$T.DimensionNavigationResult.DimensionId}" >{Left($T.DimensionNavigationResult.DimensionName, 50)}</option>          
+                         {#/if}
+                         {#if $T.DimensionNavigationResult.DimensionValue != "" && $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
+                            <option id="Option1" value="{$T.DimensionNavigationResult.DimensionId}">-- {Left($T.DimensionNavigationResult.DimensionName, 50)}</option>          
+                        {#/if}
+                        {#/for}
+                    </select>
+                    <label>Unsubscribed:</label> 
+                    {#if $T.d.Unsubscribed == 0}
+                    <input type="checkbox" value="0" checked="checked" onclick= "changeCheckBoxValue(document.getElementById('showUnsubscribed').id);" id="showUnsubscribed"/> 
+                    {#else}
+                    <input type="checkbox" value="1" onclick= "changeCheckBoxValue(document.getElementById('showUnsubscribed').id);" id="showUnsubscribed"/>
+                    {#/if}
+                    <label>Excerpts:</label>
+                    {#if $T.d.Excerpts == 1}
+                    <input type="checkbox" value="1" checked="checked" onclick= "changeCheckBoxValue(document.getElementById('showExcerpts').id);" id="showExcerpts"/> 
+                    {#else}
+                    <input type="checkbox" value="0" onclick= "changeCheckBoxValue(document.getElementById('showExcerpts').id);" id="showExcerpts"/>
+                    {#/if}
+                    <a href="#" id="advancedsearch" onclick="doAdvancedNavigationalSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value, {$T.d.nonauthoritative});" >
+                    <img id="btnUpdateSearch" src="images/btn-update-search.gif" alt="Advanced Search" border="0" style="margin-left:5px;"/></a>
+                    <a href="#" id="savesearch" class="savesearch" onclick="nameSearch(document.getElementById('searchTermsAdvanced').value);" >
+                    <img id="btnNameSearch" src="images/btn-save-search.gif" alt="Save Search" border="0" style="margin-left:2px;"/></a>
+                    <div id="nameSearchWindow">
+                        <p class="nopad">Add Title to Search:</p>
+                        <input type="text" value="{$T.d.SearchTerm}" id="searchNameBox" style="width:250px;" onkeydown="doSavedSearchCheck(event.keyCode);return event.keyCode!=13;"/>
+                        <br />
+                        <a href="#" id="submitsearch" onclick="saveSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value);"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;"/></a>
+                        <a href="#" id="clearsearch" onclick="cancelNameSearch()" ><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style=""/></a>
+                    </div>
+                <div class="clear"></div>                    
+            </div>
+            <div style="margin-left:25px; width:96%; margin-bottom:10px; ">
+                <h2>Search Results for <b>"{$T.d.SearchTerm}"</b> &nbsp;all terms searched: "{$T.d.WordIntepretations}"
+               
+                </h2>
+                {#if $T.d.HitCount != 0}
+                <div class="search-results-pagination small">
+                    <span>
+                        Results {($T.d.DisplayOffset + 1)}-{$T.d.DisplayResults} of {$T.d.HitCount}
+                    </span>
+                    <span class="searchBtnRight">
+                        {#if $T.d.DisplayOffset >= 10}
+                            <div class="search-btn"><a id="searchOffsetDecrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} - 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Prev</a></div>
+                        {#/if}
+                        
+                        {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                            <div class="search-btn"><a id="searchOffsetIncrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} + 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Next</a></div>
+                        {#/if}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="">  
+            <ul id="toc">
+                <div class="dimensionBreadcrumb">
+                    Selected Search Dimenions: 
+                    {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}
+                        <a href="#{$T.DimensionNavigationResult.DimensionName}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionName}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionValue} ></a>
+                    {#/for}
+                </div>
+                <p class="search-results-instructions"><span>Refine your Search:</span><br /> Select one of the links below then narrow your search further by clicking on subsequent links to find the information that you need. Scroll down below the hit list to see abstracts of your search results.</p>
+                {#foreach $T.d.DimensionResults as DimensionNavigationResult}
+                {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
+                <ul>
+                    <li type="none" style="color:White; width:600px;"><a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a><span class="small orange">{$T.DimensionNavigationResult.DimensionValue}</span><br /></li>
+                </ul>
+                {#/if}
+                {#/for}
+            </ul>     
+         </div>
+         <div class="tab_content2">
+            <ul class="search" >
+                {#foreach $T.d.SearchResults as SearchResult}
+                    
+                        <li class="orange" >                            
+                            <div class="float" style="width:3%">
+                                <span class="openCloseSearch">
+                                    <a href="#" onclick="doHitResult({$T.SearchResult.Id},'{$T.SearchResult.Type}', '{$T.d.WordIntepretations}',{$T.d.SearchMode},'hitResultSlider-{($T.d.DisplayOffset + 1 + $T.SearchResult.ResultEnumeration)}'); if ($(this).hasClass('activeBtn')) $(this).removeClass('activeBtn'); else $(this).addClass('activeBtn');"></a>
+                                </span>&nbsp;</div>
+                            <div class="float" style="width:97%">    
+                                <p class="search-result-title">
+                                    <b class="orange">{($T.d.DisplayOffset + 1 + $T.SearchResult.ResultEnumeration)}.</b>
+                                    {#if $T.SearchResult.InSubscription}
+                                        <a href="#" onclick="doSearchLink({$T.SearchResult.Id}, '{$T.SearchResult.Type}', false)">                    
+                                            {$T.SearchResult.Title}
+                                        </a>
+                                        <a href="#" onclick="doSearchLink({$T.SearchResult.Id}, '{$T.SearchResult.Type}', true);" title="Open this link as a new document">
+                                            <img alt="Open this link as a new document" src="images/icon-open-new-doc.gif" style="border:none" />
+                                        </a>
+                                    {#else}
+                                        <img alt="locked content" src="images/portal/main-lock_small.gif" border="0"/>
+                                        <a href="#" onclick="gotoUpsellPage({$T.SearchResult.Id}, '{$T.SearchResult.Type}', 'search_results')">                    
+                                            {$T.SearchResult.Title}
+                                        </a>
+                                    {#/if}                                                         
+                                </p>
+                                <div class="small" style="color:Black"><b>Path: {$T.SearchResult.ReferencePath}</b></div>
+                                <span class="snippet">{unencodeHtml($T.SearchResult.Snippet)}</span>
+                                <div id="hitResultSlider-{($T.d.DisplayOffset + 1 + $T.SearchResult.ResultEnumeration)}" class="home-links closed" >Loading...<img src="images/ajax-loading.gif" alt="Loading - Your request will be fulfilled momentarily."/></div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    
+                {#/for}     
+            </ul>
+            {#else}
+            <div class="search-noresults">No results returned.  Please refine your search.</div>
+      {#/if}
+        </div>
+        <div style="margin-left:25px; width:96%; margin-bottom:10px; ">
+        {#if $T.d.HitCount != 0}
+                <div class="search-results-pagination-bottom small">
+                    <span>
+                        Results {($T.d.DisplayOffset + 1)}-{$T.d.DisplayResults} of {$T.d.HitCount}
+                    </span>
+                    <span class="searchBtnRight">
+                        {#if $T.d.DisplayOffset >= 10}
+                            <div class="search-btn-bottom"><a id="A1" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev</a></div>
+                        {#/if}
+                        {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
+                            <div class="search-btn-bottom"><a id="A2" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next</a></div>
+                        {#/if}
+                    </span>
+                </div>
+        </div>
+    {#else}
+        <div class="tool-container">
+            <p><b>There are no search results found or no previous results in you search history. Please perform a new search by <a href="#" onclick="loadBlankSearch('', 'New Search', 1, 100, 10, 0, 1, 1);">clicking here</a>.</b></p>
+        </div>
+    {#/if}
+
+    <script language="javascript" type="text/javascript">
+        $('#document-container').ready(scrollToAnchor);
+    </script>
+*}
+{#/template MAIN}
