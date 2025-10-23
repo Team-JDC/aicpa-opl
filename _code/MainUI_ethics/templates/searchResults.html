@@ -1,6 +1,6 @@
 ﻿{#template MAIN}
 
-
+{******************************************************************************
                             <div class="leftcol_header">
                                 <p>
                                     Search results for:
@@ -107,7 +107,7 @@
                             
 
 
-{******************************************************************************
+*}
 
     {#if $T.d.DimensionId != "-1"}
         <div style="">
@@ -115,7 +115,7 @@
                     <p class="search-advanced">Advanced Search:</p>
                     <input type="text" class="search" id="searchTermsAdvanced" value="{$T.d.SearchTerm}" autocomplete="off" onkeydown="doAdvSearchCheck(event.keyCode);" />
                     <label>Type:</label>
-                    <select id="searchMode">
+                    <select id="searchType">
                     {#if $T.d.SearchMode == 1}
                         <option value="1" selected="selected">All Words</option>
                         {#else}
@@ -163,16 +163,16 @@
                     {#else}
                     <input type="checkbox" value="0" onclick= "changeCheckBoxValue(document.getElementById('showExcerpts').id);" id="showExcerpts"/>
                     {#/if}
-                    <a href="#" id="advancedsearch" onclick="doAdvancedNavigationalSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value, {$T.d.nonauthoritative});" >
+                    <a href="#" id="advancedsearch" onclick="doAdvancedNavigationalSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value, {$T.d.nonauthoritative});" >
                     <img id="btnUpdateSearch" src="images/btn-update-search.gif" alt="Advanced Search" border="0" style="margin-left:5px;"/></a>
-                    <a href="#" id="savesearch" class="savesearch" onclick="nameSearch(document.getElementById('searchTermsAdvanced').value);" >
+                    <a href="#" onclick="nameSearch(document.getElementById('searchTermsAdvanced').value);" >
                     <img id="btnNameSearch" src="images/btn-save-search.gif" alt="Save Search" border="0" style="margin-left:2px;"/></a>
                     <div id="nameSearchWindow">
                         <p class="nopad">Add Title to Search:</p>
                         <input type="text" value="{$T.d.SearchTerm}" id="searchNameBox" style="width:250px;" onkeydown="doSavedSearchCheck(event.keyCode);return event.keyCode!=13;"/>
                         <br />
-                        <a href="#" id="submitsearch" onclick="saveSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value);"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;"/></a>
-                        <a href="#" id="clearsearch" onclick="cancelNameSearch()" ><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style=""/></a>
+                        <a href="#" id ="savedsearch" onclick="saveSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value);"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;"/></a>
+                        <a href="#" onclick="cancelNameSearch()" ><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style=""/></a>
                     </div>
                 <div class="clear"></div>                    
             </div>
@@ -200,16 +200,16 @@
         <div style="">  
             <ul id="toc">
                 <div class="dimensionBreadcrumb">
-                    Selected Search Dimenions: 
+                    Selected Search Dimensions: 
                     {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}
-                        <a href="#{$T.DimensionNavigationResult.DimensionName}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionName}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionValue} ></a>
+                        <a href="#{$T.DimensionNavigationResult.DimensionName}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionName}', '{$T.d.SearchTerm}', document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionValue} ></a>
                     {#/for}
                 </div>
                 <p class="search-results-instructions"><span>Refine your Search:</span><br /> Select one of the links below then narrow your search further by clicking on subsequent links to find the information that you need. Scroll down below the hit list to see abstracts of your search results.</p>
                 {#foreach $T.d.DimensionResults as DimensionNavigationResult}
                 {#if $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
                 <ul>
-                    <li type="none" style="color:White; width:600px;"><a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a><span class="small orange">{$T.DimensionNavigationResult.DimensionValue}</span><br /></li>
+                    <li type="none" style="color:White; width:600px;"><a href="#{$T.DimensionNavigationResult.DimensionId}"  onclick="doAdvancedNavigationalSearch('{$T.DimensionNavigationResult.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">{$T.DimensionNavigationResult.DimensionName}</a><span class="small orange">{$T.DimensionNavigationResult.DimensionValue}</span><br /></li>
                 </ul>
                 {#/if}
                 {#/for}
@@ -262,10 +262,10 @@
                     </span>
                     <span class="searchBtnRight">
                         {#if $T.d.DisplayOffset >= 10}
-                            <div class="search-btn-bottom"><a id="A1" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev</a></div>
+                            <div class="search-btn-bottom"><a id="A1" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchType').value, 100, 10, ({$T.d.DisplayOffset} - 10), 1, 1,{$T.d.nonauthoritative});">Prev</a></div>
                         {#/if}
                         {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
-                            <div class="search-btn-bottom"><a id="A2" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchMode').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next</a></div>
+                            <div class="search-btn-bottom"><a id="A2" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', document.getElementById('searchType').value, 100, 10, ({$T.d.DisplayOffset} + 10), 1, 1,{$T.d.nonauthoritative});">Next</a></div>
                         {#/if}
                     </span>
                 </div>
@@ -279,5 +279,5 @@
     <script language="javascript" type="text/javascript">
         $('#document-container').ready(scrollToAnchor);
     </script>
-*}
+
 {#/template MAIN}
