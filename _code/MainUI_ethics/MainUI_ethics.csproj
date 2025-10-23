@@ -419,6 +419,7 @@
     <Content Include="js\opl2015\globalVariables.js" />
     <Content Include="js\opl2015\handlers.js" />
     <Content Include="js\opl2015\highlight.js" />
+    <Content Include="ResourceSeamlessLogin.aspx" />
     <Content Include="resources\jquery.cookie.min.js" />
     <Content Include="videos\online-professional-library.mp4" />
     <Content Include="js\opl2015\plainToc.js" />
@@ -430,7 +431,6 @@
     <Content Include="Keep-Alive.aspx" />
     <Content Include="LoginPage.aspx" />
     <Content Include="LogoutPage.aspx" />
-    <Content Include="MainUI\ResourceSeamlessLogin.aspx" />
     <Content Include="MainUI\SeamlessLogin.aspx" />
     <Content Include="OfficeFix.aspx" />
     <Content Include="Ethics.aspx" />
@@ -1716,13 +1716,6 @@
     <Compile Include="LogoutPage.aspx.designer.cs">
       <DependentUpon>LogoutPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MainUI\ResourceSeamlessLogin.aspx.cs">
-      <DependentUpon>ResourceSeamlessLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MainUI\ResourceSeamlessLogin.aspx.designer.cs">
-      <DependentUpon>ResourceSeamlessLogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MainUI\SeamlessLogin.aspx.cs">
       <DependentUpon>SeamlessLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1865,6 +1858,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourceSeamlessLogin.aspx.cs">
+      <DependentUpon>ResourceSeamlessLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResourceSeamlessLogin.aspx.designer.cs">
+      <DependentUpon>ResourceSeamlessLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResourceSeamlessLoginold.aspx.cs">
       <DependentUpon>ResourceSeamlessLoginold.aspx</DependentUpon>
@@ -2144,7 +2144,9 @@
     <Folder Include="resources\pfptoolkit\vr\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainUI\ResourceSeamlessLogin.aspx.resx" />
+    <EmbeddedResource Include="ResourceSeamlessLogin.aspx.resx">
+      <DependentUpon>ResourceSeamlessLogin.aspx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourceSeamlessLoginold.aspx.resx">
       <DependentUpon>ResourceSeamlessLoginold.aspx.cs</DependentUpon>
       <SubType>Designer</SubType>
