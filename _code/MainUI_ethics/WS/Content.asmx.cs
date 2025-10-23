@@ -857,7 +857,7 @@ namespace MainUI.WS
         /// <param name="targetPtr"></param>
         /// <param name="routeNodeType"></param>
         /// <remarks>mgardner: I know this is checked in as me but jstockett really is the one who wrote it with some help from dwatson.</remarks>
-        /// <returns></returns>
+        /// <returns>html string representing the table of contents</returns>
         [WebMethod(true)]
         public string GetFullTocStrByTargetDocTargetPtr(string targetDoc, string targetPtr, string routeNodeType)
         {
