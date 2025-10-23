@@ -9,10 +9,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <!-- <div class="tool-container3"> -->
-    <div style="position:absolute; top:50%; left:50%; margin-top:-150px; margin-left: -250px;">
-        <!-- <h1 class="borderbot">Development Login Page</h1><br /> -->
-        <img ID="Image1" src="images/et-cod_splash.jpg"/>
+    <!-- <div class="tool-container3">-->
+    <div style="position:absolute; margin-left:700px; margin-top:250px; background:#fff;">
+        <!-- <h1 class="borderbot">Development Login Page</h1><br/>-->
+        <img ID="Image1" src="images/1904-06555 Code cover art.jpg" class="marginauto" height="350">
 
         
        <!--  <asp:Button id="btnLogin" runat="server" Text="Login" 
@@ -22,4 +22,6 @@
     </form>
 </body>
 </html>
+
+
 

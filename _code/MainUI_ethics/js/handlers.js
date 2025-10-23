@@ -314,9 +314,20 @@ function doSearchLink(id, type, useNewScreen) {
     }
 
     function doTocLink(id, type) {
-        var hash = $.History.setHash("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
-        //var hash = $.History.setState("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
-        console.log("doTocLinkRoute:hash set as: " + hash);        
+        //var hash = $.History.setHash("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
+        ////var hash = $.History.setState("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
+        //console.log("doTocLinkRoute:hash set as: " + hash); 
+        //setLoading(true); 
+
+        //open in new window = true
+        //showHighlight = false
+        //scrollBarPosition can be passed as an optional third parameter
+        updateTocView(id, type);
+        var result = prepareActiveScreen(true, false);
+
+        if (result) {
+            loadPrimaryContent(id, type);
+        }
     }
 
     // when someone clicks a link from the table of contents

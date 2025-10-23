@@ -637,7 +637,7 @@ namespace MainUI.WS
                                @"<div class=""{5}"">" +
                                @"<span class=""hitarea toggle"" {4}></span>" +
                                @"<img src=""images/icon_{0}.gif"">" +                                
-                               @"<a href=""{2}"" class=""clearfix"">" +                               
+                               @"<a href=""#"" onClick=""{2}"">" +                               
                                @"<span class=""acc_text"">{1}</span></a></div>";
                 string divString = string.Format("onclick=\"toggleTocNode('{0}', '{1}', '{2}', {3});\"", id, type, uniqueId, level);
                 result.AppendFormat(formatString, GetTypeIconName(type), title, link, uniqueId, divString, childrenStr);
@@ -650,7 +650,7 @@ namespace MainUI.WS
                                @"<div class=""{5}"">" +
                                @"<span class=""hitarea toggle"" {4}></span>" +
                                @"<img src=""images/icon_{0}.gif""></div>" +
-                               @"<a href=""{2}"" class=""clearfix"">" +
+                               @"<a href=""#"" onClick=""{2}"">" +
                                @"<span class=""acc_text"">{1}</span></a>";
                 string divString = string.Format("onclick=\"toggleTocNode('{0}', '{1}', '{2}', {3});\"", id, type, uniqueId, level);
                 result.AppendFormat(formatString, GetTypeIconName(type), title, link, uniqueId,divString,childrenStr);
@@ -693,16 +693,17 @@ namespace MainUI.WS
         }
 
         private string BuildLink(int id, string type)
-        {            
-            MyDocument md = CheckLink(GetTargetDocPtrByBookIdDocType(id, type));
-            if (md != null)
-            {
-                return string.Format("/content/link/{0}/{1}", md.TargetDoc, md.TargetPointer);
-            }
-            else
-            {
-                return string.Format("/content/{0}/{1}", type, id);
-            }            
+        {
+            return string.Format("doTocLink({0},'{1}');", id, type);
+            //MyDocument md = CheckLink(GetTargetDocPtrByBookIdDocType(id, type));
+            //if (md != null)
+            //{
+            //    return string.Format("/content/link/{0}/{1}", md.TargetDoc, md.TargetPointer);
+            //}
+            //else
+            //{
+            //    return string.Format("/content/{0}/{1}", type, id);
+            //}            
         }
 
 

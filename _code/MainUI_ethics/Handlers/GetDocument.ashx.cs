@@ -209,9 +209,9 @@ namespace MainUI.Handlers
                 
                 
                 // add the breadcrumb
-                contentText = Regex.Replace(contentText, "<body([^>]{0,})>", "<body$1>\n"+
-                "<div class=\"detail\"><div id=\"leftcol\" class=\"col-sm-9\"><div class=\"leftcol_inner\">" + crumb +
-                    "<div class=\"leftcol_content\"><i class=\"fa fa-bookmark docBookmark\" style=\"display:none\"></i>");
+               // contentText = Regex.Replace(contentText, "<body([^>]{0,})>", "<body$1>\n"+
+                //"<div class=\"detail\"><div id=\"leftcol\" class=\"col-sm-9\"><div class=\"leftcol_inner\">" + crumb +
+                   // "<div class=\"leftcol_content\"><i class=\"fa fa-bookmark docBookmark\" style=\"display:none\"></i>");
 
 
                 if (!string.IsNullOrEmpty(targetDoc))
@@ -226,8 +226,8 @@ namespace MainUI.Handlers
                 
                 }
 
-                if (isLMS)
-                    contentText = Regex.Replace(contentText, "<body([^>]{0,})>", "<body$1>\n<p style=\"font-size: 12; color: #000000; font-weight: bold\">" + crumb + "</p>");
+                //if (isLMS)
+                    //contentText = Regex.Replace(contentText, "<body([^>]{0,})>", "<body$1>\n<p style=\"font-size: 12; color: #000000; font-weight: bold\">" + crumb + "</p>");
                 //Add Copy/Paste Buffer area.
                 contentText = Regex.Replace(contentText, "</body>", "<div id=\"ideal\"></div>"+
                     "</div><!-- leftcol_content -->"+
@@ -235,7 +235,7 @@ namespace MainUI.Handlers
 
 
                 //for note popup
-                contentText = Regex.Replace(contentText, "</body>", GetModalHTML() + "</body>");
+                //contentText = Regex.Replace(contentText, "</body>", GetModalHTML() + "</body>");
                 
 
 
