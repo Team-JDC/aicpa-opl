@@ -313,7 +313,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="wnvhtmlconvert, Version=6.0.3.0, Culture=neutral, PublicKeyToken=5b5f377bc08a4d32, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>External\bin\wnvhtmlconvert.dll</HintPath>
+      <HintPath>..\MainUI\External\bin\wnvhtmlconvert.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
