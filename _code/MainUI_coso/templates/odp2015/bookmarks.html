@@ -1,0 +1,45 @@
+﻿{#template MAIN}
+
+<div id="leftcol" class="col-sm-12">
+    <div class="leftcol_inner">
+        <div class="leftcol_header">
+            <h1>Bookmarks</h1>
+        </div>
+        <div class="leftcol_content">
+            <h2 class="clearfix">
+                Bookmark Location
+            </h2>
+            <ul class="bookmarks">
+            {#foreach $T.d as MyBookmark}                
+                     <li id="liBookmark-{$T.MyBookmark.Bookmark.Id}">
+                        <a href="/content/link/{$T.MyBookmark.Bookmark.TargetDoc}/{$T.MyBookmark.Bookmark.TargetPtr}">» {$T.MyBookmark.Location}</a>
+                        <a href="#" class="btn" data-toggle="modal" data-target="#myModalAYS-{$T.MyBookmark.Bookmark.Id}" >Delete</a>
+                    </li>  <!-- End li liBookmark-{$T.MyBookmark.Bookmark.Id} - -->                
+
+                    <!-- Modal Are You Sure (AYS) -->
+                    <div class="modal fade" id="myModalAYS-{$T.MyBookmark.Bookmark.Id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			            <div class="modal-dialog">
+				            <div class="modal-content">					        
+                                <div id="aysDivHeader" class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h3 class="modal-title" id="H1">Delete Bookmark</h3>
+                                </div>
+                            
+                                <div id="aysDivBody" class="modal-body">
+                                     {$T.MyBookmark.Location}
+					            </div>
+					            <div class="modal-footer">
+						            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteMyBookmark({$T.MyBookmark.Bookmark.Id});">Delete</button>						        
+					            </div>
+				            </div>
+			            </div>
+		            </div>
+                <!-- End Modal -->                
+            {#/for}
+               </ul>                              
+        </div><!-- .leftcol_content -->
+    </div><!-- .leftcol_inner -->
+</div>
+
+{#/template MAIN}

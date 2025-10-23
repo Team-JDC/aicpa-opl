@@ -1,0 +1,54 @@
+﻿<div id="main" class="lp clearfix">
+    <div id="leftcol" class="col-sm-12">
+        <div class="leftcol_inner">
+            <div class="leftcol_header">
+                <h1>FASB ASC - Go To</h1>
+            </div>
+            <div class="leftcol_content">
+                <h2 class="clearfix">
+                    Navigate to topics, subtopics, and sections
+                </h2>
+                <div class="formWrapper top20">
+                    <label class="inline">Topic:</label>
+                    <select id="topic" onchange="doFafGotoDropDownChange($('#topic').val(), '');">
+                       {#foreach $T.d.TopicGroups as TopicGroup}
+                        <option value="{$T.TopicGroup.Topics[0].TopicNum}">{$T.TopicGroup.Name}</option>
+                            {#foreach $T.TopicGroup.Topics as Topic}
+                                {#if $T.d.SelectedTopicNum == $T.Topic.TopicNum}
+                                <option value="{$T.Topic.TopicNum}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                {#else}
+                                <option value="{$T.Topic.TopicNum}">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                {#/if}
+                            {#/for}
+                        {#/for}
+                    </select>
+                    <br>
+                    <label class="inline">Subtopic:</label>
+                    <select id="subTopic" onchange="doFafGotoDropDownChange($('#topic').val(), $('#subTopic').val());">
+                        <option></option>
+                        {#foreach $T.d.Subtopics as Subtopic}
+                            {#if $T.d.SelectedSubTopicNum == $T.Subtopic.SubtopicNum}
+                            <option value="{$T.Subtopic.SubtopicNum}" selected="selected">{$T.Subtopic.SubtopicNum} - {$T.Subtopic.SubtopicTitle}</option>
+                            {#else}
+                            <option value="{$T.Subtopic.SubtopicNum}">{$T.Subtopic.SubtopicNum} - {$T.Subtopic.SubtopicTitle}</option>
+                            {#/if}
+                        {#/for}
+                    </select>
+                    <br>
+                    <label class="inline">Section:</label>
+                        <select id="section">
+                            <option></option>
+                            {#foreach $T.d.Sections as Section}
+                                <option value="{$T.Section.SectionNum}">{$T.Section.SectionNum} - {$T.Section.SectionTitle}</option>
+                            {#/for}
+                        </select>
+                    <br>
+                    <button class="btn top20" onclick="doFafGotoSubmit($('#topic').val(), $('#subTopic').val(), $('#section').val());">Go To</button>
+                </div>
+                                
+                               
+            </div><!-- .leftcol_content -->
+        </div><!-- .leftcol_inner -->
+    </div>
+                    
+</div><!-- #main -->

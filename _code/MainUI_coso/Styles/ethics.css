@@ -1,0 +1,205 @@
+﻿
+
+.search-hit-wrapper {
+    background: none repeat scroll 0 0 white;
+    border: none;
+    margin-left: -10px;
+    margin-top: 42px;
+    padding: 8px;
+    position: relative;
+    right: 0;
+    top: 0;    
+    float: right !important
+}
+        
+span.search-hit-close a {
+    border: none;
+}
+        
+.search-hit-wrapper span {
+    float: right;
+}
+        
+.copyright {
+    color: white;
+    font: 9px Arial,Helvetica,sans-serif;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+        
+.navButtons-wrapper {
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+}
+        
+.textOp-wrapper {
+    float: left;
+}
+        
+#nav-prev {
+    float: left;
+    margin-right: 3px;
+}
+        
+#nav-next {
+    float: left;
+    margin-right: 3px;
+}
+        
+#nav-toc {
+    float: left;
+    margin-right: 3px;
+}
+        
+#back-button {
+    margin-left: 8px;
+}
+        
+span.search-hit-nextDoc a, span.search-hit-nextDoc a:hover {
+    background: url("../images/search-hits-next-page.png");
+    height: 28px;
+    width: 21px;
+}
+        
+span.search-hit-next a, span.search-hit-next a:hover {
+    background: url("../images/search-hits-next.png");
+    height: 28px;
+    width: 46px;
+}
+        
+span.search-hit-prevDoc a, span.search-hit-prevDoc a:hover {
+    background: url("../images/search-hits-prev-page.png");
+    height: 28px;
+    width: 21px;
+}
+        
+span.search-hit-prev a, span.search-hit-prev a:hover {
+    background: url("../images/search-hits-prev.png");
+    height: 28px;
+    width: 46px;
+}
+        
+span.search-hit-label {
+    background: url("../images/search-hits.png");
+    width: 62px;
+    height: 22px;
+}
+        
+.search-hit-link a img {
+    border-right: 1px solid #C0C9D3;
+    margin-left: 3px;
+}
+
+/* --------------ethics document changes---------------------- */
+.iframe-main {padding:0; width:100%; }
+div.chapter, div.section {padding:0; margin:0; }
+
+/*--
+div.section {float:left; width:98%; padding:0; margin:0; }
+.notesButtons {float:left; width:auto; margin-left:-5px; padding-right:0.5%; }
+div.section > .titlepage {float:left; width:96%;  }
+div.section > .section {margin-left:1.5%; width:98.5%; }
+div.section > .section > .titlepage {float:left; width:2%; }
+.ps_para_number {float:left; width:96%; padding:10px 0; margin-left:1.5%; }
+.title .ps_para_number {margin-left:0px; }
+.titlepage h2 {padding-top:0; }
+.titlepage h3, .titlepage h4, .titlepage h5  {margin:0; padding:2px 0 0 0; }
+.title .ps_subsub_heading {margin-left:0; }
+.ps_indent_hang_2, .ps_indent_hang_1, .ps_indent_hang {clear:both; }
+--*/
+
+
+.section {clear:both; width:98%; }
+.notesButtons {margin-left:0; float:left; }
+.titlepage {margin-left:30px; float:left; }
+.notesButtons + .titlepage {margin-left:10px; float:left; width:95%; }
+.notesButtons + .titlepage:after {clear:both; }
+p.ps_para_number {margin-left:70px; }
+.ps_section_title {margin-top:0 !important; }
+.ps_main_heading {margin-left:30px; }
+h2.title .ps_main_heading {margin-left:0px; }
+p.ps_indent_0, p.ps_indent_0_normal {margin-left: 70px; clear:both;}
+p.ps_indent_1, p.ps_indent_1_normal {margin-left: 85px; clear:both;}
+p.ps_indent_2, p.ps_indent_2_normal {margin-left: 100px; clear:both;}
+p.ps_indent_3, p.ps_indent_3_normal {margin-left: 115px; clear:both;}
+p.ps_indent_4, p.ps_indent_4_normal {margin-left: 130px; clear:both;}
+p.ps_indent_5, p.ps_indent_5_normal {margin-left: 145px; clear:both;}
+p.ps_indent_6, p.ps_indent_6_normal {margin-left: 160px; clear:both;}
+.ps_sub_heading, .ps_subsub_heading {margin-left:30px !important; clear:both; }
+.title .ps_sub_heading {margin-left:0 !important; clear:both; padding-bottom:10px;}
+.title .ps_subsub_heading {margin-left:0 !important; padding:0px 0 !important; display:block; clear:both; margin-top:0px; }
+.titlepage h3, .titlepage h4, .titlepage h5, .titlepage h6  {margin:0; padding:2px 0px 10px 0; }
+h2.title, h3.title { clear:none !important; padding-top:0; line-height:1.3em;}
+h3.subtitle {width:100%; }
+p.ps_indent_hang {margin-left:55px; clear:both; }
+p.ps_indent_hang_1 {margin-left:55px; clear:both; }
+p.ps_indent_hang_2 {margin-left:55px; clear:both; }
+p.ps_indent_hang_4 {margin-left:100px; clear:both; }
+.section p.ps_indent_hang {margin-left:130px; clear:both; }
+.section p.ps_indent_hang_1 {margin-left:130px; clear:both; }
+.section p.ps_indent_hang_2 {margin-left:130px; clear:both; }
+.section p.ps_indent_hang_4 {margin-left:170px; clear:both; }
+.book > .titlepage {width:95%; }
+.ps_box_shade {clear:both; margin-bottom:20px; }
+.footnotes {margin-left:30px; }
+.expandedTable {margin-left:30px; }
+.ps_table_center_normal {margin-left:30px; }
+.tableThumbnail {margin-left:30px; }
+li .ps_para_number {margin-left:0; }
+
+
+.joinSectionsTopic, .joinSectionsSubtopic, .joinSectionsTable 
+{
+    margin-left:20px;
+    position:absolute;
+    top:7px;
+    cursor:pointer;
+}
+
+.table {clear:both; }
+
+.popupSpanDisabled
+{
+    display: none;
+}
+.invisible
+{
+    display: none;
+}
+input#disableDefPopupId {margin-top:15px; float:left; }
+.disableDefPopupLabel {color:#fff; font-family:Arial; font-size:12px; margin-top:15px; float:left; }
+
+div.home-right {
+float:right;
+margin:0 0 0 10px;
+padding:25px 5px 0 0;
+font-family:Arial;
+min-width: 310px; 
+}
+
+/*--- HELP FILE -------------------------------------------*/
+.helpEthics ul {list-style: outside; }
+.helpEthics p, .helpEthics a, .helpEthics b, .helpEthics li, .helpEthics span {font-family:Arial, san-serif; font-size:12px; }
+
+.helpEthics {padding:25px; }
+.helpEthics h1 {font-size: 24px;  }
+.helpEthics h2 {font-size: 18px; padding:10px 0 10px 10px; margin-top:30px; margin-bottom:20px; background:#f5f5f5; }
+.helpEthics h3 {font-size: 14px; }
+.helpEthics p {line-height:1.5em; }
+.helpEthics a {text-decoration:none; }
+.helpEthics a:hover {color:#F60; }
+.helpEthics ul {margin-left:0; padding-left:20px; }
+.helpEthics ul ul {padding-top:10px; }
+.helpEthics li {padding-bottom:5px; }
+.helpEthics img.lg { border:1px solid #ccc; margin:15px 0;  }
+.helpEthics img.med {width:300px; border:1px solid #ccc; margin:15px 0; }
+.helpEthics img.sm {width:25px; border:1px solid #ccc; margin:0 5px; }
+.helpEthics img.sm2 {width:50px; border:1px solid #ccc; margin:0 5px; }
+.helpEthics img.sm3 {width:100px; border:1px solid #ccc; margin:0 5px; }
+.helpEthics hr {clear:both; }
+.helpEthics .third {float:left; width:30%; }
+.helpEthics h1 a {float:right; }

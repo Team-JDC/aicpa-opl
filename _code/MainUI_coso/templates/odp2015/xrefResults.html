@@ -1,0 +1,32 @@
+﻿ {#template MAIN}
+ <div class="tableResults">
+    <table class="toolResults">
+        <thead>
+            <tr>
+                <th>Standard Type</th>
+                <th>Standard Number</th>
+                <th>Paragraph/Label</th>
+                <th>Topic</th>
+                <th>Subtopic</th>
+                <th>Section</th>
+                <th>Paragraph</th>
+            </tr>
+        </thead>
+        <tbody>
+            {#foreach $T.d.CrossReferenceResult as CrossReference}
+                <tr>
+                    <td>{$T.CrossReference.Standard}</td>
+                    <td>{$T.CrossReference.StandardNumber}</td>
+                    <td>{$T.CrossReference.Paragraph}</td>
+                    <td>{$T.CrossReference.TopicName}</td>
+                    <td>{$T.CrossReference.SubTopicName}</td>
+                    <td>{$T.CrossReference.SectionName}</td>
+                    <td class="last">
+                        <a href="#" onclick="doLink('{$T.CrossReference.TargetDocument}', '{$T.CrossReference.TargetPointer}', false);">{$T.CrossReference.LinkText}</a>
+                    </td>
+                </tr>
+            {#/for}
+        </tbody>
+    </table>
+</div>
+{#/template MAIN}

@@ -1,0 +1,17 @@
+﻿<div style="padding:20px;" class="tool-wrapper">
+	<h1>Quick Find</h1>
+    <p>Use Quick Find to easily locate guidance in the Code of Professional Conduct. Simply select the part of the Code of Professional Conduct that you are interested in viewing and then select the topic from the resulting list. You will automatically be taken to the selected topic in that part of the Code of Professional Conduct.</p>
+    
+    <table class="quickfind" cellpadding="" cellspacing="" width="100%">
+    	<tr>
+        	<td id="quickfindLeftCol" width="25%" valign="top"></td>
+            <td id="quickfindRightCol" width="75%" valign="top"></td>
+        </tr>
+    </table> 
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        loadTemplate('WS/QuickFind.asmx/GetQuickFindLists', "{}", 'templates/ethicsquickFindDropdowns.htm', 'quickfindLeftCol');
+    });
+</script>

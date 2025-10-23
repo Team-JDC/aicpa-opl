@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Taxonomies>
+  <Taxonomy id="document_types" title="Ethics Codification">
+    <TaxonomyValue id="preface" title="Preface" access="~sm~emap~smre~">
+      <Document targetdoc="et-cod" targetptr="et-cod0.100">
+        <Text isLink="true">0.100.000 Overview of the Code of Professional Conduct</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.200">
+        <Text isLink="true">0.200.000 Structure and Application of the AICPA Code </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.300">
+        <Text isLink="true">0.300.000 Principles of Professional Conduct</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.400">
+        <Text isLink="true">0.400.000 Definitions </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.500">
+        <Text isLink="true">0.500.000 Nonauthoritative Guidancet</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.600">
+        <Text isLink="true">0.600.000 New, Revised, and Pending Interpretations and Other Guidance</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod0.700">
+        <Text isLink="true">0.700.000 Deleted Interpretations and Other Guidance </Text>
+      </Document>
+    </TaxonomyValue>
+    <TaxonomyValue id="part_1" title="Part 1: Members in Public Practice" access="~sm~emap~smre~">
+      <Document targetdoc="et-cod" targetptr="et-cod0.700">
+        <Text isLink="true">1.000 Introduction</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.100">
+        <Text isLink="true">1.100 Integrity and Objectivity</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.110">
+        <Text isLink="true">1.110 Conflicts of Interest</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.120">
+        <Text isLink="true">1.120 Gifts and Entertainment</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.130">
+        <Text isLink="true">1.130 Preparing and Reporting Information</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.140">
+        <Text isLink="true">1.140 Client Advocacy</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.150">
+        <Text isLink="true">1.150 Use of a Third-Party Service Provider</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.200">
+        <Text isLink="true">1.200 Independence</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.210">
+        <Text isLink="true">1.210 Conceptual Framework Approach</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.220">
+        <Text isLink="true">1.220 Accounting Firms</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.224">
+        <Text isLink="true">1.224 Affiliates, Including Governmental Units</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.226">
+        <Text isLink="true">1.226 Reissued Reports</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.228">
+        <Text isLink="true">1.228 Engagement Contractual Terms</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.230">
+        <Text isLink="true">1.230 Fees</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.240">
+        <Text isLink="true">1.240 Financial Interests</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.245">
+        <Text isLink="true">1.245 Trusts and Estates</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.250">
+        <Text isLink="true">1.250 Participation in Employee Benefit Plans</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.255">
+        <Text isLink="true">1.255 Depository, Brokerage and Other Accounts</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.257">
+        <Text isLink="true">1.257 Insurance Products</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.260">
+        <Text isLink="true">1.260 Loans, Leases, and Guarantees</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.265">
+        <Text isLink="true">1.265 Business Relationships</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.270">
+        <Text isLink="true">1.270 Family Relationships with Attest Clients</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.275">
+        <Text isLink="true">1.275 Current Employment or Association with an Attest Client</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.277">
+        <Text isLink="true">1.277 Former Employment or Association with an Attest Client</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.279">
+        <Text isLink="true">1.279 Considering or Subsequent Employment or Association with an Attest Client</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.280">
+        <Text isLink="true">1.280 Memberships</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.285">
+        <Text isLink="true">1.285 Gifts and Entertainment</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.290">
+        <Text isLink="true">1.290 Actual or Threatened Litigation</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.295">
+        <Text isLink="true">1.295 Nonattest Services</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.297">
+        <Text isLink="true">1.297 Independence Standards for Engagements Performed in Accordance with Statements on Standards for Attestation Engagements</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.300">
+        <Text isLink="true">1.300 General Standards</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.310">
+        <Text isLink="true">1.310 Compliance with Standards</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.320">
+        <Text isLink="true">1.320 Accounting Principles</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.400">
+        <Text isLink="true">1.400 Acts Discreditable</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.500">
+        <Text isLink="true">1.500 Fees and Other Types of Remuneration</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.510">
+        <Text isLink="true">1.510 Contingent Fees</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.520">
+        <Text isLink="true">1.520 Commissions and Referral Fees</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.600">
+        <Text isLink="true">1.600 Advertising and Other Forms of Solicitation</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.700">
+        <Text isLink="true">1.700 Confidential Information</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.800">
+        <Text isLink="true">1.800 Form of Organization and Name</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.810">
+        <Text isLink="true">1.810 Form of Organization and Related Practice Issues</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod1.820">
+        <Text isLink="true">1.820 Firm Name</Text>
+      </Document>
+
+    </TaxonomyValue>
+    <TaxonomyValue id="part_2" title="Part 2: Members in Business" access="~sm~emap~smre~">
+      <Document targetdoc="et-cod" targetptr="et-cod2.000">
+        <Text isLink="true">2.000 Introduction </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.100">
+        <Text isLink="true">2.100 Integrity and Objectivity</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.110">
+        <Text isLink="true">2.110 Conflicts of Interest   </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.120">
+        <Text isLink="true">2.120 Gifts and Entertainment </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.130">
+        <Text isLink="true">2.130 Preparing and Reporting Information </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.160">
+        <Text isLink="true">2.160 Educational Services</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.300">
+        <Text isLink="true">2.300 General Standards</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.310">
+        <Text isLink="true">2.310 Compliance with Standards</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.320">
+        <Text isLink="true">2.320 Accounting Principles</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod2.400">
+        <Text isLink="true">2.400 Acts Discreditable</Text>
+      </Document>
+    </TaxonomyValue>
+    <TaxonomyValue id="part_3" title="Part 3: Other Members" access="~sm~emap~smre~">
+      <Document targetdoc="et-cod" targetptr="et-cod3.000">
+        <Text isLink="true">3.000 Introduction </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod3.400">
+        <Text isLink="true">3.400 Acts Discreditable</Text>
+      </Document>
+    </TaxonomyValue>
+    <TaxonomyValue id="appendixes" title="Appendixes" access="~sm~emap~smre~">
+      <Document targetdoc="et-cod" targetptr="et-cod_appA">
+        <Text isLink="true">Appendix A - Council Resolution Designating Bodies to Promulgate Technical Standards</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod_appB">
+        <Text isLink="true">Appendix B -Council Resolution Concerning the Form of Organization and Name Rule </Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod_appC">
+        <Text isLink="true">Appendix C - Revision History Table</Text>
+      </Document>
+      <Document targetdoc="et-cod" targetptr="et-cod_appD">
+        <Text isLink="true">Appendix D - Mapping Document</Text>
+      </Document>
+    </TaxonomyValue>
+  </Taxonomy>
+  <Taxonomy id="part_1" title="Part 1: Members in Public Practice">
+  </Taxonomy>
+  <Taxonomy id="part_2" title="Part 2: Members in Business">
+  </Taxonomy>
+  <Taxonomy id="part_3" title="Part 3: Other Members">
+  </Taxonomy>
+  <Taxonomy id="part_4" title="Appendixes">
+  </Taxonomy>
+
+</Taxonomies>

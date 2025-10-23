@@ -1,0 +1,74 @@
+﻿{#template MAIN}
+
+<!-- 
+<div id="main" class="lp clearfix"> -->
+
+    <div id="leftcol" class="col-sm-12">
+        <div class="leftcol_inner">
+            <div class="leftcol_header">
+                <h1>Saved Searches</h1>
+            </div>
+            <div class="leftcol_content">
+                <h2 class="clearfix">
+                    Search Title
+                </h2>
+
+                <ul class="bookmarks">
+                    {#foreach $T.d.SavedUserSearches as SavedSearch}
+                    <li>
+                        <a href="#" onclick="doAdvancedNavigationalSearch('', '{$T.SavedSearch.Keywords}', '{$T.SavedSearch.SearchMode}', '{$T.SavedSearch.MaxHits}', '{$T.SavedSearch.PageSize}', '{$T.SavedSearch.PageOffset}', '{$T.SavedSearch.ShowExcerpts}', '{$T.SavedSearch.FilterUnsubscribed}', 0)">» {$T.SavedSearch.SearchName}</a>
+                        <a href="#" class="btn" data-toggle="modal" data-target="#renameModal-{$T.SavedSearch.SearchId}">Rename</a>
+                        <a href="#" class="btn" data-toggle="modal" data-target="#deleteModal-{$T.SavedSearch.SearchId}">Delete</a>
+                    </li>  
+                
+
+                    <!-- DeleteModalAYS -->
+                    <div class="modal fade" id="deleteModal-{$T.SavedSearch.SearchId}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="deleteModalLabel">Delete Saved Search</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <label>{$T.SavedSearch.SearchName}*</label>
+                                    <br>
+                                    <p>Are you sure you want to delete this saved search?</p>                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="deleteSavedSearch({$T.SavedSearch.SearchId}, '{$T.SavedSearch.SearchName}')">Delete</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="renameModal-{$T.SavedSearch.SearchId}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="renameModalLabel">Rename Saved Search</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <label>Title*</label>
+                                    <br>
+                                    <input id="savedSearchTitle-{$T.SavedSearch.SearchId}" type="text" value="{$T.SavedSearch.SearchName}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="renameSavedSearch({$T.SavedSearch.SearchId},'{$T.SavedSearch.SearchName}')">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#/for}
+                </ul>
+                 
+                               
+            </div><!-- .leftcol_content -->
+        </div><!-- .leftcol_inner -->
+    </div>
+<!-- </div> -->
+               
+{#/template MAIN}

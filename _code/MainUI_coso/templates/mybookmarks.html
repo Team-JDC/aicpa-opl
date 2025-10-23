@@ -1,0 +1,43 @@
+﻿{#template MAIN}
+    <div class="tool-container">
+	    <h1>My Bookmarks</h1>
+    
+        <div class="padbot15 clear">
+    	    <table cellpadding="5" cellspacing="0">
+        	    <tr>
+                    <td width="595" class="borderbot"><label>Bookmark Location</label></td>
+       		    </tr> 
+                <tr><td colspan="2" height="10"></td></tr>
+                {#foreach $T.d as MyBookmark}
+                <tr>
+                    <td valign="top" class="savedsearch">
+                        <div style="position:relative;">
+                            <div style="padding-right: 165px;">
+                                <label style="padding-top:5px;">
+                                    <a href="#" onclick="doLink('{$T.MyBookmark.Bookmark.TargetDoc}', '{$T.MyBookmark.Bookmark.TargetPtr}', false)">
+                                        {#if $T.MyBookmark.Bookmark.Title != null && $T.MyBookmark.Bookmark.Title != "" && $T.MyBookmark.Bookmark.Title != $T.MyBookmark.Location}
+                                            {$T.MyBookmark.Bookmark.Title} <br />
+                                        {#/if}
+                                        {$T.MyBookmark.Location}
+                                    </a>
+                                    <a href="#" id="newbookmarkdocument" onclick="doLink('{$T.MyBookmark.Bookmark.TargetDoc}', '{$T.MyBookmark.Bookmark.TargetPtr}', true);" title="Open this link as a new document">
+                                        <img alt="Open this link as a new document" src="images/icon-open-new-doc.gif" style="border:none" />
+                                    </a>
+                                </label>
+                            </div>
+                            <div class="right">
+                                <span>
+                                    <a href="#" id="deletebookmark" onclick="deleteMyBookmark({$T.MyBookmark.Bookmark.Id})"><img src="images/btn-delete.gif" class="submit" alt="Delete Bookmark" style="border:none" style="margin-left:5px;"/></a>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+       		    </tr> 
+                {#/for}
+            </table>
+        </div>
+    </div>
+    <div class="under-note">
+        <p style="padding-top:10px;"><b>Note:</b> To return to your document, click the document tab below and select your document.</p>
+    </div>
+{#/template MAIN}

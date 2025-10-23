@@ -1,0 +1,69 @@
+﻿{#template MAIN}
+{*   *******  NOTE THIS IS THE restricted.html (non ODP2015 version)   *******   *}
+<div class="tool-container" >
+            	<div style="width:75px;">
+                	<img src="images/exclamation.png" alt="" class="float" />
+                </div>
+                <div class="float" style="width:550px; padding-left:10px">
+                	<h1 style="padding:0; margin:0;">OUR APOLOGIES</h1>
+                	<p>You do not have access to the document <i><b>{$T.d.Document.Title}</b></i> in the publication <i><b>{$T.d.Book.Title}</b></i> as you have requested.</p>
+                </div>
+                <div class="clear"></div>
+                <div style="margin-top:15px; background:#fff; border:1px solid #999; padding:15px;">
+                    
+                    
+                {#if !$T.d.ShowStoreLink && !$T.d.ShowPhoneContact}
+		            <ul class="upsell">                        
+                        <li>Return to your <b><input action="action" type="button" value="previous location" onclick="history.go(-1);" /></b>.</li>
+                    </ul>
+                {#/if}
+
+                {#if $T.d.ShowStoreLink && !$T.d.ShowPhoneContact}
+                    <h3 style="padding:0; margin:0;">Please do one of the following:</h3>
+                        <ul class="upsell">
+                            <li>Return to your <b><a href="#" onclick="doPreviousLocationLink('{$T.d.client.pageType}');">previous location</a></b>.</li>
+                            <br />
+                            <!--
+                            <li>Go to the CPA2Biz store to purchase <i><b><a href="#" onclick="sendToCatalog('{$T.d.StorePurchaseDomain}', '{$T.d.UserGuid}', '{$T.d.Book.Name}', '{$T.d.Document.Name}');">{$T.d.Book.Title}</a></b></i>.</li>
+                            -->
+                            <li>Visit the <a href="https://future.aicpa.org/home" target="_blank">AICPA Store</a> to purchase this online publication. To easily locate this online publication in the store:
+                            <br />
+                            <ul>
+                                <li>Use the links on the left side of the homepage to navigate; or</li>
+                                <li>Perform a search</li>
+                            </ul>
+                            <br />
+                            After you complete the purchase, return to the AICPA Online Professional Library by selecting the My Subscriptions button at the top of the page.
+                            </li>
+                        </ul>
+                {#/if}
+
+                {#if $T.d.ShowPhoneContact}
+                    <div>
+                        {#if $T.d.MissingLibraryName == "GASB"}
+			            <h3>To obtain 
+				            access to this {$T.d.MissingLibraryName} title, you must upgrade your subscription to include the 
+				            {$T.d.MissingLibraryName} Library.<BR><BR>
+				            To upgrade, please call <span class="orange">1-888-777-7077</span> (9am to 6pm ET,Monday-Friday).<BR>
+			            </h3>
+                        {#else}
+                        <h3>To obtain access to the {$T.d.MissingLibraryName}, you must upgrade your subscription.<BR><BR>
+				            To upgrade, please call <span class="orange">1-888-777-7077</span> (9am to 6pm ET,Monday-Friday).<BR>
+			            </h3>
+                        {#/if}
+			            <p style="font-size:10px; text-align:left;">[Please 
+				            Note: You will be charged for a new 1-year subscription and a credit will be 
+				            issued for the unused portion of your current subscription.]</p>
+			            <p style="font-size:10px; text-align:left;">
+				            Return to your <b><a href="#" onclick="doPreviousLocationLink('{$T.d.client.pageType}');">previous location</a></b>.
+			            </p>
+                    </div>
+                {#/if}
+
+    <!-- <img src="images\portal\main-lockBig.gif"> -->
+</div>
+<script type="text/javascript">
+    setArrows(false);
+</script>    
+{#/template MAIN}
+
