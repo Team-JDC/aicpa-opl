@@ -540,7 +540,7 @@ namespace MainUI.WS
         public string GetInitialTreeTocHtml(int id, string type)
         {
             BreadcrumbNode bcNode = GetTocToNode(id, type);
-            string treeViewHtml = convertToTreeViewHtml(bcNode, false, 0, true);
+            string treeViewHtml = convertToTreeViewHtml(bcNode, false);
             HomePageNode node = new HomePageNode();
             node.Domain = CurrentUser.UserSecurity.Domain; 
 
@@ -568,7 +568,7 @@ namespace MainUI.WS
             for (int i = 0; i < root.Children.Count; i++)
             {                
                 BreadcrumbNode childNode = root.Children[i];
-                result.Append(convertToTreeViewHtml(childNode, (i == root.Children.Count - 1) ? true : false, level));                
+                result.Append(convertToTreeViewHtml(childNode, (i == root.Children.Count - 1) ? true : false));                
             }
 
             return result.ToString();
@@ -595,7 +595,7 @@ namespace MainUI.WS
         }
         //EXTRN67~faf-industry~905-360
 
-        private string convertToTreeViewHtml(BreadcrumbNode node, bool isALastChild, int level = 0, bool initial=false)
+        private string convertToTreeViewHtmlNew(BreadcrumbNode node, bool isALastChild, int level = 0, bool initial=false)
         {
             int id = node.SiteNode.Id;
             string type = node.SiteNode.Type;
@@ -674,7 +674,7 @@ namespace MainUI.WS
                 for (int i = 0; i < node.Children.Count; i++)
                 {
                     BreadcrumbNode childNode = node.Children[i];
-                    result.Append(convertToTreeViewHtml(childNode, (i == node.Children.Count - 1) ? true : false, level, initial));
+                    result.Append(convertToTreeViewHtml(childNode, (i == node.Children.Count - 1) ? true : false));
                 }
                 level--;
             }
@@ -707,7 +707,7 @@ namespace MainUI.WS
         }
 
 
-        private string convertToTreeViewHtmlold(BreadcrumbNode node, bool isALastChild)
+        private string convertToTreeViewHtml(BreadcrumbNode node, bool isALastChild)
         {
             int id = node.SiteNode.Id;
             string type = node.SiteNode.Type;
@@ -864,11 +864,11 @@ namespace MainUI.WS
             if(string.IsNullOrEmpty(targetPtr))
             {
                 List<BreadcrumbNode> BreadCrumbNodes = GetFullBreadcrumb(Convert.ToInt32(targetDoc) , routeNodeType);
-                return convertToTreeViewHtml(findBookBreadCrumbNode(BreadCrumbNodes), false, 0);
+                return convertToTreeViewHtml(findBookBreadCrumbNode(BreadCrumbNodes), false);
             } else {
                 SubscriptionSiteNode ssn = ResolveContentLink(targetDoc, targetPtr);
                 List<BreadcrumbNode> BreadCrumbNodes = GetFullBreadcrumb(ssn.Id, ssn.Type);
-                return convertToTreeViewHtml(findBookBreadCrumbNode(BreadCrumbNodes), false, 0);
+                return convertToTreeViewHtml(findBookBreadCrumbNode(BreadCrumbNodes), false);
             }
         }
 
