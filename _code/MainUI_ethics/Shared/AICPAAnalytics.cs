@@ -51,6 +51,7 @@ namespace MainUI.Shared
                         break;
                 }
             }
+            //return "";
             return string.Format(ContentTracking_Book_Mask, doReplace(collection), doReplace(publication), doReplace(document), doReplace(document), "Logged In", "OPL", doReplace(collection), doReplace(publication));
         }
 

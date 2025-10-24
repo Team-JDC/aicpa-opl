@@ -193,8 +193,9 @@
     };
 
     function isIE6OrLess() {
-        var isIE6 = $.browser.msie && /MSIE\s(5\.5|6\.)/.test(navigator.userAgent);
-        return isIE6;
+        //var isIE6 = $.browser.msie && /MSIE\s(5\.5|6\.)/.test(navigator.userAgent);
+        //return isIE6;
+        return false;
     };
     // Fix The Overlay for IE6
     function fixPNG(element) {
