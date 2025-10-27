@@ -1,0 +1,11 @@
+﻿{#template MAIN}
+ <a href="" class="top_level">
+ <span class="icon">
+    <img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/>
+ </span>History<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+        <ul class="submenu">
+            {#foreach $T.d.RecentDocs as Doc}
+                <li><a href="/content/link/{$T.Doc.TargetDoc}/{$T.Doc.TargetPtr}"><span>{$T.Doc.Title}<img src="/elements/img/primary-nav-double-arrow.png" alt="" /></span></a></li>
+            {#/for}
+        </ul>
+{#/template MAIN}

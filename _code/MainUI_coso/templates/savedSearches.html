@@ -1,0 +1,39 @@
+﻿{#template MAIN}
+    <div class="tool-container">
+    <form class="preferences">
+	    <h1>Saved Searches</h1>
+    
+        <div class="padbot15 clear">
+        <div id="nameSearchWindow">
+            <p class="nopad">Rename Search:</p>
+            <input type="text" id="searchNameBox" style="width:250px;" onkeydown="doRenameSearchCheck(event.keyCode); return event.keyCode!=13;" onfocus="$('#searchNameBox').select();"/>
+            <br /><div style="display:hidden;" id="oldName"></div>
+            <a href="#" id="renamesearch" onclick="renameSavedSearch()"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;"/></a>
+            <a href="#" onclick="cancelNameSearch()" ><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style=""/></a>
+        </div>
+    	    <table cellpadding="5" cellspacing="0">
+        	    <tr>
+                    <td width="595" class="borderbot"><label>Search Title</label></td>
+       		    </tr> 
+                <tr><td colspan="2" height="10"></td></tr>
+                {#foreach $T.d.SavedUserSearches as SavedSearch}
+                <tr>
+                    <td valign="top" class="savedsearch">
+                        <div style="position:relative;">
+                        <label style="padding-top:5px;"><a href="#" onclick="doAdvancedNavigationalSearch('', '{$T.SavedSearch.Keywords}', '{$T.SavedSearch.SearchMode}', '{$T.SavedSearch.MaxHits}', '{$T.SavedSearch.PageSize}', '{$T.SavedSearch.PageOffset}', '{$T.SavedSearch.ShowExcerpts}', '{$T.SavedSearch.FilterUnsubscribed}', 0)"><b>{$T.SavedSearch.SearchName}</b></a></label>
+                        <div class="right">
+                            <a href="#" id="renamesavedsearch" onclick="renameSavedSearchPrompt('{$T.SavedSearch.SearchName}')"><img src="images/btn-rename.gif" class="submit" alt="Rename Search" border="0" style="margin-left:5px;"/></a>
+                            <a href="#" id="deletesavedsearch" onclick="deleteSavedSearch('{$T.SavedSearch.SearchName}')"><img src="images/btn-delete.gif" class="submit" alt="Delete Search" border="0" style="margin-left:5px;"/></a>
+                        </div>
+                        </div>
+                    </td>
+       		    </tr> 
+                {#/for}
+            </table>
+        </div>
+    </form>
+    </div>
+    <div class="under-note">
+        <p style="padding-top:10px;"><b>Note:</b> To return to your document, click the document tab below and select your document.</p>
+    </div>
+{#/template MAIN}

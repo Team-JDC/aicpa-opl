@@ -1,0 +1,66 @@
+﻿{#template MAIN}
+<div id="main" class="lp clearfix">
+    <div id="leftcol" class="col-sm-12">
+        <div class="leftcol_inner">
+            <div class="leftcol_header">
+                <h1>FASB ASC - Join Sections</h1>
+            </div>
+            <div class="leftcol_content">
+                <p>Join all the selected sections under a given topic</p>
+                <div class="formWrapper">
+                    <div class="col-sm-6">
+                        <h2 class="clearfix">
+                            Required
+                        </h2>
+                        <label class="inline top20">Type:</label>
+                            <select id="topic" onchange="doFafJoinSectionsChange($('#topic').val(), $('input[name=section-options]:checked').val() , ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false);">
+                                <option></option>
+                                {#if $T.d.TopicGroups != null}
+                                {#foreach $T.d.TopicGroups as TopicGroup}
+                                    <option value="{$T.TopicGroup.Topics[0].TopicNum}">{$T.TopicGroup.Name}</option>
+                                    {#foreach $T.TopicGroup.Topics as Topic}
+                                        {#if $T.d.SelectedTopicNum == $T.Topic.TopicNum}
+                                        <option value="{$T.Topic.TopicNum}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                        {#else}
+                                        <option value="{$T.Topic.TopicNum}">&nbsp;&nbsp;&nbsp;&nbsp;{$T.Topic.TopicNum} - {$T.Topic.TopicTitle}</option>
+                                        {#/if}
+                                    {#/for}
+                                {#/for}
+                                {#/if}
+                            </select>
+                        <br>
+                        <label class="inline">Section:</label>
+                         <select id="section">
+                            <option></option>
+                            {#if $T.d.Sections != null}
+                            {#foreach $T.d.Sections as Section}
+                                <option value="{$T.Section.SectionNum}">{$T.Section.SectionNum} - {$T.Section.SectionTitle}</option>
+                            {#/for}
+                            {#/if}
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2 class="clearfix">
+                            Options
+                        </h2>
+                        <input type="checkbox" id="includeIntersectionSubtopics">
+                        <label for="include" class=" top20">Include Intersection Subtopics</label>
+                        <br>
+                        <input type="radio" id="all" name="section-options" checked>          
+                        <label class="smaller" for="all">ALL</label>
+                        <input type="radio" id="fasb" name="section-options">
+                        <label class="smaller" for="fasb">FASB</label>
+                        <input type="radio" id="sec" name="section-options">
+                        <label class="smaller" for="sec">SEC</label>
+                                        
+                    </div>
+                    <div class="clear"></div>
+                    <button class="btn top20" onclick="doJoinSectionsQuery($('#topic').val(), $('#section').val(), $('input[name=section-options]:checked').val(), ($('#includeIntersectionSubtopics:checked').val() != null) ? true : false)">Get Sections</button>
+                </div>
+                <div id="joinSectionResults"></div> 
+            </div><!-- .leftcol_content -->
+        </div><!-- .leftcol_inner -->
+    </div>
+                    
+</div><!-- #main -->
+{#/template MAIN}

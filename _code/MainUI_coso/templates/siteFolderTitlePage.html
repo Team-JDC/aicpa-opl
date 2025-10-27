@@ -1,0 +1,27 @@
+﻿{#template MAIN}
+<div class="titlepage-bg">
+    <div class="top25 left20 float">
+        {#if $T.d.ImageUrl == null || $T.d.ImageUrl == ""}
+        <!--<img src="images/ajax-loader.gif" alt="{$T.d.Title}" />-->
+        {#else}
+        <img src="{$T.d.ImageUrl}" alt="{$T.d.Title}" />
+        {#/if}
+    </div>
+    <div class="left20 float" style="max-width:365px;">
+        <h1>{$T.d.Title}</h1>
+        <p class="titlepage-desc2">{$T.d.Description}</p>
+        <div style="margin-top:15px;">
+            {#foreach $T.d.Children as BreadcrumbNode}
+                <div class="featured float">
+                    <a href="#" onclick="doSiteFolderTitlePageLink({$T.BreadcrumbNode.SiteNode.Id},'{$T.BreadcrumbNode.SiteNode.Type}');">
+                        <img src="images/icon_{$T.BreadcrumbNode.SiteNode.Type}.gif" alt="{$T.BreadcrumbNode.SiteNode.Type}" title="{$T.BreadcrumbNode.SiteNode.Type}" border="0"/>
+                        {$T.BreadcrumbNode.SiteNode.Title}
+                        <span class="right-link">&raquo;</span>
+                    </a>
+                </div>
+            {#/for}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{#/template MAIN}

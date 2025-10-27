@@ -1,0 +1,82 @@
+﻿{#template MAIN}
+<div id="main" class="lp clearfix">
+    <div id="leftcol" class="col-sm-12">
+        <div class="leftcol_inner">
+            <div class="leftcol_header">
+                <h1>FASB ASC - Cross References</h1>
+            </div>
+            <div class="leftcol_content">
+                <p>Find the location of legacy content in the Codification</p>
+                <div class="formWrapper">
+                    <div class="col-sm-5">
+                        <h2 class="clearfix">
+                            By Standard
+                        </h2>
+                        <label class="inline top20">Type:</label>
+                        <select id="standard" onchange="getCrossReferenceLink($('#standard').val(), '', '');">
+                            <option value="">Select Value</option>
+                            {#foreach $T.d.Standards as string}                       
+                                {#if $T.d.SelectedStandard == $T.string}                       
+                                    <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                    {#else}
+                                    <option value="{$T.string}">{$T.string}</option>
+                                {#/if}
+                            {#/for}
+                        </select>
+                        <br>
+                        <label class="inline">Number:</label>
+                        <select id="number">
+                            {#foreach $T.d.StandardNumbers as string}                       
+                                <option value="{$T.string}">{$T.string}</option>
+                            {#/for}
+                        </select>
+                    </div>
+                    <div class="col-sm-2 centered">
+                        <p class="top20">OR</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <h2 class="clearfix">
+                            By Codification
+                        </h2>
+                        <label class="inline top20">Topic:</label>
+                        <select id="topic" onchange="getCrossReferenceLink('',$('#topic').val(), '');">
+                        <option value="">Select Value</option>
+                            {#foreach $T.d.CrossReferenceTopics as string}
+                                {#if $T.d.SelectedTopic == $T.string}                       
+                                    <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                {#else}
+                                    <option value="{$T.string}">{$T.string}</option>
+                                {#/if}
+                            {#/for}
+                        </select>
+                        <br>
+                        <label class="inline">Subtopic:</label>
+                        <select id="subtopic"  onchange="getCrossReferenceLink('',$('#topic').val(), $('#subtopic').val());">
+                            {#foreach $T.d.SubTopics as string}                       
+                                {#if $T.d.SelectedSubTopic == $T.string}                       
+                                    <option value="{$T.string}" selected=selected>{$T.string}</option>
+                                {#else}
+                                    <option value="{$T.string}">{$T.string}</option>
+                                {#/if}
+                            {#/for}
+                        </select>
+                        <br>
+                        <label class="inline">Section:</label>
+                        <select id="section">                        
+                            {#foreach $T.d.Sections as string}                       
+                                <option value="{$T.string}">{$T.string}</option>
+                            {#/for}
+                        </select>
+                    </div>
+                                    
+                                    
+                    <button class="btn"  onclick="getCrossReferenceResults(IsNull($('#standard').val()), IsNull($('#number').val()), IsNull($('#topic').val()), IsNull($('#subtopic').val()), IsNull($('#section').val()));">Go To</button>
+                </div>
+                <div id="resultsTable"></div>
+                               
+            </div><!-- .leftcol_content -->
+        </div><!-- .leftcol_inner -->
+    </div>
+                    
+</div>
+{#/template MAIN}

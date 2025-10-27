@@ -150,7 +150,8 @@ function doSearchLink(id, type, useNewScreen) {
     }
 
     // shows the next document
-    function gotoNextDocument() {
+function gotoNextDocument() {
+    console.log("handlers goto next document");
         /* WITHOUT BACKUP CONTAINER
         $('#document-container').animate({ marginLeft: $('#document-container').width() * -1 - 100 }, 1500, "swing", function () {
             //open in new window = false

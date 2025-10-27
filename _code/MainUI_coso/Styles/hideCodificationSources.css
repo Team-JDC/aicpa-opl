@@ -1,0 +1,21 @@
+/* sburton: This stylesheet will hide the codification sources. */
+
+.sfragmentlarge
+{
+	display: none;
+	color: #336699;
+	font-size: 1.4em;
+	margin-left: .1em;
+	margin-right: .2em;
+	font-weight: bold;
+}
+.sfragmentsmall
+{
+	display: none;
+	color: #981b1e;
+}
+
+.sfragment_brackets_small
+{
+	display: none;
+}

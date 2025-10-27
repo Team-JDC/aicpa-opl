@@ -1,0 +1,83 @@
+﻿{#template MAIN}
+<div id="main" class="lp clearfix">
+    <div id="leftcol" class="col-sm-12">
+        <div class="leftcol_inner">
+            <div class="leftcol_header">
+                <h1>User Preferences</h1>
+            </div>
+            <div class="leftcol_content">
+                <h2 class="clearfix">
+                    Fonts
+                    <aside>
+                        {#if $T.d.UserPreference[0] == null}
+                            <a class="btn" onclick="addFontSize()">Save</a>
+                            {#else}
+                            <a class="btn" onclick="saveFontSize()">Save</a>
+                        {#/if}
+                    </aside>
+                </h2>
+                <ul class="bookmarks preferences">
+                    <li>
+                        <label class="inline">Font size:</label>
+     <!--                       <input type="radio" id="Radio8" name="font-size" value="1"/>
+                            <label for="Radio8">Small</label>
+                            <input type="radio" id="Radio9" name="font-size" value="2"/>
+                            <label for="Radio9">Medium</label>
+                            <input type="radio" id="Radio10" name="font-size" value="3"/>
+                            <label for="Radio10">Large</label>
+                            <input type="radio" id="Radio11" name="font-size" value="4"/>
+                            <label for="Radio11">X-Large</label>-->
+                        {#if $T.d.UserPreference[0] != null}
+                            {#if $T.d.UserPreference[0].Value != 1}
+                                <input type="radio" id="small" name="font-size" value="1"/>
+                                <label for="small" class="small">Small</label>
+                                {#else}
+                                <input type="radio" id="Radio1" name="font-size" value="1" checked/>
+                                <label for="Radio1" class="small">Small</label>
+                            {#/if}
+                            {#if $T.d.UserPreference[0].Value != 2}
+                                <input type="radio" id="Radio2" name="font-size" value="2"/>
+                                <label for="Radio2" class="medium">Medium</label>
+                                {#else}
+                                <input type="radio" id="Radio3" name="font-size" value="2" checked/>
+                                <label for="Radio3" class="medium">Medium</label>
+                            {#/if}
+                            {#if $T.d.UserPreference[0].Value != 3}
+                                <input type="radio" id="Radio4" name="font-size" value="3"/>
+                                <label for="Radio4" class="large">Large</label>
+                                {#else}
+                                <input type="radio" id="Radio5" name="font-size" value="3" checked/>
+                                <label for="Radio5" class="large">Large</label>
+                            {#/if}  
+                            {#if $T.d.UserPreference[0].Value != 4}
+                                <input type="radio" id="Radio6" name="font-size" value="4"/>
+                                <label for="Radio6" class="x-large">X-Large</label>
+                                {#else}
+                                <input type="radio" id="Radio7" name="font-size" value="4" checked/>
+                                <label for="Radio7" class="x-large">X-Large</label>
+                            {#/if}
+                        {#else}
+                            <input type="radio" id="Radio8" name="font-size" value="1"/>
+                            <label for="Radio8" class="small">Small</label>
+                            <input type="radio" id="Radio9" name="font-size" value="2" checked/>
+                            <label for="Radio9" class="medium">Medium</label>
+                            <input type="radio" id="Radio10" name="font-size" value="3"/>
+                            <label for="Radio10" class="large">Large</label>
+                            <input type="radio" id="Radio11" name="font-size" value="4"/>
+                            <label for="Radio11" class="x-large">X-Large</label>
+                        {#/if}
+                    </li>  
+                                    
+                </ul>
+
+                <div id="fontSaved" class="fontPopup">
+                    Font Size Saved
+                </div>
+                                
+                               
+            </div><!-- .leftcol_content -->
+        </div><!-- .leftcol_inner -->
+    </div>
+                    
+</div><!-- #main -->
+{#/template MAIN}

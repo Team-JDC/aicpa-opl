@@ -1,0 +1,10 @@
+﻿{#template MAIN}
+<!--<div onload="doNextGenerationLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'CSC');">The eXacct application is loading in another window...</div>-->
+<div style="text-align:center;">
+<img src="/images/title_bppd.gif" />
+<div style="font-size:large"><b>U.S. GAAP Financial Statements-Best Practices in Presentation and Disclosure is loading in a new window. Please minimize this window to access your subscription.</b></div>
+</div>
+<script>    doNextGenerationLink('{$T.d.UserGuid}', '{$T.d.Domain}', 'CSC', '{$T.d.NextGenerationPath}');
+    removeUnloadEvent();</script>
+{#/template MAIN}
+

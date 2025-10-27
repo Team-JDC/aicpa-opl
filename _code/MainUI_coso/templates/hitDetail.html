@@ -1,0 +1,19 @@
+﻿{#template MAIN}
+<div class="hit-details-wrapper">
+	<div class="hit-details-header">
+    	<p>Hit Details:</p>
+    </div>
+    {#if $T.d.HitResultList.length > 0}
+	    <ul class="hit-details-list">
+            {#foreach $T.d.HitResultList as HitResult}
+                <li><a href="#" onclick="doHitLink('{$T.HitResult.Id}','{$T.HitResult.Type}', false, '{$T.HitResult.TargetPtr}')">{$T.HitResult.Label}<span>({$T.HitResult.Count})</span></a></li>
+            {#/for}
+        </ul>
+    {#else}
+        <ul class="hit-details-list">
+            <li>None</li>
+        </ul>
+    {#/if}
+
+</div>
+{#/template MAIN}

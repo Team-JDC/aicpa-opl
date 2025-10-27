@@ -1,0 +1,33 @@
+﻿{#template MAIN}
+<div class="clear" style="margin:0 0 0 20px; padding-top:25px;">
+    <h4>Document Type:</h4>
+    <select id="documentType" class="quickfind" onchange="doQuickFindDropDownOnChange('documentType', $('#documentType').val());">
+        <option value=""></option>
+    {#foreach $T.d.DocumentTypeList as DocumentType}
+        <option value="{$T.DocumentType.Id}">{$T.DocumentType.Title}</option>
+    {#/for}
+    </select>
+</div>
+<div class="clear" style="margin:0 0 0 20px; padding-top:25px;"><h4>OR</h4></div>
+<div class="clear" style="margin:0 0 0 20px; padding-top:25px;">
+    <h4>Subject Matter:</h4>
+    <select id="subjectMatter" class="quickfind" onchange="doQuickFindDropDownOnChange('subjectMatter', $('#subjectMatter').val());">
+        <option value=""></option>
+    {#foreach $T.d.SubjectMatterList as SubjectMatter}
+        {#if $T.SubjectMatter.Children && $T.SubjectMatter.Children.length > 0}
+        <optgroup label="{$T.SubjectMatter.Title}">
+        {#else}
+        <option value="{$T.SubjectMatter.Id}">{$T.SubjectMatter.Title}</option>
+        {#/if}
+
+            {#foreach $T.SubjectMatter.Children as SMChild}
+            <option value="{$T.SMChild.Id}">{$T.SMChild.Title}</option>
+            {#/for}
+
+        {#if $T.SubjectMatter.Children && $T.SubjectMatter.Children.length > 0}
+        </optgroup>
+        {#/if}
+    {#/for}
+    </select>
+</div>
+{#/template MAIN}

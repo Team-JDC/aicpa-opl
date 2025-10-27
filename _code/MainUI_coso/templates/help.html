@@ -1,0 +1,865 @@
+﻿{#template MAIN}
+
+<div class="tool-container2" id="top" name="top">
+            	<h1 style="padding:0; margin:0;">Help Topics</h1>
+                <p>This section provides information on using the various features and functions of the AICPA Online Professional Library.</p>
+                <p><a href="videoLibrary.html" target="_blank" >View introductory and help videos here.</a></p>
+
+
+{#if $T.d.ShowContactInfo}
+                <p>If you need additional assistance or would like to provide us with feedback, please send us an email
+                at <a href="mailto:service@aicpa.org">service@aicpa.org</a>.</p>
+{#/if}
+                <div style="width:47%; float:left;">
+                    <h3 class="borderbot"><a href="#NavigatingSite">Navigating the Site</a></h3>
+                    <ul class="tabs4">
+                        <li><a href="#HomeHelp">Homepage</a>
+                            <ul>
+                                <li><a href="#HomeTitlesSection">Home Titles Section</a></li>
+                                <li><a href="#AICPAPublicationsResources">AICPA Publications Resources</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#BreadcrumbHelp">Breadcrumb</a></li>
+                        <li><a href="#Toolbar">Toolbar</a></li>
+                        <li><a href="#TOC">Table of Contents</a></li>
+                        <li><a href="#SearchSection">Search</a></li>
+                        <li><a href="#Documents">Opening a New Document</a></li>
+                        <li><a href="#WhatsNew">What's New in an Update</a></li>
+                        <li><a href="#QuickFind">Quick Find Tool</a></li>
+                        <li><a href="#BackButton">Back Button</a>
+                            <ul>
+                                <li><a href="#BrowserBackButton">Browser Back Button</a></li>
+                                <li><a href="#ApplicationBackButton">Application "Back" Button</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#NextPrevious">"Next" and "Previous" Buttons</a></li>
+                        <li><a href="#Links">Links</a></li>
+                        <li><a href="#Bookmarks">Bookmarks</a></li>
+                    </ul>
+                
+                    <h3 class="borderbot"><a href="#WorkingDocument">Working in a Document</a></h3>
+                    <ul class="tabs4">
+                        <li><a href="#MultipleDocs">Multiple Documents</a></li>
+                        <li><a href="#TablesImages">Tables and Images</a></li>
+                        <li><a href="#Downloading">Downloading a File</a></li>
+                        <li><a href="#CopyPaste">Copying and Pasting Text</a></li>
+                        <li><a href="#Printing">Printing</a></li>
+                        <li><a href="#ASCTools">FASB ASC Tools</a></li>
+                        <li><a href="#Notes">Notes</a></li>
+                    </ul>
+                </div>
+                <div style="width:47%; float:left; margin-left:20px;">
+                    <h3 class="borderbot"><a href="#SearchHelp">Search</a></h3>
+                    <ul class="tabs4">
+                        <li><a href="#BasicSearchHelp">Basic Search</a></li>
+                        <li><a href="#AdvancedSearchHelp">Advanced Search</a></li>
+                        <li><a href="#Boolean">Boolean Operator Searches</a></li>
+                        <li><a href="#SearchResults">Viewing and Refining Your Search Results</a></li>
+                        <li><a href="#NavigatingSearch">Navigating Search Results Within Documents</a></li>
+                        <li><a href="#ModifyingSearch">Modifying and Saving Your Search</a></li>
+                    </ul>
+                    <h3 class="borderbot"><a href="#ToolbarHelp">Toolbar</a></h3>
+                    <ul class="tabs4">
+                        <li><a href="#HomeToolsHelp">Home</a></li>
+                        <li><a href="#MyLibraryHelp">My Library</a></li>
+	                    <li><a href="#DocumentsHelp">Documents</a></li>
+	                    <li><a href="#ToolsHelp">Tools</a></li>
+                        <li><a href="#HelpToolsHelp">Help</a></li>
+                    </ul>
+                    <h3 style="padding:0;"><a href="#SessionTimeout">Session Timeout</a></h3>
+					<h3 style="padding:0;"><a href="#ViewingVideo">Viewing a Video</a></h3>
+                    <h3 style="padding:0;"><a href="#ScreenResolution">Recommended Screen Resolution</a></h3>
+                    <h3 style="padding:0;"><a href="#LoggingOut">Logging Out</a></h3>
+                    <h3 style="padding:0;"><a href="#ProvidingFeedback">Providing Feedback</a></h3>
+    {#if $T.d.ShowContactInfo}
+	                <h3 style="padding:0;"><a href="#CustomerService" class="anchorLink">Customer Service</a></h3>
+    {#/if}
+                </div>
+                <div class="clear"></div>
+                
+</div>
+<div class="tool-container2">
+<div id="NavigatingSite" class="tab_content4">
+    <h3 class="borderbot">Navigating the Site<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>There are many ways to navigate the AICPA Online Professional Library:</p>
+    <ul>
+        <li><a href="#HomeHelp">Homepage links</a></li> 
+        <li><a href="#BreadcrumbHelp">The combined Breadcrumb/table of contents</a> that is always at the top of the screen</li>
+        <li><a href="#TOC">A separate table of contents</a> available from the “Resources” section of the homepage as well as the “Tools” menu of the toolbar</li>
+        <li><a href="#SearchSection">Search</a></li> 
+        <li><a href="#Documents">New document options</a></li>
+        <li><a href="#WhatsNew">What’s New feature</a></li> 
+        <li><a href="#QuickFind">Quick Find tool</a></li>
+        <li><a href="#BackButton">Back button</a></li>
+        <li><a href="#NextPrevious">Next and previous buttons</a> within a document</li>
+        <li><a href="#Links">Links</a></li>
+        <li><a href="#Bookmarks">Bookmarks</a></li>
+    </ul>
+    <p>The following sections discuss the navigation features.</p>
+</div>
+</div>
+<div class="tool-container2">
+<div id="HomeHelp" class="tab_content4">
+    <h3 class="borderbot">Homepage<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The homepage is your first access to the information contained in your AICPA Online Professional Library subscription. You may return to the homepage at any time by clicking on the home icon <img src="images/IconHome3.gif" alt="Home icon" /> on the Breadcrumb (at the top of the site) or the toolbar (at the bottom of the site).</p>
+    <p>Some features of the homepage include:</p>
+    <ul>
+        <li>
+            <b id="HomeTitlesSection">Home Titles Section</b>
+            <br />
+            <img src="images/help/hometitles.gif" alt="Home Titles" class="helpSection" />
+            <p>This section is your initial entry to the AICPA Online Professional Library. It displays all of the titles that you subscribe to.</p>
+            <p>Start by clicking on the “+” button of any of the main sections. From there, follow the links to subsequent levels to access the specific content you are looking for.</p>
+            <p>As you navigate deeper, you will notice that the Breadcrumb at the top of the page expands to include the higher-level pages you’ve navigated through. To find the specific table of contents for a given publication, click anywhere in the appropriate Breadcrumb node to pull down the detail. See more about the <a href="#BreadcrumbHelp">Breadcrumb by clicking here</a>.</p>
+        </li>
+        <div class="clear"></div>
+        <li class="bordertopdot">
+            <b id="AICPAPublicationsResources">AICPA Publications Resources</b>
+            <br />
+            <img src="images/help/homepagetools.jpg" alt="Homepage Resources" class="helpSection" />
+            <p>This list provides quick access to resources intended to help you find specific content:</p>
+            <ul>
+                <li >
+                    <b><a href="#WhatsNew">What's New</a></b>
+                    <br />
+                    <p>This link takes you to the What's New feature. This feature provides a summary of the latest changes to your AICPA Online Professional Library subscription in an easy-to-access list organized by product.</p>
+                </li>
+                <li >
+                    <b><a href="#TOC">Table of Contents</a></b>
+                    <br />
+                    <p>This link takes you to the table of contents.</p>
+                </li>
+                <li >
+                    <b><a href="#AdvancedSearchHelp">Advanced Search</a></b>
+                    <br />
+                    <p>This link will take you to the Advanced Search form.</p>
+                </li>
+                <li>
+                    <b><a href="#QuickFind">Quick Find</a></b>
+                    <br />
+                    <p>This link will take you to the Quick Find tool.</p>
+                </li>
+                <li>
+                    <b><a href="#ASCTools">FASB ASC Go To</a></b>
+                    <br />
+                    <p>This link takes you to the Go To function for the FASB Accounting Standards Codification<sup>&trade;</sup> content.</p>
+                </li>
+                <li>
+                    <b><a href="#ASCTools">FASB ASC Cross Reference Tool</a></b>
+                    <br />
+                    <p>This link takes you to the Cross Reference tool for the FASB Accounting Standards Codification<sup>&trade;</sup> content.</p>
+                </li>
+                <li >
+                    <b><a href="#HelpToolsHelp">Help</a></b>
+                    <br />
+                    <p>This link will take you to this help page.</p>
+                </li>
+            </ul> 
+        </li>
+        <div class="clear"></div>
+    </ul>
+	
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="BreadcrumbHelp" class="tab_content4">
+    <h3 class="borderbot">Breadcrumb <span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/Breadcrumb.jpg" alt="Breadcrumb" class="helpSection" />
+    <p>The Breadcrumb function is located at the top of the site and is the primary navigation feature of AICPA Online Professional Library. It serves as both a Breadcrumb and a table of contents. (A separate table of contents is also available. For additional details about the separate table of contents, <a href="#TOC">click here</a>.) The Breadcrumb will display (1) your current location or the document you are currently viewing, (2) the preceding documents in the hierarchy, and (3) the location(s) or document(s) that you can go to next.</p>
+    <p>As you navigate deeper into the content, a Breadcrumb link is added for each level that you move through. As additional levels are added, the preceding links will compress and only their icons will display. If you mouse over one of these compressed Breadcrumb links, it will expand. If you move the mouse off of the dropdown menu, it will compress again. </p>
+    <p>Each individual Breadcrumb link has an orange down arrow <img src="images/arrow-down.gif" alt="dropdown"  />. Clicking on this arrow (or anywhere in the Breadcrumb node) will open a dropdown menu that consists of all of the next level documents within the hierarchy.</p>
+    <p>The Home button <img src="images/IconHome3.gif" alt="dropdown"  /> will always appear at the far left of the Breadcrumb. Clicking on the button will take you to the homepage, and clicking on the orange down arrow <img src="images/arrow-down.gif" alt="dropdown"  /> next to icon will give you a dropdown menu of the main sections on the homepage.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Toolbar" class="tab_content4">
+    <h3 class="borderbot">Toolbar<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The toolbar is at the bottom of the site and consists of a horizontal list of tabs corresponding to sections of the site and an area beneath the list that shows icons related to those sections. Refer to the <a href="#ToolbarHelp">“Toolbar” section</a> for more information. </p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="TOC" class="tab_content4">
+    <h3 class="borderbot">Table of Contents<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The table of contents is available from both the “Resources” section of the homepage and the “Tools” tab on the toolbar.</p>
+    <img src="images/help/from-word-toc.jpg" alt="Table of Contents" class="helpSection" />
+    <p>When you first open the table of contents, it shows the top level of publications. Click the “+” button next to the headings in the table of contents to expand the list and reveal subheadings and the “–” button next to the headings in the table of contents to collapse the list and hide subheadings. You may view a document by clicking the document name in the table of contents.</p>
+    <p>To synchronize the table of contents with the current document you have open, click on the “SYNC TOC” button at the top of the table of contents.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="SearchSection" class="tab_content4">
+    <h3 class="borderbot">Search<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>Search is an excellent way to find the content you need. The AICPA Online Professional Library includes basic and advanced search options, the ability to refine your searches in several different ways, and a saved search function. Refer to the <a href="#SearchHelp">“Search” section</a> for more information. </p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Documents" class="tab_content4">
+    <h3 class="borderbot">Opening a New Document<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>To open a new document, simply click “Documents” tab in the toolbar. Buttons corresponding to documents you already have open will appear along with a “+” button. Click the “+” button. You will then have four options to start a new document (see the image below):</p>
+    <ul>
+        <li>Starting at the same location as your current document</li>
+        <li>Performing a new search</li>
+        <li>Using the Quick Find tool</li>
+        <li>Starting at the homepage</li>
+    </ul>
+    <div class="clear"></div>
+    <img src="images/help/newDocument.jpg" alt="Open new document" class="helpSection" />
+    <div class="clear"></div>
+    <p>In addition, clicking on any link in the Table of Contents (accessible from the homepage and the toolbar) will open a new document as will clicking the “new document” icon <img src="images/icon-open-new-doc.gif" alt="open new document" /> to the right of any link.</p> 
+    <p>Up to 10 documents may be open at one time. If you attempt to open more than 10 documents, you will be prompted to close some of the documents you already have open.</p>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="WhatsNew" class="tab_content4">
+    <h3 class="borderbot">What's New in an Update<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>A general Online Professional Library What’s New gives a high-level view of everything that is new across all subscriptions.</p>
+    <p>In addition, each series within your subscription includes a more detailed What’s New that enables you to pinpoint exactly what has changed in an update and link directly to the updated guidance. The What’s New can serve as a starting point to find the most current guidance in your subscription.</p>
+    <p>The What’s New documents are included in a convenient list available from the Resources section of the homepage. Each What’s New is also included in the homepage pull-down list for each series.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="QuickFind" class="tab_content4">
+    <h3 class="borderbot">Quick Find<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/quickfind.jpg" alt="Quick Find" class="helpSection" />
+    <p>The quick find feature enables you to quickly locate a document in the AICPA Online Professional Library by clicking on the name/number of the original pronouncement. For example, if you are looking for SAS No. 115, you would select auditing standards from the document type, scroll down to SAS No. 115 in the list of standards, and follow the link. The link will take you directly to AU section 325 in AICPA Professional Standards.</p>
+    <p>Only documents included in your subscription will display in the Quick Find feature.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="BackButton" class="tab_content4">
+    <h3 class="borderbot">Back Button<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <b id="BrowserBackButton">Browser Back Button</b><br />
+    <p>Using your browser’s back button in AICPA Online Professional Library could cause you to logout. You will receive the following message when using your browser’s back button:</p>
+    <img src="images/help/warning.gif" alt="Back warning" class="helpSection" />
+    
+    <b id="ApplicationBackButton">Application Back Button</b><br />
+    <img src="images/btn-doc2.gif" alt="Back Button" class="helpSection" />
+    <p>Use the “Back” button within the application to go back to your previous location. The ”Back” button is located at the top far right side of your screen.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="NextPrevious" class="tab_content4">
+    <h3 class="borderbot">"Next" and "Previous" Buttons<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/btn-next.gif" alt="Back Button" class="helpSection" />
+    <p>To move to the next screen in a document, click on the “Next” button on the right side of your screen. No “Next” button will display if you have reached the end of a document.</p>
+    <div class="clear"></div>
+    <img src="images/btn-back.gif" alt="Back Button" class="helpSection" />
+    <p>Once within a document, clicking this button will take you to the previous screen. The “Previous” button is located on the left side of your document screen. No “Previous” button will display if you are at the beginning of a document.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Links" class="tab_content4">
+    <h3 class="borderbot">Links<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>For most links within the AICPA Online Professional Library, you have the option of opening a link in the default document or opening it in a new document. To open the link in a new document, click on the icon <img src="images/icon-open-new-doc.gif" alt="open document" /> next to the link text.</p> 
+    <p>Links from a landing page or to an external website will automatically open in a new document.</p> 
+    <p>Up to 10 documents may be open at one time. If you attempt to open more than 10 documents, you will be prompted to close some of the documents you already have open.</p>
+    <div class="clear"></div>
+</div>
+</div>
+<div class="tool-container2">
+<div id="Bookmarks" class="tab_content4">
+    <h3 class="borderbot">Bookmarks<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>When you are within a document, you will see the Add Bookmark button in the top right of the document area. Clicking that button will add a bookmark to that section. When you’ve added a bookmark, you will notice that the button changes from “Add Bookmark” to “Delete Bookmark.”</p> 
+    <img src="images/help/bookmark-toolbar.png" alt="Add Bookmark" class="helpSection" width="600px" />
+    <div class="clear"></div>
+    <p>To access your bookmarks, click the My Bookmarks button in the Tools section of the toolbar.</p>
+    <img src="images/help/bookmarks.png" alt="Bookmark List" class="helpSection" width="600px" />
+    <p>Here, you can delete bookmarks or go to the bookmarked section. Click on the link or the new document icon <img src="images/icon-open-new-doc.gif" alt="open new document" /> to go to your bookmarked content.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="WorkingDocument" class="tab_content4">
+    <h3 class="borderbot">Working in a Document<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>To work in a document, open the document using any of the navigational features shown in the “Navigating the Site” section above. Some features that may be useful when working in a document include the following:</p> 
+    <ul>
+        <li><a href="#MultipleDocs">Multiple Documents</a></li>
+        <li><a href="#TablesImages">Tables and Images</a></li>
+        <li><a href="#Downloading">Downloading a File</a></li>
+        <li><a href="#CopyPaste">Copying and Pasting Text</a></li>
+        <li><a href="#Printing">Printing</a></li>
+        <li><a href="#ASCTools">FASB ASC Tools</a></li>
+        <li><a href="#Notes">Adding and Editing Notes</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="MultipleDocs" class="tab_content4">
+    <h3 class="borderbot">Multiple Documents<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/toolbarDocuments.png" alt="Toolbar Home" class="helpSection" width="400px" />
+    <p>The documents tab in the toolbar shows the current documents you have open. You may have up to 10 documents open at one time. Each document is represented by a tab labeled with the first few words of the title of the document. You may switch back and forth between documents by clicking the desired tab. You may also close any of the open documents by clicking the "x" button located on the right side of each document tab.</p> 
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="TablesImages" class="tab_content4">
+    <h3 class="borderbot">Tables and Images<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="resources/table-minus.gif" class="helpSection" />
+    <p>There are many tables and images included in the AICPA Online Professional Library. This icon appears at the top left of each table or image. If you wish to minimize the table for ease of use, click that icon. Click again to restore the table or image to full size.</p> 
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Downloading" class="tab_content4">
+    <h3 class="borderbot">Downloading a File<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/contentTypes/ct_1.gif" alt="download icon" class="helpSection" />
+    <img src="images/contentTypes/ct_2.gif" alt="download icon" class="helpSection" />
+    <img src="images/contentTypes/ct_16.gif" alt="download icon" class="helpSection" />
+    <p>Some tools within AICPA Online Professional Library are downloadable. This gives you the ability to modify the files for your needs. These downloads are available in the Checklists and Illustrative Financial Statements, certain sections of Practice Aids, exhibits of the Management of an Accounting Practice Handbook, and the Accountant’s Business Manual. A “Download” button will display on the toolbar when this option is available.</p> 
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="CopyPaste" class="tab_content4">
+    <h3 class="borderbot">Copying and Pasting Text<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>As you view content in the AICPA Online Professional Library, you may find information that would be useful to include in a report or documentation. To save a selection of text, use your browser functions to select the section of content, copy it, and paste it into a new document.</p> 
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Printing" class="tab_content4">
+    <h3 class="borderbot">Printing<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>You have two options for printing a document. You can click the “Print” button at the top right of your document screen or click the print icon in the “Tools” section of the toolbar.</p> 
+    <p>Both of those options will bring up a preview screen:</p>
+    <img src="images/help/print.png" alt="Print" class="helpSection" width="600" /> 
+    <p>To print the current section you are viewing, click the “Print” button. To create a PDF instead of printing, select the “print PDF” option.</p>
+    <p>When using the FASB Accounting Standards Codification™, the “Show Codification Sources” option will cause sources to be displayed in the printed document. The “Show Codification Sources” option is not available when printing a “joined” document.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="ASCTools" class="tab_content4">
+    <h3 class="borderbot">FASB ASC Tools<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>AICPA Online Professional Library has several tools that are only available when working in FASB Accounting Standards Codification<sup>&trade;</sup>. These are found within the “Tools” tab of the toolbar when you have the FASB ASC content open.</p>     
+            <img src="images/tools-f2.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>Go to</b><br />
+            This tab  provides the ability to go directly to a topic, subtopic, or section.</p>
+	        <div class="clear"></div>
+            <img src="images/tools-f3.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>What Links Here</b><br />
+            This tab  provides the ability to see all FASB ASC content that links to a given paragraph in the current document.</p>
+	        <div class="clear"></div>
+            <img src="images/tools-f4.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>Archive</b><br />
+            This tab will show the archived versions of the current document.</p>
+	        <div class="clear"></div>
+            <img src="images/tools-f5.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>Cross Reference</b><br />
+            This tab presents a cross reference report that identifies where legacy material is now located.</p>
+	        <div class="clear"></div>
+            <img src="images/tools-f7.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>Source</b><br />
+            This tab causes the source to display in the document. Once selected during a session, sources will continue to display until the feature is turned off. The button will be highlighted when the sources feature is turned on.
+            Sources will not display when sections are joined. If you do not have a FASB ASC document open, you can still use the Go To and Cross-Reference tools within both the “Tools” tab of the toolbar and the “Resources” section of the homepage.</p>
+            <div class="clear"></div>
+            <img src="images/tools-f6.gif" alt="FASB ASC Tool" class="helpSection" />
+            <p class="left25"><b>Join Sections</b><br />
+            This tab allows you to join all of the sections under a given topic. </p>
+            <div class="clear"></div>
+            
+    <div class="clear"></div>
+    <img src="images/help/join.gif" alt="Join Sections" class="helpSection" />
+    <p>A “join sections” option is also available for joining subsections. This “join sections” feature is available from the table of contents of a given section.</p>        
+    <div class="clear"></div>   
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Notes" class="tab_content4">
+    <h3 class="borderbot">Adding and Editing Notes<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/icon-addNote.gif" alt="add note" class="helpSection" />
+    <img src="images/icon-viewNote.gif" alt="view/edit note" class="helpSection" />
+    <p>You can add one or more notes to content wherever you see the “Add New Note” icon . Simply click on the “Add New Note” link, type in a title and the body of your note, and click “Save.”  After you’ve saved a note, you will notice a “View/Edit” link to the right of the “Add New Note” link.  Clicking the “Add New Note” link again, will allow you to add another note to the same content. You can add as many notes as you wish to a content area.</p>
+    <p>You have two options for viewing and editing your notes. 
+        <ol>
+            <li>1.	If you click “View/Edit,” you will see the list of notes you’ve added to that content area.</li> 
+            <li>2.	You can also view and edit all notes that you’ve saved throughout your subscription by clicking the “Tools” button and then clicking “My Notes.”  You will see the title of each of your notes, as well as the location of each note. Here you can view, edit, or delete notes. Clicking a note location will take you directly to the content area where the note is attached.</li>  
+        </ol>
+    </p>
+    <img src="images/help/notes.jpg" alt="Notes" class="helpSection" />
+    <div class="clear"></div>
+</div>
+</div>
+
+<!------------------------------------------------ ------------------------------------------------>
+
+<div class="tool-container2">
+<div id="SearchHelp" class="tab_content4">
+    <h3 class="borderbot">Search<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The following sections help you take advantage of the available search tools.</p> 
+    <ul>
+        <li><a href="#BasicSearchHelp">Basic Search</a></li>
+        <li><a href="#AdvancedSearchHelp">Advanced Search</a></li>
+        <li><a href="#Boolean">Boolean Operator Searches</a></li>
+        <li><a href="#SearchResults">Viewing and Refining Your Search Results</a></li>
+        <li><a href="#RefiningSearch">Navigating Search Results Within Documents</a></li>
+        <li><a href="#ModifyingSearch">Modifying and Saving Your Search</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="BasicSearchHelp" class="tab_content4">
+    <h3 class="borderbot">Basic Search<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The basic search box enables you to do single or multiple word searches.</p> 
+    <img src="images/help/basicSearch.png" alt="Basic Search" class="helpSection" width="550" />
+		<ul class="float">
+			<li>Enter the word(s) you want to search for and click the “Search” button.</li>
+            <li>The following will display:
+                <ul>
+                    <li>A list of publications that you subscribe to and the number of search results in each title. This list may be used to refine your results to a specific title or portion of a title. For further details on this feature <a href="#SearchResults">click here</a>.</li>
+                    <li>The advanced search feature, which enables you to do more precise searching. For further details on this feature <a href="#AdvancedSearchHelp">click here</a>.</li>
+                    <li>A list of results for your search term. Click the title of the desired result to view the text of the document.</li>
+                </ul>
+            </li>
+            <li>Once in a document, you are easily able to return to your current search results by clicking the “Search Results” button.</li>
+            <li>To return to the content you were viewing prior to starting your search, click the “Back” button located next to the “Search Results” button.</li>
+        </ul>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="AdvancedSearchHelp" class="tab_content4">
+    <h3 class="borderbot">Advanced Search<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>The advanced search enables you to perform a focused search by selecting from a list of options. The advanced search can be reached from several places, including the “Advanced Search” button at the top of your document area,  the “Resources” section of the homepage and from the “+” sign under the “Documents” tab on the toolbar.</p> 
+    <img src="images/help/AdvancedSearch.gif" alt="Advanced Search" class="helpSection" />
+		<ul class="float">
+			<li>
+				Enter the word or phrase that you want to search for.
+			</li>
+			<li>
+				Select whether you want to search for <b>"All Words," "Any Words," "Exact 
+				Phrase," or "Boolean Search".</b>
+			</li>
+			<ul>
+				<li>
+					<i>All Words</i> - Each word must be present in the 
+					document to return a hit result.
+				</li>
+				<li>
+					<i>Any Words</i> - At least one of the words must be present 
+					to return a hit result.
+				</li>
+				<li>
+					<i>Exact Phrase</i> - 
+					All words must be present in the same order that you have typed them in to 
+					return a hit result.
+				</li>
+				<li>
+					<i>Boolean Search</i> - Allows you to refine your 
+					queries to focus on more specific or more general information than may be found 
+					with a single word or phrase search. Click <a href="#Boolean">here</a> 
+					for more details on Boolean searching.
+				</li>
+			</ul>
+            <li>
+			    You have the option to narrow your search to a specific collection of literature. To do so, select the desired collection from the dropdown menu.	
+            </li>
+            <li>
+				Select whether you want to search all of the AICPA Online Professional Library or just those titles you subscribe to. To include documents not included in your current subscription, select the box for <b>Search Unsubscribed Content</b>.<br />
+               (Note: You will be able to click into a search result only if you subscribe to that content. A lock icon will display next to unsubscribed content and an alert will be shown containing instructions for purchasing that content.)
+			</li>
+
+			<li>
+				Select whether you want to show excerpts in context of the document in
+				your search results. If you do not want excerpts to display, de-select the box
+				for <b>Show Excerpts</b>.
+			</li>
+			<li>
+				Click the “Search” button to perform the search.
+			</li>
+			<li>
+				A list of results will be 
+				displayed. Click the title of the desired result to view the text of the 
+				document.
+			</li>
+		</ul>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="Boolean" class="tab_content4">
+    <h3 class="borderbot">Boolean Operator Searches<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+		<p>The Boolean operators allow you to refine your queries to 
+			focus on more specific or more general information than may be found with a 
+			single word or phrase search.</p>
+		<p>Boolean operators require a word or phrase on either side of the
+			operator. For example, <b>dog or cat</b> is a valid query, but <b>or cat dog</b>
+			is not. The exception is the <i>not</i> operator. The not operator can be used before
+			a term and still be valid. For example, <b>not cat dog</b> returns the same
+			result as <b>dog not cat</b>.  There are three Boolean operators that you can use in the AICPA Online Professional Library: and, or, not. See <b><a href="#OperatorPrecedence">Operator precedence</a></b> for
+			a discussion of the precedence (order of execution) of these operators and how
+			to override the precedence.
+		</p>
+		<p><b>And</b><br />
+			Use the And operator to search for multiple words in the same document.
+		</p>
+		<p>The And operator may be specified in either of two ways: a single space between 
+            words or the word <b>and</b>.</p>
+		<p></p>
+		
+		<div align="center">
+			<table border="0" cellspacing="0" cellpadding="0" width="90%" style="margin-left:20px">
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						<b>Query</b>
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						<b>Explanation</b>
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+					   view codes<br />
+					   view and codes
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that contain both view and codes
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						accountant AND attorney and doctor
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that contain accountant, attorney, and doctor
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br />
+		<b>Or</b><br />
+			<p>Use the Or operator to search for multiple words in the document collection 
+			(the words may or may not be in the same document).</p>
+			
+		<p>The Or operator is specified using the word <b>or</b>.</p>
+			
+		<div align="center">
+			<table border="0" cellspacing="0" cellpadding="0" width="90%" >
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						<b>Query</b>
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						<b>Explanation</b>
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						view or codes
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that contain either view or codes (may contain both)
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						accountant or attorney and doctor
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that contain accountant and either attorney or
+						doctor (or both attorney and doctor) (See Operator precedence for additional explanation on these results)
+					</td>
+				</tr>
+			</table>
+		</div>
+<br />
+		<p><b>Not</b><br />
+			Use the Not operator to search for documents that do not contain a particular 
+			term or set of terms. Not is actually a unary operator (it can be used by 
+			itself), but it is often used in between two terms (find documents that 
+			contain A but not B).
+			</p>
+		<p>Generally, the best way to think of the Not operator when used 
+			between two terms (A not B) is "find documents with A and find documents 
+			without B" (A and not B).
+			</p>
+		<p>The Not operator is specified using the word <b>not</b>.
+			</p>
+		<div align="center">
+			<table border="0" cellspacing="0" cellpadding="0" width="90%">
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						<b>Query</b>
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						<b>Explanation</b>
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						view not codes
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that contain view but that do not contain codes
+					</td>
+				</tr>
+				<tr>
+					<td style="border-bottom:solid 1px darkgray;border-right:solid 1px darkgray;">
+						not account
+					</td>
+					<td style="border-bottom:solid 1px darkgray;">
+						Finds all documents that do not contain account
+					</td>
+				</tr>
+			</table>
+		</div>
+		<br />
+		<br />
+		<p><b id="OperatorPrecedence">Operator precedence</b><br />
+			The query operators have a precedence order. That is, when two more operators 
+			are used in a query, the results of one operator will be evaluated before 
+			another operator. Understanding the precedence -- and how to override the 
+			precedence -- can assist you in finding the information you need.
+			</p>
+			
+		<p>The operator precedence is:&nbsp;<b>Not, And, Or<br />
+			</b>If the same operators are used in a query (for example, if Or appears twice 
+			in a query), the operators are evaluated from left-to-right.
+			</p>
+        <div class="clear"></div>
+</div>
+</div>			
+
+<div class="tool-container2">
+<div id="SearchResults" class="tab_content4">
+    <h3 class="borderbot">Viewing and Refining Your Search Results<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>	
+		<img src="images/help/from-word-search.jpg" alt="Search Results" class="helpSection" />
+        <div class="clear"></div>
+		<p>At the top of the Search Results page, you will see results from each library specified in your search (see “Advanced Search” for more information on searching products not in your subscription). Use these links to narrow your results to a specific library. You will be able to narrow your results even further when you drill down. As you drill down, the search results will automatically reflect the narrowing of your results.
+		</p>
+		<img src="images/help/from-word-refine.jpg" alt="Refine Search Results" class="helpSection"  />
+		<div class="clear"></div>
+
+		<p>The rest of the page shows your results by section within titles. For example, the first result in the search above is “Appendix A” in Audit Risk Alert Independence and Ethics Developments. You can click the title to go directly to that section or you can click the “+” icon next to the title to open the “Hit Details” box. This will show the subsections of that section and the number of search results within each subsection, as shown below.
+		</p>
+		<div class="clear"></div>
+		<img src="images/help/from-word-refine2.jpg" alt="Refine Search Results" class="helpSection"  />
+        <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="NavigatingSearch" class="tab_content4">
+    <h3 class="borderbot">Navigating Search Results Within Documents<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>	
+		<img src="images/help/from-word-navigating.jpg" class="helpSection"  />
+		<p>After clicking into a document that contains your search query, use the gray “Search Hits” box on the top-right of the screen to navigate through the search hits. Each hit will be highlighted in the text.</p>
+        <p>The <b>PREV</b> and <b>NEXT</b> buttons will take you to the previous and next hits within the document you are viewing.
+Use the ≤ and ≥ buttons in the “Search Hits” box to navigate to the previous and next documents that contain your search term. (The previous and next documents are in the same order they appeared in the search results.)</p>
+<p>Once you’ve located your desired hit, clicking the <b>X</b> in the “Search Hits” box will close the box and keep your current document open.
+
+		</p>
+		<br /><br />
+        <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="ModifyingSearch" class="tab_content4">
+    <h3 class="borderbot">Modifying and Saving Your Search<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>	
+		<img src="images/help/updateSave.gif" alt="Update, Save, or Clear Search Results" class="helpSection" width="750" />
+		<p>To modify your search, enter your new search words and options in the form above the search results and click the “Update Search” button.
+        To save your search, click the “Save Search” button, then enter the desired title in the pop-up box. When you click “Submit,” the current search results will be saved.</p>
+        <p>Saved searches are retrievable from the Tools menu of the toolbar. This feature lists all of your saved searches by title and allows you to access the saved search results by clicking on a title. You can also rename or delete any of your saved searches. </p>
+		<img src="images/help/savedSearches.jpg" alt="Saved Searches" class="helpSection" />
+        <div class="clear"></div>
+</div>
+</div>
+<!------------------------------------------------ ------------------------------------------------>
+<div class="tool-container2">
+<div id="ToolbarHelp" class="tab_content4">
+    <h3 class="borderbot">Toolbar<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>	
+		<img src="images/help/toolbar.png" alt="toolbar" class="helpSection" width="500px" />
+        <p>The toolbar, which is always located at the bottom of the AICPA Online Professional Library, provides easy access to your subscription, documents that you have open, tools, and this help section. The tabs of the toolbar are described below. By clicking on any of these tabs, a new set of links will appear providing you with options to choose from.</p>
+        <p>You may choose to expand and collapse your toolbar by clicking the button on the far right side of the toolbar.</p>
+        <div class="clear"></div>
+</div>
+</div>
+		
+<div class="tool-container2">
+<div id="HomeToolsHelp" class="tab_content4">
+    <h3 class="borderbot">Home<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <!--<img src="images/help/toolbarHome2.jpg" alt="Toolbar Home" class="helpSection" />-->
+    <p>Clicking the home icon will take you back to the AICPA Online Professional Library homepage.</p>
+    <div class="clear"></div>
+ </div>
+ </div>
+
+<div class="tool-container2">
+<div id="MyLibraryHelp" class="tab_content4">
+    <h3 class="borderbot">My Library<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <!--<img src="images/help/toolbarHome.jpg" alt="Toolbar Home" class="helpSection" />-->
+    <p>This tab displays the series included in your subscription.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="DocumentsHelp" class="tab_content4">
+    <h3 class="borderbot">Documents<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/toolbarDocuments.png" alt="Toolbar Home" class="helpSection" width="500px" />
+    <p>This tab displays the documents that you have open and provides access to begin a new document. Refer to the <a href="#NavigatingSite">“Navigating the Site”</a> and <a href="#WorkingDocument">“Working in Documents”</a> sections for more information.</p>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div class="tool-container2">
+<div id="ToolsHelp" class="tab_content4">
+    <h3 class="borderbot">Tools<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/toolbarTools.png" alt="Toolbar Tools" class="helpSection" width="700px" />
+    <div class="clear"></div>
+    <p>This tab displays the available tools.</p>
+    <p><b>Table of Contents:</b> Refer to the <a href="#TOC">“Table of Contents”</a> section under the “Navigating the Site” section for more information.<br />
+    <b>Quick Find:</b> Refer to the <a href="#QuickFind">“Quick Find”</a> section under the “Navigating the Site” section for more information.<br />
+    <b>Print:</b> Refer to the <a href="#Printing">“Print”</a> section under the “Working in Documents” section for more information.<br />
+    <b>Document Fonts:</b> Change the font face and size to suit your preference.<br />
+    <b>Saved Searches:</b> Refer to the <a href="#Search">“Search”</a>  section for more information on saved searches.<br />
+    <b>My Notes:</b> Refer to the <a href="#Notes">“Notes”</a> section for more information on working with notes.<br />
+    <b>My Bookmarks:</b> Refer to the <a href="#Bookmarks">“Bookmarks”</a> section for more information on using bookmarks.<br />
+    <b>ASC Tools.</b> Refer to the <a href="#ASCTools">“FASB ASC Tools”</a> section under the “Working in Documents” section for more information.</p>
+    <div class="clear"></div>
+</div>
+</div>
+    
+<!--<div class="tool-container2">
+<div id="PreferencesHelp" class="tab_content4">
+    <h3 class="borderbot">Preferences<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/toolbarPref.jpg" alt="Toolbar Preferences" class="helpSection" />
+    <p>This tab provides access the various available preferences.</p>
+    <div class="clear"></div>
+    <p><b>Document Fonts</b></p>
+    <img src="images/help/prefs.jpg" alt="Document Fonts" class="helpSection" />
+    <p>This feature allows you select a particular font and font size for all the text appearing within a document. Fonts and font sizes are not adjustable within tables.</p>
+    <p><b>Saved Searches.</b> Refer to the <a href="#SearchHelp">“Search”</a> section for more information on saved searches.<br />
+    <b>Notes.</b> Refer to the <a href="#Notes">“Notes”</a> section for more information on working with notes.</p>
+    <div class="clear"></div>
+</div>
+</div> -->
+
+<div class="tool-container2">
+<div id="HelpToolsHelp" class="tab_content4">
+    <h3 class="borderbot">Help<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/toolbarHelp.png" alt="Toolbar Help" class="helpSection" width="500px" />
+    <p>This tab provides access to this help section.</p>
+    <div class="clear"></div>
+</div>
+</div>  
+
+<div class="tool-container2">
+<div id="SessionTimeout" class="tab_content4">
+    <h3 class="borderbot">Session Timeout<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/timeout2.gif" alt="Session Timeout" class="helpSection" />
+    <p>AICPA Online Professional Library will timeout after 60 minutes of idle time. Once the system times out, you will need to login again to continue working. 
+You will receive an alert message that your session is about to timeout. If no action is taken when you receive this message, your session will automatically end about 10 minutes later. If you click OK, you will remain logged in.</p>
+    <div class="clear"></div>
+</div>
+</div>  
+
+<div class="tool-container2">
+<div id="ViewingVideo" class="tab_content4">
+    <h3 class="borderbot">Viewing a Video<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <img src="images/help/video-icon.jpg" class="helpSection" />
+	    <div class="clear"></div>
+		<p>Some tools within AICPA Online Professional Library contain links to videos that provide additional insight from subject matter experts. Click the video icon to open a video, which will appear in a new window.
+		</p>
+		<p>If you experience playback issues, turn off hardware acceleration on your in-browser video player as follows:
+		</p>
+		<p></p>
+		<p>1.	Click the video icon to open the player in a new window.
+		</p>
+		<p>2.	Right-click the video screen and select <i>Settings....</i>
+		</p>
+		<p>3.	Click the first tab, which should look like the following screenshot:
+		</p>
+        <div class="clear"></div>
+    <img src="images/help/flash-settings.jpg" class="helpSection" />
+    <div class="clear"></div>
+	
+		<p>4.	Uncheck <i>Enable Hardware Acceleration</i> and click <i>Close.</i>
+		</p>
+		<p>5.	Refresh your browser
+		</p>
+	
+	<div class="clear"></div>
+</div>
+</div> 
+
+<div class="tool-container2">
+<div id="ScreenResolution" class="tab_content4">
+    <h3 class="borderbot">Recommended Screen Resolution<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>To enhance the usability of the site, we recommend your screen resolution be set to a minimum of 1024 x 768 and for optimal usage we recommend 1280 x 1024.</p>
+    <div class="clear"></div>
+</div>
+</div> 
+
+<div class="tool-container2">
+<div id="LoggingOut" class="tab_content4">
+    <h3 class="borderbot">Logging Out<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>To logout of the AICPA Online Professional Library close your browser or use the logout button on the right side of the toolbar.</p>
+    <div class="clear"></div>
+</div>
+</div>  
+
+<div class="tool-container2">
+<div id="ProvidingFeedback" class="tab_content4">
+    <h3 class="borderbot">Providing Feedback<span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>A feedback link is available on the right side of the toolbar. Please provide us with feedback as well as suggestions for future enhancements to the AICPA Online Professional Library.</p>
+    <div class="clear"></div>
+</div>
+</div>  
+      
+<div class="tool-container2">
+<div id="CustomerService" class="tab_content4">
+    <h3 class="borderbot">Customer Service <span class="right-top"><a href="#top">Back to top &raquo;</a></span></h3>
+    <p>Support is available from 9 a.m. to 6 p.m. Eastern time, Monday through Friday.</p>
+
+    <br />
+
+    Phone: 1-888-777-7077
+    <br />
+    Email: <a href="mailto:service@aicpa.org">service@aicpa.org</a>
+    <br />
+
+    <p>Please provide as much information as possible when
+    contacting Customer Service for support, including:</p>
+
+    <ul>
+    <li>The exact error message you received, and specifically what
+    you were doing when you received the error.</li>
+    <li>Information on your system configuration, including browser
+    version.</li>
+    </ul>
+</div>
+</div>
+
+{#/template MAIN}

@@ -1,0 +1,23 @@
+﻿<News>
+  <!-- we can supply text here to override the book name if we desire
+  example:
+  <NewsItem text="What's new in Professional Standards" bookId="whatsnew_ps" />
+  -->
+
+  <NewsItem text="What’s New in Accountant`s Business Manual" bookId="whatsnew_abm" />
+  <NewsItem text="What’s New in Accounting Trends and Techniques" bookId="whatsnew_att" />
+  <NewsItem text="What’s New in Audit and Accounting Guides" bookId="whatsnew_aag" />
+  <NewsItem text="What’s New in Audit and Accounting Manual" bookId="whatsnew_aam" />
+  <NewsItem text="What’s New in Audit Risk Alerts" bookId="whatsnew_ara" />
+  <NewsItem text="What’s New in FASB ASC" bookId="whatsnew_fasb_asc" />
+  <NewsItem text="What`s New in Financial Statement Preparation Manual" bookId="whatsnew_chk" />
+  <NewsItem text="What`s New in GASB Literature" bookId="whatsnew_gasb" />
+  <NewsItem text="What’s New in Management of an Accounting Practice Handbook" bookId="whatsnew_emap" />
+  <NewsItem text="What’s New in PCAOB Standards and Related Rules" bookId="whatsnew_pcaob" />
+  <NewsItem text="What’s New in Practice Aids and Toolkits" bookId="whatsnew_pra" />
+  <NewsItem text="What’s New in Professional Standards" bookId="whatsnew_ps" />
+  <NewsItem text="What’s New in Technical Practice Aids" bookId="whatsnew_tpa" />
+  
+
+
+</News>

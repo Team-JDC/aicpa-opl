@@ -1,0 +1,65 @@
+﻿{#template MAIN}	
+    <div id="breadCrumb2" class="breadCrumb module float">
+        <ul>  
+            {#foreach $T.d as BreadcrumbNode}
+                {#if $T.BreadcrumbNode$first == true}
+                    <li style="margin:0 5px 0 0; padding:7px 0 0 0; width:55px; " onmouseover="cancelDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')" onmouseout="setDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')">
+                        <a href="#" onclick="doHomePageLink()"><img class="float" src="images/IconHome3.gif" alt="" title="" border="0" /></a>
+                        <a href="#" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');"><img src="images/arrow-down.gif" border="0" style="margin-left:5px; padding-top:1px;" /></a>  
+                        <div class="dropdown"><a href=""></a></div>
+                    </li>
+                {#elseif $T.BreadcrumbNode$last == true}
+                    <li onmouseover="cancelDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')" onmouseout="setDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')">
+                        <span class="float" style="font:11px Arial;"><img src="images/icon_{$T.BreadcrumbNode.SiteNode.Type}.gif" border="0" class="icon-last" /><a class="bc-last" style="cursor:pointer;" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');" title="{Left($T.BreadcrumbNode.SiteNode.Title, 200)}">{Left($T.BreadcrumbNode.SiteNode.Title, 50)}</a></span>
+
+                        {#include LAST root=$T}
+
+                    </li>
+                {#else}
+                    <li onmouseover="cancelDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')" onmouseout="setDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')"  onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');">
+                        <div class="left" ><a style="padding:4px 0 0 17px; cursor:pointer;" href="#" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');" title="{Left($T.BreadcrumbNode.SiteNode.Title, 200)}" >{Left($T.BreadcrumbNode.SiteNode.Title, 50)}</a></div>
+                        <div class="left" style="margin:-23px 0 0 8px; "><a style="padding:0; margin:0 0 0 20px; cursor:pointer;" href="#" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');"><img src="images/arrow-down.gif" border="0" class="arrow-bc" /></a></div>
+                        <div style="position:absolute; top:5px;left:0;"><a href="#" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');"><img src="images/icon_{$T.BreadcrumbNode.SiteNode.Type}.gif" border="0" class="icon"/></a></div>
+                    </li>
+                {#/if}
+            {#/for}
+        </ul>
+    </div>
+    <div id="breadCrumbDrops">
+            {#foreach $T.d as BreadcrumbNode}
+                <div id="drop{$T.BreadcrumbNode$index+1}" style="display:none;" onmouseover="cancelDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')" onmouseout="setDropdownCloseTimer('{$T.BreadcrumbNode$index + 1}')" class="drop{$T.BreadcrumbNode$index+1} drop-div">
+                    <ul class="drop">
+                    {#if $T.BreadcrumbNode.SiteNode.Type == "Site"}
+                        
+                    {#/if}
+                    {#include DROPS root=$T.BreadcrumbNode}
+                    </ul>
+                </div>
+            {#/for}
+    </div>
+    <script type="text/javascript">
+        $("#breadCrumb2").jBreadCrumb();
+    </script>
+{#/template MAIN}
+
+{#template DROPS}
+    {#foreach $T.Children as BreadcrumbNode}
+        <li>
+        {#if $T.BreadcrumbNode.SiteNode.Id == -1}
+            <a href="#" onclick="loadToc(true)">
+        {#else}
+            <a href="#" onclick="doBreadcrumbLink({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}'), $('li').parents('.drop-div').slideUp();" title="{Left($T.BreadcrumbNode.SiteNode.Title, 200)}">
+        {#/if}
+                <img src="images/icon_{$T.BreadcrumbNode.SiteNode.Type}.gif" border="0" class="icon" alt="{$T.BreadcrumbNode.SiteNode.Type} Icon" />
+                {Left($T.BreadcrumbNode.SiteNode.Title, 50)}
+            </a>
+     
+        </li>
+    {#/for}
+{#/template DROPS}
+
+{#template LAST}
+    {#if $T.BreadcrumbNode.Children.length > 0}
+        <div style="margin:-2px 0 0 5px; max-width: 15px;" class="float"><a href="#" onclick="loadChildren({$T.BreadcrumbNode.SiteNode.Id}, '{$T.BreadcrumbNode.SiteNode.Type}', 'drop{$T.BreadcrumbNode$index + 1}');"><img src="images/arrow-down.gif" border="0" class="arrow-bc" /></a></div>
+    {#/if}
+{#/template LAST}

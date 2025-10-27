@@ -809,6 +809,8 @@ function callWebService(serviceUrl, paramString, successFunction, errorFunction,
         }});
 }
 
+
+
 function checkTimer() {
     checkTimerCount++;
 
@@ -1156,7 +1158,7 @@ function fillDocumentContainerFromUrlNext(url) {
 
     // sburton: firefox doesn't like this way
     // window.frames["iframe-main"].location = url;
-    $('#iframe-main').load(function () {
+    $('#iframe-main').on("load",function () {
         $('#iframe-main').off('load');
         setLoading(false);
         doDocumentReadyMethods();

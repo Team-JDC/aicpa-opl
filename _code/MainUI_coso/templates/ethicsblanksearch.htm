@@ -1,0 +1,65 @@
+﻿{#template MAIN}
+        <div class="tool-container" align="center">
+            <table cellpadding="0" cellspacing="5" style="font-size:12px">
+                <tr>
+                    <td colspan="2" align="left"><h4 class="nopad">New Search</h4></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" style="width:320px; height:25px;" id="searchTermsAdvanced" autocomplete="off"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="20px" align="left">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="125px" align="left">Search Type:</td>
+                    <td align="left">
+                        <select id="searchType">
+                            <option value="1">All Words</option>
+                            <option value="2">Any Words</option>
+                            <option value="3">Exact Phrase</option>
+                            <option value="4">Boolean Search</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="125px" align="left">Collection:</td>
+                    <td align="left">
+                         <select id="dimensionId">                        
+                          {#foreach $T.d.SelectedDimensionResults as DimensionNavigationResult}
+                        <option id="{$T.DimensionNavigationResult.DimensionName}"  value="{$T.DimensionNavigationResult.DimensionName}" >{Left($T.DimensionNavigationResult.DimensionValue, 50)}</option> 
+                        {#/for}
+                       {#foreach $T.d.DimensionResults as DimensionNavigationResult}
+                         {#if $T.DimensionNavigationResult.DimensionValue == "" && $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
+                            <option id="{$T.DimensionNavigationResult.DimensionId}" value="{$T.DimensionNavigationResult.DimensionId}" >{Left($T.DimensionNavigationResult.DimensionName, 50)}</option>          
+                         {#/if}
+                         {#if $T.DimensionNavigationResult.DimensionValue != "" && $T.DimensionNavigationResult.DimensionName != "destroyer_site_hierarchy"}
+                            <option id="Option1" value="{$T.DimensionNavigationResult.DimensionId}">-- {Left($T.DimensionNavigationResult.DimensionName, 50)}</option>          
+                        {#/if}
+                        {#/for}
+                    </select>
+                    </td>
+                </tr>
+                <tr style="display:none" >
+                    <td align="left">Show Unsubscribed:</td>
+                    <td align="left"><input type="checkbox" value="1" onclick= "changeCheckBoxValue(document.getElementById('showUnsubscribed').id);" id="showUnsubscribed"/></td>
+                </tr>
+                <tr>          
+                    <td align="left">Show Excerpts:</td>
+                    <td align="left"><input type="checkbox" value="1" checked="checked" onclick= "changeCheckBoxValue(document.getElementById('showExcerpts').id);" id="showExcerpts"/></td>
+                </tr>
+                <tr>          
+                    <td align="left">Search only citations that contain non-authoritative content:</td>
+                    <td align="left"><input type="checkbox" value="0" onclick= "changeCheckBoxValue(document.getElementById('nonauthoritative').id);" id="nonauthoritative"/></td>
+                </tr>
+                <tr>
+                    <td colspan="2" height="10px" align="left">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding-top:8px; border-top:1px solid #999;" align="right"><a href="#" id="blanksearch" onclick="doAdvancedNavigationalSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,document.getElementById('nonauthoritative').value, 0);" ><img src="images/btn-search.gif" alt="Advanced Search" border="0"/></a></td>
+                </tr>                
+            </table>        
+        </div>
+        
+{#/template MAIN}
+{#template ROW}
+{#/template ROW}

@@ -1,0 +1,1602 @@
+*
+{
+	font-family: times new roman;
+}
+
+table
+{
+	table-layout: fixed;
+}
+
+span.inlinemediaobject
+{
+	text-align: center;
+	display: block;
+}
+
+div.preface * .ps_center_alpha, div.chapter * .ps_center_alpha, div.section * .ps_center_alpha, div.appendix * .ps_center_alpha, div.glossary * .ps_center_alpha
+{
+	display: block;
+	font-size:16pt;
+	text-align: center;
+	display: block;
+	border-bottom: 2pt solid;
+}
+
+div.toc * .ps_center_alpha
+{
+	display: inline;
+}
+
+div.navheader *, div.navfooter *
+{
+	background-color:#CCCCCC;
+	font-family:arial;
+	font-size:10pt;
+	color:#000000;
+}
+
+div.preface * .ps_section_heading, div.chapter * .ps_section_heading, div.section * .ps_section_heading, div.appendix * .ps_section_heading, div.glossary * .ps_section_heading
+{
+	display: block;
+	font-weight: bold;
+	font-size: 18pt;
+	margin-top: 4pt;
+	margin-bottom: 4pt;
+	padding-top: 3pt;
+	border-top: 4pt solid #000000;
+}
+
+div.toc * .ps_section_heading
+{
+	display: inline;
+}
+
+div.preface * .ps_tab_heading, div.chapter * .ps_tab_heading, div.section * .ps_tab_heading, div.appendix * .ps_tab_heading, div.glossary * .ps_tab_heading
+{
+	display: block;
+	font-size:18pt;
+	border-top: 10pt solid #000000;
+}
+
+div.toc * .ps_tab_heading
+{
+	display: inline;
+}
+
+div.titlepage div.revhistory
+{
+	display: none;
+}
+
+div.book div.titlepage h1, div.book div.titlepage h2, div.book div.titlepage p.copyright
+{
+	text-align: center;
+	display: block;
+}
+
+div.toc *
+{
+	font-size:12pt;
+	border: 0 0 0 0;
+	font-weight:normal;
+}
+
+div.toc b
+{
+	font-weight:bold;
+}
+
+div.preface * .ps_level_2, div.chapter * .ps_level_2, div.section * .ps_level_2, div.appendix * .ps_level_2, div.glossary * .ps_level_2
+{
+	display: block;
+	font-size:20pt;
+	text-align: right;
+	background-color:#DDDDDD;
+	padding-bottom:32pt;
+	padding-right: 14pt;
+	border-bottom: 2pt solid;
+}
+
+div.toc * .ps_level_2
+{
+	display: inline;
+}
+
+div.segmentedlist table
+{
+	width:800px;
+}
+
+div.segmentedlist thead th
+{
+	text-align: center;
+	display: block;
+	font-weight:bold;
+	border-bottom: 1px solid black;
+}
+
+div.preface * .ps_tab_heading_index, div.chapter * .ps_tab_heading_index, div.section * .ps_tab_heading_index, div.appendix * .ps_tab_heading_index, div.glossary * .ps_tab_heading_index
+{
+	text-align: center;
+	display: block;
+	font-size:18pt;
+	text-transform:uppercase;
+}
+
+div.toc * .ps_tab_heading_index
+{
+	display: inline;
+}
+
+.indexdiv dl dt
+{
+	font-weight:bold;
+}
+
+.indexdiv dl dd dl dt
+{
+	font-weight:normal;
+}
+
+dt
+{
+	font-weight:bold;
+}
+
+hr.checkline
+{
+	width:50;
+	vertical-align: sub;
+}
+
+p
+{
+	padding-bottom: 8pt;
+}
+
+td.footnotes
+{
+	border-top: 1px solid black;
+}
+
+th
+{
+	font-weight:normal;
+}
+
+.copyright
+{
+	font-size: 8pt;
+	font-family:Arial;
+	font-weight: normal;
+}
+
+.footnote
+{
+	font-size: 10pt;
+}
+
+.footnote p
+{
+	font-size: 10pt;
+}
+
+.bold
+{
+	font-weight:bold;
+}
+
+.italics, .italic
+{
+	font-style: italic;
+}
+
+.underline
+{
+	text-decoration:underline;
+}
+
+.double-underline
+{
+	text-decoration: underline;
+	border-bottom: 1px solid black;
+}
+
+.superscript
+{
+	vertical-align: super;
+	font-size: 80%;
+}
+
+.symbol
+{
+	font-family:symbol;
+}
+
+.unicode_symbol
+{
+	font-family:arial unicode ms;
+}
+
+.shade
+{
+	background-color:#CCCCCC;
+}
+
+.strikethrough
+{
+	text-decoration: line-through;
+}
+
+
+.ls_level_3
+{
+	display: block;
+	font-size:16pt;
+	text-transform:uppercase;
+	border-bottom: 2pt solid #000000;	
+}
+
+.ls_level_4
+{
+	display: block;
+	font-size: 16pt;
+	font-style: italic;
+	border-bottom: 2pt solid #000000;
+
+}
+
+.ls_level_4 em
+{
+	font-style: normal;
+}
+
+.ps_box_-_guide
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 18pt;
+	margin-right: 18pt;
+	padding-left: 7pt;
+	border-left: 1pt solid;
+	padding-top: 2pt;
+	border-top: 1pt solid;
+	padding-right: 2pt;
+	border-right: 1pt solid;
+	padding-bottom: 2pt;
+	border-bottom: 1pt solid;
+	font-style: italic;
+}
+
+.ps_box_-_guide_center
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 18pt;
+	margin-right: 18pt;
+	padding-left: 7pt;
+	border-left: 1pt solid;
+	padding-top: 2pt;
+	border-top: 1pt solid;
+	padding-right: 2pt;
+	border-right: 1pt solid;
+	padding-bottom: 2pt;
+	border-bottom: 1pt solid;
+	font-style: italic;
+	text-align: center;
+	display: block;
+}
+
+.ps_box_-_guide em, .ps_box_-_guide_center em
+{
+	font-style: normal;
+}
+
+.ps_box_italics
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 18pt;
+	margin-right: 18pt;
+	padding-left: 7pt;
+	border-left: 0.015in solid;
+	padding-top: 2pt;
+	border-top: 0.015in solid;
+	padding-right: 2pt;
+	border-right: 0.015in solid;
+	padding-bottom: 2pt;
+	border-bottom: 0.015in solid;
+}
+
+.ps_box_italics_center
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 18pt;
+	margin-right: 18pt;
+	padding-left: 7pt;
+	border-left: 0.015in solid;
+	padding-top: 2pt;
+	border-top: 0.015in solid;
+	padding-right: 2pt;
+	border-right: 0.015in solid;
+	padding-bottom: 2pt;
+	border-bottom: 0.015in solid;
+	text-align: center;
+	display: block;
+}
+
+.ps_bullet
+{
+	font-size: 12pt;
+	margin-top: 4pt;
+	margin-bottom: 4pt;
+	font-weight: normal;
+	margin-left: 1.225in;
+	text-indent: -0.225in;
+	text-align: left;
+	display: block;
+}
+
+ul.ps_bullet
+{
+	font-size: 12pt;
+	margin-top: 4pt;
+	margin-bottom: 4pt;
+	font-weight: normal;
+	margin-left: 1.15in; /*1, but add 0.15 to account for bullet */
+	text-indent: 0in;
+}
+
+.ps_bullet_subparagraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 2.36in;
+	text-indent: -0.36in;
+	font-weight: normal;
+}
+
+ul.ps_bullet_subparagraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 2.15in; /*2, but add 0.15 to account for bullet */
+	text-indent: 0in;
+	font-weight: normal;
+}
+
+.ps_center
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: center;
+	display: block;
+}
+
+.ps_center_center
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: center;
+	display: block;
+}
+
+.ps_center_numerator
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: center;
+	display: block;
+	border-bottom: solid thin #000000;
+}
+
+.ps_full
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: justify;
+	display: block;
+}
+
+.ps_definition
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 36pt;
+	font-weight: normal;
+}
+
+.ps_left_text
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+}
+
+.ps_main_heading
+{
+	font-weight: bold;
+	font-size: 14pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+.ps_main_heading_center
+{
+	font-weight: bold;
+	font-size: 14pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: center;
+	display: block;
+}
+
+div.toc * span.ps_para_number
+{
+	display: inline;
+}
+
+div.toc * span.ps_para_number_full
+{
+	text-align: justify;
+	display: inline;
+}
+
+div.toc * span.ps_para_number_center
+{
+	text-align: center;
+	display: inline;
+}
+
+div.toc * span.ps_para_number_left
+{
+	text-align: left;
+	display: inline;
+}
+
+div.toc * span.ps_para_number_right
+{
+	text-align: left;
+	display: inline;
+}
+
+span.ps_para_number
+{
+	font-weight:bold;
+}
+
+span.ps_para_number_full
+{
+	font-weight:bold;
+	text-align: justify;
+	display: block;
+}
+
+span.ps_para_number_center
+{
+	font-weight:bold;
+	text-align: center;
+	display: block;
+}
+
+span.ps_para_number_left
+{
+	font-weight:bold;
+	text-align: left;
+	display: block;
+}
+
+span.ps_para_number_right
+{
+	font-weight:bold;
+	text-align: right;
+}
+
+.ps_para_number
+{
+	font-size: 12pt;
+	margin-left: 0.5in;
+}
+
+.ps_para_number_full
+{
+	font-size: 12pt;
+	margin-left: 0.5in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_para_number_center
+{
+	font-size: 12pt;
+	margin-left: 0.5in;
+	text-align: center;
+	display: block;
+}
+
+.ps_para_number_left
+{
+	font-size: 12pt;
+	margin-left: 0.5in;
+	text-align: left;
+	display: block;
+}
+
+.ps_para_number_right
+{
+	font-size: 12pt;
+	margin-left: 0.5in;
+	text-align: right;
+}
+
+.ps_paragraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.05in;
+	text-indent: -0.3in;
+	text-align: left;
+	display: block;
+}
+
+.ps_paragraph_center
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.05in;
+	text-indent: -0.3in;
+	text-align: center;
+	display: block;
+}
+
+.ps_paragraph_full
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.05in;
+	text-indent: -0.3in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_paragraph_left
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.05in;
+	text-indent: -0.3in;
+	text-align: left;
+	display: block;
+}
+
+.ps_paragraph_right
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.05in;
+	text-indent: -0.3in;
+	text-align: right;
+}
+
+.ps_left_10
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: left;
+	display: block;
+}
+
+.ps_center_10
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: center;
+	display: block;
+}
+
+.ps_right_10
+{
+	font-weight: bold;
+	font-size: 10pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: right;
+}
+
+.ps_right
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: right;
+}
+
+.ps_right_line
+{
+	font-size: 12pt;
+	margin-left: 25%;
+	border-bottom: 2pt solid;
+}
+
+.ps_section_title
+{
+	display: block;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	padding-bottom: 3pt;
+	border-bottom: 2pt solid #000000;
+}
+
+.ps_section_title em
+{
+	font-style: normal;
+}
+
+.ps_sub_heading
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+.ps_sub_heading_right
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: right;
+	display: block;
+}
+
+.ps_sub_heading_center
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: center;
+	display: block;
+}
+
+.ps_sub_heading_full
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: justify;
+	display: block;
+}
+
+.ps_sub_heading_left
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: left;
+	display: block;
+}
+
+.ps_sub_heading_right
+{
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: right;
+}
+
+.ps_subparagraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.78in;
+	text-indent: -0.28in;
+	text-align: left;
+	display: block;
+}
+
+ul.ps_subparagraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	margin-left: 1.65in; /*1.5, but add 0.15 to account for bullet */
+	text-indent: 0in;
+	text-align: left;
+	display: block;
+}
+
+.ps_subsub_heading
+{
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12pt;
+	margin-left: 0.25in;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+.ps_subsub_heading_center
+{
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	text-align: center;
+	display: block;
+}
+
+.ps_subsub_heading em
+{
+	font-style: normal;
+}
+
+.ps_subsubsub_heading
+{
+	font-style: italic;
+	font-weight: normal;
+	font-size: 12pt;
+	margin-left: 0.25in;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+}
+
+.ps_subsubsub_heading em
+{
+	font-style: normal;
+}
+
+.ps_tab_name
+{
+	display: block;
+	font-weight: bold;
+	font-size: 16pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	padding-bottom: 3pt;
+	border-bottom: 2pt solid #000000;
+	text-transform:uppercase;
+}
+
+.ps_table_center, .ps_table_center_normal
+{
+	padding-top: 18pt;
+	padding-bottom: 18pt;
+	text-align: center;
+	display: block;
+}
+
+.ps_table_left, .ps_table_left_normal
+{
+	padding-top: 18pt;
+	padding-bottom: 18pt;
+	text-align: left;
+	display: block;
+}
+
+.ps_table_right, .ps_table_right_normal
+{
+	padding-top: 18pt;
+	padding-bottom: 18pt;
+	text-align: right;
+}
+
+.ps_table_blockquote, .ps_table_blockquote_normal
+{
+	padding-top: 18pt;
+	padding-bottom: 18pt;
+	text-align: left;
+	display: block;
+	margin-left: 2in;
+}
+
+.ps_table_landscape, .ps_table_landscape_normal
+{
+	padding-top: 18pt;
+	padding-bottom: 18pt;
+	text-align: left;
+	display: block;
+}
+
+.ps_bullet_paragraph
+{
+	font-size: 12pt;
+	margin-top: 4pt;
+	margin-bottom: 4pt;
+	font-weight: normal;
+	margin-left: 1.83in;
+	text-indent: -0.33in;
+	text-align: left;
+	display: block;
+}
+
+ul.ps_bullet_paragraph
+{
+	font-size: 12pt;
+	margin-top: 4pt;
+	margin-bottom: 4pt;
+	font-weight: normal;
+	margin-left: 1.65in; /*1.5, but add 0.15 to account for bullet */
+	text-indent: 0in;
+	text-align: left;
+	display: block;
+}
+
+.ps_indent_section_paragraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 1.86in;
+	text-indent: -0.36in;
+	font-weight: normal;
+}
+
+ul.ps_indent_section_paragraph
+{
+	font-size: 12pt;
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	margin-left: 1.9in; /*1.75, but add 0.15 to account for bullet */
+	text-indent: 0in;
+	font-weight: normal;
+
+}
+
+.ps_footnote_bullet
+{
+	margin-left: 0.5in;	
+}
+
+.ps_heading_1_center
+{
+	font-style: italic;
+	text-align: center;
+	display: block;
+}
+
+.ps_heading_1_center em
+{
+	font-style: normal;
+}
+
+.ps_table_text_left
+{
+	font-size: 10pt;
+	text-align: left;
+	display: block;
+}
+
+.ps_table_text_right
+{
+	font-size: 10pt;
+	text-align: right;
+}
+
+.ps_table_text_center
+{
+	font-size: 10pt;
+	text-align: center;
+	display: block;
+}
+
+.ps_table_text_full
+{
+	font-size: 10pt;
+	text-align: justify;
+	display: block;
+}
+
+.ps_table_title
+{
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+}
+
+.ps_table_title_center
+{
+	font-size: 12pt;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+}
+
+.ps_text
+{
+	font-style: italic;
+}
+
+.ps_text em, .ps_text_center em, .ps_text_full em, .ps_text_left em, .ps_text_right em
+{
+	font-style: normal;
+}
+
+.ps_left
+{
+	margin-top: 6pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	text-align: left;
+	display: block;
+}
+
+sup a
+{
+	font-style: normal;
+	font-weight: normal;
+	color: Red;
+	font-size: 10pt;
+}
+
+/* set a special style for notes */
+div.note_wrapper
+{
+	text-align:center;
+}
+
+div.note_observations_and_suggestions
+{
+	text-align:left;
+	background-color:silver;
+	padding-left:10px;
+	padding-right:10px;
+	border-left: 1pt solid;
+	border-right: 2pt solid;
+	border-top: 1pt solid;
+	border-bottom: 2pt solid;
+	width:75%;
+	margin:auto;
+}
+
+
+/* don't let paragraphs in tables have any margins (too much spacing results) */
+table td p, table th p
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:0px;
+	margin-right:0px;
+	
+	/* need to leave the padding top and bot to 3pt; otherwise we see problems with hrules in tables */
+	padding-top:3pt;
+	padding-bottom:3pt;
+	padding-left:0px;
+	padding-right:0px;
+}
+
+
+/* set all the following table cell content to 10pt font */
+div.ps_table_center table td, div.ps_table_center table th
+{font-size: 10pt;}
+
+div.ps_table_left table td, div.ps_table_left table th
+{font-size: 10pt;}
+
+div.ps_table_right table td, div.ps_table_right table th
+{font-size: 10pt;}
+
+div.ps_table_blockquote table td, div.ps_table_blockquote table th
+{font-size: 10pt;}
+
+div.ps_table_landscape table td, div.ps_table_landscape table th
+{font-size: 10pt;}
+
+div.ps_indent table td, div.ps_indent table th
+{font-size: 10pt;}
+
+div.ps_indent_0 table td, div.ps_indent_0 table th
+{font-size: 10pt;}
+
+div.ps_indent_1 table td, div.ps_indent_1 table th
+{font-size: 10pt;}
+
+div.ps_indent_2 table td, div.ps_indent_2 table th
+{font-size: 10pt;}
+
+div.ps_indent_3 table td, div.ps_indent_3 table th
+{font-size: 10pt;}
+
+div.ps_indent_4 table td, div.ps_indent_4 table th
+{font-size: 10pt;}
+
+div.ps_indent_5 table td, div.ps_indent_5 table th
+{font-size: 10pt;}
+
+div.ps_indent_6 table td, div.ps_indent_6 table th
+{font-size: 10pt;}
+
+div.ps_indent_7 table td, div.ps_indent_7 table th
+{font-size: 10pt;}
+
+div.ps_indent_8 table td, div.ps_indent_8 table th
+{font-size: 10pt;}
+
+div.ps_indent_9 table td, div.ps_indent_9 table th
+{font-size: 10pt;}
+
+
+/* set all the following table cell content to 12pt font */
+div.ps_table_center_normal table td, div.ps_table_center_normal table th
+{font-size: 12pt;}
+
+div.ps_table_left_normal table td, div.ps_table_left_normal table th
+{font-size: 12pt;}
+
+div.ps_table_right_normal table td, div.ps_table_right_normal table th
+{font-size: 12pt;}
+
+div.ps_table_blockquote_normal table td, div.ps_table_blockquote_normal table th
+{font-size: 12pt;}
+
+div.ps_table_landscape_normal table td, div.ps_table_landscape_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_normal table td, div.ps_indent_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_0_normal table td, div.ps_indent_0_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_1_normal table td, div.ps_indent_1_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_2_normal table td, div.ps_indent_2_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_3_normal table td, div.ps_indent_3_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_4_normal table td, div.ps_indent_4_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_5_normal table td, div.ps_indent_5_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_6_normal table td, div.ps_indent_6_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_7_normal table td, div.ps_indent_7_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_8_normal table td, div.ps_indent_8_normal table th
+{font-size: 12pt;}
+
+div.ps_indent_9_normal table td, div.ps_indent_9_normal table th
+{font-size: 12pt;}
+
+.footnote_group_label
+{
+	font-weight: bold;
+}
+
+span.tab
+{
+	width: 1em;
+}
+
+.ps_indent, .ps_indent_normal
+{
+	margin-left: 0.25in;
+}
+
+.ps_hang
+{
+	margin-left: 0.25in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_0, .ps_indent_0_normal
+{
+	margin-left: 0.5in;
+}
+
+.ps_indent_0_center
+{
+	margin-left: 0.5in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_0_full
+{
+	margin-left: 0.5in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_0_right
+{
+	margin-left: 0.5in;
+	text-align: right;
+}
+
+.ps_indent_hang_0
+{
+	margin-left: 0.5in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_0_full
+{
+	margin-left: 0.5in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_1, .ps_indent_1_normal
+{
+	margin-left: 0.75in;
+}
+
+.ps_indent_1_center
+{
+	margin-left: 0.75in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_1_full
+{
+	margin-left: 0.75in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_1_right
+{
+	margin-left: 0.75in;
+	text-align: right;
+}
+
+.ps_indent_hang_1
+{
+	margin-left: 0.75in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_1_full
+{
+	margin-left: 0.75in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_2, .ps_indent_2_normal
+{
+	margin-left: 1in;
+}
+
+.ps_indent_2_center
+{
+	margin-left: 1in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_2_full
+{
+	margin-left: 1in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_2_right
+{
+	margin-left: 1in;
+	text-align: right;
+}
+
+.ps_indent_hang_2
+{
+	margin-left: 1in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_2_full
+{
+	margin-left: 1in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_3, .ps_indent_3_normal
+{
+	margin-left: 1.25in;
+}
+
+.ps_indent_3_center
+{
+	margin-left: 1.25in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_3_full
+{
+	margin-left: 1.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_3_right
+{
+	margin-left: 1.25in;
+	text-align: right;
+}
+
+.ps_indent_hang_3
+{
+	margin-left: 1.25in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_3_full
+{
+	margin-left: 1.25in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_4, .ps_indent_4_normal
+{
+	margin-left: 1.5in;
+}
+
+.ps_indent_4_center
+{
+	margin-left: 1.5in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_4_full
+{
+	margin-left: 1.5in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_4_right
+{
+	margin-left: 1.5in;
+	text-align: right;
+}
+
+.ps_indent_hang_4
+{
+	margin-left: 1.5in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_4_full
+{
+	margin-left: 1.5in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_5, .ps_indent_5_normal
+{
+	margin-left: 1.75in;
+}
+
+.ps_indent_5_center
+{
+	margin-left: 1.75in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_5_full
+{
+	margin-left: 1.75in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_5_right
+{
+	margin-left: 1.75in;
+	text-align: right;
+}
+
+.ps_indent_hang_5
+{
+	margin-left: 1.75in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_5_full
+{
+	margin-left: 1.75in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_6, .ps_indent_6_normal
+{
+	margin-left: 2in;
+}
+
+.ps_indent_6_center
+{
+	margin-left: 2in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_6_full
+{
+	margin-left: 2in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_6_right
+{
+	margin-left: 2in;
+	text-align: right;
+}
+
+.ps_indent_hang_6
+{
+	margin-left: 2in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_6_full
+{
+	margin-left: 2in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_7, .ps_indent_7_normal
+{
+	margin-left: 2.25in;
+}
+
+.ps_indent_7_center
+{
+	margin-left: 2.25in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_7_full
+{
+	margin-left: 2.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_7_right
+{
+	margin-left: 2.25in;
+	text-align: right;
+}
+
+.ps_indent_hang_7
+{
+	margin-left: 2.25in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_7_full
+{
+	margin-left: 2.25in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_8, .ps_indent_8_normal
+{
+	margin-left: 2.5in;
+}
+
+.ps_indent_8_center
+{
+	margin-left: 2.5in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_8_full
+{
+	margin-left: 2.5in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_8_right
+{
+	margin-left: 2.5in;
+	text-align: right;
+}
+
+.ps_indent_hang_8
+{
+	margin-left: 2.5in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_8_full
+{
+	margin-left: 2.5in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_9, .ps_indent_9_normal
+{
+	margin-left: 2.75in;
+}
+
+.ps_indent_9_center
+{
+	margin-left: 2.75in;
+	text-align: center;
+	display: block;
+}
+
+.ps_indent_9_full
+{
+	margin-left: 2.75in;
+	text-align: justify;
+	display: block;
+}
+
+.ps_indent_9_right
+{
+	margin-left: 2.75in;
+	text-align: right;
+}
+
+.ps_indent_hang_9
+{
+	margin-left: 2.75in;
+	text-indent: -0.25in;
+}
+
+.ps_indent_hang_9_full
+{
+	margin-left: 2.75in;
+	text-indent: -0.25in;
+	text-align: justify;
+	display: block;
+}
+
+.rs_full
+{
+	width:100%;
+	text-align: center;
+	display: block;
+	margin-top: -6px;
+	height:1px;
+	background-color:#000000;
+	line-height:1px;
+}
+
+.rs_half
+{
+	width:50%;
+	margin-left: auto; margin-right: auto;
+	text-align: center;
+	display: block;
+	margin-top: -6px;
+	height:1px;
+	background-color:#000000;
+	line-height:1px;
+}
+
+.rs_divide
+{
+	margin-top: -6px;
+	height:1px;
+	background-color:#000000;
+	line-height:1px;
+}
+
+.rs_footnote
+{
+	text-align: left;
+	display: block;
+	width:1.25in;
+	height:1px;
+	background-color:#000000;
+	line-height:1px;
+}
+
+.rs_formblank_first
+{
+	width:100%;
+	text-align: left;
+	display: block;
+	height:1px;
+	background-color: #000000;
+	line-height:1px;
+	margin-top:0pt;
+	position:relative;
+	z-index:-2;
+}
+
+.rs_formblank_subs
+{
+	width:100%;
+	text-align: left;
+	display: block;
+	height:1px;
+	background-color: #000000;
+	line-height:1px;
+	margin-top:12pt;
+}
+
+/* this style is used for instructional text at the start of a formblank horizontal rule */
+/* this formatting prevents the horizontal line from appearing under the text */
+span.formblanktext
+{
+	background-color:white;
+	padding-bottom:1px;
+	padding-left:12px;
+	left:-12px;
+	position:relative;
+	z-index: -1;
+}
+
+/*** this is base formatting for p elements. other styles will cascade ***/
+p
+{
+	margin-top:6pt;
+	margin-bottom:6pt;
+}
