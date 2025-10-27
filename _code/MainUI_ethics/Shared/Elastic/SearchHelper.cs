@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Nest;
 using Elasticsearch.Net;
+using System.Text;
 namespace MainUI.Shared.Elastic
 {
     public static class SearchHelper
@@ -18,6 +19,47 @@ namespace MainUI.Shared.Elastic
             public string Id;       // normalized numeric id, e.g., "345"
             public string Title;    // best label we could derive (optional)
             public double? level;
+        }
+
+       
+        public static List<(string Id, string Title, long Count)> BuildImmediateChildrenFromHits(
+    IEnumerable<IHit<ElasticDocument>> hits,
+    string selectedId,
+    string expectedChildType // "Book" when Site selected, "Document" when Book/Document selected
+)
+        {
+            var counts = new Dictionary<string, (string title, long cnt)>(StringComparer.Ordinal);
+
+            foreach (var hit in hits)
+            {
+                var chain = hit.Source?.SiteHierarchy;
+                if (chain == null || chain.Count == 0) continue;
+
+                // find the selected node in this chain
+                var idx = chain.FindIndex(n => n.Id == selectedId);
+                if (idx < 0) continue; // this hit doesn't contain the selected node
+
+                // immediate child is the very next node
+                var childIdx = idx + 1;
+                if (childIdx >= chain.Count) continue;
+
+                var child = chain[childIdx];
+                if (!child.Type.Equals(expectedChildType, StringComparison.OrdinalIgnoreCase)) continue;
+
+                var id = child.Id ?? "";
+                var title = string.IsNullOrWhiteSpace(child.Title) ? (expectedChildType + " " + id) : child.Title;
+
+                if (counts.TryGetValue(id, out var entry))
+                    counts[id] = (entry.title, entry.cnt + 1);
+                else
+                    counts[id] = (title, 1);
+            }
+
+            return counts
+                .OrderByDescending(kv => kv.Value.cnt)
+                .ThenBy(kv => kv.Value.title, StringComparer.OrdinalIgnoreCase)
+                .Select(kv => (kv.Key, kv.Value.title, kv.Value.cnt))
+                .ToList();
         }
 
         public static async Task<ResolvedNode> ResolveNodeAsync(IElasticClient client, string rawId)
@@ -124,6 +166,101 @@ namespace MainUI.Shared.Elastic
         }
 
         // Build Endeca-like DimensionXml (SelectedDimensions + one refinement dimension)
+
+        public static string BuildDimensionXmlFromChain(
+    IReadOnlyList<DimensionNavigationResult> selectedChain,         // ordered: Site → Book → Document (up to selected)
+    string axisId,                                                  // "books" | "documents" | "child_documents"
+    IEnumerable<(string Id, string Name, long Count)> refinement    // next-level items to facet
+)
+        {
+            string X(string s) => (s ?? "")
+                .Replace("&", "&amp;")
+                .Replace("<", "\u003c")
+                .Replace(">", "\u003e");
+
+            var sb = new StringBuilder();
+            sb.Append("\u003cDimensions\u003e");
+
+            // SelectedDimensions
+            sb.Append("\u003cSelectedDimensions\u003e");
+            foreach (var n in selectedChain)
+            {
+                sb.Append("\u003cDimension\u003e");
+                sb.Append("\u003cName\u003e").Append(X(n.DimensionValue)).Append("\u003c/Name\u003e"); // label
+                sb.Append("\u003cId\u003e").Append(X(n.DimensionName)).Append("\u003c/Id\u003e");      // id
+                                                                                                       // Ancestors (everything before this node)
+                sb.Append("\u003cDimensionAncestors\u003e");
+                foreach (var a in selectedChain.TakeWhile(x => x != n))
+                {
+                    sb.Append("\u003cDimension\u003e")
+                      .Append("\u003cName\u003e").Append(X(a.DimensionValue)).Append("\u003c/Name\u003e")
+                      .Append("\u003cId\u003e").Append(X(a.DimensionName)).Append("\u003c/Id\u003e")
+                      .Append("\u003c/Dimension\u003e");
+                }
+                sb.Append("\u003c/DimensionAncestors\u003e");
+
+                // Complete path (destroyer root + full chain to this node)
+                sb.Append("\u003cDimensionCompletePath\u003e");
+                sb.Append("\u003cDimension\u003e\u003cName\u003edestroyer_site_hierarchy\u003c/Name\u003e\u003cId\u003e")
+                  .Append(X(axisId)).Append("\u003c/Id\u003e\u003c/Dimension\u003e");
+                foreach (var p in selectedChain.TakeWhile(x => true))
+                {
+                    sb.Append("\u003cDimension\u003e")
+                      .Append("\u003cName\u003e").Append(X(p.DimensionValue)).Append("\u003c/Name\u003e")
+                      .Append("\u003cId\u003e").Append(X(p.DimensionName)).Append("\u003c/Id\u003e")
+                      .Append("\u003c/Dimension\u003e");
+                    if (ReferenceEquals(p, n)) break;
+                }
+                sb.Append("\u003c/DimensionCompletePath\u003e");
+                sb.Append("\u003c/Dimension\u003e");
+            }
+            sb.Append("\u003c/SelectedDimensions\u003e");
+
+            // RefinementDimensions → only next-level items
+            sb.Append("\u003cRefinementDimensions\u003e");
+            sb.Append("\u003cDimension\u003e");
+            sb.Append("\u003cName\u003edestroyer_site_hierarchy\u003c/Name\u003e");
+            sb.Append("\u003cId\u003e").Append(X(axisId)).Append("\u003c/Id\u003e");
+
+            foreach (var (id, name, count) in refinement)
+            {
+                sb.Append("\u003cDimensionValue\u003e")
+                  .Append("\u003cName\u003e").Append(X(name)).Append("\u003c/Name\u003e")
+                  .Append("\u003cId\u003e").Append(X(id)).Append("\u003c/Id\u003e")
+                  .Append("\u003cRecordCount\u003e").Append(count).Append("\u003c/RecordCount\u003e")
+                  .Append("\u003c/DimensionValue\u003e");
+            }
+
+            // Ancestors for the refinement axis = the full chain (to mirror Endeca)
+            sb.Append("\u003cDimensionAncestors\u003e");
+            foreach (var a in selectedChain)
+            {
+                sb.Append("\u003cDimension\u003e")
+                  .Append("\u003cName\u003e").Append(X(a.DimensionValue)).Append("\u003c/Name\u003e")
+                  .Append("\u003cId\u003e").Append(X(a.DimensionName)).Append("\u003c/Id\u003e")
+                  .Append("\u003c/Dimension\u003e");
+            }
+            sb.Append("\u003c/DimensionAncestors\u003e");
+
+            sb.Append("\u003cDimensionCompletePath\u003e");
+            sb.Append("\u003cDimension\u003e\u003cName\u003edestroyer_site_hierarchy\u003c/Name\u003e\u003cId\u003e")
+              .Append(X(axisId)).Append("\u003c/Id\u003e\u003c/Dimension\u003e");
+            foreach (var p in selectedChain)
+            {
+                sb.Append("\u003cDimension\u003e")
+                  .Append("\u003cName\u003e").Append(X(p.DimensionValue)).Append("\u003c/Name\u003e")
+                  .Append("\u003cId\u003e").Append(X(p.DimensionName)).Append("\u003c/Id\u003e")
+                  .Append("\u003c/Dimension\u003e");
+            }
+            sb.Append("\u003c/DimensionCompletePath\u003e");
+
+            sb.Append("\u003c/Dimension\u003e");
+            sb.Append("\u003c/RefinementDimensions\u003e");
+
+            sb.Append("\u003c/Dimensions\u003e");
+            return sb.ToString();
+        }
+
         public static string BuildDimensionXmlFor(
             NodeType selectionType,
             string siteTitleOrNull,
