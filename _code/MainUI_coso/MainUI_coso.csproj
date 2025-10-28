@@ -1395,7 +1395,7 @@
     <Content Include="templates\siteFolderTitlePage2.html" />
     <Content Include="Tools.aspx" />
     <Content Include="video.html" />
-    <Content Include="obj\Debug\MainUI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MainUI_coso.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\MainUI.dll" />
     <Content Include="obj\Debug\MainUI.pdb" />
     <Content Include="ResourceSeamlessLoginold.aspx" />
