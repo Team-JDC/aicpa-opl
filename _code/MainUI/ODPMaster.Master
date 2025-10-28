@@ -305,13 +305,7 @@
                                 <li class="last"><a href="/tools/howtoguide">Help</a></li>
                                 <li class="last"><a href="#" onclick="handleLogoutClick()">Logout</a></li>
                             </ul>
-                            <ul class="footer_social">
-                                <li><a class="rss" href="" target="_blank" title="RSS"></a></li>
-                                <li><a class="facebook" href="" target="_blank" title="AICPA on Facebook"></a></li>
-                                <li><a class="linkedin" href="" target="_blank" title="AICPA on LinkedIn"></a></li>
-                                <li><a class="twitter" href="" target="_blank" title="AICPA on Twitter"></a></li>
-                                <li><a class="blogger" href="" target="_blank" title="AICPA on ???"></a></li>
-                            </ul>
+
                         </div>
                     </div>
                 </div>
