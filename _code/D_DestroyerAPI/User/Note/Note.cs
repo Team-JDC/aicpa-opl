@@ -85,7 +85,7 @@ namespace AICPA.Destroyer.User.Note
             TargetPtr = noteRow.TargetPtr;
             LastModified = noteRow.LastModifiedDate;
             Title = noteRow.NoteTitle;
-            Available = noteRow.Available;
+            //Available = noteRow.Available;
         }
 
         /// <summary>
