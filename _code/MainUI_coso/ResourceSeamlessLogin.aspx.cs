@@ -487,7 +487,7 @@ namespace MainUI
                         //analyticsCodeLogon = AICPAAnalytics.LoginLogout(GetMemberType(referringSite), retUser.EmailAddress, GetLoginEntry(referringSite), "login");
                         //analyticsCodeLogout = AICPAAnalytics.LoginLogout(GetMemberType(referringSite), retUser.EmailAddress, GetLoginEntry(referringSite), "logout");
                         Url = "coso.aspx";
-                        Guid userId = Guid.Empty;
+                        Guid userId = userGuid;
                         ReferringSite userReferringSite = ReferringSite.Coso;
                         //HttpCookie myCookie = ContextManager.GetSiteCookie(ContextManager.COOKIE_ETHICS);
                         //if (myCookie != null)

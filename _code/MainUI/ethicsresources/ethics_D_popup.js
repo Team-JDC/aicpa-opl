@@ -7,6 +7,7 @@
 */
 
 //on page load (as soon as its ready) call JT_init
+
 $(document).ready(DPopup_init);
 
 function DPopup_init() {
