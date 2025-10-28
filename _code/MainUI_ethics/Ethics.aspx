@@ -30,6 +30,8 @@
 <script type="text/javascript" src="js/jquery.ui.core.js"></script>
 <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="js/jquery.ui.position.js"></script>
+    <link type="text/css" href="ethicsresources/jquery.ethics.tooltip.css" rel="stylesheet">
+    
 <%--<script type="text/javascript" src="js/jquery.ui.autocomplete.js"></script>--%>
 
 <script src="js/jquery.tabs1.js" type="text/javascript"></script>
@@ -44,6 +46,9 @@
 <script src="js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/processFeatures.js"></script>
 <script type="text/javascript" src="js/ethics_code.js"></script>
+    
+    
+    
 <%--
 <script type="text/javascript" src="js/jquery.zclip.min.js"></script>
 <script type="text/javascript" src="js/ZeroClipboard.js"></script>
@@ -74,6 +79,7 @@
         jQuery("#breadCrumb2").jBreadCrumb();
     });
 </script>
+    
 
 <%--<% if (ShowSearch)
    { %>

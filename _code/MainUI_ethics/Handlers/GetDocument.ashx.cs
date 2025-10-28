@@ -1,20 +1,20 @@
-﻿using System;
-using System.Web;
-using System.Web.SessionState;
-using System.Text.RegularExpressions;
-
-using AICPA.Destroyer.Content;
+﻿using AICPA.Destroyer.Content;
 using AICPA.Destroyer.Content.Book;
 using AICPA.Destroyer.Content.Document;
 using AICPA.Destroyer.Content.Search;
 using AICPA.Destroyer.Shared;
 using AICPA.Destroyer.User;
 using MainUI.Shared;
-using System.Text.RegularExpressions;
-using System.Xml;
 using MainUI.WS;
+using Nest;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.SessionState;
+using System.Xml;
 
 
 namespace MainUI.Handlers
@@ -410,15 +410,18 @@ namespace MainUI.Handlers
 
             // subscription check (for the locked icons next to the links)
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Handlers/GetResource.ashx?type=subscription_access' />";
-            //newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/Base.css' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/Base.css' />";
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/notes.css' />";
-            
+            newCssAndJs += "<script type='text/javascript' src='/js/jquery/jquery-3.7.1.min.js'></script>\r\n";
+
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='/resources/jquery.treeview.css' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/ethicsresources/jquery.ethics.tooltip.css' />";
+            newCssAndJs += "<script type='text/javascript' src='/ethicsresources/ethics_D_Popup.js' ></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/jquery-1.4.2.min.js'></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>";
 
             //if ((referringSite == ReferringSite.Ethics || (referringSite == ReferringSite.EthicsUser)))
-            //    newCssAndJs += "<script type='text/javascript' src='/js/textOperations.js'></script>";
+              //  newCssAndJs += "<script type='text/javascript' src='/js/textOperations.js'></script>";
 
             // TODO: these are needed for the faf toc, we should probably just put them in the faf content,
             // so we don't have to include them for every content page.
