@@ -127,7 +127,7 @@ namespace MainUI
             try
             {
                 //httpEquivID.Attributes["content"] = string.Format("1;{0}", url);
-                siteLink.Attributes["href"] = url;
+                //siteLink.Attributes["href"] = url;
                 googleTagCode.Text = "<script>" + javascript + "</script>";
                 redirectCode.Text = "<script>" + redirectjs + "</script>";
             }

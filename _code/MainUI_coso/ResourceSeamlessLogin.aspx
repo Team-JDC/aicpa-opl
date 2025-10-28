@@ -51,34 +51,7 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-        <div id="page">
-            <div id="page_inner" class="container">
-                <div id="header_container">
-                    <div id="header_outer" class="row">
-                        <div class="gradient"></div>
-                        <div class="header_inner">
-                            <a class="logo" href="/Default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
-                        </div>
-                    </div>
-                </div>
-                <div id="primary_nav_outer" class="row">
-                </div>
-                <div id="main" class="clearfix">
-                    <div id="leftcol" class="col-sm-12">
-                        <div class="leftcol_inner">
-                            <div class="leftcol_header">
-                                <h1>AICPA Online Professional Library</h1>
-                            </div>
-                            <div class="leftcol_content clearfix">                                
-                                <div class="col-sm-9 pad20">
-                                <p>If you are not redirected automatically, follow the <a runat="server" id="siteLink" href='http://odp.knowlysis.com'>link to AICPA Online Professional Library</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- #page_inner -->
-        </div><!-- #page -->
+       
 		<!--<script type="text/javascript" src="elements/js/jquery-1.9.1.min.js"></script>-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha384-aV9ZlPl+2Cx4UeYtVSu3z1x8ZfQKrBpCGE1GfF/nv9MAl0cL9XbYgH4J6VnC4qQz"
