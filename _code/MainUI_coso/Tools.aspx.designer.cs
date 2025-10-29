@@ -15,39 +15,30 @@ namespace MainUI
     {
 
         /// <summary>
-        /// lToolType control.
+        /// lTarg22etDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lToolType;
+        protected global::System.Web.UI.WebControls.Literal lTarg22etDoc;
 
         /// <summary>
-        /// lTargetDoc control.
+        /// lTa22rgetDoc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lTargetDoc;
+        protected global::System.Web.UI.WebControls.Literal lTa22rgetDoc;
 
         /// <summary>
-        /// lTargetPtr control.
+        /// lTarget22Doc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lTargetPtr;
-
-        /// <summary>
-        /// lNodeType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lNodeType;
+        protected global::System.Web.UI.WebControls.Literal lTarget22Doc;
     }
 }

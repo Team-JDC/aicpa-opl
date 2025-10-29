@@ -41,7 +41,7 @@
             na = nonAuthoritative
              --%>
             var did ='<%=Request.QueryString["did"]%>';
-            var q = '<%=Request.QueryString["q"]%>';
+            var q = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["q"]) %>';
             var sm = getIntValue('<%=Request.QueryString["sm"]%>', 1);
             var mh = getIntValue('<%=Request.QueryString["mh"]%>', 100);
             var ps = getIntValue('<%=Request.QueryString["ps"]%>', 10);
