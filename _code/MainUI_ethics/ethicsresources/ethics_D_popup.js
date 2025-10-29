@@ -7,29 +7,31 @@
 */
 
 //on page load (as soon as its ready) call JT_init
-$(document).ready(DPopup_init);
+$(function () {  DPopup_init() });
 
 function DPopup_init() {
+    
     $("a.tooltip").hover(function () { DPopup_show(this) }, function () { DPopup_hide(this) });
     $("a.xbrlReference").hover(function () { DPopup_show(this) }, function () { DPopup_hide(this) });
 }
 
 function DPopup_show(link) {
+    console.log("show popup");
     var de = document.documentElement;
     var w = self.innerWidth || (de && de.clientWidth) || document.body.clientWidth;
     //var windowheight = $(window).innerHeight();
-    var windowheight =$(window)[0].innerHeight; // I use this ghetto notation because the normal notation wasn't working in IE.
+    var windowheight = $(window)[0].innerHeight; // I use this ghetto notation because the normal notation wasn't working in IE.
     var h = $(document).height();
     if (windowheight != undefined) {
-        h = windowheight +$(window)[0].pageYOffset;
-        
+        h = windowheight + $(window)[0].pageYOffset;
+
     }
-    
-    
+
+
     var hasArea = w - getAbsoluteLeft(link);
     var hasHeight = h - getAbsoluteTop(link);
     var clickElementy = getAbsoluteTop(link); //set y position 
-    
+
 
     var popupWidth = 370;
     var popupHeight = 200;
@@ -40,8 +42,8 @@ function DPopup_show(link) {
     else {
         var clickElementx = getAbsoluteLeft(link) - popupWidth + 15; //set x position
     }
-    if (hasHeight < popupHeight+25) {
-        clickElementy = h - popupHeight-25;
+    if (hasHeight < popupHeight + 25) {
+        clickElementy = h - popupHeight - 25;
     }
 
     $(link).find("span.popupSpan").css({ left: clickElementx + "px", top: clickElementy + "px", width: popupWidth, height: popupHeight + "px", overflow: "auto" });

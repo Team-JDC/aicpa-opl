@@ -1,20 +1,20 @@
-﻿using System;
-using System.Web;
-using System.Web.SessionState;
-using System.Text.RegularExpressions;
-
-using AICPA.Destroyer.Content;
+﻿using AICPA.Destroyer.Content;
 using AICPA.Destroyer.Content.Book;
 using AICPA.Destroyer.Content.Document;
 using AICPA.Destroyer.Content.Search;
 using AICPA.Destroyer.Shared;
 using AICPA.Destroyer.User;
 using MainUI.Shared;
-using System.Text.RegularExpressions;
-using System.Xml;
 using MainUI.WS;
+using Nest;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.SessionState;
+using System.Xml;
 
 
 namespace MainUI.Handlers
@@ -414,6 +414,8 @@ namespace MainUI.Handlers
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/notes.css' />";
             
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='/resources/jquery.treeview.css' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/ethicsresources/jquery.ethics.tooltip.css' />";
+            newCssAndJs += "<script type='text/javascript' src='/ethicsresources/ethics_D_Popup.js' ></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/jquery-1.4.2.min.js'></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>";
 

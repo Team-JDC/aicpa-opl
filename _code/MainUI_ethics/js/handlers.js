@@ -464,17 +464,16 @@ function gotoNextDocument() {
         }
     }
 
-    function doSiteFolderLink(siteFolderName, useNewScreen) {
-        //var hash = $.History.setHash("#/folder?fn=" + encodeURIComponent("'" + siteFolderName + "'"));
-        //var hash = $.History.setState("#/folder?fn=" + encodeURIComponent("'" + siteFolderName + "'"));        
-        var hash = "/folder?fn=" + encodeURIComponent(siteFolderName);
-        console.log("hash set as: " + hash);
-        $.History.go(hash);
-        //$.History.trigger(hash);
-        //window.location.href = "default.aspx#"+hash;
-        //useNewScreen = false;
-        //doSiteFolderLinkRoute(siteFolderName, useNewScreen);
+function doSiteFolderLink(siteFolderName, useNewScreen) {
+    //setLoading(true); 
+
+    var result = prepareActiveScreen(useNewScreen);
+
+    if (result) {
+        var params = "{ folderName:\"" + siteFolderName + "\"}";
+        callWebService("WS/Content.asmx/ResolveSiteFolder", params, loadContentBySiteNode, ajaxFailed);
     }
+}
 
     function doSiteFolderLinkRoute(siteFolderName, useNewScreen) {
         //setLoading(true);

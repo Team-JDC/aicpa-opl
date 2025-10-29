@@ -1827,7 +1827,7 @@ namespace Microsoft.ApplicationBlocks.Data
 		{
 			if( connection == null ) throw new ArgumentNullException( "connection" );
 			if( dataSet == null ) throw new ArgumentNullException( "dataSet" );
-
+			dataSet.EnforceConstraints = false;
 			// Create a command and prepare it for execution
 			SqlCommand command = new SqlCommand();
 			
@@ -1857,6 +1857,7 @@ namespace Microsoft.ApplicationBlocks.Data
 						newTableName = tableName + (index + 1).ToString();
 					}
 				}
+				
                 
 				// Fill the DataSet using default values for DataTable names, etc
 				dataAdapter.Fill(dataSet);
