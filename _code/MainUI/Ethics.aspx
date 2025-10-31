@@ -30,7 +30,74 @@
 <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
 <script type="text/javascript" src="js/jquery.ui.position.js"></script>
 <%--<script type="text/javascript" src="js/jquery.ui.autocomplete.js"></script>--%>
+    <!-- js-cookie -->
+    <script type="text/javascript">
+        // Only create the shim if $.cookie doesn't already exist
+        (function ($) {
+            if (typeof $.cookie !== "function") {
+                $.cookie = function (name, value, options) {
 
+                    // Read mode: $.cookie("key")
+                    if (value === undefined) {
+                        if (window.Cookies && typeof window.Cookies.get === "function") {
+                            return Cookies.get(name);
+                        }
+
+                        // fallback manual read
+                        var nameEQ = name + "=";
+                        var ca = document.cookie.split(';');
+                        for (var i = 0; i < ca.length; i++) {
+                            var c = ca[i].trim();
+                            if (c.indexOf(nameEQ) === 0) {
+                                return c.substring(nameEQ.length);
+                            }
+                        }
+                        return null;
+                    }
+
+                    // Write mode: $.cookie("key", "val", { expires: 30 })
+                    if (value === null) {
+                        // treat null as delete
+                        if (window.Cookies && typeof window.Cookies.remove === "function") {
+                            Cookies.remove(name);
+                        } else {
+                            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+                        }
+                        return;
+                    }
+
+                    // Normal set
+                    if (window.Cookies && typeof window.Cookies.set === "function") {
+                        // Translate jQuery Cookie options to js-cookie options best-effort
+                        var jsCookieOpts = {};
+                        if (options && options.expires !== undefined) {
+                            jsCookieOpts.expires = options.expires;
+                        }
+                        if (options && options.path !== undefined) {
+                            jsCookieOpts.path = options.path;
+                        } else {
+                            // treeview never passed path, old jquery.cookie defaulted to "/"
+                            jsCookieOpts.path = "/";
+                        }
+
+                        Cookies.set(name, value, jsCookieOpts);
+                    } else {
+                        // hard fallback
+                        var expiresStr = "";
+                        if (options && options.expires !== undefined) {
+                            var d = new Date();
+                            d.setTime(d.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+                            expiresStr = ";expires=" + d.toUTCString();
+                        }
+                        var pathStr = ";path=" + ((options && options.path) ? options.path : "/");
+                        document.cookie = name + "=" + value + expiresStr + pathStr;
+                    }
+                };
+            }
+        })(jQuery);
+    </script>
+
+<script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 <script src="js/jquery.tabs1.js" type="text/javascript"></script>
 <!-- <script src="js/jquery-slide-panel.js" type="text/javascript"></script> -->
 <script src="js/backButton.js" type="text/javascript"></script>
@@ -103,7 +170,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script src="resources/jquery.cookie.min.js" type="text/javascript"></script>
+<%--<script src="resources/jquery.cookie.min.js" type="text/javascript"></script>--%>
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>

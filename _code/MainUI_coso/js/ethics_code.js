@@ -2,7 +2,6 @@
 /// <reference path="webServiceHelpers.js" />
 // <reference path="backButton.js" />
 
-
 var loginCallBack = null; // used to store the login call back
 
 
@@ -63,7 +62,7 @@ function doNotesLink(recordback) {
     }
 
     if (recordback) {
-     $.histoy
+        $.histoy
     }
 
     clearCurrentView();
@@ -132,8 +131,8 @@ function addPageBookmark(id, type) {
 //Should be called when the iframe document is "ready".  Created for Ethics
 function doDocumentReadyMethods(siteNode) {
     ethicsCheckDescendents("{ id: " + getActiveDocumentId() + ", type: '" + getActiveDocumentType() + "', ignoreAnchors: true }",
-                function () { setJoinButtons(true) }, 
-                function () { setJoinButtons(false) });
+        function () { setJoinButtons(true) },
+        function () { setJoinButtons(false) });
     //setJoinButtons(true);
 
     DisablePopupContent();
@@ -159,9 +158,9 @@ var iframeOffset;
 function makeSearchNextPrevDraggable() {
     var box = $('#headerHit');
 
-//    box.offset({
-//        left: 100,
-//        top: 75
+    //    box.offset({
+    //        left: 100,
+    //        top: 75
     //    });
 
     box.on("mousedown", function (e) {
@@ -242,7 +241,7 @@ function hideDocumentSpecificButtons() {
 
 function loadTocDocToggle() {
     if ($('#nav-toc a img').attr('alt') == 'DOC' ||
-    $('#nav-toc a img').attr('alt') == 'DOCCOMPLETE') {
+        $('#nav-toc a img').attr('alt') == 'DOCCOMPLETE') {
         $('#nav-toc a img').attr('src', 'images/toc.png');
         $('#nav-toc a img').attr('alt', 'TOC');
         gotoActiveDocument();
@@ -271,7 +270,7 @@ function updateTocDoc() {
         $('#nav-toc a img').hide();
     } else if (g_currentView != null && g_currentView.isTool && g_currentView.toolName == "toc") {
         $('#nav-toc a img').attr('src', 'images/doc.png');
-        $('#nav-toc a img').attr('alt', 'DOC');        
+        $('#nav-toc a img').attr('alt', 'DOC');
     } else {
         $('#nav-toc a img').attr('src', 'images/toc.png');
         $('#nav-toc a img').attr('alt', 'TOC');
@@ -349,8 +348,8 @@ function showEthicsRegister() {
 }
 
 function doLoginCallBack() {
-  if (typeof loginCallBack === 'function') loginCallBack();
-  loginCallBack = null;
+    if (typeof loginCallBack === 'function') loginCallBack();
+    loginCallBack = null;
 }
 
 function tryEthicsRegister() {
@@ -442,7 +441,7 @@ function removeJoinButtons() {
 function removeJoinTableButtons() {
     $("#iframe-main").contents().find(".joinSectionsTable").hide();
     $(".joinSectionsTable").hide();
-    
+
 
 }
 
@@ -474,13 +473,13 @@ function setJoinTableButtons(visible) {
     }
 }
 
-function ethicsJoinSections(sitenode) {    
-    getActiveScreen().viewCompleteTopic = true;    
-    if (sitenode == null) {        
+function ethicsJoinSections(sitenode) {
+    getActiveScreen().viewCompleteTopic = true;
+    if (sitenode == null) {
         ethicsJoinSectionsParams("{ id: " + getActiveDocumentId() + ", type: '" + getActiveDocumentType() + "', ignoreAnchors: true }");
     } else {
         getActiveScreen().siteNode = sitenode;
-        ethicsJoinSectionsParams("{ id: " + sitenode.Id + ", type: '" + sitenode.Type + "', ignoreAnchors: true }");        
+        ethicsJoinSectionsParams("{ id: " + sitenode.Id + ", type: '" + sitenode.Type + "', ignoreAnchors: true }");
     }
 }
 
@@ -558,7 +557,7 @@ function ethicsCheckDescendents(idTypeString, hasDescendentsCB, hasNoDescendents
 function ethicsJoinSectionsPart2(listOfNodes) {
     var queryString = "";
     var count = 0;
-    
+
     for (i = 0; i < listOfNodes.length; i++) {
         var currentId = listOfNodes[i].SiteNode.Id;
         var currentType = convertDocTypeToEnumVal(listOfNodes[i].SiteNode.Type);
@@ -570,7 +569,7 @@ function ethicsJoinSectionsPart2(listOfNodes) {
         }
     }
 
-    
+
 
     $('#backup-document-container')[0].innerHTML = "";
     $('#backup-document-container').hide();
@@ -580,32 +579,32 @@ function ethicsJoinSectionsPart2(listOfNodes) {
         filliFrameFromUrl("GetDocuments.ashx?" + queryString.substring(1), function () {
             setLoading(false);
             removeJoinButtons(); //deletes them from the page
-//            loadMyScreens();
-            
-//            setJoinButtons(false);
-//            setJoinTableButtons(true);
-//            setArrows(true);
+            //            loadMyScreens();
+
+            //            setJoinButtons(false);
+            //            setJoinTableButtons(true);
+            //            setArrows(true);
             afterLoadContentBySiteNode(getActiveScreen().siteNode);
         });
     } else if (count == 1) {
         filliFrameFromUrl("GetDocument.ashx?" + queryString.substring(1), function () {
             setLoading(false);
             removeJoinButtons();
-            getActiveScreen().viewCompleteTopic = false;    
-//            loadMyScreens();
+            getActiveScreen().viewCompleteTopic = false;
+            //            loadMyScreens();
 
-//            setJoinButtons(false);
-//            setJoinTableButtons(true);
-//            setArrows(true);
+            //            setJoinButtons(false);
+            //            setJoinTableButtons(true);
+            //            setArrows(true);
             afterLoadContentBySiteNode(getActiveScreen().siteNode);
         });
-//        $('#document-container').load("Handlers/GetDocument.ashx?" + queryString.substring(1), function () {
-//            $('#iframe-main').hide();
-//            $('#document-container').show();
-//            setLoading(false);
-//            setJoinButtons(false);
-//            setJoinTableButtons(true);
-//        });
+        //        $('#document-container').load("Handlers/GetDocument.ashx?" + queryString.substring(1), function () {
+        //            $('#iframe-main').hide();
+        //            $('#document-container').show();
+        //            setLoading(false);
+        //            setJoinButtons(false);
+        //            setJoinTableButtons(true);
+        //        });
     } else {
         alert('No child documents found.');
         setLoading(false);
@@ -635,13 +634,13 @@ function ethicsJoinTablesPart2(listOfNodes) {
 
     for (i = 0; i < listOfNodes.length; i++) {
         var currentId = listOfNodes[i].SiteNode.Id;
-        var currentType = convertDocTypeToEnumVal(listOfNodes[i].SiteNode.Type);                
+        var currentType = convertDocTypeToEnumVal(listOfNodes[i].SiteNode.Type);
         //GetDocuments will skip DocumentAnchors, so I am pulling them out here to make the 
         // string smaller. I also convert the string to the enum value
         if (currentType != 6) {
-            queryString += "&id=" + currentId + "&type=" + currentType + "&tableStyle=ethics_revision_history";            
-        }       
-        
+            queryString += "&id=" + currentId + "&type=" + currentType + "&tableStyle=ethics_revision_history";
+        }
+
     }
 
 
@@ -659,13 +658,13 @@ function ethicsJoinTablesPart2(listOfNodes) {
             setArrows(false);
         });
     } else if (listOfNodes.length == 1) {
-    $('#document-container').load("GetDocument.ashx?" + queryString.substring(1), function () {
-        $('#iframe-main').hide();
-        $('#document-container').show();
-        setLoading(false);
-        setJoinButtons(true);
-        setJoinTableButtons(false);
-    });
+        $('#document-container').load("GetDocument.ashx?" + queryString.substring(1), function () {
+            $('#iframe-main').hide();
+            $('#document-container').show();
+            setLoading(false);
+            setJoinButtons(true);
+            setJoinTableButtons(false);
+        });
     } else {
         alert('No child documents found.');
         setLoading(false);
@@ -700,51 +699,95 @@ function loadPdf() {
     fillContentPaneFromUrl("ethicsresources/et-cod.pdf");
 }
 
+function getDisablePopupCookie() {
+    // if js-cookie is loaded as Cookies, prefer that
+    if (window.Cookies && typeof window.Cookies.get === "function") {
+        return Cookies.get("disablepopup") || null;
+    }
+
+    // fallback: read document.cookie manually
+    const name = "disablepopup=";
+    const parts = document.cookie.split(";");
+    for (let i = 0; i < parts.length; i++) {
+        let c = parts[i].trim();
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length);
+        }
+    }
+    return null;
+}
+
+function setDisablePopupCookie(valueOrNull) {
+    // 30 day expiry like old code
+    if (window.Cookies && typeof window.Cookies.set === "function" && typeof window.Cookies.remove === "function") {
+        if (valueOrNull) {
+            Cookies.set("disablepopup", valueOrNull, { expires: 30 });
+        } else {
+            Cookies.remove("disablepopup");
+        }
+        return;
+    }
+
+    // manual fallback
+    if (valueOrNull) {
+        // expires in 30 days
+        var d = new Date();
+        d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = "disablepopup=" + valueOrNull + ";expires=" + d.toUTCString() + ";path=/";
+    } else {
+        // delete cookie
+        document.cookie = "disablepopup=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+}
+
 function OnReadyEvent() {
     SetDisableEnableDefinitionPopupCheckbox();
 
     $("#disableDefPopupId").on("change", function () {
         if (this.checked) {
-            $.cookie("disablepopup", "true", { expires: 30 });
+            // set cookie to "true"
+            setDisablePopupCookie("true");
         } else {
-            $.cookie("disablepopup", "", { expires: 30 });
+            // clear cookie
+            setDisablePopupCookie(null);
         }
 
         DisablePopupContent();
     });
-
 }
+
 
 function DisablePopupContent() {
-    var disablepopup = $.cookie("disablepopup");
+    var disablepopup = getDisablePopupCookie();
+
+    var $doc = $("#iframe-main").contents();
+    if (!$doc.length) return; // iframe not ready yet
 
     if (disablepopup) {
-        $("#iframe-main").contents().find(".tooltip .popupSpan").addClass("popupSpanDisabled").removeClass("popupSpan");
-    }
-    else {
-        $("#iframe-main").contents().find(".tooltip .popupSpanDisabled").addClass("popupSpan").removeClass("popupSpanDisabled");
+        $doc.find(".tooltip .popupSpan")
+            .addClass("popupSpanDisabled")
+            .removeClass("popupSpan");
+    } else {
+        $doc.find(".tooltip .popupSpanDisabled")
+            .addClass("popupSpan")
+            .removeClass("popupSpanDisabled");
     }
 }
+
 
 function SetDisableEnableDefinitionPopupCheckbox() {
-
-    var disablepopup = $.cookie("disablepopup");
-
-    if (disablepopup) {
-        //        $("#disableDefPopupId").prop("checked", true);
-        $("#disableDefPopupId").attr("checked", "checked")
-    }
-    else {
-        //        $("#disableDefPopupId").prop("checked"), false);
-        $("#disableDefPopupId").attr("checked", "")
-    }
+    var disablepopup = getDisablePopupCookie();
+    console.log(disablepopup)
+    // use .prop with booleans in modern jQuery
+    $("#disableDefPopupId").prop("checked", !!disablepopup);
 }
+
 
 
 function gotoPreviousDocument() {
     var result = prepareActiveScreen(false, false);
 
-    if (result) {        
+    if (result) {
         // Load new page in dc
         callWebService("WS/Content.asmx/GetPreviousDocumentEthics", "{id:" + getActiveDocumentId() + ",type:'" + getActiveDocumentType() + "', vct:" + getActiveScreen().viewCompleteTopic + "}", loadContentBySiteNodePrevious, ajaxFailed);
         getActiveScreen().viewCompleteTopic = false;
@@ -754,11 +797,11 @@ function gotoPreviousDocument() {
 function gotoNextDocument() {
     var result = prepareActiveScreen(false, false);
 
-    if (result) {        
+    if (result) {
         // Load new page in dc
         callWebService("WS/Content.asmx/GetNextDocumentEthics", "{id:" + getActiveDocumentId() + ",type:'" + getActiveDocumentType() + "', vct:" + getActiveScreen().viewCompleteTopic + "}", loadContentBySiteNodeNext, ajaxFailed);
         getActiveScreen().viewCompleteTopic = false;
-        
+
     }
 }
 function doToolbarHomeNavLink(siteFolderName) {
@@ -774,7 +817,7 @@ function doEmailLink() {
     // getActiveScreen().siteNode.Title
     var link = getEmailLink();
     var href = "mailto:?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(link);
-    window.open(href,'_blank');
+    window.open(href, '_blank');
 }
 
 function loadFormatOptions() {
