@@ -206,6 +206,8 @@ namespace MainUI.Handlers
                     
                 // add a div and an image to test for css and image loaded
                 contentText = AddDivForCssAndImageCheck(contentText);
+
+                contentText = AddSelfEndingAnchors(contentText);
                 
                 
                 // add the breadcrumb
@@ -399,6 +401,12 @@ namespace MainUI.Handlers
             string newContent2 = newContent.Replace(head, headReplace);
 
             return newContent2;
+        }
+
+        private string AddSelfEndingAnchors(string content)
+        {
+            content = Regex.Replace(content, "(<a [^>]+)/>", "$1></a>");
+            return content;
         }
 
         private string AddJavaScriptAndCssRefs(string content, ReferringSite referringSite)

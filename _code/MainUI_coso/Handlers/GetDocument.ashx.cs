@@ -409,11 +409,11 @@ namespace MainUI.Handlers
             string newCssAndJs = string.Empty;
 
             // subscription check (for the locked icons next to the links)
-            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Handlers/GetResource.ashx?type=subscription_access' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='Handlers/GetResource.ashx?type=subscription_access' />";
             //newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/Base.css' />";
-            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/Styles/notes.css' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/notes.css' />";
             
-            newCssAndJs += "<link rel='stylesheet' type='text/css' href='/resources/jquery.treeview.css' />";
+            newCssAndJs += "<link rel='stylesheet' type='text/css' href='resources/jquery.treeview.css' />";
             //newCssAndJs += "<script type='text/javascript' src='/js/jquery-1.4.2.min.js'></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>";
 
