@@ -102,7 +102,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script src="resources/jquery.cookie.min.js" type="text/javascript"></script>
+<script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>
