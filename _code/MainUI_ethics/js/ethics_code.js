@@ -239,16 +239,16 @@ function hideDocumentSpecificButtons() {
 
 /* Ethics-only functions */
 
+// ethics_code.js
 function loadTocDocToggle() {
     if ($('#nav-toc a img').attr('alt') == 'DOC' ||
         $('#nav-toc a img').attr('alt') == 'DOCCOMPLETE') {
+        // going TOC -> DOC
         $('#nav-toc a img').attr('src', 'images/toc.png');
         $('#nav-toc a img').attr('alt', 'TOC');
         gotoActiveDocument();
-        //doBack();
     } else {
-        //        if (g_backStack.count() > 0 && g_currentView != null && !g_currentView.isTool && getActiveDocumentVCT()) {
-
+        // DOC -> TOC
         if (g_backStack.count() > 0 && g_currentView != null && !g_currentView.isTool) {
             $('#nav-toc a img').attr('src', 'images/doc.png');
             $('#nav-toc a img').attr('alt', 'DOC');
@@ -256,10 +256,10 @@ function loadTocDocToggle() {
             $('#nav-toc a img').attr('src', 'images/toc.png');
             $('#nav-toc a img').attr('alt', 'TOC');
         }
-        loadToc();
+        loadToc();  // <-- here
     }
-
 }
+
 
 function updateTocDoc() {
     $('#nav-toc a img').show();

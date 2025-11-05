@@ -5,7 +5,8 @@
                                 <p>
                                     Search results for:
                                     <a href="" class="btn" data-toggle="modal" data-target="#mySaveNoteModal">Save this search</a>
-                                    <span>{$T.d.SearchTerm}</span>
+                                    <span>{unescapeSearchText($T.d.SearchTerm)}</span>
+
                                 </p>
                             </div>
                             <div class="leftcol_content">
@@ -113,7 +114,7 @@
         <div style="">
             <div id="search-advanced" >
                     <p class="search-advanced">Advanced Search:</p>
-                    <input type="text" class="search" id="searchTermsAdvanced" value="{$T.d.SearchTerm}" autocomplete="off" onkeydown="doAdvSearchCheck(event.keyCode);" />
+                    <input type="text" class="search" id="searchTermsAdvanced"  value="{unescapeSearchText($T.d.SearchTerm)}" autocomplete="off" onkeydown="doAdvSearchCheck(event.keyCode);" />
                     <label>Type:</label>
                     <select id="searchType">
                     {#if $T.d.SearchMode == 1}
@@ -169,17 +170,32 @@
                     <img id="btnNameSearch" src="images/btn-save-search.gif" alt="Save Search" border="0" style="margin-left:2px;"/></a>
                     <div id="nameSearchWindow">
                         <p class="nopad">Add Title to Search:</p>
-                        <input type="text" value="{$T.d.SearchTerm}" id="searchNameBox" style="width:250px;" onkeydown="doSavedSearchCheck(event.keyCode);return event.keyCode!=13;"/>
+                        <input type="text" value="{unescapeSearchText($T.d.SearchTerm)}" id="searchNameBox"
+                               style="width:250px;"
+                               onkeydown="doSavedSearchCheck(event.keyCode);return event.keyCode!=13;" />
+
                         <br />
-                        <a href="#" id ="savedsearch" onclick="saveSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value);"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;"/></a>
-                        <a href="#" onclick="cancelNameSearch()" ><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style=""/></a>
+                        <a href="#" id="savedsearch" onclick="saveSearch(document.getElementById('dimensionId').value, document.getElementById('searchTermsAdvanced').value, document.getElementById('searchType').value, 100, 10, 0, document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value);"><img id="btnSaveSearch" src="images/btn-submit.gif" alt="Save" border="0" style="padding-top:10px; clear:left;" /></a>
+                        <a href="#" onclick="cancelNameSearch()"><img id="btnCancelSave" src="images/btn-clear.gif" alt="Cancel" border="0" style="" /></a>
                     </div>
                 <div class="clear"></div>                    
             </div>
             <div style="margin-left:25px; width:96%; margin-bottom:10px; ">
-                <h2>Search Results for <b>"{$T.d.SearchTerm}"</b> &nbsp;all terms searched: "{$T.d.WordIntepretations}"
-               
-                </h2>
+                <div style="margin: 20px 0 10px 0; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: bold; color: #2aa7d8;">
+                    <span style="white-space: nowrap;">
+                        Search Results for
+                        <input type="button" readonly
+                               style="border:none; background:transparent; font-size:24px; font-weight:bold; color:#2aa7d8; width:auto; padding:0; margin:0; outline:none; vertical-align:baseline;"
+                               value="{unescapeSearchText($T.d.SearchTerm)}" />
+                        &nbsp; all terms searched:
+                        <input type="button" readonly
+                               style="border:none; background:transparent; font-size:24px; font-weight:bold; color:#2aa7d8; width:auto; padding:0; margin:0; outline:none; vertical-align:baseline;"
+                               value="{unescapeSearchText($T.d.WordIntepretations)}" />
+                    </span>
+
+                </div>
+           
+
                 {#if $T.d.HitCount != 0}
                 <div class="search-results-pagination small">
                     <span>
@@ -187,11 +203,11 @@
                     </span>
                     <span class="searchBtnRight">
                         {#if $T.d.DisplayOffset >= 10}
-                            <div class="search-btn"><a id="searchOffsetDecrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} - 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Prev</a></div>
+                        <div class="search-btn"><a id="searchOffsetDecrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} - 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Prev</a></div>
                         {#/if}
-                        
+
                         {#if $T.d.HitCount > ($T.d.DisplayOffset + 10)}
-                            <div class="search-btn"><a id="searchOffsetIncrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} + 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Next</a></div>
+                        <div class="search-btn"><a id="searchOffsetIncrement" href="#" onclick="doAdvancedNavigationalSearch('{$T.d.DimensionId}', '{$T.d.SearchTerm}', 1, 100, 10, ({$T.d.DisplayOffset} + 10), document.getElementById('showExcerpts').value, document.getElementById('showUnsubscribed').value,{$T.d.nonauthoritative});">Next</a></div>
                         {#/if}
                     </span>
                 </div>
