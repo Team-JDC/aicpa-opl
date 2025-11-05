@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
@@ -637,24 +638,27 @@ namespace MainUI.Shared.Elastic
         );
 
 
-            // 9) results
+            // 8) Results (unchanged except snippet/highlight)
+            string Decode(string s) => string.IsNullOrEmpty(s) ? s : WebUtility.HtmlDecode(s).Replace("&nbsp;", " ");
+
             var results = response.Hits.Select((hit, i) => new SearchResult
             {
                 Id = hit.Source.Id,
-                Name = hit.Source.Name,
-                Title = hit.Source.Title,
-                Snippet = sc.Excerpts
+                Name = Decode(hit.Source.Name),
+                Title = Decode(hit.Source.Title),
+                Snippet = WebUtility.HtmlDecode(sc.Excerpts
                     ? (hit.Highlight != null && hit.Highlight.ContainsKey("Content")
                         ? hit.Highlight["Content"].FirstOrDefault()
                         : "")
-                    : "",
-                ReferencePath = hit.Source.ReferencePath,
-                SitePath = hit.Source.SitePath,
+                    : ""),
+                ReferencePath = Decode(hit.Source.ReferencePath),
+                SitePath = Decode(hit.Source.SitePath),
                 ResultEnumeration = i + sc.PageOffset,
                 InSubscription = hit.Source.InSubscription,
                 Type = NodeType.Document.ToString()
             }).ToList();
 
+            // 9) final response
             return new SearchResultResponse
             {
                 DimensionId = incomingDimId ?? string.Empty,
