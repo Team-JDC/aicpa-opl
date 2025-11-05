@@ -1240,11 +1240,25 @@ function replaceAll(stringToParse, search, replace) {
 }
 
 function unencodeHtml(stringToParse) {
-    parsedString1 = replaceAll(stringToParse, "&gt;", ">");
-    parsedString2 = replaceAll(parsedString1, "&lt;", "<");
-    parsedString3 = replaceAll(parsedString2, "&#39;endeca_term&#39;", "endeca_term");
+    if (!stringToParse) return "";
+
+    var parsedString1 = replaceAll(stringToParse, "&gt;", ">");
+    var parsedString2 = replaceAll(parsedString1, "&lt;", "<");
+    var parsedString3 = replaceAll(parsedString2, "&#39;endeca_term&#39;", "endeca_term");
+
+    // NEW: punctuation and escaping fixes
+    parsedString3 = replaceAll(parsedString3, "&rsquo;", "'");
+    parsedString3 = replaceAll(parsedString3, "&lsquo;", "'");
+    parsedString3 = replaceAll(parsedString3, "&quot;", "\"");
+    parsedString3 = replaceAll(parsedString3, "&amp;", "&");
+
+    // IMPORTANT: fix backslash-escaped apostrophes like audit\'s
+    parsedString3 = replaceAll(parsedString3, "\\'", "'");
+
     return parsedString3;
 }
+
+
 
 function changeCheckBoxValue(id) {
     var id = id;
@@ -1552,5 +1566,34 @@ function LMSTargetPtr() {
         return parameters["targetptr"];
     } else return "";
 }
+
+function unescapeSearchText(str) {
+    if (str == null) return '';
+
+    // Normalise to string
+    str = String(str);
+
+    // 1) Handle the weird combo cases first:  \&#39; or \\&#39;  → '
+    //    \+ means "one or more backslashes"
+    str = str.replace(/\\+&#39;/g, "'");
+
+    // 2) Fix plain JS-escaped quotes:  \'  and \"
+    str = str.replace(/\\'/g, "'")
+        .replace(/\\"/g, '"');
+
+    // 3) Decode HTML entities generically (covers &#39;, &apos;, &rsquo;, &quot;, &amp;, etc)
+    if (str.indexOf('&') !== -1 || str.indexOf('&#') !== -1) {
+        var textarea = document.createElement('textarea');
+        textarea.innerHTML = str;
+        str = textarea.value;
+    }
+
+    return str;
+}
+
+
+
+
+
 
 

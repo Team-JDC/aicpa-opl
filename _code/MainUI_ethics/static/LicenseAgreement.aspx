@@ -19,7 +19,7 @@
 		DIV.warning P { FONT: 12px Arial } 
 	</style>    
     <script type="text/javascript" src="/js/jquery/jquery-3.7.1.min.js"></script> 
-    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script>
         function disagreeLA()
         {

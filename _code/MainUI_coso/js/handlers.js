@@ -490,7 +490,7 @@ function doSearchLink(id, type, useNewScreen) {
     // when you click on a link that goes to the homepage
     function doHomePageLink() {
         loadMyScreens();
-        loadLibraryBooks();        
+        /*loadLibraryBooks(); */       
         loadHomeNavToolbar();
         hideDocumentSpecificButtons();
         loadHomePage();

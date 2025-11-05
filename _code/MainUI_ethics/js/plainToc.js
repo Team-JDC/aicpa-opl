@@ -1,133 +1,177 @@
-﻿// toc-loader.js (jQuery 3.7.1 compatible with cleaned structure and comments)
+﻿function initialTocLoad(rootId) {
+    var id = getTocStateId();
+    var type = getTocStateType();
 
-/**
- * Loads the initial Table of Contents (TOC) based on stored state.
- * @param {string} rootId - The ID of the root UL element where TOC will load.
- */
-function initialTocLoad(rootId) {
-  loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", getTocStateId(), getTocStateType(), $("#" + rootId), true);
+    loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
 }
 
-/**
- * Loads the TOC synchronously based on the active document if present.
- * Falls back to site-level TOC if no active document.
- */
 function syncTocLoad(rootId) {
-  const id = hasActiveDocument() ? getActiveDocumentId() : -1;
-  const type = hasActiveDocument() ? getActiveDocumentType() : "Site";
-  loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+    if (hasActiveDocument()) {
+        var id = getActiveDocumentId();
+        var type = getActiveDocumentType();
+
+        loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+    }
+    else {
+        loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", -1, "Site", $("#" + rootId), true);
+    }
 }
 
-/**
- * Loads the TOC by specific document ID and type. Falls back to active document if both are not provided.
- */
 function TocLoadByIdType(rootId, id, type) {
-  const validId = id || getActiveDocumentId();
-  const validType = type || getActiveDocumentType();
-  loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", validId, validType, $("#" + rootId), true);
+    if ((id) && (type)) {
+        var id = getActiveDocumentId();
+        var type = getActiveDocumentType();
+
+        loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+    } else {
+        loadPlainTocByHtml("WS/Content.asmx/GetInitialTreeTocHtml", -1, "Site", $("#" + rootId), true);
+    }
 }
 
-/**
- * Common function to fetch and load TOC HTML into the given UL container.
- */
+
 function loadPlainTocByHtml(url, id, type, ulToAppend, shouldExpandToNode) {
-  const params = JSON.stringify({ id: id.toString(), type });
+    var params = "{id: '" + id + "', type:'" + type + "'}";
 
-  $.ajax({
-    type: "POST",
-    url,
-    data: params,
-    contentType: "application/json; charset=utf-8",
-    dataType: "json",
-    success: function (response) {
-      ulToAppend.html(response.d);
-      if (shouldExpandToNode) expandToNode(id, type);
-    },
-    error: ajaxFailed
-  });
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: params,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            ulToAppend.html(response.d);
+            if (shouldExpandToNode) {
+                expandToNode(id, type);
+            }
+        },
+        error: ajaxFailed
+
+    });
 }
 
-/**
- * Toggles a TOC node to expand/collapse and loads children via web service if needed.
- */
 function toggleTocNode(id, type, uniqueId) {
-  const childUl = $("#childUl-" + uniqueId);
-  const currentLi = $("#currentLi-" + uniqueId);
-  const currentDiv = $("#currentDiv-" + uniqueId);
+    var childUl = $("#childUl-" + uniqueId);
+    var currentLi = $("#currentLi-" + uniqueId);
+    var currentDiv = $("#currentDiv-" + uniqueId);
 
-  if (!childUl.hasClass("calledWS")) {
-    childUl.addClass("calledWS");
-    loadPlainTocByHtml("WS/Content.asmx/GetNodeToGrandChildrenHtml", id, type, childUl, false);
-  }
+    if (!childUl.hasClass("calledWS")) {
+        childUl.addClass("calledWS");
 
-  toggleCurrentLiClass(currentLi);
-  toggleCurrentDivClass(currentDiv);
-  childUl.slideToggle();
+        loadPlainTocByHtml("WS/Content.asmx/GetNodeToGrandChildrenHtml", id, type, childUl, false);
+    }
 
-  setTocStateId(id);
-  setTocStateType(type);
+    toggleCurrentLiClass(currentLi);
+    toggleCurrentDivClass(currentDiv);
+
+    childUl.slideToggle();
+
+    // save state
+    setTocStateId(id);
+    setTocStateType(type);
 }
 
-/**
- * Toggles the list item CSS classes between expandable and collapsable.
- */
 function toggleCurrentLiClass(currentLi) {
-  const isExpandable = currentLi.hasClass("expandable");
-  currentLi.toggleClass("expandable", !isExpandable);
-  currentLi.toggleClass("collapsable", isExpandable);
-  currentLi.toggleClass("lastExpandable", !isExpandable && currentLi.hasClass("lastCollapsable"));
-  currentLi.toggleClass("lastCollapsable", isExpandable && currentLi.hasClass("lastExpandable"));
+    if (currentLi.hasClass("expandable")) {
+        currentLi.removeClass("expandable");
+        currentLi.addClass("collapsable");
+
+        if (currentLi.hasClass("lastExpandable")) {
+            currentLi.removeClass("lastExpandable");
+            currentLi.addClass("lastCollapsable");
+        }
+    }
+    else {
+        currentLi.removeClass("collapsable");
+        currentLi.addClass("expandable");
+
+        if (currentLi.hasClass("lastCollapsable")) {
+            currentLi.removeClass("lastCollapsable");
+            currentLi.addClass("lastExpandable");
+        }
+    }
 }
 
-/**
- * Toggles the div hitarea CSS classes between expandable and collapsable.
- */
 function toggleCurrentDivClass(currentDiv) {
-  const isExpandable = currentDiv.hasClass("expandable-hitarea");
-  currentDiv.toggleClass("expandable-hitarea", !isExpandable);
-  currentDiv.toggleClass("collapsable-hitarea", isExpandable);
-  currentDiv.toggleClass("lastExpandable-hitarea", !isExpandable && currentDiv.hasClass("lastCollapsable-hitarea"));
-  currentDiv.toggleClass("lastCollapsable-hitarea", isExpandable && currentDiv.hasClass("lastExpandable-hitarea"));
+    if (currentDiv.hasClass("expandable-hitarea")) {
+        currentDiv.removeClass("expandable-hitarea");
+        currentDiv.addClass("collapsable-hitarea");
+
+        if (currentDiv.hasClass("lastExpandable-hitarea")) {
+            currentDiv.removeClass("lastExpandable-hitarea");
+            currentDiv.addClass("lastCollapsable-hitarea");
+        }
+    }
+    else {
+        currentDiv.removeClass("collapsable-hitarea");
+        currentDiv.addClass("expandable-hitarea");
+
+        if (currentDiv.hasClass("lastCollapsable-hitarea")) {
+            currentDiv.removeClass("lastCollapsable-hitarea");
+            currentDiv.addClass("lastExpandable-hitarea");
+        }
+    }
 }
 
-/**
- * Expands the tree to the specified node by ID and highlights it.
- */
 function expandToNode(id, type) {
-  if (id === -1) {
-    manualExpand.call($('#mainToc').children("li:first")[0]);
-    return;
-  }
+    // Handle "root" (-1) up front
+    if (id === -1) {
+        var $rootLi = $('#mainToc').children('li:first');
+        if ($rootLi.length) {
+            manualExpand.call($rootLi[0]);
+            $rootLi[0].scrollIntoView(true);
+        } else {
+            logErrorToServer('expandToNode: root li not found under #mainToc');
+        }
+        return;
+    }
 
-  const liIdString = `#currentLi-${id}-${type}`;
-  const currentLi = $(liIdString);
-  const ancestry = currentLi.parents("#mainToc li");
+    // ─────────────────────────────────────────────
+    // 1. Find the li – use id only, ignore type
+    //    (this avoids all the "Document" vs "document" problems)
+    // ─────────────────────────────────────────────
+    var $currentLi = $("#mainToc li[id^='currentLi-" + id + "-']");
 
-  ancestry.each(manualExpand);
-  manualExpand.call(currentLi[0]);
+    if (!$currentLi.length) {
+        // Nothing found – *don’t* touch currentLi[0], just log and bail
+        logErrorToServer('expandToNode: li not found for id=' + id + ', type=' + type);
+        return;
+    }
 
-  const anchorElement = currentLi[0];
-  if (anchorElement) {
-    anchorElement.scrollIntoView(true);
-  } else {
-    logErrorToServe(`Anchor Empty: ${liIdString}`);
-  }
+    var currentLi = $currentLi.first(); // just in case there are multiple
 
-  const span = $(`${liIdString} span:first`).css("background", "#5CB3FF");
-  setTimeout(() => {
-    span.animate({ backgroundColor: "#ffffff" }, 1500, "swing");
-  }, 4000);
+    // ─────────────────────────────────────────────
+    // 2. Expand ancestors and the current node
+    // ─────────────────────────────────────────────
+    var ancestry = currentLi.parents("#mainToc li");
+    ancestry.each(manualExpand);          // expand parents
+    manualExpand.call(currentLi[0]);      // expand the node itself
+
+    // ─────────────────────────────────────────────
+    // 3. Scroll into view
+    // ─────────────────────────────────────────────
+    currentLi[0].scrollIntoView(true);
+
+    // ─────────────────────────────────────────────
+    // 4. Flash highlight on first span
+    // ─────────────────────────────────────────────
+    var $span = currentLi.find("span:first");
+    if ($span.length) {
+        $span.css("background", "#5CB3FF");
+        setTimeout(function () {
+            $span.animate({ backgroundColor: "#ffffff" }, 1500, "swing");
+        }, 4000);
+    }
 }
 
-/**
- * Manually expands a given TOC node (used during tree initialization).
- */
-function manualExpand() {
-  const currentLi = $(this);
-  const currentDiv = currentLi.children("div:first");
-  const childUl = currentLi.children("ul:first");
 
-  toggleCurrentLiClass(currentLi);
-  toggleCurrentDivClass(currentDiv);
-  childUl.show();
+function manualExpand() {
+    var currentLi = $(this);
+    var currentDiv = currentLi.children("div:first");
+    var childUl = currentLi.children("ul:first");
+
+    toggleCurrentLiClass(currentLi);
+    toggleCurrentDivClass(currentDiv);
+
+    childUl.show();
+
 }

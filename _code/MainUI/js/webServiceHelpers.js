@@ -38,7 +38,7 @@ function function_exists(function_name) {
 
 
 
-$(function () {
+$().ready(function () {
     addUnloadEvent();
     loadHomeNavToolbar();
     hideInnerSearchButtons();
@@ -78,8 +78,7 @@ function getUrlVars() {
     if (window.location.href.indexOf('#') > 0)
         urlMinusAnchor = urlMinusAnchor.substring(0, window.location.href.indexOf('#'));
     var hashes = urlMinusAnchor.slice(urlMinusAnchor.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
+    for (var i = 0; i < hashes.length; i++) {
         hash = hashes[i].split('=');
         vars.push(hash[0]);
         vars[hash[0]] = hash[1];
@@ -301,8 +300,7 @@ function setSearchResultsButton(visible) {
 }
 
 function setBookmarkButtons(visible) {
-    if (!visible)
-    {
+    if (!visible) {
         setAddBookmarkButton(false);
         setDeleteBookmarkButton(false);
     } else {
@@ -315,7 +313,7 @@ function setBookmarkButtons(visible) {
 function copyText() {
     var iframe = document.getElementById('iframe-main');
     var idoc = iframe.contentDocument || iframe.contentWindow.document; // ie compatibility
-        
+
     if (document.getElementById('iframe-main').contentWindow.GetHilightedContent) {
         var content = document.getElementById('iframe-main').contentWindow.GetHilightedContent();
         content = content.replace(/\|INSERT LINK HERE\|/gi, d_returnurl);
@@ -332,7 +330,7 @@ function openLinkDialog() {
 }
 
 function openGenericPopup(title, content) {
-    $('#genericPopupTitle').text(title);    
+    $('#genericPopupTitle').text(title);
     $('#genericPopupContent').text(content);
     $("#genericPopup").fadeIn("slow");
 }
@@ -345,13 +343,13 @@ function getEmailLinkError(result) {
     alert("Error generating email link");
 }
 
-function getEmailLink() {    
+function getEmailLink() {
     var id = getActiveDocumentId();
     var type = getActiveDocumentType();
 
     var paramstr = "{id:" + id + ",type:'" + type + "'}";
     var targetPtr = undefined;
-    var targetDoc = undefined;    
+    var targetDoc = undefined;
     $.ajax({
         type: "POST",
         url: "WS/Content.asmx/GetTargetDocPtrByBookIdDocType",
@@ -387,7 +385,7 @@ function getEmailLink() {
 }
 
 function GetTargetPtrAndDocByIdType(id, type) {
-   
+
 }
 
 
@@ -406,7 +404,7 @@ function updateEmailLink() {
 
 function showTextOpButtons() {
     $("#textOpButtons").show();
-   
+
 }
 
 function hideTextOpButtons() {
@@ -441,8 +439,8 @@ function showHideNextPrevButtons() {
         //$("#nextHit").show();
         $("#nextHit").removeClass("disabled");
         //$("#nextHit").attr("href", "#");
-        $("#nextHit").off("click");
-        $("#nextHit").on('click', function () {
+        $("#nextHit").unbind("click");
+        $("#nextHit").click(function () {
             if (document.getElementById('iframe-main').contentWindow.goToNext) {
                 document.getElementById('iframe-main').contentWindow.goToNext();
                 showHideNextPrevButtons();
@@ -452,7 +450,7 @@ function showHideNextPrevButtons() {
     else {
         //$("#nextHit").hide();
         $("#nextHit").addClass("disabled");
-        $("#nextHit").off("click");
+        $("#nextHit").unbind("click");
         //$("#nextHit").attr("href", "");
     }
 
@@ -460,8 +458,8 @@ function showHideNextPrevButtons() {
         //$("#prevHit").show();
         $("#prevHit").removeClass("disabled");
         //$("#nextHit").attr("href", "#");
-        $("#prevHit").off("click");
-        $("#prevHit").on('click',function () {
+        $("#prevHit").unbind("click");
+        $("#prevHit").click(function () {
             if (document.getElementById('iframe-main').contentWindow.goToPrevious) {
                 document.getElementById('iframe-main').contentWindow.goToPrevious();
 
@@ -472,7 +470,7 @@ function showHideNextPrevButtons() {
     else {
         //$("#prevHit").hide();
         $("#prevHit").addClass("disabled");
-        $("#prevHit").off("click");
+        $("#prevHit").unbind("click");
         //$("#nextHit").attr("href", "");
     }
 }
@@ -541,7 +539,7 @@ function loadTemplate(serviceUrl, paramString, templateUrl, containerId, paramsF
 function applyTemplate(msg, templateUrl, containerId, nonfilter) {
     if ((nonfilter != null) && (nonfilter == true))
         $('#' + containerId).setTemplateURL(templateUrl, [], { filter_data: false }); //http://stackoverflow.com/questions/1721603/jtemplates-html-in-variables
-    else $('#' + containerId).setTemplateURL(templateUrl); 
+    else $('#' + containerId).setTemplateURL(templateUrl);
     $('#' + containerId).processTemplate(msg);
 
     if (containerId == "document-container") {
@@ -553,7 +551,7 @@ function applyTemplate(msg, templateUrl, containerId, nonfilter) {
 
 function ajaxFailed(result) {
     if (isLMSLink()) {
-        logErrorToServer("LMSLink - "+result.responseText);
+        logErrorToServer("LMSLink - " + result.responseText);
         removeUnloadEvent();
         fillContentPaneFromUrl("templates/errordirect.html");
     } else if (result.status == 500 && result.responseText.indexOf("UserNotAuthenticated") != -1) {
@@ -564,15 +562,15 @@ function ajaxFailed(result) {
     } else {
         logErrorToServer(result.responseText);
         loadError();
-//        alert('failed' + result.status + ' ' + result.statusText);
-//        alert('reponse text ' + result.responseText);
+        //        alert('failed' + result.status + ' ' + result.statusText);
+        //        alert('reponse text ' + result.responseText);
     }
     //setLoading(false);
 }
 
 function addUnloadEvent() {
     var url = window.location.toString();
-    
+
     if (url.indexOf("lmsdoc") < 0) {
         //window.onbeforeunload = confirmBrowseAway;
     }
@@ -594,7 +592,7 @@ function confirmBrowseAway() {
 //          if the last screen is closed it redirects to the home page
 function closeScreen(index) {
     var originalScreenCount = getMyScreenCount();
-    
+
     removeScreen(index);
     updateBackForScreenClose(index);
 
@@ -753,7 +751,7 @@ function scrollToAnchor(anchor) {
 
     if (anchor) {
         if (anchor == highlightName) {
-//            var found = $("a[name='" + anchor + "']:first");
+            //            var found = $("a[name='" + anchor + "']:first");
             var found = $('#iframe-main').contents().find("a[name='" + anchor + "']:first");
 
             if (found.length > 0) {
@@ -763,7 +761,7 @@ function scrollToAnchor(anchor) {
         else {
             //var anchors = document.getElementsByName(anchor);
             var iframe = document.getElementById("iframe-main");
-//            var anchors = iframe.document.getElementsByName(anchor);
+            //            var anchors = iframe.document.getElementsByName(anchor);
             var anchors = $('#iframe-main').contents().find("a[name='" + anchor + "']");
 
             if (anchors.length > 0) {
@@ -808,19 +806,19 @@ function callWebService(serviceUrl, paramString, successFunction, errorFunction,
         complete: function (xhr, status) {
             if (status === 'error' || !xhr.responseText) {
                 //handleError();
-                alert("Error:"+xhr.responseText);
-            }   else {
+                alert("Error:" + xhr.responseText);
+            } else {
                 var data = xhr.responseText;
                 //...
             }
-        }});
+        }
+    });
 }
 
 function checkTimer() {
     checkTimerCount++;
 
-    if (checkAvailable() || checkTimerCount >= maxTimerChecks)
-    {
+    if (checkAvailable() || checkTimerCount >= maxTimerChecks) {
         doScrollTimerCallback();
     }
 }
@@ -856,7 +854,7 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
     if (siteNode.Restricted && !isLMSLink()) {
         gotoUpsellPage(siteNode.Id, siteNode.Type, g_pageTypes.SCREEN);
         RemoveEmptyScreens();
-    } else if (siteNode.Restricted &&isLMSLink()) {
+    } else if (siteNode.Restricted && isLMSLink()) {
         fillContentPaneFromUrl("templates/errordirect.html");
     }
     else { // in our subscription
@@ -903,7 +901,7 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
 
             //var url = "Handlers/GetDocument.ashx?id=" + siteNode.Id + "&type=" + siteNode.Type + "&show_sources=" + getShowSources() + "&d_hh=" + getActiveScreen().showHighlight;
             var url = "GetDocument.ashx?id=" + siteNode.Id + "&type=" + siteNode.Type + "&show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getActiveScreen().showHighlight + "&lms=" + isLMSLink();
-            
+
 
             if ($('#backup-document-container')[0]) {
                 $('#backup-document-container')[0].innerHTML = ""; // most effecient...potential for jQuery memory leaks
@@ -926,42 +924,53 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
             //            });
 
             // sburton: Begin section for scrollbar binding
-            $('#iframe-main').off("load");
-            $('#iframe-main').on("load", function () {
-                $('#iframe-main').off("load"); // Only run once
+            $('#iframe-main').unbind("load");
+            $('#iframe-main').bind("load", function () {
+                // make sure this only gets called once, by unbinding it now
+                $('#iframe-main').unbind("load");
+                $('#iframe-main').ready(function () {
+                    doProcessFeatures();
+                    doDocumentReadyMethods();
+                });
 
-                doProcessFeatures();
-                doDocumentReadyMethods();
 
                 if (anchor || scrollbarPosition) {
-                    window.doScrollTimerCallback = function () {
-                        clearInterval(theTimer);
-                        theTimer = null;
+                    //                        $('#document-container').ready(function () {
+                    $('#iframe-main').ready(function () {
+                        window.doScrollTimerCallback = function () {
+                            clearInterval(theTimer);
+                            theTimer = null;
+                            showHideNextPrevButtons();
+
+                            if ($("#iframe-main").contents().find("#hitlocation0").length > 0) {
+                                //Don't scroll we have already done it. We display prev and next buttons
+                            } else if (scrollbarPosition) {
+                                scrollToPosition(scrollbarPosition);
+                            }
+                            else {
+                                scrollToAnchor(anchor);
+                            }
+
+                            setLoading(false);
+
+                        };
+
+                        theTimer = setInterval(checkTimer, timerInterval);
+                        checkTimerCount = 0;
+
                         showHideNextPrevButtons();
 
-                        const $content = $("#iframe-main").contents();
-                        if ($content.find("#hitlocation0").length > 0) {
-                            // Already handled
-                        } else if (scrollbarPosition) {
-                            scrollToPosition(scrollbarPosition);
-                        } else {
-                            scrollToAnchor(anchor);
-                        }
 
-                        setLoading(false);
-                    };
 
-                    theTimer = setInterval(checkTimer, timerInterval);
-                    checkTimerCount = 0;
-
-                    showHideNextPrevButtons();
-                    checkTimer();
-                } else {
+                        checkTimer();
+                    }); // $('#document-container').ready
+                } // end if (anchor || scrollbarPosition)
+                else {
                     scrollToAnchor();
                     setLoading(false);
                 }
-            });
-        // end of load call back function
+
+            });           // end of load call back function
 
             // sburton: End section for scrollbar binding
 
@@ -1027,7 +1036,7 @@ function loadContentBySiteNodeNextOrPrevious(siteNode, isNext) {
 
 //Should be called when the iframe document is "ready".  Created for Ethics
 function doDocumentReadyMethods() {
- 
+
 }
 
 function afterLoadContentBySiteNode(siteNode) {
@@ -1036,15 +1045,15 @@ function afterLoadContentBySiteNode(siteNode) {
     loadMyScreens();
     setMyDocumentsTab(true);
     setPrintButton(true);
-    setBookmarkButtons(true);    
+    setBookmarkButtons(true);
     loadBreadCrumbForActiveDocument();
     loadFafTools();
     loadFormatOptions();
     doProcessFeatures();
     setEmailPageButton(true);
 
-//    var hash = $.History.setState("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
-//    console.log("hash set as: " + hash);
+    //    var hash = $.History.setState("#/content?id=" + siteNode.Id + "&type='" + siteNode.Type + "'");
+    //    console.log("hash set as: " + hash);
 }
 
 function animateNext() {
@@ -1098,10 +1107,10 @@ function stopRunningAnimations() {
 function loadBackupContentBySiteNode(siteNode) {
 
     var hitAnchor = "";
-    if (getActiveScreen().hitAnchor != null) {        
+    if (getActiveScreen().hitAnchor != null) {
         hitAnchor = "&hitanchor=" + getActiveScreen().hitAnchor;
     }
-    
+
     fillBackupContainerFromUrl("Handlers/GetDocument.ashx?id=" + siteNode.Id + "&type=" + siteNode.Type + "&show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getActiveScreen().showHighlight);
 }
 
@@ -1129,14 +1138,14 @@ function fillDocumentContainerFromUrlPrevious(url) {
     var iframe = document.getElementById("iframe-main");
     setLoading(true);
     iframe.src = url;
-    
+
     // sburton: I think this jquery way would work too
-//    $('#iframe-main').attr("src", url);
-//    $('#iframe-main').load(function () {
-//        alert("loaded");
-//    });
+    //    $('#iframe-main').attr("src", url);
+    //    $('#iframe-main').load(function () {
+    //        alert("loaded");
+    //    });
     $('#iframe-main').load(function () {
-        $('#iframe-main').off('load');
+        $('#iframe-main').unbind('load');
         setLoading(false);
         doDocumentReadyMethods();
         animatePreviousIframe();
@@ -1155,16 +1164,16 @@ function fillDocumentContainerFromUrlNext(url) {
     iframe.src = url;
 
     // sburton: I think this jquery way would work too
-//    $('#iframe-main').attr("src", url);
-//    $('#iframe-main').load(function () {
-//        alert("loaded");
-//    });
+    //    $('#iframe-main').attr("src", url);
+    //    $('#iframe-main').load(function () {
+    //        alert("loaded");
+    //    });
 
 
     // sburton: firefox doesn't like this way
     // window.frames["iframe-main"].location = url;
     $('#iframe-main').load(function () {
-        $('#iframe-main').off('load');
+        $('#iframe-main').unbind('load');
         setLoading(false);
         doDocumentReadyMethods();
         animateNextIframe();
@@ -1182,19 +1191,14 @@ function filliFrameFromUrl(url, callback) {
     setLoading(true);
     iframe.src = url;
 
-    $('#iframe-main').on('load', function handler() {
-        // Unbind this handler after the first execution
-        $('#iframe-main').off('load', handler);
-
+    $('#iframe-main').bind('load', function () {
+        $('#iframe-main').unbind('load');
         setLoading(false);
-
         if (callback) {
             callback();
         }
-
-        $('#iframe-main').fadeIn(600); // no quotes around duration
+        $('#iframe-main').fadeIn('600');
     });
-
 }
 
 
@@ -1202,7 +1206,7 @@ function fillDocumentContainerFromUrl(url) {
     $('#iframe-main').hide();
     $('#document-container').show();
     $('#document-container').load(url, function () {
-        $('#iframe-main').off('load');
+        $('#iframe-main').unbind('load');
         setLoading(false);
     });
 }
@@ -1211,7 +1215,7 @@ function fillBackupContainerFromUrl(url) {
     $('#iframe-main').hide();
     $('#backup-document-container').show();
     $('#backup-document-container').load(url, function () {
-        $('#iframe-main').off('load');
+        $('#iframe-main').unbind('load');
         setLoading(false);
     });
 }
@@ -1221,10 +1225,10 @@ function fillContentPaneFromUrl(url) {
     $('#document-container').show();
 
     $('#backup-document-container')[0].innerHTML = ""; // most effecient...potential for jQuery memory leaks
-    
+
     $('#backup-document-container').hide();
     $('#document-container').load(url, function () {
-        $('#iframe-main').off('load');
+        $('#iframe-main').unbind('load');
         setLoading(false);
     });
 }
@@ -1380,8 +1384,8 @@ function keepSessionAliveCallback() {
     // right now we don't have anything that needs to happen
 }
 
-$(function () {
-    $("#printButton").on('click',function () {
+$(document).ready(function () {
+    $("#printButton").click(function () {
         if (hasActiveDocument()) {
             var showCodificationSources = "";
             if ($("#sourcesPrint:checked").length > 0)
@@ -1393,7 +1397,7 @@ $(function () {
             if ($("#pdfPrint:checked").length > 0)
                 printPDF = "true";
 
-            var windowUrl = "PrintDocument.ashx?id=" + getActiveDocumentId() + "&type=" + getActiveDocumentType() + "&printSubdocuments=" + printSubDocs + "&showCodificationSources=" + showCodificationSources + "&printToPDF=" + printPDF + "&doPrint=true";            
+            var windowUrl = "PrintDocument.ashx?id=" + getActiveDocumentId() + "&type=" + getActiveDocumentType() + "&printSubdocuments=" + printSubDocs + "&showCodificationSources=" + showCodificationSources + "&printToPDF=" + printPDF + "&doPrint=true";
             if (g_currentView != null && (g_currentView.toolName == toolName_joinSections || g_currentView.toolName == toolName_joinChildren) && g_lastJoinSectionsUrl) {
                 windowUrl += "&joinSectionsUrl=" + g_lastJoinSectionsUrl;
             }
@@ -1411,7 +1415,7 @@ $(function () {
         $('#printContent #docNotCurrentHeader').css("top", "36");
     });
 
-    
+
 });
 
 function savePreferences() {
@@ -1467,8 +1471,11 @@ function sendToCatalog(domain, userGuid, destDoc, destPtr) {
         }
     }
 
-    fromUrl = encodeURIComponent(fromUrl).replace(/\./g, "%2E");
-    toUrl = encodeURIComponent(toUrl).replace(/\./g, "%2E");
+    fromUrl = escape(fromUrl);
+    fromUrl = fromUrl.replace(/\./g, "%2E");
+    toUrl = escape(toUrl);
+    toUrl = toUrl.replace(/\./g, "%2E");
+
     if (typeof (window.opener) != "undefined" && window.opener.closed == false) {
         var url = window.location.protocol + "//" + "stagingenv.cpa2biz.com/myaccount/myonlinesubscription_resourceredirect.jsp?Domain=" + domain + "&returnurl=" + fromUrl + "&linkurl=" + toUrl;
         logout();
@@ -1482,7 +1489,7 @@ function sendToCatalog(domain, userGuid, destDoc, destPtr) {
         //alert(url);
         logout();
         window.open(url);
-        windows.close;        
+        windows.close;
     }
 
     logout();
@@ -1504,15 +1511,14 @@ function redirectToLogoutButton() {
 
 function redirectToLogoutPage() {
     document.location = ("Logout.aspx");
-    
+
 }
 
 function logErrorToServer(logString) {
     try {
         callWebService("WS/Toolbars.asmx/LogError", "{logString: '" + logString + "'}", logErrorCallback, logErrorCallback);
     }
-    catch (ex)
-    { }
+    catch (ex) { }
 }
 
 function logErrorCallback() {
