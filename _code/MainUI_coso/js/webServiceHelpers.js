@@ -1550,5 +1550,29 @@ function LMSTargetPtr() {
         return parameters["targetptr"];
     } else return "";
 }
+function unescapeSearchText(str) {
+    if (str == null) return '';
+
+    // Normalise to string
+    str = String(str);
+
+    // 1) Handle the weird combo cases first:  \&#39; or \\&#39;  → '
+    //    \+ means "one or more backslashes"
+    str = str.replace(/\\+&#39;/g, "'");
+
+    // 2) Fix plain JS-escaped quotes:  \'  and \"
+    str = str.replace(/\\'/g, "'")
+        .replace(/\\"/g, '"');
+
+    // 3) Decode HTML entities generically (covers &#39;, &apos;, &rsquo;, &quot;, &amp;, etc)
+    if (str.indexOf('&') !== -1 || str.indexOf('&#') !== -1) {
+        var textarea = document.createElement('textarea');
+        textarea.innerHTML = str;
+        str = textarea.value;
+    }
+
+    return str;
+}
+
 
 
