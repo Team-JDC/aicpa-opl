@@ -489,23 +489,6 @@ namespace MainUI
                         Url = "coso.aspx";
                         Guid userId = userGuid;
                         ReferringSite userReferringSite = ReferringSite.Coso;
-                        //HttpCookie myCookie = ContextManager.GetSiteCookie(ContextManager.COOKIE_ETHICS);
-                        //if (myCookie != null)
-                        //{
-                        //    string ud = myCookie.Values.Get(ContextManager.COOKIE_KEY_USERID);
-                        //    string rs = myCookie.Values.Get(ContextManager.COOKIE_KEY_REFERRINGSITE);
-                        //    if (!string.IsNullOrEmpty(ud))
-                        //    {
-                        //        userId = new Guid(ud);
-                        //    }
-                        //    if (!Enum.TryParse(rs, out userReferringSite))
-                        //    {
-                        //        //Remove cookie if the userId is set but the referring site is bad
-                        //        if (!string.IsNullOrEmpty(ud))
-                        //            ContextManager.RemoveCookie(ContextManager.COOKIE_ETHICS);
-                        //        userReferringSite = ReferringSite.Ethics;
-                        //    }
-                        //}                      
 
 
                         if (string.IsNullOrEmpty(Domain))
@@ -523,33 +506,8 @@ namespace MainUI
                         Session[ContextManager.SESSION_USER] = retUser;
 
                         MainUI.WS.Content content = new MainUI.WS.Content();
-
-                        //SubscriptionSiteNode ssn = null;
-                        //try
-                        //{
-                        //    ssn = content.ResolveContentLink(targetDoc, targetPtr);
-                        //    if (ssn != null && ssn.Restricted)
-                        //    {
-                        //        logEvent = new Event(EventType.Info, DateTime.Now, 1, "ResourceSeamlessLogin.aspx.cs", "Page_Load", "restricted content", string.Format("restricted content  (targetdoc:{0}, targetptr: {1})", targetDoc, targetPtr));
-                        //        logEvent.Save(false);
-                        //    }
-                        //}
-                        //catch
-                        //{
-                        //    ssn = null;
-                        //}
-
-
-                        //if (ssn == null || ssn.Restricted)
-                        //{
-                        //    logEvent = new Event(EventType.Info, DateTime.Now, 1, "ResourceSeamlessLogin.aspx.cs", "Page_Load", "invalid targetdoc/targetptr", string.Format("invalid targetdoc and/or targetptr  {0}, {1}", targetDoc, targetPtr));
-                        //    logEvent.Save(false);
-                        //}
-
-                        //Log Valid Access
-                        //logEvent = new Event(EventType.Info, DateTime.Now, 1, "Sharedoc.aspx.cs", "Page_Load", "valid share requested", string.Format(" targetdoc: {0} targetptr: {1} referrer: {2}", targetDoc, targetPtr, referrer));
-                        //logEvent.Save(false);
                     }
+                    #endregion COSO
                     else if (referringSite.ToUpper() == "OKTA" || referringSite.ToUpper() == "RAVE")
                     {
 
@@ -569,78 +527,6 @@ namespace MainUI
                         analyticsCodeLogout = AICPAAnalytics.LoginLogout(GetMemberType(referringSite), retUser.EmailAddress, GetLoginEntry(referringSite), "logout");
                         referringSite = ReferringSite.Rave.ToString();
                     }
-                    #endregion COSO
-                    #region FVS & PFP - Commented out..old...
-                    //else if ((referringSite.ToUpper() == "FVS") || (referringSite.ToUpper() == "PFP"))
-                    //{
-                    //    string domainList = "";
-                    //    string siteList = "";
-                    //    //Default Domain List 
-                    //    if (referringSite.ToUpper() == "FVS")
-                    //    {
-                    //        domainList = ConfigurationManager.AppSettings["FvsDefaultDomains"];
-                    //        siteList = ConfigurationManager.AppSettings["FvsSiteList"];
-                    //    }
-                    //    else
-                    //    {
-                    //        domainList = ConfigurationManager.AppSettings["PfpDefaultDomains"];
-                    //        siteList = ConfigurationManager.AppSettings["PfpSiteList"];
-                    //    }
-
-                    //    if (string.IsNullOrEmpty(domainList))
-                    //    {
-                    //        logEvent = new Event(EventType.Error, DateTime.Now, 1, "ResourceSeemlessLogin.aspx", "Page_Load", "Missing Info", "Missing DefaultDomains from Web.config for either FVS or PFP");
-                    //        logEvent.Save(false);
-                    //    }
-
-                    //    if (string.IsNullOrEmpty(siteList))
-                    //    {
-                    //        logEvent = new Event(EventType.Error, DateTime.Now, 1, "ResourceSeemlessLogin.aspx", "Page_Load", "Missing Info", "Missing SiteList from Web.config for either FVS or PFP");
-                    //        logEvent.Save(false);
-                    //    }
-
-                    //    string[] siteListArr = siteList.Split(',');
-
-                    //    bool validSite = false;
-                    //    foreach (string site in siteListArr)
-                    //    {
-                    //        if (referrer.ToLower().Contains(site.Trim().ToLower()))
-                    //            validSite = true;
-                    //    }
-
-                    //    if (!validSite)
-                    //    {
-                    //        if (!browser.ToUpper().Contains("MSIE"))
-                    //        {
-                    //            throw new Exception("Error: Unauthorized referring site.");
-                    //        }
-                    //    }
-
-                    //    Session["D_FEATURES"] = ConfigurationManager.AppSettings["FvsRemovedFeatureIds"];
-
-                    //    //Create Anonymous user.
-                    //    Guid newGuid = Guid.NewGuid();
-                    //    if (referringSite.ToUpper() == "FVS")
-                    //    {
-                    //        retUser = new User(newGuid, ReferringSite.Fvs);
-                    //    }
-                    //    else
-                    //    {
-                    //        retUser = new User(newGuid, ReferringSite.Pfp);
-                    //        Session["D_FEATURES"] = ConfigurationManager.AppSettings["PFPRemovedFeatureIds"];
-                    //    }
-                    //    retUser.LogOn(Session.SessionID, domainList);
-
-                    //    Session[ContextManager.SESSION_USER] = retUser;
-
-                    //    //If the user was already logged in, we need to create a new site to make sure we have the right domain string.
-                    //    if (setNewSite)
-                    //    {
-                    //        SiteStatus status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
-                    //        Session[ContextManager.SESSION_SITE] = new Site(retUser, status);
-                    //    }
-                    //}
-                    #endregion FVS & PFP
                     #region Exams/etc
                     else if (referringSite.ToUpper() == "EXAMSNEW")
                     {
@@ -681,6 +567,36 @@ namespace MainUI
                         Response.Redirect(ConfigurationManager.AppSettings["PAGE_AUTHENTICATIONFAILED"], false);
                     }
                 }// end if user is null
+                else
+                {
+                    if (referringSite.ToUpper() == "COSO")
+                    {
+                        //analyticsCodeLogon = AICPAAnalytics.LoginLogout(GetMemberType(referringSite), retUser.EmailAddress, GetLoginEntry(referringSite), "login");
+                        //analyticsCodeLogout = AICPAAnalytics.LoginLogout(GetMemberType(referringSite), retUser.EmailAddress, GetLoginEntry(referringSite), "logout");
+                        Url = "coso.aspx";
+                        Guid userId = userGuid;
+                        ReferringSite userReferringSite = ReferringSite.Coso;
+
+
+                        if (string.IsNullOrEmpty(Domain))
+                        {
+                            logEvent = new Event(EventType.Error, DateTime.Now, 1, "ResourceSeemlessLogin.aspx", "Page_Load", "Missing Info", "Missing Domain string from OPL");
+                            logEvent.Save(false);
+                        }
+
+                        if (userGuid != Guid.Empty)
+                        {
+                            retUser = new User(userId, userReferringSite);
+                        }
+
+                        retUser.LogOn(Session.SessionID, Domain);
+                        Session[ContextManager.SESSION_USER] = retUser;
+
+                        MainUI.WS.Content content = new MainUI.WS.Content();
+                    }
+                }
+
+
                 if (string.IsNullOrEmpty(Url))
                     Url = "/default";
 

@@ -333,7 +333,7 @@ namespace MainUI
                     #region COSO
                     else if (referringSite.ToUpper() == "COSO")
                     {
-                        Url = "~/coso.aspx";
+                        Url = "coso.aspx";
                         Guid userId = Guid.Empty;
                         ReferringSite userReferringSite = ReferringSite.Coso;                        
                         //HttpCookie myCookie = ContextManager.GetSiteCookie(ContextManager.COOKIE_ETHICS);
