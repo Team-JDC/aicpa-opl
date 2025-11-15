@@ -206,7 +206,7 @@ namespace MainUI
             if (!ContextManager.HasCurrentUser)
             {
                 WS.Toolbars tb = new Toolbars();
-                tb.LogError("Redirecting to SessionExpired... HasCurrentUser = false");
+                //tb.LogError("Redirecting to SessionExpired... HasCurrentUser = false");
                 //Response.Redirect("/Login?relayState=" + Request.Url.AbsoluteUri);
                 Response.Redirect(ConfigurationManager.AppSettings[ContextManager.WEBCONFIG_C2B_LOGINURL] + "?relayState=" + Request.Url.AbsoluteUri);
             }
