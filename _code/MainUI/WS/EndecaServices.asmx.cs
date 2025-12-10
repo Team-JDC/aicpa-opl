@@ -163,168 +163,183 @@ namespace MainUI.WS
                                                          int maxHits, int pageSize,
                                                          int pageOffset, int showExcerpts, int filterUnsubscribed, int nonauthoritative)
         {
-            
-            string[] dimensionIds = {dimensionId};
-
-            if (dimensionId == null || dimensionId == "")
-            {
-                 dimensionIds = BlankDimensions();
-            } 
-            
-            SearchType searchType;
-
-            bool showExcerptsBool;
-            bool filterUnsubscribedBool;
-
-            System.Collections.Specialized.NameValueCollection opts = new System.Collections.Specialized.NameValueCollection();
-            
-
-            switch (showExcerpts)
-            {
-                case 1:
-                    showExcerptsBool = true;
-                    break;
-                default:
-                    showExcerptsBool = false;
-                    break;
-            }
-
-            switch (filterUnsubscribed)
-            {
-                case 1:
-                    filterUnsubscribedBool = true;
-                    break;
-                default:
-                    filterUnsubscribedBool = false;
-                    break;
-            }
-
-            switch (nonauthoritative)
-            {
-                case 1:
-                    opts.Add("nonauthoritative", "true");
-                    string value = opts["nonauthoritative"];
-                    break;
-                default:
-                    opts = null;
-                    break;
-            }
-
-            switch (searchMode)
-            {
-                case 1:
-                    searchType = SearchType.AllWords;
-                    break;
-                case 2:
-                    searchType = SearchType.AnyWords;
-                    break;
-                case 3:
-                    searchType = SearchType.ExactPhrase;
-                    break;
-                case 4:
-                    searchType = SearchType.Boolean;
-                    break;
-                default:
-                    searchType = SearchType.AllWords;
-                    break;
-            }
-            SearchResultResponse searchResultResponse = new SearchResultResponse();
-
-            //Temporarily log the search parameters getting sent to Endeca
-            //IEvent logEvent = new Event(EventType.Info, DateTime.Now, 1, "EndecaService", "Search Initiated", "Search Parmeters", string.Format("Search Parameters  {0}, {1},{2}, {3},{4}, {5},{6}, {7} ", dimensionIds[0].ToString(), keywords,searchType, maxHits,pageSize,pageOffset,showExcerptsBool,filterUnsubscribedBool));
-            //logEvent.Save(false);
-
-
-            //create a search criteria object and perform the search
-            ISearchCriteria searchCriteria = new SearchCriteria(dimensionIds, CleanInput(keywords).Trim(), searchType, maxHits, pageSize,
-                                                                pageOffset, "", showExcerptsBool, filterUnsubscribedBool,
-                                                                opts);
-
-
-            ContextManager.SearchCriteria = searchCriteria;
-            CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
-            //perform the search
-            //List<DimensionNavigationResult> tempList = DimensionsResults(ContextManager.SearchResults);
-            ISearchResults searchResults = ContextManager.SearchResults;
-            ContextManager.SearchResults = CurrentSite.SiteIndex.Search(searchCriteria);
-            searchResultResponse.DimensionXml = ContextManager.SearchResults.DimensionsXml;
-            searchResultResponse.SearchResults =
-                (from doc in ContextManager.SearchResults.Documents where doc != null select new SearchResult(doc)).
-                    ToList();
-            searchResultResponse.SearchTerm = CleanInput(keywords).Trim();
-            searchResultResponse.HitCount = (int) ContextManager.SearchResults.TotalHitCount;
-            searchResultResponse.DisplayOffset = pageOffset;
-            searchResultResponse.DimensionId = dimensionId;
-            DimensionResultSet dimensionResultSet = DimensionsResults(ContextManager.SearchResults);
-            searchResultResponse.DimensionResults = dimensionResultSet.DimensionResults;
-            searchResultResponse.SelectedDimensionResults = dimensionResultSet.SelectedDimensionResults;
-            searchResultResponse.Unsubscribed = filterUnsubscribed;
-            searchResultResponse.Excerpts = showExcerpts;
-            searchResultResponse.SearchMode = searchMode;
-            ContextManager.SearchResults.DocumentIDCache = new List<int>();
-            ContextManager.SearchResults.DocumentIDCache.AddRange(ContextManager.SearchResults.Documents.Select(xa => xa.Id).ToList());
-            searchResultResponse.nonauthoritative = nonauthoritative;
-
-            int y = 0;
-            foreach (string word in ContextManager.SearchResults.WordInterpretations)
-            {
-                if (y > 0)
-                {
-                    searchResultResponse.WordIntepretations = searchResultResponse.WordIntepretations + ", " + word;
-                    y++;
-                }
-                else
-                {
-                    searchResultResponse.WordIntepretations = word;
-                    y++;
-                }
-            }
-            ;
-
-            int x = 0;
-            foreach (SearchResult result in searchResultResponse.SearchResults)
-            {
-                result.ResultEnumeration = x++;
-                //certain words aren't having the snippets highlight properly.  This fixes that issue.
-                if (!result.Snippet.Contains("endeca_term"))
-                { 
-                    foreach (string word in ContextManager.SearchResults.WordInterpretations)
-                    {
-                        string myword = word.Replace("(","\\(");
-                        myword = myword.Replace(")", "\\)");
-                        result.Snippet = Regex.Replace(result.Snippet, " " + myword+" ", "<b class='endeca_term'>"+word+"</b>", RegexOptions.IgnoreCase);
-                    }
-                }
-            }
-            x = x + pageOffset;
-            searchResultResponse.DisplayResults = x;
-            //if there are no hits the following statement gets dimensions from a blank search and populates dimension values in the original searchResults
-            if (searchResultResponse.DimensionResults.Count == 0)
-            {
-                //dimensionResultResponse.DimensionResults = tempList;
-                //searchResultResponse.DimensionResults = tempList; 
-                //ContextManager.SearchResults = searchResults;
-            }
-
             try
             {
-                //log Search
-                // 2010-12-28 sburton: not sure that EventType.Error is really the appropriate level for this,
-                // but this is how it was in the old one, so I'm just trying to be consistent.
+                string[] dimensionIds = { dimensionId };
+
+                if (dimensionId == null || dimensionId == "")
+                {
+                    dimensionIds = BlankDimensions();
+                }
+
+                SearchType searchType;
+
+                bool showExcerptsBool;
+                bool filterUnsubscribedBool;
+
+                System.Collections.Specialized.NameValueCollection opts = new System.Collections.Specialized.NameValueCollection();
+
+
+                switch (showExcerpts)
+                {
+                    case 1:
+                        showExcerptsBool = true;
+                        break;
+                    default:
+                        showExcerptsBool = false;
+                        break;
+                }
+
+                switch (filterUnsubscribed)
+                {
+                    case 1:
+                        filterUnsubscribedBool = true;
+                        break;
+                    default:
+                        filterUnsubscribedBool = false;
+                        break;
+                }
+
+                switch (nonauthoritative)
+                {
+                    case 1:
+                        opts.Add("nonauthoritative", "true");
+                        string value = opts["nonauthoritative"];
+                        break;
+                    default:
+                        opts = null;
+                        break;
+                }
+
+                switch (searchMode)
+                {
+                    case 1:
+                        searchType = SearchType.AllWords;
+                        break;
+                    case 2:
+                        searchType = SearchType.AnyWords;
+                        break;
+                    case 3:
+                        searchType = SearchType.ExactPhrase;
+                        break;
+                    case 4:
+                        searchType = SearchType.Boolean;
+                        break;
+                    default:
+                        searchType = SearchType.AllWords;
+                        break;
+                }
+                SearchResultResponse searchResultResponse = new SearchResultResponse();
+
+                //Temporarily log the search parameters getting sent to Endeca
+                //IEvent logEvent = new Event(EventType.Info, DateTime.Now, 1, "EndecaService", "Search Initiated", "Search Parmeters", string.Format("Search Parameters  {0}, {1},{2}, {3},{4}, {5},{6}, {7} ", dimensionIds[0].ToString(), keywords,searchType, maxHits,pageSize,pageOffset,showExcerptsBool,filterUnsubscribedBool));
+                //logEvent.Save(false);
+
+
+                //create a search criteria object and perform the search
+                ISearchCriteria searchCriteria = new SearchCriteria(dimensionIds, CleanInput(keywords).Trim(), searchType, maxHits, pageSize,
+                                                                    pageOffset, "", showExcerptsBool, filterUnsubscribedBool,
+                                                                    opts);
+
+
+                ContextManager.SearchCriteria = searchCriteria;
+                CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
+                //perform the search
+                //List<DimensionNavigationResult> tempList = DimensionsResults(ContextManager.SearchResults);
+                ISearchResults searchResults = ContextManager.SearchResults;
+                ContextManager.SearchResults = CurrentSite.SiteIndex.Search(searchCriteria);
+                searchResultResponse.DimensionXml = ContextManager.SearchResults.DimensionsXml;
+                searchResultResponse.SearchResults =
+                    (from doc in ContextManager.SearchResults.Documents where doc != null select new SearchResult(doc)).
+                        ToList();
+                searchResultResponse.SearchTerm = CleanInput(keywords).Trim();
+                searchResultResponse.HitCount = (int)ContextManager.SearchResults.TotalHitCount;
+                searchResultResponse.DisplayOffset = pageOffset;
+                searchResultResponse.DimensionId = dimensionId;
+                DimensionResultSet dimensionResultSet = DimensionsResults(ContextManager.SearchResults);
+                searchResultResponse.DimensionResults = dimensionResultSet.DimensionResults;
+                searchResultResponse.SelectedDimensionResults = dimensionResultSet.SelectedDimensionResults;
+                searchResultResponse.Unsubscribed = filterUnsubscribed;
+                searchResultResponse.Excerpts = showExcerpts;
+                searchResultResponse.SearchMode = searchMode;
+                ContextManager.SearchResults.DocumentIDCache = new List<int>();
+                ContextManager.SearchResults.DocumentIDCache.AddRange(ContextManager.SearchResults.Documents.Select(xa => xa.Id).ToList());
+                searchResultResponse.nonauthoritative = nonauthoritative;
+
+                int y = 0;
+                foreach (string word in ContextManager.SearchResults.WordInterpretations)
+                {
+                    if (y > 0)
+                    {
+                        searchResultResponse.WordIntepretations = searchResultResponse.WordIntepretations + ", " + word;
+                        y++;
+                    }
+                    else
+                    {
+                        searchResultResponse.WordIntepretations = word;
+                        y++;
+                    }
+                }
+            ;
+
+                int x = 0;
+                foreach (SearchResult result in searchResultResponse.SearchResults)
+                {
+                    result.ResultEnumeration = x++;
+                    //certain words aren't having the snippets highlight properly.  This fixes that issue.
+                    if (!result.Snippet.Contains("endeca_term"))
+                    {
+                        foreach (string word in ContextManager.SearchResults.WordInterpretations)
+                        {
+                            string myword = word.Replace("(", "\\(");
+                            myword = myword.Replace(")", "\\)");
+                            result.Snippet = Regex.Replace(result.Snippet, " " + myword + " ", "<b class='endeca_term'>" + word + "</b>", RegexOptions.IgnoreCase);
+                        }
+                    }
+                }
+                x = x + pageOffset;
+                searchResultResponse.DisplayResults = x;
+                //if there are no hits the following statement gets dimensions from a blank search and populates dimension values in the original searchResults
+                if (searchResultResponse.DimensionResults.Count == 0)
+                {
+                    //dimensionResultResponse.DimensionResults = tempList;
+                    //searchResultResponse.DimensionResults = tempList; 
+                    //ContextManager.SearchResults = searchResults;
+                }
+
+                try
+                {
+                    //log Search
+                    // 2010-12-28 sburton: not sure that EventType.Error is really the appropriate level for this,
+                    // but this is how it was in the old one, so I'm just trying to be consistent.
+                    IEvent eventError = new Event(EventType.Error, DateTime.Now, 5, SEARCH_MODULE, keywords,
+                                                 searchResultResponse.HitCount.ToString(), "User Search", ContextManager.CurrentUser.UserId, ContextManager.CurrentUser.UserSecurity.SessionId);
+
+                    // The old event didn't use the user and session ID but I figured those were helpful, and we have them
+                    //IEvent eventError = new Event(EventType.Error, DateTime.Now, 5, SEARCH_MODULE, keywords,
+                    //                             searchResultResponse.HitCount.ToString(), "User Search");
+                    eventError.Save(false);
+                }
+                catch
+                {
+                    // hmm... we couldn't log the event.  We really should try to log the fact that we couldn't log, but you know...
+                }
+
+                return searchResultResponse;
+
+            }
+            catch (Exception ex)
+            {
                 IEvent eventError = new Event(EventType.Error, DateTime.Now, 5, SEARCH_MODULE, keywords,
-                                             searchResultResponse.HitCount.ToString(), "User Search", ContextManager.CurrentUser.UserId, ContextManager.CurrentUser.UserSecurity.SessionId);
+                             ex.Message, "Error in User Search", ContextManager.CurrentUser.UserId, ContextManager.CurrentUser.UserSecurity.SessionId);
 
                 // The old event didn't use the user and session ID but I figured those were helpful, and we have them
                 //IEvent eventError = new Event(EventType.Error, DateTime.Now, 5, SEARCH_MODULE, keywords,
                 //                             searchResultResponse.HitCount.ToString(), "User Search");
                 eventError.Save(false);
+                throw;
+
             }
-            catch
-            {
-                // hmm... we couldn't log the event.  We really should try to log the fact that we couldn't log, but you know...
-            }
-            
-            return searchResultResponse;
         }
 
 
