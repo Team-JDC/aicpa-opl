@@ -1115,55 +1115,47 @@ function refreshBackupContainerIframe() {
 
 /* FILL DOCUMENTCONTAINER */
 function fillDocumentContainerFromUrlPrevious(url) {
-    //$('#document-container').load(url, {}, animatePrevious);
-
     $('#document-container').hide();
     $('#backup-document-container').hide();
-    var iframe = document.getElementById("iframe-main");
-    setLoading(true);
-    iframe.src = url;
-    
-    // sburton: I think this jquery way would work too
-//    $('#iframe-main').attr("src", url);
-//    $('#iframe-main').load(function () {
-//        alert("loaded");
-//    });
-    $('#iframe-main').load(function () {
-        $('#iframe-main').off('load');
-        setLoading(false);
-        doDocumentReadyMethods();
-        animatePreviousIframe();
-        $('#iframe-main').fadeIn('600');
-    });
 
+    const iframe = document.getElementById("iframe-main");
+    setLoading(true);
+
+    // Bind load handler BEFORE setting src (safer)
+    $('#iframe-main')
+        .off('load')
+        .on('load', function () {
+            $('#iframe-main').off('load');
+            setLoading(false);
+            doDocumentReadyMethods();
+            animatePreviousIframe();
+            $('#iframe-main').fadeIn(600);
+        });
+
+    iframe.src = url;
 }
+
 
 function fillDocumentContainerFromUrlNext(url) {
-    //$('#document-container').load(url, {}, animateNext);
-
     $('#document-container').hide();
     $('#backup-document-container').hide();
-    var iframe = document.getElementById("iframe-main");
+
+    const iframe = document.getElementById("iframe-main");
     setLoading(true);
+
+    $('#iframe-main')
+        .off('load')
+        .on('load', function () {
+            $('#iframe-main').off('load');
+            setLoading(false);
+            doDocumentReadyMethods();
+            animateNextIframe();
+            $('#iframe-main').fadeIn(600);
+        });
+
     iframe.src = url;
-
-    // sburton: I think this jquery way would work too
-//    $('#iframe-main').attr("src", url);
-//    $('#iframe-main').load(function () {
-//        alert("loaded");
-//    });
-
-
-    // sburton: firefox doesn't like this way
-    // window.frames["iframe-main"].location = url;
-    $('#iframe-main').on("load",function () {
-        $('#iframe-main').off('load');
-        setLoading(false);
-        doDocumentReadyMethods();
-        animateNextIframe();
-        $('#iframe-main').fadeIn('600');
-    });
 }
+
 
 //Fill the iFrame container with a specific url
 function filliFrameFromUrl(url, callback) {
