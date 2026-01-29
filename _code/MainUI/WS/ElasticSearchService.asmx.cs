@@ -68,8 +68,10 @@ namespace MainUI.WS
                 string[] domainItems = null;
                 if (searchCriteria.FilterUnsubscribed)
                 {
-                    domainItems = ContextManager.CurrentUser.UserSecurity.Domain.Split('~');
-
+                    domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                        .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(d => d.Replace(";", ""))
+                        .ToArray();
                 }
                 var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
 
@@ -205,8 +207,10 @@ namespace MainUI.WS
                 string[] domainItems = null;
                 if (searchCriteria.FilterUnsubscribed)
                 {
-                    domainItems = ContextManager.CurrentUser.UserSecurity.Domain.Split('~');
-
+                    domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                        .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(d => d.Replace(";", ""))
+                        .ToArray();
                 }
                 var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
                 var svc = new ElasticServices(elasticUrl, indexName, apiKey);
@@ -273,8 +277,10 @@ namespace MainUI.WS
             string[] domainItems = null;
             if (searchCriteria.FilterUnsubscribed)
             {
-                domainItems = ContextManager.CurrentUser.UserSecurity.Domain.Split('~');
-
+                domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                    .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(d => d.Replace(";", ""))
+                    .ToArray();
             }
             var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
 
