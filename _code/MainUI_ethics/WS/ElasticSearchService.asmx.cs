@@ -59,7 +59,17 @@ namespace MainUI.WS
                                                        null);
            ContextManager.SearchCriteria = searchCriteria;
            CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
-            var res = elastic.SearchAsync(searchCriteria).GetAwaiter().GetResult();
+            //pass userSubscriptionCodes
+            string[] domainItems = null;
+            if (searchCriteria.FilterUnsubscribed)
+            {
+                domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                    .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(d => d.Replace(";", ""))
+                    .ToArray();
+            }
+            var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
+
 
             // Post-process to match legacy Endeca response semantics
             AfterSearchPostProcess(res, keywords, searchMode, showExcerpts, filterUnsubscribed, pageOffset);
@@ -166,7 +176,17 @@ namespace MainUI.WS
 
 
             CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
-            var res = elastic.SearchAsync(searchCriteria).GetAwaiter().GetResult();
+            //pass userSubscriptionCodes
+            string[] domainItems = null;
+            if (searchCriteria.FilterUnsubscribed)
+            {
+                domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                    .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(d => d.Replace(";", ""))
+                    .ToArray();
+            }
+            var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
+
             var svc = new ElasticServices(elasticUrl, indexName, apiKey);
 
             // Round-trip the requested selections for the UI (Endeca parity)
@@ -203,7 +223,17 @@ namespace MainUI.WS
                                                        0, "", false, true,
                                                        null);
             CurrentSite.Status = ContextManager.GetSiteStatus(ConfigurationManager.AppSettings["SiteStatus"]);
-            var res = elastic.SearchAsync(searchCriteria).GetAwaiter().GetResult();
+            //pass userSubscriptionCodes
+            string[] domainItems = null;
+            if (searchCriteria.FilterUnsubscribed)
+            {
+                domainItems = ContextManager.CurrentUser.UserSecurity.Domain
+                    .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(d => d.Replace(";", ""))
+                    .ToArray();
+            }
+            var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
+
 
 
             // Trim docs; keep only dimensions
