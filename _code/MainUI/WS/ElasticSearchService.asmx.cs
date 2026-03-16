@@ -71,6 +71,7 @@ namespace MainUI.WS
                     domainItems = ContextManager.CurrentUser.UserSecurity.Domain
                         .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(d => d.Replace(";", ""))
+                        .Select(d => d.Replace("-", ""))
                         .ToArray();
                 }
                 var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
@@ -210,6 +211,7 @@ namespace MainUI.WS
                     domainItems = ContextManager.CurrentUser.UserSecurity.Domain
                         .Split(new[] { "~" }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(d => d.Replace(";", ""))
+                        .Select(d => d.Replace("-", ""))
                         .ToArray();
                 }
                 var res = elastic.SearchAsync(searchCriteria, domainItems).GetAwaiter().GetResult();
