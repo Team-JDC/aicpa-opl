@@ -1,16 +1,17 @@
-﻿using System;
+﻿using AICPA.Destroyer.Content.Search;
+using AICPA.Destroyer.Shared;
+using AICPA.Destroyer.User.Event;
+using MainUI.Shared;
+using MainUI.Shared.Elastic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using AICPA.Destroyer.Shared;
-using MainUI.Shared;
-using MainUI.Shared.Elastic;
-using AICPA.Destroyer.Content.Search;
-using System.Text.RegularExpressions;
 namespace MainUI.WS
 {
     [WebService(Namespace = "https://publication.cpa2biz.com/MainUI/WS/")]
@@ -19,7 +20,7 @@ namespace MainUI.WS
     [ScriptService]
     public class ElasticSearchService : AicpaService
     {
-
+        protected const string SEARCH_MODULE = "ElasticSearchService";
         private static readonly string elasticUrl = ConfigurationManager.AppSettings["ElasticSearchEndpoint"];
         private static readonly string indexName = ConfigurationManager.AppSettings["ElasticSearchIndex"];
         private static readonly string apiKey = ConfigurationManager.AppSettings["ElasticSearchApiKey"];
@@ -85,6 +86,20 @@ namespace MainUI.WS
                 FilterUnsubscribed = filterUnsubscribed,
                 DimensionId = null
             });
+
+            try
+            {
+                //log Search
+                IEvent searchEvent = new Event(EventType.Usage, DateTime.Now, 5, SEARCH_MODULE, "ElasticSearch", res.HitCount.ToString(), keywords,
+                                             ContextManager.CurrentUser.UserId, ContextManager.CurrentUser.UserSecurity.SessionId);
+
+                searchEvent.Save(false);
+            }
+            catch
+            {
+                // hmm... we couldn't log the event.  We really should try to log the fact that we couldn't log, but you know...
+            }
+
             //string jsonString = JsonConvert.SerializeObject(res);
             return res;
         }
@@ -206,6 +221,19 @@ namespace MainUI.WS
                 FilterUnsubscribed = filterUnsubscribed,
                 DimensionId = dimensionId
             });
+
+            try
+            {
+                //log Search
+                IEvent searchEvent = new Event(EventType.Error, DateTime.Now, 5, SEARCH_MODULE, "ElasticAdvancedSearch", res.HitCount.ToString(), keywords,
+                                             ContextManager.CurrentUser.UserId, ContextManager.CurrentUser.UserSecurity.SessionId);
+
+                searchEvent.Save(false);
+            }
+            catch
+            {
+                // hmm... we couldn't log the event.  We really should try to log the fact that we couldn't log, but you know...
+            }
 
             return res;
         }
