@@ -1,28 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <homePage>
-	<primarySection siteFolderName="et-cod" displayName="Code of Professional Conduct" show="true" imageUrl="images/2203-10261 AICPA Online Code_66x38_Blue.jpg" description="Access to the AICPA Code of Professional Conduct, which consists of the principles and rules as well as interpretations and other guidance. The Code of Professional Conduct is effective December 15, 2014.">
+	<primarySection siteFolderName="et-cod" displayName="Code of Professional Conduct" show="true" imageUrl="images/OnlineCode 100x50.jpg" description="Access to the AICPA Code of Professional Conduct, which consists of the principles and rules as well as interpretations and other guidance. The Code of Professional Conduct is effective December 15, 2014.">
 		<book displayName="Code of Professional Conduct" targetDoc="et-cod"/>
 	</primarySection>
 
-	<primarySection  siteFolderName="et-qa" displayName="Ethics Questions and Answers" imageUrl="images/2208-594274 QAs_66x38_Yellow.jpg" description="Find nonauthoritative questions and answers on everything from general topics to specifics such as independence, records requests, nonattest services, and more. ">
+	<primarySection  siteFolderName="et-qa" displayName="Ethics Questions and Answers" imageUrl="images/QA 100 x 50.jpg" description="Find nonauthoritative questions and answers on everything from general topics to specifics such as independence, records requests, nonattest services, and more. ">
 		<book displayName="Ethics Questions and Answers" targetDoc="et-qa"/>
 	</primarySection>
 
-	<primarySection  siteFolderName="et-bc" displayName="Basis For Conclusions" imageUrl="images/2208-594274 Basis for Conclusions_66x38_Yellow.jpg" description="Read more about the considerations used by the Professional Ethics Executive Committee in developing or revising ethics interpretations.">
+	<primarySection  siteFolderName="et-si" displayName="Ethics Staff Insights" imageUrl="images/ESI 100 x 50.jpg" description="Explore Ethics Staff Insights to stay informed on emerging issues and strengthen your application of the AICPA Code of Professional Conduct.">
+		<book displayName="Ethics Staff Insights" targetDoc="et-si"/>
+	</primarySection>
+
+
+
+
+	<primarySection  siteFolderName="et-bc" displayName="Basis For Conclusions" imageUrl="images/BasisForConclusions 100x50.jpg" description="Read more about the considerations used by the Professional Ethics Executive Committee in developing or revising ethics interpretations.">
 		<book displayName="Basis For Conclusions" targetDoc="et-bc"/>
 	</primarySection>
 
 
 
-	<primarySection  siteFolderName="et-en" displayName="Enforcement" imageUrl="images/2203-10261 AICPA Enforcement_Green.jpg" description="Read about the enforcement activities of the Professional Ethics Division and the Joint Ethics Enforcement Program.">
+	<primarySection  siteFolderName="et-en" displayName="Enforcement" imageUrl="images/Enforcement 100x50.jpg" description="Read about the enforcement activities of the Professional Ethics Division and the Joint Ethics Enforcement Program.">
 		<book displayName="Enforcement" targetDoc="et-en"/>
 	</primarySection>
 
-	<primarySection  siteFolderName="et-pe" displayName="Plain English Guide To Independence" imageUrl="images/2203-10261 AICPA Plain English_66x38_Yellow.jpg" description="Read about some of the independence requirements in plain English of the principal rulemaking bodies in the United States.">
+	<primarySection  siteFolderName="et-pe" displayName="Plain English Guide To Independence" imageUrl="images/PlainEnglish 100x50.jpg" description="Read about some of the independence requirements in plain English of the principal rulemaking bodies in the United States.">
 		<book displayName="Plain English Guide To Independence" targetDoc="et-pe"/>
 	</primarySection>
 
-	<primarySection  siteFolderName="et-cs" displayName="Sample Case Studies" imageUrl="images/2203-10261 AICPA Case Studies_66x38_Yellow.jpg" description="Read nonauthoritative real-world scenarios to help you navigate ethical requirements in your practice.">
+	<primarySection  siteFolderName="et-cs" displayName="Sample Case Studies" imageUrl="images/CaseStudies 100x50.jpg" description="Read nonauthoritative real-world scenarios to help you navigate ethical requirements in your practice.">
 		<book displayName="Sample Case Studies: Network Firms" targetDoc="et-cs"/>
 
 	</primarySection>
