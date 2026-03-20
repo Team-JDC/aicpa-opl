@@ -83,6 +83,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="OPLRedirect.aspx" />
+    <Content Include="Scripts\jquery-4.0.0.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

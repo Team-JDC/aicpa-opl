@@ -288,7 +288,7 @@ namespace MainUI.Handlers
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/notes.css' />\r\n";
 
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='resources/jquery.treeview.css' />\r\n";
-            newCssAndJs += "<script type='text/javascript' src='/js/jquery/jquery-3.7.1.min.js'></script>\r\n";
+            newCssAndJs += "<script type='text/javascript' src='/js/jquery/jquery-4.0.0.min.js'></script>\r\n";
             newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>\r\n";
 
             if ((referringSite == ReferringSite.Ethics || (referringSite == ReferringSite.EthicsUser)))
@@ -296,7 +296,7 @@ namespace MainUI.Handlers
 
             // TODO: these are needed for the faf toc, we should probably just put them in the faf content,
             // so we don't have to include them for every content page.
-            newCssAndJs += "<script src='resources/jquery.cookie.js' type='text/javascript'></script>\r\n";
+            newCssAndJs += "<script src='/js/jquery/js.cookie.min.js' type='text/javascript'></script>\r\n";
             newCssAndJs += "<script src='resources/jquery.treeview.js' type='text/javascript'></script>\r\n";
             newCssAndJs += "<script src='resources/jquery.treeview.async.js' type='text/javascript'></script>\r\n";
             newCssAndJs += "<script src='js/processFeatures.js' type='text/javascript'></script>\r\n";

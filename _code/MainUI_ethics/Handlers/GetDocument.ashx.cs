@@ -412,7 +412,7 @@ namespace MainUI.Handlers
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Handlers/GetResource.ashx?type=subscription_access' />";
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/Base.css' />";
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/notes.css' />";
-            newCssAndJs += "<script type='text/javascript' src='js/jquery/jquery-3.7.1.min.js'></script>\r\n";
+            newCssAndJs += "<script type='text/javascript' src='js/jquery/jquery-4.0.0.min.js'></script>\r\n";
 
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='resources/jquery.treeview.css' />";
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='ethicsresources/jquery.ethics.tooltip.css' />";

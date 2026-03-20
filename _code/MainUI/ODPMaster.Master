@@ -25,73 +25,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
         <script type='text/javascript' src='/elements/js/modernizr.custom.19057.js'></script>
-        <script type="text/javascript" src="/js/jquery/jquery-3.7.1.min.js"></script> 
-        <script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-        <script type="text/javascript">
-            // Only create the shim if $.cookie doesn't already exist
-            (function ($) {
-                if (typeof $.cookie !== "function") {
-                    $.cookie = function (name, value, options) {
-
-                        // Read mode: $.cookie("key")
-                        if (value === undefined) {
-                            if (window.Cookies && typeof window.Cookies.get === "function") {
-                                return Cookies.get(name);
-                            }
-
-                            // fallback manual read
-                            var nameEQ = name + "=";
-                            var ca = document.cookie.split(';');
-                            for (var i = 0; i < ca.length; i++) {
-                                var c = ca[i].trim();
-                                if (c.indexOf(nameEQ) === 0) {
-                                    return c.substring(nameEQ.length);
-                                }
-                            }
-                            return null;
-                        }
-
-                        // Write mode: $.cookie("key", "val", { expires: 30 })
-                        if (value === null) {
-                            // treat null as delete
-                            if (window.Cookies && typeof window.Cookies.remove === "function") {
-                                Cookies.remove(name);
-                            } else {
-                                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-                            }
-                            return;
-                        }
-
-                        // Normal set
-                        if (window.Cookies && typeof window.Cookies.set === "function") {
-                            // Translate jQuery Cookie options to js-cookie options best-effort
-                            var jsCookieOpts = {};
-                            if (options && options.expires !== undefined) {
-                                jsCookieOpts.expires = options.expires;
-                            }
-                            if (options && options.path !== undefined) {
-                                jsCookieOpts.path = options.path;
-                            } else {
-                                // treeview never passed path, old jquery.cookie defaulted to "/"
-                                jsCookieOpts.path = "/";
-                            }
-
-                            Cookies.set(name, value, jsCookieOpts);
-                        } else {
-                            // hard fallback
-                            var expiresStr = "";
-                            if (options && options.expires !== undefined) {
-                                var d = new Date();
-                                d.setTime(d.getTime() + (options.expires * 24 * 60 * 60 * 1000));
-                                expiresStr = ";expires=" + d.toUTCString();
-                            }
-                            var pathStr = ";path=" + ((options && options.path) ? options.path : "/");
-                            document.cookie = name + "=" + value + expiresStr + pathStr;
-                        }
-                    };
-                }
-            })(jQuery);
-        </script>
+        <script type="text/javascript" src="/js/jquery/jquery-4.0.0.min.js"></script> 
+ <%--       <script type="text/javascript" src="/js/jquery/jquery-migrate-3.6.0.min.js"></script> --%>
+        
+        <script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
+    
         
         <script type="text/javascript" src="/js/jQuery-jtemplates.min.js"></script>   
         <script type="text/javascript" src="/js/opl2015/handlers.js"></script>
@@ -115,7 +53,7 @@
         <script type="text/javascript" src="/js/opl2015/documenttools.js"></script>
 
         <!-- The following javascript is for brightcove videos to be embedded on pages such as the help page. -->
-        <script language="JavaScript" type="text/javascript" src="https://sadmin.brightcove.com/js/BrightcoveExperiences.js"></script>
+       <%-- <script language="JavaScript" type="text/javascript" src="https://sadmin.brightcove.com/js/BrightcoveExperiences.js"></script>--%>
         
         
 

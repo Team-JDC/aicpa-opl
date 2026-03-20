@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="Styles/ethics.css" />
 <link rel="stylesheet" type="text/css" href="Styles/coso.css" />
 <script type="text/javascript" src="js/globalVariables.js"></script>
-    <script type="text/javascript" src="js/jquery/jquery-3.7.1.min.js"></script> 
+    <script type="text/javascript" src="js/jquery/jquery-4.0.0.min.js"></script> 
 <script type="text/javascript" src="js/jquery.easing.min.js"></script>
 <script type="text/javascript" src="js/detect.js"></script>
 <script type="text/javascript" src="js/jQuery-jtemplates.min.js"></script>
@@ -103,7 +103,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script  type="text/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+<script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>
