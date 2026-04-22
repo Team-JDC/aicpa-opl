@@ -2,7 +2,12 @@
 <ul id="ulHomeNavToolbar" class="tabs2"> 
     {#foreach $T.d.Children as HomePageNode}
         <li class="">
-            <a href="#" onclick="doLink('{$T.HomePageNode.SiteFolderName}','{$T.HomePageNode.SiteFolderName}');"><img src="{$T.HomePageNode.ImageUrl}" alt="{$T.HomePageNode.DisplayName}" title="{$T.HomePageNode.DisplayName}" /></a>
+			{#if $T.HomePageNode.SiteFolderName == $T.HomePageNode.DisplayName}
+            <a href="#" onclick="doSiteFolderLink('{$T.HomePageNode.SiteFolderName}');"><img src="{$T.HomePageNode.ImageUrl}" alt="{$T.HomePageNode.DisplayName}" title="{$T.HomePageNode.DisplayName}" /></a>
+			{#else}
+			<a href="#" onclick="doLink('{$T.HomePageNode.SiteFolderName}','{$T.HomePageNode.SiteFolderName}');"><img src="{$T.HomePageNode.ImageUrl}" alt="{$T.HomePageNode.DisplayName}" title="{$T.HomePageNode.DisplayName}" /></a>
+			{#/if}
+
         </li>
     {#/for}
 </ul>

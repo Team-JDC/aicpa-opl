@@ -8,10 +8,10 @@
         {#foreach $T.d.Children as HomePageNode}
             <li>
                 <div class="home-book">
-                    {#if $T.HomePageNode.SiteFolderName}
-                    <span class="float" style="width:80%;"><a href="#" onclick="doLink('{$T.HomePageNode.Children[0].TargetDoc}','{$T.HomePageNode.Children[0].TargetDoc}', true);">
+                    {#if $T.HomePageNode.SiteFolderName == $T.HomePageNode.DisplayName}
+                    <span class="float" style="width:80%;"><a href="#" onclick="doSiteFolderLink('{$T.HomePageNode.SiteFolderName}');">
                     {#else}
-                    <span class="float" style="width:80%;"><a href="#" onclick="doLink('{$T.HomePageNode.Children[0].TargetDoc}','{$T.HomePageNode.Children[0].TargetDoc}', true);">
+                    <span class="float" style="width:80%;"><a href="#" onclick="doLink('{$T.HomePageNode.SiteFolderName}','{$T.HomePageNode.SiteFolderName}');">
                     {#/if}
 
                         {#if $T.HomePageNode.ImageUrl}
@@ -28,8 +28,10 @@
                     {#else}
                     </a></span>
                     {#/if}
+					{#if $T.HomePageNode.SiteFolderName == $T.HomePageNode.DisplayName}
                     <div class="openClose"><a href="#" onclick="$('#HomePageSlider-{$T.HomePageNode$index}-links').slideToggle(); if ($(this).hasClass('activeBtn')) $(this).removeClass('activeBtn'); else $(this).addClass('activeBtn');"></a></div>
                     <div class="clear"></div>
+					{#/if}
                     <div id="HomePageSlider-{$T.HomePageNode$index}-links" class="home-links closed">   
                             <ul class="home-book-books float">
                             {#foreach $T.HomePageNode.Children as ChildHomePageNode begin=0 count=Math.ceil($T.HomePageNode.Children.length/2)}
