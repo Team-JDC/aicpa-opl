@@ -7,13 +7,14 @@
 	<primarySection  siteFolderName="et-qa" displayName="Ethics Questions and Answers" imageUrl="images/QA 100 x 50.jpg" description="Find nonauthoritative questions and answers on everything from general topics to specifics such as independence, records requests, nonattest services, and more. ">
 		<book displayName="Ethics Questions and Answers" targetDoc="et-qa"/>
 	</primarySection>
-
-	<primarySection  siteFolderName="et-si" displayName="Ethics Staff Insights" imageUrl="images/ESI 100 x 50.jpg" description="Explore Ethics Staff Insights to stay informed on emerging issues and strengthen your application of the AICPA Code of Professional Conduct.">
-		<book displayName="Ethics Staff Insights" targetDoc="et-si"/>
+	
+		<primarySection  siteFolderName="Ethics Staff Insights" displayName="Ethics Staff Insights" imageUrl="images/ESI 100 x 50.jpg" description="Explore Ethics Staff Insights to stay informed on emerging issues and strengthen your application of the AICPA Code of Professional Conduct.">
+		<book displayName="AI Through an Ethics Lense" targetDoc="et-si1"/>
+		<book displayName="Business Arrangements with SOC Tool Providers" targetDoc="et-si2"/>
 	</primarySection>
-
-
-
+	
+	
+	 
 
 	<primarySection  siteFolderName="et-bc" displayName="Basis For Conclusions" imageUrl="images/BasisForConclusions 100x50.jpg" description="Read more about the considerations used by the Professional Ethics Executive Committee in developing or revising ethics interpretations.">
 		<book displayName="Basis For Conclusions" targetDoc="et-bc"/>
