@@ -2,6 +2,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<!-- OneTrust Cookies Consent Notice start for pub.aicpa.org -->
+
+<script src="https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="019dd36c-4eca-7e68-8ce2-5d6defacc67c" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for pub.aicpa.org -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WRRGDF9G');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>AICPA Online Professional Library</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -110,7 +132,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
+<script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script>
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>
@@ -140,34 +162,15 @@
         
 </script>
 
-<!-- sburton 2010-06-08: commenting out because we're not using "demo" for our toc 
-<script src="resources/demo.js" type="text/javascript"></script>
--->
-		<link rel="stylesheet" type="text/css" href="Styles/cookieconsent.min.css" />
-		<script src="js/cookieconsent.min.js"></script>		
-		<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#eaf7f7",
-      "text": "#5c7291"
-    },
-    "button": {
-      "background": "#56cbdb",
-      "text": "#ffffff"
-    }
-  },
-  "position": "top",
-  "content": {
-    "message": "This site uses cookies to store information on your computer. Some are essential to make our site work; others help us improve the user experience.  By using the site, you consent to the placement of these cookies.",
-    "href": "https://www.aicpa.org/privacyandterms/privacy.html"
-  }
-})});
-</script>
+
 </head>
 
 <body scroll="no" id="application-body">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRRGDF9G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <!--[if lte IE 7]><div id="ie"><![endif]-->
 <!--[if lte IE 6]><div id="ie6"><![endif]-->
 <form id="form1" runat="server" onsubmit="return false;">
@@ -275,7 +278,7 @@ window.cookieconsent.initialise({
     <div class="clear"></div>
     <div>
         <div id="panel" class="postfooter">
-                <p id="copyright" class="copyright"><%-- 2010-12-31 sburton: fyi, this default copyright text will be replaced by the copyright for the appropriate page that loads --%>Copyright &copy; <script>document.write(getCurrentCopyrightYear());</script>, American Institute of Certified Public Accountants. | <a href="https://www.aicpa.org/privacyandterms.html">Privacy &amp; Terms</a></p>
+                <p id="copyright" class="copyright"><%-- 2010-12-31 sburton: fyi, this default copyright text will be replaced by the copyright for the appropriate page that loads --%>Copyright &copy; <script>document.write(getCurrentCopyrightYear());</script>, American Institute of Certified Public Accountants. | <a href="https://www.aicpa-cima.com/help/terms-and-conditions">Terms &amp; Conditions</a> | <a href="https://www.aicpa-cima.com/help/privacy-policy">Privacy Policy</a></p>
         	<div id="Toolbar-Home" class="tab_content">
             </div>
             <div id="Toolbar-MyDocuments" class="tab_content">

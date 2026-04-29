@@ -147,7 +147,7 @@ function setCopyright(text) {
         $("#copyright").html(text);
     } else {
 
-        var defaultText = "Copyright &copy; " + getCurrentCopyrightYear() + ", American Institute of Certified Public Accountants. All Rights Reserved.   | <a href='https://www.aicpa.org/privacyandterms.html'>Privacy &amp; Terms</a>";
+        var defaultText = "Copyright &copy; " + getCurrentCopyrightYear() + ", American Institute of Certified Public Accountants. All Rights Reserved.   | <a href='https://www.aicpa-cima.com/help/terms-and-conditions'>Terms &amp; Conditions</a> | <a href='https://www.aicpa-cima.com/help/privacy-policy'>Privacy Policy</a>";
         $("#copyright").html(defaultText);
     }
 }

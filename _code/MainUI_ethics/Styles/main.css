@@ -843,6 +843,12 @@ z-index:99;
 font-family:Arial;
 }
 
+#panel
+{
+	padding-left:65px;
+	
+}
+
 
 div.home-left h2  {
 color:#41B6E6 ;
