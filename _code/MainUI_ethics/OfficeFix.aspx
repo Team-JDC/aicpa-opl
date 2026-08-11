@@ -7,20 +7,25 @@
     <title></title>
     <link href="Styles/main.css" rel="stylesheet" />
     <script language="javascript" type="text/javascript">
-        var tDoc = '<%= Request.QueryString["tdoc"]%>';
-        var tPtr = '<%= Request.QueryString["tptr"]%>';
-        var prod = '<%= Request.QueryString["prod"]%>';
-        var vct = '<%= Request.QueryString["vct"]%>';
+        var tDoc = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["tdoc"]) %>';
+        var tPtr = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["tptr"]) %>';
+        var tFldr = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["tfldr"]) %>';
+        var prod = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["prod"]) %>';
+        var vct = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["vct"]) %>';
 
         function directDocLoad() {
-            var Url = 'resourceseamlesslogin.aspx?prod=' + prod + '&tdoc=' + tDoc + '&tPtr=' + tPtr;
-           
+            var Url = 'resourceseamlesslogin.aspx?prod=' + prod + '&tdoc=' + tDoc + '&tptr=' + tPtr;
+
+            if (tFldr) {
+                Url = Url + '&tfldr=' + encodeURIComponent(tFldr);
+            }
+
             if (vct == '1') {
                 Url = Url + "&vct=1";
                 vct = "~" + vct + "~";
-           
+
             }
-           
+
             window.location = Url;
         }
              

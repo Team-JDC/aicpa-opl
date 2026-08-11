@@ -55,6 +55,7 @@ namespace MainUI
             string resourceName = string.Empty;
             string targetDoc = string.Empty;
             string targetPtr = string.Empty;
+            string targetFolder = string.Empty;
             string docId = string.Empty;
             string docType = string.Empty;
             try
@@ -148,6 +149,12 @@ namespace MainUI
                     targetPtr = Request.QueryString["tptr"];
                 }
                 else targetPtr = string.Empty;
+
+                if (!string.IsNullOrEmpty(Request.QueryString["tfldr"]))
+                {
+                    targetFolder = Request.QueryString["tfldr"];
+                }
+                else targetFolder = string.Empty;
 
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                     docId = Request.QueryString["id"];
@@ -254,6 +261,22 @@ namespace MainUI
                             logEvent.Save(false);
                         }
 
+                        SiteNode targetFolderNode = null;
+                        try
+                        {
+                            targetFolderNode = content.ResolveSiteFolder(targetFolder);
+                        }
+                        catch
+                        {
+                            targetFolderNode = null;
+                        }
+
+                        if (targetFolderNode == null)
+                        {
+                            logEvent = new Event(EventType.Info, DateTime.Now, 1, "ResourceSeamlessLogin.aspx.cs", "Page_Load", "invalid targetfolder", string.Format("invalid targetfolder  {0}", targetFolder));
+                            logEvent.Save(false);
+                        }
+
                         //Log Valid Access
                         logEvent = new Event(EventType.Info, DateTime.Now, 1, "Sharedoc.aspx.cs", "Page_Load", "valid share requested", string.Format(" targetdoc: {0} targetptr: {1} referrer: {2}", targetDoc, targetPtr, referrer));
                         logEvent.Save(false);
@@ -353,7 +376,11 @@ namespace MainUI
 
 
                 bool docRedirect = false;
-                if (targetDoc != string.Empty) {
+                if (targetFolder != string.Empty) {
+                    Url = Url + "?targetfolder=" + HttpUtility.UrlEncode(targetFolder);
+                    docRedirect = true;
+                }
+                else if (targetDoc != string.Empty) {
                     Url = Url + "?targetdoc=" + targetDoc + "&targetptr=" + targetPtr;
                     docRedirect = true;
                 }
@@ -363,7 +390,7 @@ namespace MainUI
                 }
 
 
-                if ((docRedirect) && (viewCompleteTopic))
+                if ((docRedirect) && (viewCompleteTopic) && (targetFolder == string.Empty))
                     Url = Url + "&vct=1";
                 if (Url.StartsWith("default.aspx", StringComparison.CurrentCultureIgnoreCase))
                 {

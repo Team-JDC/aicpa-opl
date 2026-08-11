@@ -848,6 +848,11 @@ function checkAvailable() {
 //         scrollbarPosition (OPTIONAL) - the scrollbar position to goto, if present this will
 //            take precedence over a document anchor / hit highlighting
 function loadContentBySiteNode(siteNode, scrollbarPosition) {
+    if (!siteNode) {
+        fillContentPaneFromUrl("templates/errordirect.html");
+        RemoveEmptyScreens();
+        return;
+    }
     if (siteNode.Restricted && !isLMSLink()) {
         gotoUpsellPage(siteNode.Id, siteNode.Type, g_pageTypes.SCREEN);
         RemoveEmptyScreens();
