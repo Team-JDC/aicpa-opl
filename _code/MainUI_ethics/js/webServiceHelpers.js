@@ -46,15 +46,24 @@ $(function () {
     OnReadyEvent();
 
     parameters = getUrlVars();
+
     var targetdoc = parameters["targetdoc"];
     var targetptr = parameters["targetptr"];
+    var targetfolder = parameters["targetfolder"];
     var id = parameters["id"];
     var type = parameters["type"];
-    var viewCompleteTopic = (parameters["vct"] != null && parameters["vct"] == '1' ? true : false);
 
+    var viewCompleteTopic =
+        (parameters["vct"] != null && parameters["vct"] == '1' ? true : false);
 
     if (targetdoc != null && targetptr != null) {
         doLink(targetdoc, targetptr, true, viewCompleteTopic);
+    }
+    else if (targetfolder != null) {
+        doSiteFolderLink(
+            decodeURIComponent(targetfolder),
+            true
+        );
     }
     else if (id != null && type != null) {
         doHomePageContentLink(id, type, viewCompleteTopic);
@@ -63,7 +72,6 @@ $(function () {
         loadHomePage();
         loadMyScreens();
         hideDocumentSpecificButtons();
-        // loadRoot = true
         loadBreadCrumbForActiveDocument(true);
         loadFafTools();
     }
