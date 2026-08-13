@@ -380,7 +380,8 @@ function doSiteFolderLink(siteFolderName, useNewScreen) {
     var result = prepareActiveScreen(useNewScreen);
 
     if (result) {
-        var params = "{ folderName:\"" + siteFolderName + "\"}";
+        /*var params = "{ folderName:\"" + siteFolderName + "\"}";*/
+        var params = JSON.stringify({folderName: siteFolderName });
         callWebService("WS/Content.asmx/ResolveSiteFolder", params, loadContentBySiteNode, ajaxFailed);
     }
 }
