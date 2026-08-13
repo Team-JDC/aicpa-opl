@@ -344,13 +344,20 @@ function getEmailLinkError(result) {
     alert("Error generating email link");
 }
 
-function getEmailLink() {    
+function getEmailLink() {
     var id = getActiveDocumentId();
     var type = getActiveDocumentType();
 
+    if (type === 'SiteFolder') {
+        return d_returnurl +
+            '&tfldr=' +
+            encodeURIComponent(getActiveScreen().siteNode.Name);
+    }
+
     var paramstr = "{id:" + id + ",type:'" + type + "'}";
     var targetPtr = undefined;
-    var targetDoc = undefined;    
+    var targetDoc = undefined;
+
     $.ajax({
         type: "POST",
         url: "WS/Content.asmx/GetTargetDocPtrByBookIdDocType",
@@ -359,30 +366,30 @@ function getEmailLink() {
         dataType: "json",
         async: false,
         success: function (msg) {
-            targetDoc = msg.d.TargetDoc;
-            targetPtr = msg.d.TargetPointer;
+            if (msg.d) {
+                targetDoc = msg.d.TargetDoc;
+                targetPtr = msg.d.TargetPointer;
+            }
         },
         error: getEmailLinkError,
         complete: function (xhr, status) {
             if (status === 'error' || !xhr.responseText) {
-                //handleError();
                 alert("Error:" + xhr.responseText);
-            } else {
-                var data = xhr.responseText;
-                //...
             }
         }
     });
 
-    var vct = "";
-    if (getActiveDocumentVCT()) {
-        vct = "&vct=1";
-    } else if (hasActiveScreen() && (getActiveScreen().siteNode.Anchor != null) && (getActiveScreen().siteNode.Anchor != "")) {
+    if (hasActiveScreen() &&
+        getActiveScreen().siteNode.Anchor != null &&
+        getActiveScreen().siteNode.Anchor != "") {
         targetPtr = getActiveScreen().siteNode.Anchor;
     }
 
-    var title = document.getElementById('iframe-main').contentWindow.document.title;
-    return d_returnurl + '&tdoc=' + targetDoc + '&tptr=' + targetPtr + vct;
+    if (targetDoc && targetPtr) {
+        return d_returnurl + '&tdoc=' + targetDoc + '&tptr=' + targetPtr;
+    }
+
+    return d_returnurl + '&id=' + id + '&type=' + type;
 }
 
 function GetTargetPtrAndDocByIdType(id, type) {
