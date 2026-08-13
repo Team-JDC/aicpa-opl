@@ -1258,7 +1258,8 @@ namespace MainUI.WS
         public SiteNode ResolveSiteFolder(string folderName)
         {
             int folderId = 96;
-            
+            bool found = false;
+
             XmlDocument siteXmlDoc = new XmlDocument();
             siteXmlDoc.LoadXml(CurrentSite.SiteXml);
 
@@ -1269,6 +1270,7 @@ namespace MainUI.WS
             if (node != null)
             {
                 folderId = Int32.Parse(node.Attributes.GetNamedItem("Id").Value);
+                found = true;
             }
             else
             {
@@ -1286,12 +1288,17 @@ namespace MainUI.WS
                     if (name == folderName)
                     {
                         folderId = Int32.Parse(listNode.Attributes.GetNamedItem("Id").Value);
+                        found = true;
                         break;
                     }
                 }
             }
 
-            
+            if (!found)
+            {
+                return null;
+            }
+
             ISiteFolder siteFolder = new SiteFolder(CurrentSite, folderId);
 
             SiteNode siteNode = new SiteNode(siteFolder);
