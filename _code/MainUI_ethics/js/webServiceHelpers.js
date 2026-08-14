@@ -61,7 +61,7 @@ $(function () {
     }
     else if (targetfolder != null) {
         doSiteFolderLink(
-            decodeURIComponent(targetfolder),
+            decodeURIComponent(targetfolder.replace(/\+/g, ' ')),
             true
         );
     }

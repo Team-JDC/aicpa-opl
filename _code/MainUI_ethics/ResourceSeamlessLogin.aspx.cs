@@ -377,7 +377,7 @@ namespace MainUI
 
                 bool docRedirect = false;
                 if (targetFolder != string.Empty) {
-                    Url = Url + "?targetfolder=" + HttpUtility.UrlEncode(targetFolder);
+                    Url = Url + "?targetfolder=" + Uri.EscapeDataString(targetFolder);
                     docRedirect = true;
                 }
                 else if (targetDoc != string.Empty) {
