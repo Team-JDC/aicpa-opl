@@ -25,7 +25,7 @@ namespace MainUI.Shared.Elastic
         public static List<(string Id, string Title, long Count)> BuildImmediateChildrenFromHits(
     IEnumerable<IHit<ElasticDocument>> hits,
     string selectedId,
-    string expectedChildType // "Book" when Site selected, "Document" when Book/Document selected
+    string expectedChildType // "Book", "Document", ... or null/empty for "any child type"
 )
         {
             var counts = new Dictionary<string, (string title, long cnt)>(StringComparer.Ordinal);
@@ -44,10 +44,14 @@ namespace MainUI.Shared.Elastic
                 if (childIdx >= chain.Count) continue;
 
                 var child = chain[childIdx];
-                if (!child.Type.Equals(expectedChildType, StringComparison.OrdinalIgnoreCase)) continue;
+                if (!string.IsNullOrEmpty(expectedChildType) &&
+                    !string.Equals(child.Type, expectedChildType, StringComparison.OrdinalIgnoreCase))
+                    continue;
 
                 var id = child.Id ?? "";
-                var title = string.IsNullOrWhiteSpace(child.Title) ? (expectedChildType + " " + id) : child.Title;
+                var title = string.IsNullOrWhiteSpace(child.Title)
+                    ? ((string.IsNullOrEmpty(child.Type) ? "Item" : child.Type) + " " + id)
+                    : child.Title;
 
                 if (counts.TryGetValue(id, out var entry))
                     counts[id] = (entry.title, entry.cnt + 1);

@@ -19,6 +19,9 @@ namespace MainUI.Shared.Elastic
     {
         private readonly ElasticClient _client;
 
+        // Hits to scan when building the refinement list; counts truncate past this.
+        private const int RefinementScanSize = 1000;
+
         public ElasticServices(string elasticUri, string indexName, string apiKey = null)
         {
             var pool = new SingleNodeConnectionPool(new Uri(elasticUri));
@@ -475,6 +478,24 @@ namespace MainUI.Shared.Elastic
                 .Highlight(hi)
             );
 
+            // AIC-55: one page of hits is too skewed a sample to build refinements from -- a
+            // site-level search is dominated by whichever book holds the most hits, so a small
+            // SiteFolder never surfaces a link. Re-run the query unpaged, hierarchy chains only.
+            var refinementHits = (IEnumerable<IHit<ElasticDocument>>)response.Hits;
+
+            if (response.Total > response.Hits.Count)
+            {
+                var scan = await _client.SearchAsync<ElasticDocument>(s => s
+                    .Size(RefinementScanSize)
+                    .TrackTotalHits(false)
+                    .Source(src => src.Includes(i => i.Field(d => d.SiteHierarchy)))
+                    .Query(q => q.Bool(b => b.Must(contentQuery).Filter(filters.ToArray())))
+                );
+
+                if (scan.IsValid && scan.Hits.Count > 0)
+                    refinementHits = scan.Hits;
+            }
+
             // 6) build DimensionResults (choose next level intelligently)
             var dimResults = new List<DimensionNavigationResult>();
             //var axis = "books";
@@ -486,10 +507,12 @@ namespace MainUI.Shared.Elastic
             switch (sel.Type)
             {
                 case SearchHelper.NodeType.Site:
+                case SearchHelper.NodeType.SiteFolder:
                     {
-                        // Site → facet immediate Books in the hits
+                        // Site or folder → its immediate children, Books *and* SiteFolders alike.
+                        // Passing no child type is the fix: filtering on "Book" discarded folders.
                         axisId = "books";
-                        var childBooks = SearchHelper.BuildImmediateChildrenFromHits(response.Hits, sel.Id, "Book");
+                        var childBooks = SearchHelper.BuildImmediateChildrenFromHits(refinementHits, sel.Id, null);
 
                         foreach (var (id, title, cnt) in childBooks)
                         {
@@ -508,7 +531,7 @@ namespace MainUI.Shared.Elastic
                     {
                         // Book → facet immediate Documents in the hits (first-level docs only)
                         axisId = "documents";
-                        var firstLevelDocs = SearchHelper.BuildImmediateChildrenFromHits(response.Hits, sel.Id, "Document");
+                        var firstLevelDocs = SearchHelper.BuildImmediateChildrenFromHits(refinementHits, sel.Id, "Document");
 
                         foreach (var (id, title, cnt) in firstLevelDocs)
                         {
@@ -565,7 +588,7 @@ namespace MainUI.Shared.Elastic
                         }
 
                         // 2) Now add the IMMEDIATE CHILD documents (first-level only)
-                        var childDocs = SearchHelper.BuildImmediateChildrenFromHits(response.Hits, sel.Id, "Document");
+                        var childDocs = SearchHelper.BuildImmediateChildrenFromHits(refinementHits, sel.Id, "Document");
                         foreach (var (id, title, cnt) in childDocs)
                         {
                             dimResults.Add(new DimensionNavigationResult
@@ -592,7 +615,7 @@ namespace MainUI.Shared.Elastic
                         if (firstSite1 != null)
                         {
                             axisId = "books";
-                            var childBooks = SearchHelper.BuildImmediateChildrenFromHits(response.Hits, firstSite1.Id, "Book");
+                            var childBooks = SearchHelper.BuildImmediateChildrenFromHits(refinementHits, firstSite1.Id, null);
                             foreach (var (id, title, cnt) in childBooks)
                             {
                                 dimResults.Add(new DimensionNavigationResult
