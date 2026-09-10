@@ -20,7 +20,7 @@
 <link rel="stylesheet" type="text/css" href="Styles/ethics.css" />
 
 <script type="text/javascript" src="js/globalVariables.js"></script>
-<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-4.0.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="js/detect.js"></script>
 <script type="text/javascript" src="js/jQuery-jtemplates.min.js"></script>

@@ -343,7 +343,6 @@
     <Content Include="elements\img\slide-nav-tray-toggle.png" />
     <Content Include="elements\js\bootstrap.min.js" />
     <Content Include="elements\js\clamp.js" />
-    <Content Include="elements\js\jquery-1.9.1.min.js" />
     <Content Include="elements\js\jquery.easing.1.3.js" />
     <Content Include="elements\js\jquery.easing.min.js" />
     <Content Include="elements\js\main.js" />
@@ -382,7 +381,6 @@
     <Content Include="images\logo-coso.png" />
     <Content Include="images\nav-bar.png" />
     <Content Include="images\notes-icon.png" />
-    <Content Include="images\pfp-splash.jpg" />
     <Content Include="images\pfpcollection-lp.gif" />
     <Content Include="images\portal\gasb-cod-logo.gif" />
     <Content Include="images\portal\gasb-index-logo.gif" />
@@ -1061,269 +1059,6 @@
     <Content Include="media\swfobject.js" />
     <Content Include="nfTestLogin.aspx" />
     <Content Include="resources\js.cookie.min.js" />
-    <Content Include="resources\pfptoolkit\ar\Mouse.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\CPLibrary.css" />
-    <Content Include="resources\pfptoolkit\assets\css\CPQuiz.css" />
-    <Content Include="resources\pfptoolkit\assets\css\dd.css" />
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\scrubber.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-icons_222222_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-icons_2e83ff_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-icons_454545_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-icons_888888_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\images\ui-icons_cd0a0a_256x240.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\css\smoothness\jquery-ui-1.8.14.custom.css" />
-    <Content Include="resources\pfptoolkit\assets\htmlimages\arrow_right.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\checkBox_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\checkBox_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\checkBox_selected.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\checkBox_selectedDisabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\closeReviewButton.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\correct_answer_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\correct_answer_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\correct_question_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\correct_question_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\dd_arrow.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\hotspot.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\hotspot_correct_answer_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\hotspot_incorrect_answer_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\img_trans.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\incorrect_answer_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\incorrect_answer_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\incorrect_question_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\incorrect_question_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\movieexpire.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\partial_correct_question_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\partial_correct_question_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\placeholder.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\radioButton_disabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\radioButton_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\radioButton_selected.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\radioButton_selectedDisabled.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\sequenceReview.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\skip_answer_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\skip_answer_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\skip_question_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\skip_question_small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\htmlimages\toc.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\cp.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\jquery-1.5.1.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\jquery-1.6.1.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\jquery-ui-1.8.14.custom.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\OpenAjaxManagedHub-all.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\uncompressed-jquery-ui-1.8.14.custom.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\js\uncompressed.jquery.dd.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\Playbar_icons\ccClose.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\Playbar_icons\Play_icon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\blankBookmark.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\clear.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\expander.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\fullBookmark.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\go.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\infoClose.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\moreinfo.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\searchBtnNormal.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\searchBtnSelect.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocIcons\visited.png" />
-    <Content Include="resources\pfptoolkit\assets\toc\tocStyle.css" />
-    <Content Include="resources\pfptoolkit\assets\TOC_icons\collapseIcon.png" />
-    <Content Include="resources\pfptoolkit\assets\TOC_icons\expandIcon.png" />
-    <Content Include="resources\pfptoolkit\assets\TOC_icons\photo.png" />
-    <Content Include="resources\pfptoolkit\browsersniff.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\captivate.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\dr\3946.png" />
-    <Content Include="resources\pfptoolkit\dr\3956.png" />
-    <Content Include="resources\pfptoolkit\dr\3966.png" />
-    <Content Include="resources\pfptoolkit\dr\4106_820_569.png" />
-    <Content Include="resources\pfptoolkit\dr\5348.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_10.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_13.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_14.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_15.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_16.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_17.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_18.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_19.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_27.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_28.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_29.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_30.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_31.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_32.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_33.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_8.png" />
-    <Content Include="resources\pfptoolkit\dr\Button_9.png" />
-    <Content Include="resources\pfptoolkit\dr\defaultloading.png" />
-    <Content Include="resources\pfptoolkit\dr\Slide3985_thnail.jpg" />
-    <Content Include="resources\pfptoolkit\dr\Slide4009_thnail.jpg" />
-    <Content Include="resources\pfptoolkit\dr\Slide4033_thnail.jpg" />
-    <Content Include="resources\pfptoolkit\dr\Slide5350_thnail.jpg" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_3.png" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_4.png" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_5.png" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_6.png" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_7.png" />
-    <Content Include="resources\pfptoolkit\dr\Text_Caption_8.png" />
-    <Content Include="resources\pfptoolkit\imsmanifest.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\index_SCORM.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\metadata.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\multiscreen.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\PFPToolkit.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\PFP Toolkit V. 5.swf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\scormdriver.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\SCORM_utilities.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\standard.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\Utilities.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.7.1.js" />
-    <Content Include="Scripts\jquery-3.7.1.min.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.js" />
-    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="Scripts\ZeroClipboard.js" />
     <Content Include="Scripts\ZeroClipboard.min.js" />
     <Content Include="Scripts\ZeroClipboard.swf" />
@@ -1365,7 +1100,6 @@
     <Content Include="templates\hitDetail.html" />
     <Content Include="templates\LibraryBooks.html" />
     <Content Include="templates\loadexacct.html" />
-    <Content Include="templates\loadpfptoolkit.htm" />
     <Content Include="templates\mybookmarks.html" />
     <Content Include="templates\mylibrary.html" />
     <Content Include="templates\mylibraryPhone.html" />
@@ -2035,10 +1769,6 @@
     <Content Include="Web.KnowlysisStage.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="resources\pfptoolkit\adlcp_rootv1p2.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="resources\pfptoolkit\Checklist - Documentation.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2064,22 +1794,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resources\pfptoolkit\Flowchart - When Does the Standard Apply copy.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\imscp_rootv1p1p2.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\imsmd_rootv1p2p1.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\ims_xml.xsd">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="resources\pfptoolkit\ScormEnginePackageProperties.xsd">
-      <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="resources\pfptoolkit\SSPFPS FAQs.pdf">
@@ -2124,8 +1838,6 @@
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Web.2015 PROD.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2136,8 +1848,6 @@
   <ItemGroup>
     <Folder Include="elements\font\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="resources\pfptoolkit\callees\" />
-    <Folder Include="resources\pfptoolkit\vr\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainUI\ResourceSeamlessLogin.aspx.resx" />
