@@ -57,7 +57,7 @@ function doNextHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "WS/EndecaServices.asmx/EndecaNextHitDoc",
+            url: "WS/ElasticSearchService.asmx/ElasticNextHitDoc",
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
@@ -83,7 +83,7 @@ function doPrevHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "WS/EndecaServices.asmx/EndecaPrevHitDoc",
+            url: "WS/ElasticSearchService.asmx/ElasticPrevHitDoc",
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
