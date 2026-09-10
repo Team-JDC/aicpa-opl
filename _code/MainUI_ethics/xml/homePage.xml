@@ -9,15 +9,20 @@
 	</primarySection>
 	
 		<primarySection  siteFolderName="Ethics Staff Insights" displayName="Ethics Staff Insights" imageUrl="images/ESI 100 x 50.jpg" description="Explore Ethics Staff Insights to stay informed on emerging issues and strengthen your application of the AICPA Code of Professional Conduct.">
-		<book displayName="AI Through an Ethics Lense" targetDoc="et-si1"/>
-		<book displayName="Business Arrangements with SOC Tool Providers" targetDoc="et-si2"/>
+		<book displayName="AI Through an Ethics Lens" targetDoc="et-si1"/>
+		<book displayName="Business Arrangements With SOC Tool Providers" targetDoc="et-si2"/>
 	</primarySection>
 	
 	
 	 
 
-	<primarySection  siteFolderName="et-bc" displayName="Basis For Conclusions" imageUrl="images/BasisForConclusions 100x50.jpg" description="Read more about the considerations used by the Professional Ethics Executive Committee in developing or revising ethics interpretations.">
-		<book displayName="Basis For Conclusions" targetDoc="et-bc"/>
+	<primarySection  siteFolderName="Basis For Conclusions" displayName="Basis For Conclusions" imageUrl="images/BasisForConclusions 100x50.jpg" description="Read more about the considerations used by the Professional Ethics Executive Committee in developing or revising ethics interpretations.">
+		<book displayName="New Definition of publicly traded entity and Revised Definition of public interest entity" targetDoc="et-bc6"/>
+		<book displayName="Immediate Family Member " targetDoc="et-bc1"/>
+		<book displayName="Revisions to Interpretations and Rulings Under Rule 101 — Independence " targetDoc="et-bc2"/>
+		<book displayName="New Ethics Rulings Under Rule 102 and Rule 101 " targetDoc="et-bc3"/>
+		<book displayName="Outsourcing " targetDoc="et-bc4"/>
+		<book displayName="White Paper — Independence Rules Modernization Project " targetDoc="et-bc5"/>
 	</primarySection>
 
 
@@ -30,8 +35,9 @@
 		<book displayName="Plain English Guide To Independence" targetDoc="et-pe"/>
 	</primarySection>
 
-	<primarySection  siteFolderName="et-cs" displayName="Sample Case Studies" imageUrl="images/CaseStudies 100x50.jpg" description="Read nonauthoritative real-world scenarios to help you navigate ethical requirements in your practice.">
-		<book displayName="Sample Case Studies: Network Firms" targetDoc="et-cs"/>
+	<primarySection  siteFolderName="Case Studies" displayName="Case Studies" imageUrl="images/CaseStudies 100x50.jpg" description="Read nonauthoritative real-world scenarios to help you navigate ethical requirements in your practice.">
+		<book displayName="Business &amp; Industry" targetDoc="et-cs1"/>
+		<book displayName="Network Firms " targetDoc="et-cs1"/>
 
 	</primarySection>
 
