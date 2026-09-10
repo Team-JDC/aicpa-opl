@@ -1297,7 +1297,7 @@ a.logoPhone img {
     width:17px;
     height:17px;
     margin:4px 7px 0 0;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat left top;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat left top;
     filter: contrast(2%);
 }
 #leftcol #toc .acc_head_inner h2 span.spacer {
@@ -1377,7 +1377,7 @@ a.logoPhone img {
 #toc li > .nochildren > .toggle 
 {background:none; }
 #toc li > .children > .toggle 
-{background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;}
+{background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;}
  
 
 #toc li > div > .toggle,
@@ -1389,7 +1389,7 @@ a.logoPhone img {
     height:22px;
     margin:9px 5px 0 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;
     cursor:pointer;
 }
 
@@ -1423,7 +1423,7 @@ a.logoPhone img {
     height:22px;
     margin:8px 5px -5px 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -149px 0;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -149px 0;
 }
 #leftcol #toc .acc_content .icon.doc
 {
@@ -1485,7 +1485,7 @@ a.logoPhone img {
     height:22px;
     margin:0 5px 0 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;
     cursor:pointer;
     filter: invert(65%);
 }
@@ -1563,11 +1563,11 @@ a.logoPhone img {
 
 
 #tocContentHolder li .toggle
-{background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;}
+{background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;}
 #tocContentHolder li > .nochildren > .toggle
 {background:none; }
 #tocContentHolder li > .children > .toggle
-{background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;}
+{background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;}
 
 
 #tocContentHolder li > div > .toggle,
@@ -1579,7 +1579,7 @@ a.logoPhone img {
     height:22px;
     margin:9px 5px 0 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;
     cursor:pointer;
 }
 
@@ -1613,7 +1613,7 @@ a.logoPhone img {
     height:22px;
     margin:8px 5px -5px 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -149px 0;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -149px 0;
 }
 #leftcol #tocContentHolder .icon.doc
 {
@@ -1675,7 +1675,7 @@ a.logoPhone img {
     height:22px;
     margin:0 5px 0 0;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -50px 1px;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -50px 1px;
     cursor:pointer;
 }
 #leftcol #tocContentHolder .acc_head_inner .toggle:hover,
@@ -1880,7 +1880,7 @@ a.logoPhone img {
     font-size:12px;
     text-transform:uppercase;
     color:#41B6E6;
-    background:transparent url('/elements/img/link-double-arrow.png') no-repeat left 6px;
+    background:transparent url('../img/link-double-arrow.png') no-repeat left 6px;
 }
 .add_note:hover {
     color:#41B6E6;
@@ -2430,7 +2430,7 @@ tr:nth-child(even) {
     width:22px;
     margin:0 10px 0 0;
     height:22px;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -346px top;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -346px top;
     filter: invert(79%);
 }
 #rightcol .widget.alt .prev_next .next .handle span {
@@ -2492,7 +2492,7 @@ tr:nth-child(even) {
     width:20%;
     max-width:40px;
     height:24px;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat -98px top;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat -98px top;
     margin:0;
     vertical-align:middle;
     overflow:hidden;
@@ -2543,7 +2543,7 @@ tr:nth-child(even) {
 .footer_inner .footer_nav li a {
     display:block;
     padding:0 8px 0 12px;
-    background:transparent url('/elements/img/footer-nav-divider.png') no-repeat left 3px;
+    background:transparent url('../img/footer-nav-divider.png') no-repeat left 3px;
     font-size:13px;
     color:#fff;
     text-decoration:none;
@@ -2570,7 +2570,7 @@ tr:nth-child(even) {
     height:24px;
     margin-left:3px;
     overflow:hidden;
-    background:transparent url('/elements/img/misc-elements-sprite.png') no-repeat left top;
+    background:transparent url('../img/misc-elements-sprite.png') no-repeat left top;
 }
 .footer_inner .footer_social li:first-child a {
     margin:0;

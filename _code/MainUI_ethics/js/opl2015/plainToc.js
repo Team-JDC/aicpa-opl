@@ -3,7 +3,7 @@
     var type = getTocStateType();
 
     //loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
-    loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+    loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetInitialTreeTocHtml"), id, type, $("#" + rootId), true);
 }
 
 function syncTocLoad(rootId) {
@@ -11,10 +11,10 @@ function syncTocLoad(rootId) {
         var id = getActiveDocumentId();
         var type = getActiveDocumentType();
 
-        loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+        loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetInitialTreeTocHtml"), id, type, $("#" + rootId), true);
     }
     else {
-        loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", -1, "Site", $("#" + rootId), true);
+        loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetInitialTreeTocHtml"), -1, "Site", $("#" + rootId), true);
     }
 }
 
@@ -23,9 +23,9 @@ function TocLoadByIdType(rootId, id, type) {
         var id = getActiveDocumentId();
         var type = getActiveDocumentType();
 
-        loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", id, type, $("#" + rootId), true);
+        loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetInitialTreeTocHtml"), id, type, $("#" + rootId), true);
     }  else {
-        loadPlainTocByHtml("/WS/Content.asmx/GetInitialTreeTocHtml", -1, "Site", $("#" + rootId), true);
+        loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetInitialTreeTocHtml"), -1, "Site", $("#" + rootId), true);
     }
 }
 
@@ -71,7 +71,7 @@ function toggleTocNode(id, type, uniqueId, level) {
         //$(childUl).html("<div id='tocContentHolder' style='display: block;'><img src='/images/loading-spinner.gif'></img></div>");
         //childUl.slideToggle();
         //<div id='tocContentHolder' style='display: none;'><img src='/images/loading-spinner.gif'></img></div>
-        loadPlainTocByHtml("/WS/Content.asmx/GetNodeToGrandChildrenHtml", id, type, childUl, false, level, function () {
+        loadPlainTocByHtml(appUrl("/WS/Content.asmx/GetNodeToGrandChildrenHtml"), id, type, childUl, false, level, function () {
             childUl.slideToggle();
         });
     } else {

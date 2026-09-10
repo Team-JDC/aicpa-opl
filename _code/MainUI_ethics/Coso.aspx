@@ -102,7 +102,7 @@
 <%} %>--%>
 
 <script src="js/popup.js" type="text/javascript"></script>
-<script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
+<script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
 <script src="resources/jquery.treeview.js" type="text/javascript"></script>
 <script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
 <script src="js/plainToc.js" type="text/javascript"></script>
