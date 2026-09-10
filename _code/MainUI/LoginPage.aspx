@@ -70,7 +70,6 @@
                 </div>
             </div><!-- #page_inner -->
         </div><!-- #page -->
-		<!--<script type="text/javascript" src="elements/js/jquery-1.9.1.min.js"></script>-->
 		<script
   src="https://code.jquery.com/jquery-4.0.0.min.js"
   crossorigin="anonymous"></script>

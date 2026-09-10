@@ -654,11 +654,6 @@ function loadHelp() {
     loadTemplate("WS/HomePage.asmx/GetHelpVisibility", "{}", "templates/help.html", "document-container");
 }
 
-function loadPFP() {
-    clearCurrentView();
-    fillContentPaneFromUrl("templates/loadpfptoolkit.htm");
-}
-
 function loadHelpEthics() {
     clearCurrentView(); // update the back button status
     //setToolAsCurrentView(toolName_help, "");
