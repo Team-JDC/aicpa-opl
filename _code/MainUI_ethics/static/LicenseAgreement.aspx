@@ -18,8 +18,8 @@
 		DIV.warning { BORDER:2px solid #000; PADDING: 10px; TEXT-ALIGN: left; background-color: #ccc } 
 		DIV.warning P { FONT: 12px Arial } 
 	</style>    
-    <script type="text/javascript" src="/js/jquery/jquery-4.0.0.min.js"></script> 
-    <script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
+    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/jquery-4.0.0.min.js") %>"></script> 
+    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
     <script>
         function disagreeLA()
         {
@@ -392,8 +392,8 @@
 		</ol>
 		</div>
         <br />
-        <a href="#" onclick="javascript:agreeLA();"><img src="/images/btn-agree.gif" alt="Agree" border="0" /></a>
-		<a href="#" onclick="javascript:disagreeLA();"><img src="/images/btn-disagree.gif" alt="Disagree" border="0" style="margin-left:5px;" /></a>
+        <a href="#" onclick="javascript:agreeLA();"><img src="<%= ResolveUrl("~/images/btn-agree.gif") %>" alt="Agree" border="0" /></a>
+		<a href="#" onclick="javascript:disagreeLA();"><img src="<%= ResolveUrl("~/images/btn-disagree.gif") %>" alt="Disagree" border="0" style="margin-left:5px;" /></a>
     </div>
 </div>
 </form>

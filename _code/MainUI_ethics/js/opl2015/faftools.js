@@ -20,10 +20,10 @@ function loadFafToolsByDocAndPtr(tdoc, tptr) {
 
     if (tdoc && tptr) {
         //console.log("Loading FafTools:" + tdoc + ":" + tptr);
-        loadTemplate("/WS/DocumentTools.asmx/GetBookToolsByDocAndPtr", "{targetDoc:'" + tdoc + "', targetPtr:'" + tptr + "'}", "/templates/odp2015/fafMenu.html", "liFasbAsc",null, AfterFafToolsLoad);
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetBookToolsByDocAndPtr"), "{targetDoc:'" + tdoc + "', targetPtr:'" + tptr + "'}", appUrl("/templates/odp2015/fafMenu.html"), "liFasbAsc",null, AfterFafToolsLoad);
     } else {
         //console.log("Loading FafTools: -1:site");
-        loadTemplate("/WS/DocumentTools.asmx/GetBookTools", "{id:-1, type:'Site'}", "/templates/odp2015/fafMenu.html", "liFasbAsc", null, AfterFafToolsLoad);
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetBookTools"), "{id:-1, type:'Site'}", appUrl("/templates/odp2015/fafMenu.html"), "liFasbAsc", null, AfterFafToolsLoad);
     }
     //showFAFTools();
 }
@@ -35,9 +35,9 @@ function loadFafTools(id, type){
         type = null;
 
     if (id && type) {
-        loadTemplate("/WS/DocumentTools.asmx/GetBookTools", "{id:" + id + ", type:'" + type + "'}", "/templates/odp2015/fafMenu.html", "liFasbAsc", null, AfterFafToolsLoad);
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetBookTools"), "{id:" + id + ", type:'" + type + "'}", appUrl("/templates/odp2015/fafMenu.html"), "liFasbAsc", null, AfterFafToolsLoad);
     } else {
-        loadTemplate("/WS/DocumentTools.asmx/GetBookTools", "{id:-1, type:'Site'}", "/templates/odp2015/fafMenu.html", "liFasbAsc", null, AfterFafToolsLoad);
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetBookTools"), "{id:-1, type:'Site'}", appUrl("/templates/odp2015/fafMenu.html"), "liFasbAsc", null, AfterFafToolsLoad);
     }
     //showFAFTools();
 }
@@ -68,7 +68,7 @@ function toggleShowSources() {
 }
 
 function doJoinChildren(targetDoc, targetPtr) {
-    window.location = '/content/join/' + targetDoc + '/' + targetPtr;
+    window.location = appUrl('/content/join/') + targetDoc + '/' + targetPtr;
 }
 
 function doJoinInternal(targetDoc, targetPtr) {
@@ -78,7 +78,7 @@ function doJoinInternal(targetDoc, targetPtr) {
     //hideDocumentSpecificButtons();
     //setFafCopyright();
     var params = "{ targetDoc:'" + targetDoc + "', targetPointer:'" + targetPtr + "'}";
-    callWebService("/WS/Content.asmx/GetNodeToGrandChildrenByTargetDocTargetPointer", params, doJoinChildrenResult, ajaxFailed, params);
+    callWebService(appUrl("/WS/Content.asmx/GetNodeToGrandChildrenByTargetDocTargetPointer"), params, doJoinChildrenResult, ajaxFailed, params);
 }
 
 function doJoinChildrenResult(breadcrumbNode, params) {
@@ -109,5 +109,5 @@ function doJoinChildrenResult(breadcrumbNode, params) {
 
     g_lastJoinSectionsUrl = encodeURIComponent(joinSectionsUrl);
 
-    fillLeftContentPaneFromUrl("/Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
+    fillLeftContentPaneFromUrl(appUrl("/Handlers/GetDocuments.ashx?show_sources=") + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
 }

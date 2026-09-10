@@ -11,10 +11,10 @@
 
     <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/elements/css/normalize.css" />
-    <link rel="stylesheet" href="/elements/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/elements/css/main.css" />
+    <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/normalize.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/bootstrap.min.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/main.css") %>" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <!--[if lt IE 9 ]>
         <link rel="stylesheet" href="elements/css/ie.css">
@@ -44,7 +44,7 @@
                 <div id="header_outer" class="row">
                     <div class="gradient"></div>
                     <div class="header_inner">
-                        <a class="logo" href="/default">
+                        <a class="logo" href="<%= ResolveUrl("~/default") %>">
                             <img src="elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
                     </div>
                 </div>
@@ -98,8 +98,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha384-aV9ZlPl+2Cx4UeYtVSu3z1x8ZfQKrBpCGE1GfF/nv9MAl0cL9XbYgH4J6VnC4qQz"
         crossorigin="anonymous"></script>
-    <script type='text/javascript' src='/elements/js/jquery.easing.min.js'></script>
-    <script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/elements/js/main.js"></script>
+    <script type='text/javascript' src='<%= ResolveUrl("~/elements/js/jquery.easing.min.js") %>'></script>
+    <script type="text/javascript" src="<%= ResolveUrl("~/elements/js/bootstrap.min.js") %>"></script>
+    <script type="text/javascript" src="<%= ResolveUrl("~/elements/js/main.js") %>"></script>
 </body>
 </html>

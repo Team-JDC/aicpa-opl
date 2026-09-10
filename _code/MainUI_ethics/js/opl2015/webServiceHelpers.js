@@ -142,7 +142,7 @@ function fillLeftContentPaneFromUrl(url) {
 function gotoUpsellPage(id, type, pageType) {
     //var paramsForMsg = { pageType: pageType };
     var params = "{id:" + id + ", type:'" + type + "'}";
-    loadTemplate("/WS/Content.asmx/GetUpsellData", params, "/templates/odp2015/restricted.html", "document-container");
+    loadTemplate(appUrl("/WS/Content.asmx/GetUpsellData"), params, appUrl("/templates/odp2015/restricted.html"), "document-container");
 }
 
 // function: loadContentBySiteNode
@@ -154,7 +154,7 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
         gotoUpsellPage(siteNode.Id, siteNode.Type);
         //RemoveEmptyScreens();
     } else if (siteNode.Restricted && isLMSLink()) {
-        fillContentPaneFromUrl("/templates/errordirect.html");
+        fillContentPaneFromUrl(appUrl("/templates/errordirect.html"));
     } else { // in our subscription
         // set siteNode property of active screen to be the new siteNode
         //getActiveScreen().siteNode = siteNode;
@@ -166,7 +166,7 @@ function loadContentBySiteNode(siteNode, scrollbarPosition) {
 
         if (siteNode.Type == "SiteFolder") {
             //scrollToAnchor(); // scroll div to the top
-            loadTemplate("/WS/Content.asmx/GetSiteFolderDetails", "{id:" + siteNode.Id + "}", "/templates/siteFolderTitlePage2.html", "document-container-left");
+            loadTemplate(appUrl("/WS/Content.asmx/GetSiteFolderDetails"), "{id:" + siteNode.Id + "}", appUrl("/templates/siteFolderTitlePage2.html"), "document-container-left");
             // Ensure the DOM is fully loaded before checking highlight settings
             $(function () {
                 const $docLeft = $('#document-container-left');
@@ -468,7 +468,7 @@ function loadDocumentWidgetByIdType(id, type) {
 
 //    loadTemplateDual('/WS/Content.asmx/ResolveContentLinkExtraByIdType', params, [{ 'templateUrl': '/templates/next_prev_widget.html', 'containerId': 'document-container-right' },
 //                                                                            { 'templateUrl': '/templates/odp2015/bookmark_phone.html', 'containerId': 'phoneBookmarkli' }], {}, updateMobileNav);
-    loadTemplate('/WS/Content.asmx/ResolveContentLinkExtraByIdType', params, '/templates/odp2015/next_prev_widget.html', 'document-container-right', {}, updateMobileNav,null, widgetLoadFailed);
+    loadTemplate(appUrl('/WS/Content.asmx/ResolveContentLinkExtraByIdType'), params, appUrl('/templates/odp2015/next_prev_widget.html'), 'document-container-right', {}, updateMobileNav,null, widgetLoadFailed);
     
 }
 
@@ -484,11 +484,11 @@ function loadDocumentWidget(targetDoc, targetPtr) {
 //    loadTemplateDual('/WS/Content.asmx/ResolveContentLinkExtra', params, [{ 'templateUrl': '/templates/next_prev_widget.html', 'containerId': 'document-container-right' },
 //                                                                          { 'templateUrl': '/templates/odp2015/next_prev_widget_phone.html', 'containerId': 'phone_widget'}], {}, updateMobileNav);
 
-    loadTemplate('/WS/Content.asmx/ResolveContentLinkExtra', params, '/templates/odp2015/next_prev_widget.html', 'document-container-right', {},updateMobileNav); 
+    loadTemplate(appUrl('/WS/Content.asmx/ResolveContentLinkExtra'), params, appUrl('/templates/odp2015/next_prev_widget.html'), 'document-container-right', {},updateMobileNav); 
 }
 
 function loadHistory() {
-    loadTemplate('/WS/HomePage.asmx/GetRecentDocuments', '{}', '/templates/history.html', 'liHistory');
+    loadTemplate(appUrl('/WS/HomePage.asmx/GetRecentDocuments'), '{}', appUrl('/templates/history.html'), 'liHistory');
 }
 
 function loadWhatsNew() {    
@@ -496,7 +496,7 @@ function loadWhatsNew() {
 }
 
 function loadHistory() {
-    loadTemplate('/WS/HomePage.asmx/GetRecentDocuments', '{}', '/templates/historyPhone.html', 'liHistoryPhone');
+    loadTemplate(appUrl('/WS/HomePage.asmx/GetRecentDocuments'), '{}', appUrl('/templates/historyPhone.html'), 'liHistoryPhone');
 }
 
 function doPrint(id, type) {
@@ -551,12 +551,12 @@ function loadToc(syncToc, id, type) {
 
     if ((id) && (type)) {
         if ((id != -1) && (type != "Site"))
-            fillDocumentContainerFromUrl("/static/opl2015plainSyncTocReload.html");
-        else fillDocumentContainerFromUrl("/static/opl2015plainToc.html");
+            fillDocumentContainerFromUrl(appUrl("/static/opl2015plainSyncTocReload.html"));
+        else fillDocumentContainerFromUrl(appUrl("/static/opl2015plainToc.html"));
     } else if (syncToc) {
-        fillDocumentContainerFromUrl("/static/opl2015plainSyncToc.html");
+        fillDocumentContainerFromUrl(appUrl("/static/opl2015plainSyncToc.html"));
     } else {
-        fillDocumentContainerFromUrl("/static/opl2015plainToc.html");
+        fillDocumentContainerFromUrl(appUrl("/static/opl2015plainToc.html"));
     }
 }
 
@@ -576,43 +576,43 @@ function IsNull(aTextField) {
 }
 
 function doNotesLink() {
-    window.location = "/tools/notes";
+    window.location = appUrl("/tools/notes");
 }
 
 function loadNotes() {
-    loadTemplate("/WS/UserPreferences.asmx/GetAllMyNotes", "{}", "/templates/odp2015/notes.html", "document-container-left");
+    loadTemplate(appUrl("/WS/UserPreferences.asmx/GetAllMyNotes"), "{}", appUrl("/templates/odp2015/notes.html"), "document-container-left");
 }
 
 
 function loadBookmarks() {
-    loadTemplate("/WS/UserPreferences.asmx/GetAllMyBookmarks", "{}", "/templates/odp2015/bookmarks.html", "document-container-left");
+    loadTemplate(appUrl("/WS/UserPreferences.asmx/GetAllMyBookmarks"), "{}", appUrl("/templates/odp2015/bookmarks.html"), "document-container-left");
 }
 
 function loadArchiveContent(id) {
     var encodeStr = g_TargetDoc + "|" + g_TargetPtr + "|" + id;
     encodeStr = Base64.encode(encodeStr);
-    window.location = "/tools/loadarchive/archive/" + encodeStr;
+    window.location = appUrl("/tools/loadarchive/archive/") + encodeStr;
 }
 
 //id = filename
 function doLoadArchiveContent(id) {
-    fillDocumentContainerFromUrl("/Handlers/GetArchiveContent.ashx?id=" + id);
+    fillDocumentContainerFromUrl(appUrl("/Handlers/GetArchiveContent.ashx?id=") + id);
 }
 
 //fillContentPaneFromUrl("Handlers/DownloadDocument.ashx?docid=" + getActiveDocumentId() + "&d_ft=" + 18);
 function loadArchive(documentid) {    
-    fillContentPaneFromUrl("/Handlers/DownloadDocument.ashx?docid=" + documentid + "&d_ft=" + 18);
+    fillContentPaneFromUrl(appUrl("/Handlers/DownloadDocument.ashx?docid=") + documentid + "&d_ft=" + 18);
     //loadTemplate("/WS/UserPreferences.asmx/GetAllMyBookmarks", "{}", "/templates/odp2015/archive.html", "document-container-left");
 }
 
 function loadArchiveByDocAndPtr(targetDoc, targetPtr) {    
     var params = "{ targetDoc:'" + targetDoc + "', targetPointer:'" + targetPtr + "'}";
-    callWebService("/WS/Content.asmx/ResolveContentLink", params, function (sitenode) {
+    callWebService(appUrl("/WS/Content.asmx/ResolveContentLink"), params, function (sitenode) {
         //write these to the global variables g_TargetDoc and g_TargetPtr
         // these will be used by the loadArchiveContent
         g_TargetDoc = targetDoc;
         g_TargetPtr = targetPtr;
-        fillContentPaneFromUrl("/Handlers/DownloadDocument.ashx?docid=" + sitenode.Id + "&d_ft=" + 18);
+        fillContentPaneFromUrl(appUrl("/Handlers/DownloadDocument.ashx?docid=") + sitenode.Id + "&d_ft=" + 18);
     }, ajaxFailed);
     //loadTemplate("/WS/Content.asmx/ResolveContentLink", data, "/templates/odp2015/archive.html", "document-container");
 }
@@ -620,27 +620,27 @@ function loadArchiveByDocAndPtr(targetDoc, targetPtr) {
 
 
 function loadSavedSearches() {
-    loadTemplate('/WS/SearchServices.asmx/GetSavedSearches', '{}', '/templates/odp2015/savedSearches.html', 'document-container-left');
+    loadTemplate(appUrl('/WS/SearchServices.asmx/GetSavedSearches'), '{}', appUrl('/templates/odp2015/savedSearches.html'), 'document-container-left');
 }
 
 function loadPreferences() {
-    loadTemplate("/WS/UserPreferences.asmx/GetUserPreferences", "{}", "/templates/odp2015/fonts.html", "document-container-left");
+    loadTemplate(appUrl("/WS/UserPreferences.asmx/GetUserPreferences"), "{}", appUrl("/templates/odp2015/fonts.html"), "document-container-left");
 }
 
 function loadGoTo() {
-    loadTemplate("/WS/DocumentTools.asmx/GetGotoInformation", "{topicNum:'', subNum:''}", "/templates/odp2015/goto.html", "document-container-left");
+    loadTemplate(appUrl("/WS/DocumentTools.asmx/GetGotoInformation"), "{topicNum:'', subNum:''}", appUrl("/templates/odp2015/goto.html"), "document-container-left");
 }
 
 function loadJoin() {
-    loadTemplate("/WS/DocumentTools.asmx/GetJoinSectionsInformation", "{topicNum:'', content:'', includeSubtopics:false}", "/templates/odp2015/join.html", "document-container-left");
+    loadTemplate(appUrl("/WS/DocumentTools.asmx/GetJoinSectionsInformation"), "{topicNum:'', content:'', includeSubtopics:false}", appUrl("/templates/odp2015/join.html"), "document-container-left");
 }
 
 function loadGuide() {
-    loadTemplate("/WS/SearchServices.asmx/GetSavedSearches", "{}", "/templates/odp2015/howToGuide.html", "document-container-left");
+    loadTemplate(appUrl("/WS/SearchServices.asmx/GetSavedSearches"), "{}", appUrl("/templates/odp2015/howToGuide.html"), "document-container-left");
 }
 
 function loadXRef() {
-    loadTemplate("/WS/DocumentTools.asmx/GetStandardsForCrossReference", "{standard: '', topic: '',subTopic: ''}", "/templates/odp2015/xref.html", "document-container-left");
+    loadTemplate(appUrl("/WS/DocumentTools.asmx/GetStandardsForCrossReference"), "{standard: '', topic: '',subTopic: ''}", appUrl("/templates/odp2015/xref.html"), "document-container-left");
 }
 
 function setDocBookmark(visible) {
@@ -798,7 +798,7 @@ function loadTemplate(serviceUrl, paramString, templateUrl, containerId, paramsF
 
 function loadExacct() {
     //setToolAsCurrentView(toolName_homePage, "");
-    loadTemplate("/WS/HomePage.asmx/GetHomePageData", "{}", "/templates/loadexacct.html", "document-container");
+    loadTemplate(appUrl("/WS/HomePage.asmx/GetHomePageData"), "{}", appUrl("/templates/loadexacct.html"), "document-container");
 }
 
 function applyTemplate(msg, templateUrl, containerId, nonfilter) {
@@ -855,7 +855,7 @@ function ajaxFailed(result) {
 
 function logErrorToServer(logString) {
     try {
-        callWebService("/WS/Toolbars.asmx/LogError", "{logString: '" + logString + "'}", logErrorCallback, logErrorCallback);
+        callWebService(appUrl("/WS/Toolbars.asmx/LogError"), "{logString: '" + logString + "'}", logErrorCallback, logErrorCallback);
     }
     catch (ex)
     { }
@@ -863,12 +863,12 @@ function logErrorToServer(logString) {
 
 function loadError() {
 //    hideDocumentSpecificButtons();
-    fillContentPaneFromUrl("/templates/error.html");
+    fillContentPaneFromUrl(appUrl("/templates/error.html"));
 }
 
 function doLogout() {
     clearListCookies();
-    callWebService("/WS/Toolbars.asmx/Logout", "{}", redirectToLogoutPage, ajaxFailed);
+    callWebService(appUrl("/WS/Toolbars.asmx/Logout"), "{}", redirectToLogoutPage, ajaxFailed);
     //$.get(remoteLogoutUrl);
     //window.location.assign(remoteLogoutUrl);
 }
@@ -966,7 +966,7 @@ function ToggleInternalToc() {
 
 function loadMobileBreadcrumb(docnum) {
 
-    webserviceUrl = "/WS/Content.asmx/GetFullTocStrByTargetDocTargetPtr";
+    webserviceUrl = appUrl("/WS/Content.asmx/GetFullTocStrByTargetDocTargetPtr");
     parameters = "{ targetDoc: '" + routeTargetDoc + "', targetPtr: '" + routeTargetPtr + "', routeNodeType: '" + routeNodeType + "' }";
 
 
@@ -1003,7 +1003,7 @@ function loadMobileBreadcrumbAjaxFailure(jqXHR, textStatus, errorThrown, docnum)
 }
 
 function loadPFP() {
-    fillLeftContentPaneFromUrl("/templates/loadpfptoolkit.htm");
+    fillLeftContentPaneFromUrl(appUrl("/templates/loadpfptoolkit.htm"));
 }
 
 function setTocStateId(id) {

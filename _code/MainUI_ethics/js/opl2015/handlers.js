@@ -12,7 +12,7 @@ function timeoutHandler() {
 }
 
 function doFootnoteLink(targetDoc, anchorName) {
-    window.location.href = '/content/link/' + targetDoc + '/' + anchorName;
+    window.location.href = appUrl('/content/link/') + targetDoc + '/' + anchorName;
 }
 
 function googleAnalytics(event, searchTerm, searchType, typeCategory, filterName) {
@@ -52,7 +52,7 @@ function doTocLink(id, type) {
 function doLink(targetDoc, targetPtr, useNewScreen, viewCompleteTopic, norecord) {
     //targetPtr = targetPtr.replace(/\./g, "=+=");
     
-    window.location.href = '/content/link/' + targetDoc + '/' + targetPtr;
+    window.location.href = appUrl('/content/link/') + targetDoc + '/' + targetPtr;
 }
 
 // when someone clicks a link in the content
@@ -62,12 +62,12 @@ function doLinkRoute(targetDoc, targetPtr, useNewScreen, viewCompleteTopic, nore
     }
 
     var params = "{ targetDoc:'" + targetDoc + "', targetPointer:'" + targetPtr + "'}";    
-    callWebService("/WS/Content.asmx/ResolveContentLink", params, loadContentBySiteNode, doLinkRouteFailed);
+    callWebService(appUrl("/WS/Content.asmx/ResolveContentLink"), params, loadContentBySiteNode, doLinkRouteFailed);
   
 }
 
 function doLinkRouteFailed() {    
-    fillContentPaneFromUrl("/templates/odp2015/contentError.html");    
+    fillContentPaneFromUrl(appUrl("/templates/odp2015/contentError.html"));    
 }
 
 
@@ -86,7 +86,7 @@ function loadPrimaryContent(id, type, scrollbarPosition) {
     if (typeof (type) == 'function') {
         debugger;
     }
-    callWebService("/WS/Content.asmx/GetPrimaryContent", params, loadContentBySiteNode, ajaxFailed, scrollbarPosition);
+    callWebService(appUrl("/WS/Content.asmx/GetPrimaryContent"), params, loadContentBySiteNode, ajaxFailed, scrollbarPosition);
 }
 
 
@@ -120,7 +120,7 @@ function bulkDelete() {
 }
 
 function deleteNoteSelection(selection) {    
-    callWebService("/WS/UserPreferences.asmx/DeleteNotes", "{noteIds:'" + selection + "'}", deleteMyNoteResultHandler, ajaxFailed);
+    callWebService(appUrl("/WS/UserPreferences.asmx/DeleteNotes"), "{noteIds:'" + selection + "'}", deleteMyNoteResultHandler, ajaxFailed);
 }
 
 function deleteMyNoteResultHandler(note) {
@@ -158,7 +158,7 @@ function noteEscape(value) {
         var noteText = $(addNoteTextIdJQuery).val();
 
         var paramsString = "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "', noteText:'" + noteEscape(noteText) + "', noteTitle:'" + noteEscape(titleText) + "'}";
-        callWebService("/WS/UserPreferences.asmx/SaveNote", paramsString, saveNoteResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/SaveNote"), paramsString, saveNoteResultHandler, ajaxFailed);
         return false;
     }
 
@@ -173,7 +173,7 @@ function noteEscape(value) {
 
         dataLayer.push({ 'event': 'notes' })
 
-        callWebService("/WS/UserPreferences.asmx/UpdateNote", paramsString, updateNotesHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/UpdateNote"), paramsString, updateNotesHandler, ajaxFailed);
         return false;
     }
 
@@ -200,7 +200,7 @@ function noteEscape(value) {
     }
 
     function deleteMyNote(id) {
-        callWebService("/WS/UserPreferences.asmx/DeleteNote", "{id:" + id + "}", function () {  $("#liNote-" + id).remove(); }, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/DeleteNote"), "{id:" + id + "}", function () {  $("#liNote-" + id).remove(); }, ajaxFailed);
     }
 
     function deleteNote(targetDoc, targetPtr, id, index) {
@@ -211,7 +211,7 @@ function noteEscape(value) {
         paramsForCallback.TargetDoc = targetDoc;
         paramsForCallback.TargetPtr = targetPtr;
 
-        callWebService("/WS/UserPreferences.asmx/DeleteNote", "{id:" + id + "}", deleteNoteResultHandler, ajaxFailed, paramsForCallback);
+        callWebService(appUrl("/WS/UserPreferences.asmx/DeleteNote"), "{id:" + id + "}", deleteNoteResultHandler, ajaxFailed, paramsForCallback);
 
         $("#leftcol").contents().find(editDivIdJQuery).fadeOut();
         $("#leftcol").contents().find(editDivIdJQuery).remove();
@@ -221,7 +221,7 @@ function noteEscape(value) {
         var containerId = note.TargetDoc + "-" + note.TargetPtr;
         var containerIdJQuery = "#" + containerId.replace(/\./g, "\\.");
 
-        callWebService("/WS/UserPreferences.asmx/GetNotes", "{targetDoc:'" + note.TargetDoc + "', targetPtr:'" + note.TargetPtr + "'}", updateEditNoteButton, ajaxFailed, note);
+        callWebService(appUrl("/WS/UserPreferences.asmx/GetNotes"), "{targetDoc:'" + note.TargetDoc + "', targetPtr:'" + note.TargetPtr + "'}", updateEditNoteButton, ajaxFailed, note);
 
         $("#leftcol").contents().find(containerIdJQuery + " span.addNote").show();
     }
@@ -237,7 +237,7 @@ function noteEscape(value) {
     //***************************************
 
     function editNote(targetDoc, targetPtr) {
-        callWebService("/WS/UserPreferences.asmx/GetNotes", "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "'}", getNoteResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/GetNotes"), "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "'}", getNoteResultHandler, ajaxFailed);
 
     }
 
@@ -341,7 +341,7 @@ function noteEscape(value) {
     }
 
     function deleteMyBookmark(id) {
-        callWebService("/WS/UserPreferences.asmx/DeleteBookmarkByID", "{id:" + id + "}",
+        callWebService(appUrl("/WS/UserPreferences.asmx/DeleteBookmarkByID"), "{id:" + id + "}",
         function () {
             $("#liBookmark-" + id).remove();
         }, ajaxFailed);
@@ -392,14 +392,14 @@ function noteEscape(value) {
 
         var paramsString = "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "', bookmarkTitle:'" + bookmarkTitle + "'}";
 
-        callWebService("/WS/UserPreferences.asmx/SaveBookmark", paramsString, addBookmarkResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/SaveBookmark"), paramsString, addBookmarkResultHandler, ajaxFailed);
     }
 
 
     function deleteBookmark(targetDoc, targetPtr) {
         var paramsString = "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "', bookmarkTitle:'" + bookmarkTitle + "'}";
 
-        callWebService("/WS/UserPreferences.asmx/SaveBookmark", paramsString, addBookmarkResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/SaveBookmark"), paramsString, addBookmarkResultHandler, ajaxFailed);
     }
 
 
@@ -410,7 +410,7 @@ function noteEscape(value) {
 
         var paramsString = "{id:'" + id + "', type:'" + type + "', bookmarkTitle:'" + bookmarkTitle + "'}";
 
-        callWebService("/WS/UserPreferences.asmx/SaveBookmarkByBookIdDocType", paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/SaveBookmarkByBookIdDocType"), paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
 
         //    loadTemplate("/WS/UserPreferences.asmx/GetAllMyBookmarks", "{}", "templates/mybookmarks.html", "document-container");
 
@@ -418,7 +418,7 @@ function noteEscape(value) {
 
     function deletePageBookmark(id, type) {
         var paramsString = "{id:'" + id + "', type:'" + type + "'}";
-        callWebService("/WS/UserPreferences.asmx/DeleteBookmarkByBookIdDocType", paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/DeleteBookmarkByBookIdDocType"), paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
     }
 
 
@@ -426,12 +426,12 @@ function noteEscape(value) {
 
     function enableBookmarkButtonsByIdType(id, type) {
         var paramsString = "{id:'" + id + "', type:'" + type + "'}";
-        callWebService("/WS/UserPreferences.asmx/GetBookmarkByBookIdDocType", paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/GetBookmarkByBookIdDocType"), paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
     }
 
     function enableBookmarkButtons(targetDoc, targetPtr) {
         var paramsString = "{targetDoc:'" + targetDoc + "', targetPtr:'" + targetPtr + "'}";
-        callWebService("/WS/UserPreferences.asmx/GetBookmark", paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/GetBookmark"), paramsString, enableBookmarkButtonsResultHandler, ajaxFailed);
     }
 
 
@@ -455,13 +455,13 @@ function noteEscape(value) {
         var key = 'FontSize';
         var value = $('input[name="font-size"]:checked').val();
         var paramsString = "{preferenceKey:'" + key + "', preferenceValue:'" + value + "'}";
-        callWebService("/WS/UserPreferences.asmx/AddUserPreference", paramsString, displaySavedPreferenceMessage, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/AddUserPreference"), paramsString, displaySavedPreferenceMessage, ajaxFailed);
     }
 
     function saveFontSize() {
         var value = $('input[name="font-size"]:checked').val();
         var paramsString = '{preferenceString: "FontSize*' + value + '"}';
-        callWebService("/WS/UserPreferences.asmx/SaveUserPreferences", paramsString, displaySavedPreferenceMessage, ajaxFailed);
+        callWebService(appUrl("/WS/UserPreferences.asmx/SaveUserPreferences"), paramsString, displaySavedPreferenceMessage, ajaxFailed);
     }
 
     function displaySavedPreferenceMessage() {
@@ -473,7 +473,7 @@ function noteEscape(value) {
     //#############################  GO TO
 
     function doFafGotoDropDownChange(topicNum, subNum) {
-        loadTemplate("/WS/DocumentTools.asmx/GetGotoInformation", "{topicNum:'" + topicNum + "', subNum:'" + subNum + "'}", "/templates/odp2015/goto.html", "document-container-left");
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetGotoInformation"), "{topicNum:'" + topicNum + "', subNum:'" + subNum + "'}", appUrl("/templates/odp2015/goto.html"), "document-container-left");
     }
 
     function doFafGotoSubmit(topicNum, subNum, sectNum) {
@@ -533,13 +533,13 @@ function noteEscape(value) {
     //########################### Join
 
     function doFafJoinSectionsChange(topicNum, content, includeSubtopics) {
-        loadTemplate("/WS/DocumentTools.asmx/GetJoinSectionsInformation", "{topicNum:'" + topicNum + "', content:'" + content + "', includeSubtopics:" + includeSubtopics + "}", "/templates/odp2015/join.html", "document-container-left");
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetJoinSectionsInformation"), "{topicNum:'" + topicNum + "', content:'" + content + "', includeSubtopics:" + includeSubtopics + "}", appUrl("/templates/odp2015/join.html"), "document-container-left");
     }
 
     function doJoinSectionsQuery(topicNum, sectionNum, content, includeSubtopics) {
         //updateCurrentTool_joinSections(topicNum, sectionNum, content, includeSubtopics);
 
-        loadTemplate("/WS/DocumentTools.asmx/GetJoinSectionsResults", "{topicNum:'" + topicNum + "', sectionNum:'" + sectionNum + "', includeSubtopics:" + includeSubtopics + "}", "/templates/odp2015/joinResults.html", "joinSectionResults");
+        loadTemplate(appUrl("/WS/DocumentTools.asmx/GetJoinSectionsResults"), "{topicNum:'" + topicNum + "', sectionNum:'" + sectionNum + "', includeSubtopics:" + includeSubtopics + "}", appUrl("/templates/odp2015/joinResults.html"), "joinSectionResults");
     }
 
     function doJoinSections(showSources) {
@@ -623,7 +623,7 @@ function noteEscape(value) {
         $("#sourcesPrint").attr('disabled', true);
         g_lastJoinSectionsUrl = encodeURIComponent(joinSectionsUrl);
 
-        fillContentPaneFromUrl("/Handlers/GetDocuments.ashx?show_sources=" + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
+        fillContentPaneFromUrl(appUrl("/Handlers/GetDocuments.ashx?show_sources=") + getShowSources() + hitAnchor + "&d_hh=" + getShowHighlights() + queryString);
     }
 
     // ########################## CROSS REFERENCE
@@ -632,7 +632,7 @@ function noteEscape(value) {
 
        // hideDocumentSpecificButtons();
        // setFafCopyright();
-         loadTemplate("/WS/DocumentTools.asmx/GetStandardsForCrossReference", "{standard:'" + standard + "', topic:'" + topic + "', subTopic:'" + subtopic + "'}", "/templates/odp2015/xref.html", "document-container-left");
+         loadTemplate(appUrl("/WS/DocumentTools.asmx/GetStandardsForCrossReference"), "{standard:'" + standard + "', topic:'" + topic + "', subTopic:'" + subtopic + "'}", appUrl("/templates/odp2015/xref.html"), "document-container-left");
        
     }
 
@@ -648,7 +648,7 @@ function noteEscape(value) {
 //            updateCurrentTool_crossRef(standard, number, topic, subtopic, section); // save params in back button history
 
 //            $('#crossRefInputError').hide();
-            loadTemplate("/WS/DocumentTools.asmx/GetCrossReferenceResults", "{standard:'" + standard + "', number:'" + number + "', topic:'" + topic + "', subTopic:'" + subtopic + "', section:'" + section + "'}", "/templates/odp2015/xrefResults.html", "resultsTable");
+            loadTemplate(appUrl("/WS/DocumentTools.asmx/GetCrossReferenceResults"), "{standard:'" + standard + "', number:'" + number + "', topic:'" + topic + "', subTopic:'" + subtopic + "', section:'" + section + "'}", appUrl("/templates/odp2015/xrefResults.html"), "resultsTable");
 //          }
         }
 
@@ -659,7 +659,7 @@ function noteEscape(value) {
 //            hideDocumentSpecificButtons();
 //            setFafCopyright();
             if (hasActiveDocument()) {
-                fillContentPaneFromUrl("/Handlers/DownloadDocument.ashx?docid=" + getActiveDocumentId() + "&d_ft=" + 18);
+                fillContentPaneFromUrl(appUrl("/Handlers/DownloadDocument.ashx?docid=") + getActiveDocumentId() + "&d_ft=" + 18);
             }
         }
 
@@ -669,17 +669,17 @@ function noteEscape(value) {
 //            clearCurrentView();
 //            hideDocumentSpecificButtons();
 //            setFafCopyright();            
-              fillContentPaneFromUrl("/Handlers/DownloadDocument.ashx?docid=" + getActiveDocumentId() + "&d_ft=" + 17);
+              fillContentPaneFromUrl(appUrl("/Handlers/DownloadDocument.ashx?docid=") + getActiveDocumentId() + "&d_ft=" + 17);
           }
 
         function doFafWhatLinksHereLink(targetDoc, targetPtr) {
             var params = "{ targetDoc:'" + targetDoc + "', targetPointer:'" + targetPtr + "'}";
-            callWebService("/WS/Content.asmx/ResolveContentLink", params, function (sitenode) {
+            callWebService(appUrl("/WS/Content.asmx/ResolveContentLink"), params, function (sitenode) {
                 //write these to the global variables g_TargetDoc and g_TargetPtr
                 // these will be used by the loadArchiveContent
                 g_TargetDoc = targetDoc;
                 g_TargetPtr = targetPtr;                  
-                fillContentPaneFromUrl("/Handlers/DownloadDocument.ashx?docid=" + sitenode.Id + "&d_ft=" + 17);
+                fillContentPaneFromUrl(appUrl("/Handlers/DownloadDocument.ashx?docid=") + sitenode.Id + "&d_ft=" + 17);
             }, ajaxFailed);
               
         }
@@ -750,7 +750,7 @@ function loadPrintContent() {
 // when you click on a search link or on the search link icon
 function doSearchLink(id, type, useNewScreen) {
     setShowHighlights(true);
-    window.location = "/content/" + type + "/" + id + "?search=true";
+    window.location = appUrl("/content/") + type + "/" + id + "?search=true";
     ////setLoading(true);
 
     //open in new window = useNewScreen (whatever was passed to us)
@@ -808,7 +808,7 @@ function doLALink(id, type) {
 //    var result = prepareActiveScreen(false);
 
     //    if (result) {
-    window.location.href = '/content/'+type+'/'+id;
+    window.location.href = appUrl('/content/')+type+'/'+id;
     //loadPrimaryContent(id, type);
         //loadPrimaryContent(id, type);
     //}

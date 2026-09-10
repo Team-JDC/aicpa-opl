@@ -777,7 +777,6 @@ function DisablePopupContent() {
 
 function SetDisableEnableDefinitionPopupCheckbox() {
     var disablepopup = getDisablePopupCookie();
-    console.log(disablepopup)
     // use .prop with booleans in modern jQuery
     $("#disableDefPopupId").prop("checked", !!disablepopup);
 }

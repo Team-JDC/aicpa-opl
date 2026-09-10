@@ -11,7 +11,7 @@
 
 function deleteSavedSearch(id, name) {    
     var params = "{name:'" + name + "'}";
-    loadTemplate('/WS/SearchServices.asmx/DeleteUserSavedSearch', params, '/templates/odp2015/savedSearches.html', 'document-container-left', null, function () {
+    loadTemplate(appUrl('/WS/SearchServices.asmx/DeleteUserSavedSearch'), params, appUrl('/templates/odp2015/savedSearches.html'), 'document-container-left', null, function () {
         //$("#deleteModal-" + id).modal("toggle");
         //Here because of a fade bug. 
         $("#deleteModal" + id).modal('hide');
@@ -25,7 +25,7 @@ function deleteSavedSearch(id, name) {
 function renameSavedSearch(id, oldname) {    
     var newName = $("#savedSearchTitle-" + id).val();    
     var params = "{name:'" + oldname + "', newName:'" + newName + "'}";
-    loadTemplate('/WS/SearchServices.asmx/RenameUserSavedSearch', params, '/templates/odp2015/savedSearches.html', 'document-container-left', null, function () {
+    loadTemplate(appUrl('/WS/SearchServices.asmx/RenameUserSavedSearch'), params, appUrl('/templates/odp2015/savedSearches.html'), 'document-container-left', null, function () {
         //$("#renameModal-" + id).modal("toggle");  
         //Here because of a fade bug. 
         $("#renameModal" + id).modal('hide');
@@ -57,8 +57,8 @@ function getResults() {
 
 function doSearchWithCurrentCriteria() {
     setLoading(true);
-    loadTemplateDual('/WS/ElasticSearchService.asmx/ElasticSearchWithCurrentCriteria', '{}', [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
-                                                                              { 'templateUrl': '/templates/odp2015/searchQuery.html', 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
+    loadTemplateDual(appUrl('/WS/ElasticSearchService.asmx/ElasticSearchWithCurrentCriteria'), '{}', [{ 'templateUrl': appUrl('/templates/odp2015/searchResults.html'), 'containerId': 'divLeftColInner' },
+                                                                              { 'templateUrl': appUrl('/templates/odp2015/searchQuery.html'), 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
 }
 
 function doAdvancedNavigationalSearchInt(dimensionId, keywords, searchMode, maxHits, pageSize, pageOffset, showExcerpts, showUnsubscribed, nonauthoritative, callback) {
@@ -94,8 +94,8 @@ function doAdvancedNavigationalSearchInt(dimensionId, keywords, searchMode, maxH
     //console.log(params);
 
 
-    loadTemplateDual('/WS/ElasticSearchService.asmx/ElasticAdvancedSearch', params, [{ 'templateUrl': '/templates/odp2015/searchResults.html', 'containerId': 'divLeftColInner' },
-                                                                              { 'templateUrl': '/templates/odp2015/searchQuery.html', 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
+    loadTemplateDual(appUrl('/WS/ElasticSearchService.asmx/ElasticAdvancedSearch'), params, [{ 'templateUrl': appUrl('/templates/odp2015/searchResults.html'), 'containerId': 'divLeftColInner' },
+                                                                              { 'templateUrl': appUrl('/templates/odp2015/searchQuery.html'), 'containerId': 'searchWidgetId'}], {}, setUpSearchAutocomplete);
 
 //    loadTemplate('/WS/EndecaServices.asmx/EndecaAdvancedSearch', params, '/templates/odp2015/searchResults.html', 'divLeftColInner', '', setUpSearchAutocomplete);
 //    loadTemplate('/WS/EndecaServices.asmx/EndecaAdvancedSearch', params, '/templates/odp2015/searchQuery.html', 'searchWidgetId', '', setUpSearchAutocomplete)
@@ -155,7 +155,7 @@ function saveSearch(dimensionId, keywords, searchMode, maxHits, pageSize, pageOf
     $('.modal-backdrop').remove();
     var searchName = $('#searchTitle').val();
     var params = "{searchName:'" + searchName + "', dimensionId:'" + dimensionId + "', keywords:'" + keywords + "', searchMode:" + searchMode + ", maxHits:" + maxHits + ", pageSize:" + pageSize + ", pageOffset:" + pageOffset + ", showExcerpts:" + showExcerpts + ", filterUnsubscribed:" + filterUnsubscribed + "}";
-    loadTemplate('/WS/SearchServices.asmx/SaveUserSearch', params, '/templates/odp2015/savedSearches.html', 'document-container-left');
+    loadTemplate(appUrl('/WS/SearchServices.asmx/SaveUserSearch'), params, appUrl('/templates/odp2015/savedSearches.html'), 'document-container-left');
     $("#document-container-right").empty();
 }
 
@@ -168,7 +168,7 @@ function doNextHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "/WS/ElasticSearchService.asmx/ElasticNextHitDoc",
+            url: appUrl("/WS/ElasticSearchService.asmx/ElasticNextHitDoc"),
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
@@ -196,7 +196,7 @@ function doPrevHitDoc(id, type) {
     if (id && type)
         $.ajax({
             type: "POST",
-            url: "/WS/ElasticSearchService.asmx/ElasticPrevHitDoc",
+            url: appUrl("/WS/ElasticSearchService.asmx/ElasticPrevHitDoc"),
             dataType: "json",
             data: "{id:" + id + ", type: '" + type + "'}",
             contentType: "application/json; charset=utf-8",
