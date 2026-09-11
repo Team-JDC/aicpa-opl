@@ -1554,7 +1554,8 @@ function logErrorCallback() {
 //}
 
 function loadMainIframeContentByUrl(url) {
-    $("#iframe-main").load(url).show();
+    document.getElementById("iframe-main").src = url;
+    $("#iframe-main").show();
     $("#document-container").hide();
 }
 
