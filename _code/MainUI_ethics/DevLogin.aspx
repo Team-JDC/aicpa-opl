@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DevLogin.aspx.cs" Inherits="MainUI.DevLogin" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 
 
@@ -9,11 +10,11 @@
     
     <title>UAT Login</title>
      <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>"/>
-     <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/normalize.css") %>"/>
-     <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/bootstrap.min.css") %>"/>
-     <link rel="stylesheet" href="<%= ResolveUrl("~/elements/css/main.css") %>"/>
+     <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>"/>
+     <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
+     <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>"/>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
-     <link rel="stylesheet" href="<%= ResolveUrl("~/resources/jquery.treeview.css") %>" />
+     <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/resources/jquery.treeview.css") %>" />
 </head>
 <body class="prelogin">
 
