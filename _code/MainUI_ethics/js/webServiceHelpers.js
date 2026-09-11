@@ -1150,7 +1150,7 @@ function fillDocumentContainerFromUrlPrevious(url) {
 //    $('#iframe-main').load(function () {
 //        alert("loaded");
 //    });
-    $('#iframe-main').load(function () {
+    $('#iframe-main').on("load", function () {
         $('#iframe-main').off('load');
         setLoading(false);
         doDocumentReadyMethods();
