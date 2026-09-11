@@ -1,47 +1,48 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Coso.aspx.cs" Inherits="MainUI.Coso" %>
+<%@ Import Namespace="MainUI.Shared" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>AICPA Online Professional Library</title>
-<link rel="stylesheet" type="text/css" href="Styles/detect1280.css"/>
-<link rel="stylesheet" type="text/css" href="Styles/main.css" />
-<link rel="stylesheet" type="text/css" href="Styles/Base.css" />
-<link rel="stylesheet" type="text/css" href="Styles/BreadCrumb.css" />
-<link rel="stylesheet" type="text/css" href="Styles/pop.css" />
-<link rel="stylesheet" type="text/css" href="Styles/notes.css" />
-<link rel="stylesheet" type="text/css" href="Styles/loading.css" />
-<link rel="stylesheet" type="text/css" href="resources/jquery.treeview.css" />
-<link rel="Stylesheet" type="text/css" href="Styles/jquery.ui.core.css" />
-<link rel="Stylesheet" type="text/css" href="Styles/jquery.ui.theme.css" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/detect1280.css") %>"/>
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/main.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/Base.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/BreadCrumb.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/pop.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/notes.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/loading.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/resources/jquery.treeview.css") %>" />
+<link rel="Stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/jquery.ui.core.css") %>" />
+<link rel="Stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/jquery.ui.theme.css") %>" />
 <%--<link rel="Stylesheet" type="text/css" href="Styles/jquery.ui.autocomplete.css" />--%>
-<link rel="Stylesheet" type="text/css" href="Styles/jquery.cluetip.css" />
+<link rel="Stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/jquery.cluetip.css") %>" />
 <link rel="stylesheet" type="text/css" href="Handlers/GetResource.ashx?type=subscription_access" />
-<link rel="stylesheet" type="text/css" href="Styles/ethics.css" />
-<link rel="stylesheet" type="text/css" href="Styles/coso.css" />
-<script type="text/javascript" src="js/globalVariables.js"></script>
-<script type="text/javascript" src="js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="js/detect.js"></script>
-<script type="text/javascript" src="js/jQuery-jtemplates.min.js"></script>
-<script type="text/javascript" src="js/accordian-javascript.js"> </script>
-<script type="text/javascript" src="js/jquery.jBreadCrumb.1.1.js"></script>
-<script type="text/javascript" src="js/jquery.ui.core.js"></script>
-<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="js/jquery.ui.position.js"></script>
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/ethics.css") %>" />
+<link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/coso.css") %>" />
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/globalVariables.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.easing.min.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/detect.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jQuery-jtemplates.min.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/accordian-javascript.js") %>"> </script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.jBreadCrumb.1.1.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.ui.core.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.ui.widget.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.ui.position.js") %>"></script>
 <%--<script type="text/javascript" src="js/jquery.ui.autocomplete.js"></script>--%>
 
 <!--<script src="js/jquery.tabs1.js" type="text/javascript"></script>-->
 <!-- <script src="js/jquery-slide-panel.js" type="text/javascript"></script> -->
-<script src="js/backButton.js" type="text/javascript"></script>
-<script src="js/webServiceHelpers.js" type="text/javascript"></script>
-<script src="js/jquery.timeout.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/jquery.cluetip.js"></script>
-<script src="js/searchHelper.js" type="text/javascript"></script>
-<script src="js/handlers.js" type="text/javascript"></script>
-<script src="js/fafTools.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/processFeatures.js"></script>
-<script type="text/javascript" src="js/coso_code.js"></script>
+<script src="<%= Assets.VersionedUrl("~/js/backButton.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/webServiceHelpers.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/jquery.timeout.js") %>" type="text/javascript"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.cluetip.js") %>"></script>
+<script src="<%= Assets.VersionedUrl("~/js/searchHelper.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/handlers.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/fafTools.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/jquery-ui-1.7.3.custom.min.js") %>" type="text/javascript"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/processFeatures.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/coso_code.js") %>"></script>
 <%--
 <script type="text/javascript" src="js/jquery.zclip.min.js"></script>
 <script type="text/javascript" src="js/ZeroClipboard.js"></script>
@@ -101,13 +102,13 @@
 </script>
 <%} %>--%>
 
-<script src="js/popup.js" type="text/javascript"></script>
-<script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
-<script src="resources/jquery.treeview.js" type="text/javascript"></script>
-<script src="resources/jquery.treeview.async.js" type="text/javascript"></script>
-<script src="js/plainToc.js" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/popup.js") %>" type="text/javascript"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
+<script src="<%= Assets.VersionedUrl("~/resources/jquery.treeview.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/resources/jquery.treeview.async.js") %>" type="text/javascript"></script>
+<script src="<%= Assets.VersionedUrl("~/js/plainToc.js") %>" type="text/javascript"></script>
 
-<script type="text/javascript" src="media/swfobject.js"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/media/swfobject.js") %>"></script>
 <script type="text/javascript">
     swfobject.registerObject("csSWF", "9.0.28", "expressInstall.swf");
 

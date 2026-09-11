@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OfficeFix.aspx.cs" Inherits="MainUI.OfficeFix" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <link href="Styles/main.css" rel="stylesheet" />
+    <link href="<%= Assets.VersionedUrl("~/Styles/main.css") %>" rel="stylesheet" />
     <script language="javascript" type="text/javascript">
         var tDoc = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["tdoc"]) %>';
         var tPtr = '<%= HttpUtility.JavaScriptStringEncode(Request.QueryString["tptr"]) %>';

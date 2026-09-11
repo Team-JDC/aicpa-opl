@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LicenseAgreement.aspx.cs" Inherits="MainUI.LicenseAgreement" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -18,8 +19,8 @@
 		DIV.warning { BORDER:2px solid #000; PADDING: 10px; TEXT-ALIGN: left; background-color: #ccc } 
 		DIV.warning P { FONT: 12px Arial } 
 	</style>    
-    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/jquery-4.0.0.min.js") %>"></script> 
-    <script type="text/javascript" src="<%= ResolveUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
+    <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery/jquery-4.0.0.min.js") %>"></script> 
+    <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
     <script>
         function disagreeLA()
         {
