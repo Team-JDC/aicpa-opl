@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="Handlers/GetResource.ashx?type=subscription_access" />
 
 <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/globalVariables.js") %>"></script>
-<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery-1.4.2.min.js") %>"></script>
+<script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery-4.0.0.min.js") %>"></script>
 <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery.easing.min.js") %>"></script>
 <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/detect.js") %>"></script>
 <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jQuery-jtemplates.min.js") %>"></script>

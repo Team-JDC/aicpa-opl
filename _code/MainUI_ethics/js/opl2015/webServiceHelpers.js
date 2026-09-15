@@ -1002,10 +1002,6 @@ function loadMobileBreadcrumbAjaxFailure(jqXHR, textStatus, errorThrown, docnum)
     $('#tocContentHolder').html(error);
 }
 
-function loadPFP() {
-    fillLeftContentPaneFromUrl(appUrl("/templates/loadpfptoolkit.htm"));
-}
-
 function setTocStateId(id) {
     g_tocStateId = id;
 }
