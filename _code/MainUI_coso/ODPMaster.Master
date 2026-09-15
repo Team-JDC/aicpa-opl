@@ -319,7 +319,6 @@
                 </div>
             </div><!-- #page_inner -->
         </div><!-- #page -->
-		<!--<script type="text/javascript" src="/elements/js/jquery-1.9.1.min.js"></script>-->
 		<script id="scriptID" type="text/javascript">
 		    //Added here to access the analytics for logout that was already calculated,
             //so we can track the user.

@@ -414,7 +414,6 @@ namespace MainUI.Handlers
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='Styles/notes.css' />";
             
             newCssAndJs += "<link rel='stylesheet' type='text/css' href='resources/jquery.treeview.css' />";
-            //newCssAndJs += "<script type='text/javascript' src='/js/jquery-1.4.2.min.js'></script>";
             //newCssAndJs += "<script type='text/javascript' src='/js/includeInIframe.js'></script>";
 
             //if ((referringSite == ReferringSite.Ethics || (referringSite == ReferringSite.EthicsUser)))
