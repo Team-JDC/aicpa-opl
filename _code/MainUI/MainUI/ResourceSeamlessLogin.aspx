@@ -1,4 +1,5 @@
 <%@ Page language="c#" Codebehind="ResourceSeamlessLogin.aspx.cs" AutoEventWireup="True" Inherits="MainUI.ProflitSeamlessLogin" EnableViewStateMac="false" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
 <html class="no-js yes-js">
@@ -12,16 +13,16 @@
         <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="shortcut icon" href="/favicon.ico"/>
-        <link rel="stylesheet" href="/elements/css/normalize.css"/>
-        <link rel="stylesheet" href="/elements/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="/elements/css/main.css"/>
+        <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>"/>
+        <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
+        <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
         <!--[if lt IE 9 ]>
         <link rel="stylesheet" href="elements/css/ie.css">
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script type='text/javascript' src='elements/js/modernizr.custom.19057.js'></script>
+        <script type='text/javascript' src='<%= Assets.VersionedUrl("~/elements/js/modernizr.custom.19057.js") %>'></script>
 		<meta content="False" name="vs_snapToGrid">
 		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
 		<meta content="C#" name="CODE_LANGUAGE">
@@ -82,9 +83,9 @@
 		<script
   src="https://code.jquery.com/jquery-4.0.0.min.js"
   crossorigin="anonymous"></script>
-		<script type='text/javascript' src='/elements/js/jquery.easing.min.js'></script>
-		<script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/elements/js/main.js"></script>
+		<script type='text/javascript' src='<%= Assets.VersionedUrl("~/elements/js/jquery.easing.min.js") %>'></script>
+		<script type="text/javascript" src="<%= Assets.VersionedUrl("~/elements/js/bootstrap.min.js") %>"></script>
+		<script type="text/javascript" src="<%= Assets.VersionedUrl("~/elements/js/main.js") %>"></script>
     </body>
 </html>
 

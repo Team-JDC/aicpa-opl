@@ -1,12 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EthicsRegister.aspx.cs" Inherits="MainUI.EthicsAddUser" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Add User</title>
-    <link href="Styles/main.css" rel="stylesheet" />
-    <link href="Styles/ethics.css" rel="stylesheet" />        
+    <link href="<%= Assets.VersionedUrl("~/Styles/main.css") %>" rel="stylesheet" />
+    <link href="<%= Assets.VersionedUrl("~/Styles/ethics.css") %>" rel="stylesheet" />        
     <link rel="icon" type="image/png" href='images/icons/favicon.png'/>
     <link rel="shortcut icon" type="image/ico" href='images/icons/favicon.ico'/> 
     <link href='images/icons/icon-72.png' rel="apple-touch-icon-precomposed" />

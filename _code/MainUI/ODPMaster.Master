@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ODPMaster.master.cs" Inherits="MainUI.ODPMaster" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html class="no-js yes-js">
@@ -12,45 +13,45 @@
         <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="shortcut icon" href="/favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="/elements/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/elements/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="/elements/css/main.css" />    
+        <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>" />
+        <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
+        <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>" />    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
         <%--<link rel="stylesheet" type="text/css" href="/resources/jquery.treeview.css" />--%>
-        <link rel="stylesheet" type="text/css" href="/Styles/loading.css" />
+        <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/Styles/loading.css") %>" />
         <%--<link rel="Stylesheet" type="text/css" href="/Handlers/GetResource.ashx?type=user_preferences"/>--%>
         <!--[if lt IE 9 ]>
         <link rel="stylesheet" href="/elements/css/ie.css">
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script type='text/javascript' src='/elements/js/modernizr.custom.19057.js'></script>
-        <script type="text/javascript" src="/js/jquery/jquery-4.0.0.min.js"></script> 
+        <script type='text/javascript' src='<%= Assets.VersionedUrl("~/elements/js/modernizr.custom.19057.js") %>'></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery/jquery-4.0.0.min.js") %>"></script> 
  <%--       <script type="text/javascript" src="/js/jquery/jquery-migrate-3.6.0.min.js"></script> --%>
         
-        <script type="text/javascript" src="/js/jquery/js.cookie.min.js"></script> 
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jquery/js.cookie.min.js") %>"></script> 
     
         
-        <script type="text/javascript" src="/js/jQuery-jtemplates.min.js"></script>   
-        <script type="text/javascript" src="/js/opl2015/handlers.js"></script>
-        <script type="text/javascript" src="/js/opl2015/webServiceHelpers.js"></script>   
-        <script type="text/javascript" src="/js/opl2015/globalVariables.js"></script>   
-        <script type="text/javascript" src="/js/opl2015/searchHelper.js"></script>   
-        <script type="text/javascript" src="/js/opl2015/base64.js"></script>   
-        <script type="text/javascript" src="/js/opl2015/faftools.js"></script>   
-        <script type='text/javascript' src='/elements/js/modernizr.custom.19057.js'></script>
-		<script type='text/javascript' src="/elements/js/jquery.easing.min.js"></script>
-		<script type="text/javascript" src="/elements/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/js/sticky-anything/jq-sticky-anything.min.js"></script>
-		<script type="text/javascript" src="/elements/js/main.js"></script>
-        <script type="text/javascript" src="/elements/js/clamp.js"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/jQuery-jtemplates.min.js") %>"></script>   
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/handlers.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/webServiceHelpers.js") %>"></script>   
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/globalVariables.js") %>"></script>   
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/searchHelper.js") %>"></script>   
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/base64.js") %>"></script>   
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/faftools.js") %>"></script>   
+        <script type='text/javascript' src='<%= Assets.VersionedUrl("~/elements/js/modernizr.custom.19057.js") %>'></script>
+		<script type='text/javascript' src="<%= Assets.VersionedUrl("~/elements/js/jquery.easing.min.js") %>"></script>
+		<script type="text/javascript" src="<%= Assets.VersionedUrl("~/elements/js/bootstrap.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/sticky-anything/jq-sticky-anything.min.js") %>"></script>
+		<script type="text/javascript" src="<%= Assets.VersionedUrl("~/elements/js/main.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/elements/js/clamp.js") %>"></script>
        
         
-        <script type="text/javascript" src="/resources/jquery.treeview.js" ></script>
-        <script type="text/javascript" src="/resources/jquery.treeview.async.js"></script>
-        <script type="text/javascript" src="/js/opl2015/plainToc.js"></script>
-        <script type="text/javascript" src="/js/bootstrap-session-timeout.min.js"></script>
-        <script type="text/javascript" src="/js/opl2015/documenttools.js"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/resources/jquery.treeview.js") %>" ></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/resources/jquery.treeview.async.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/plainToc.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/bootstrap-session-timeout.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Assets.VersionedUrl("~/js/opl2015/documenttools.js") %>"></script>
 
         <!-- The following javascript is for brightcove videos to be embedded on pages such as the help page. -->
        <%-- <script language="JavaScript" type="text/javascript" src="https://sadmin.brightcove.com/js/BrightcoveExperiences.js"></script>--%>
