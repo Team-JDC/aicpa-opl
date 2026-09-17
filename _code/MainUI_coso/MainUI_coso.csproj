@@ -1635,6 +1635,7 @@
       <DependentUpon>SessionExpired.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shared\AICPAAnalytics.cs" />
+    <Compile Include="Shared\Assets.cs" />
     <Compile Include="Shared\Base64Tools.cs" />
     <Compile Include="Shared\BaseServerObjectExpressionBuilder.cs" />
     <Compile Include="Shared\BreadcrumbNode.cs" />

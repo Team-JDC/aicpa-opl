@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LMS.aspx.cs" Inherits="MainUI.LmsLogin" %>
+<%@ Import Namespace="MainUI.Shared" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link href="Styles/main.css" rel="stylesheet" />
+    <link href="<%= Assets.VersionedUrl("~/Styles/main.css") %>" rel="stylesheet" />
 <script type="text/javascript">
     function getQueryVariable(variable) {
         var query = window.location.search.substring(1);
