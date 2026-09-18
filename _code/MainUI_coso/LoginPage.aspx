@@ -13,7 +13,7 @@
 
         <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>"/>
@@ -36,7 +36,7 @@
                     <div id="header_outer" class="row">
                         <div class="gradient"></div>
                         <div class="header_inner">
-                            <a class="logo" href="/Default"><img src="elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                            <a class="logo" href="<%= ResolveUrl("~/Default") %>"><img src="elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
                         </div>
                     </div>
                 </div>

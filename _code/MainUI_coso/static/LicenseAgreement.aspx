@@ -393,8 +393,8 @@
 		</ol>
 		</div>
         <br />
-        <a href="#" onclick="javascript:agreeLA();"><img src="/images/btn-agree.gif" alt="Agree" border="0" /></a>
-		<a href="#" onclick="javascript:disagreeLA();"><img src="/images/btn-disagree.gif" alt="Disagree" border="0" style="margin-left:5px;" /></a>
+        <a href="#" onclick="javascript:agreeLA();"><img src="<%= ResolveUrl("~/images/btn-agree.gif") %>" alt="Agree" border="0" /></a>
+		<a href="#" onclick="javascript:disagreeLA();"><img src="<%= ResolveUrl("~/images/btn-disagree.gif") %>" alt="Disagree" border="0" style="margin-left:5px;" /></a>
     </div>
 </div>
 </form>

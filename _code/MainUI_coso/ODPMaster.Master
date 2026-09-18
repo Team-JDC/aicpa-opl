@@ -12,7 +12,7 @@
         <script type='text/javascript'>var validCosoDomains = '<%=ConfigurationManager.AppSettings["CosoDomains"] %>';</script>
         <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>"/>
         <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>" />
         <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
         <link rel="stylesheet" type="text/css" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>" />    
@@ -122,7 +122,7 @@
                     <div id="header_outer" class="row">
                         <div class="gradient"></div>
                         <div class="header_inner">
-                            <a class="logo" href="/default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                            <a class="logo" href="<%= ResolveUrl("~/default") %>"><img src="<%= ResolveUrl("~/elements/img/logo-aicpa-main.png") %>" alt="AICPA | OPL" /></a>
                         </div>
                     </div>
                     <div id="primary_nav_outer" class="row primary_nav_outer">
@@ -131,26 +131,26 @@
                                 <li class="library" id="liLibrary" runat="server">
                                     <a class="top_level">
                                         <span class="icon">
-                                            <img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>My Library<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" />
+                                            <img src="<%= ResolveUrl("~/elements/img/primary-nav-mobile-icon-sprite.png") %>" alt=""/></span>My Library<img class="arrow" src="<%= ResolveUrl("~/elements/img/primary-nav-top-arrow.png") %>" alt="" />
                                     </a>
                                     <ul class="submenu">
                                     </ul>
                                 </li>
                                 <li class="history" id="liHistory" runat="server">
                                     <a class="top_level">
-                                        <span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>History<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                        <span class="icon"><img src="<%= ResolveUrl("~/elements/img/primary-nav-mobile-icon-sprite.png") %>" alt=""/></span>History<img class="arrow" src="<%= ResolveUrl("~/elements/img/primary-nav-top-arrow.png") %>" alt="" /></a>
                                     <ul class="submenu">
                                 
                                     </ul>
                                 </li>
                                 <li class="tools">
-                                    <a class="top_level"><span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>My Tools<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                    <a class="top_level"><span class="icon"><img src="<%= ResolveUrl("~/elements/img/primary-nav-mobile-icon-sprite.png") %>" alt=""/></span>My Tools<img class="arrow" src="<%= ResolveUrl("~/elements/img/primary-nav-top-arrow.png") %>" alt="" /></a>
                                     <ul class="submenu">
-                                        <li><a href="/tools/notes"><span>My Notes</span></a></li>
-                                        <li><a href="/tools/bookmarks"><span>Bookmarks</span></a></li>
-                                        <li><a href="/tools/savedsearches"><span>Saved Searches</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/tools/notes") %>"><span>My Notes</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/tools/bookmarks") %>"><span>Bookmarks</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/tools/savedsearches") %>"><span>Saved Searches</span></a></li>
                                         <%--<li><a href="/tools/preferences"><span>Fonts</span></a></li>--%>
-                                        <li><a href="/tools/howtoguide"><span>How to Guide</span></a></li>
+                                        <li><a href="<%= ResolveUrl("~/tools/howtoguide") %>"><span>How to Guide</span></a></li>
                                         <li id="liFasbAsc">
                                          <%--   <a><span class="arrow">FASB ASC</span></a>
                                             <ul class="submenu">
@@ -168,8 +168,8 @@
                                 </li>
                                 <li class="last">
                                     <div id="main_search">
-                                        <form id="advancedSearch" role="search" method="get" class="searchform" action="/search">
-                                            <a id="mobile_search_btn" href=""><span class="icon"><img src="/elements/img/primary-nav-mobile-icon-sprite.png" alt=""/></span>Search<img class="arrow" src="/elements/img/primary-nav-top-arrow.png" alt="" /></a>
+                                        <form id="advancedSearch" role="search" method="get" class="searchform" action="<%= ResolveUrl("~/search") %>">
+                                            <a id="mobile_search_btn" href=""><span class="icon"><img src="<%= ResolveUrl("~/elements/img/primary-nav-mobile-icon-sprite.png") %>" alt=""/></span>Search<img class="arrow" src="<%= ResolveUrl("~/elements/img/primary-nav-top-arrow.png") %>" alt="" /></a>
                                             <div id="search_wrapper" class="clearfix">
                                                 <div class="search_inner">
                                                         <div class="clearfix">
@@ -190,7 +190,7 @@
                             </ul>
                     <!-- PHONE NAV --->
                             <ul id="phone_nav" class="clearfix">
-                                <a class="logoPhone" href="/default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                                <a class="logoPhone" href="<%= ResolveUrl("~/default") %>"><img src="<%= ResolveUrl("~/elements/img/logo-aicpa-main.png") %>" alt="AICPA | OPL" /></a>
                                 <li class="first">
                                     <div id="phoneMenuWrapper">
                                         <a id="phoneMenu_btn">
@@ -228,11 +228,11 @@
                                                 <li>
                                                     <a href="#"><span>My Tools <i class="fa fa-angle-down"></i></span></a>
                                                     <ul class="submenu">
-                                                        <li><a href="/tools/notes"><span>My Notes</span></a></li>
-                                                        <li><a href="/tools/bookmarks"><span>Bookmarks</span></a></li>
-                                                        <li><a href="/tools/savedsearches"><span>Saved Searches</span></a></li>
-                                                        <li><a href="/tools/howtoguide"><span>How to Guide</span></a></li>
-                                                        <li><a href="/tools/goto"><span>FASB ASC - Go To</span></a></li>
+                                                        <li><a href="<%= ResolveUrl("~/tools/notes") %>"><span>My Notes</span></a></li>
+                                                        <li><a href="<%= ResolveUrl("~/tools/bookmarks") %>"><span>Bookmarks</span></a></li>
+                                                        <li><a href="<%= ResolveUrl("~/tools/savedsearches") %>"><span>Saved Searches</span></a></li>
+                                                        <li><a href="<%= ResolveUrl("~/tools/howtoguide") %>"><span>How to Guide</span></a></li>
+                                                        <li><a href="<%= ResolveUrl("~/tools/goto") %>"><span>FASB ASC - Go To</span></a></li>
                                                     </ul>
                                                 </li>                                                
                                                 <li id="phoneBookmarkli" class="phoneBookmarkli">
@@ -250,7 +250,7 @@
                                             <i class="fa fa-search"></i>
                                         </a>
                                         <div id="advanced_search_phone">
-                                            <form id="advancedSearchMobile" action="/search">
+                                            <form id="advancedSearchMobile" action="<%= ResolveUrl("~/search") %>">
                                                 <input type="text" name="q" id="q" onfocus="if(this.value == 'SEARCH') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'SEARCH'; }" value="SEARCH" />
                                                 <div id="searchDropdownMobile" runat="server"></div>
                                                 <div class="clearfix">
@@ -291,7 +291,7 @@
                 </div>--%>
                 <div id="loading-div" style="display: none;">
 	                <div id="loading-div-opacity">
-		                <img id="loading-spinner" src="/images/ajax-loading.gif" alt="Loading - Your request will be fulfilled momentarily."/>
+		                <img id="loading-spinner" src="<%= ResolveUrl("~/images/ajax-loading.gif") %>" alt="Loading - Your request will be fulfilled momentarily."/>
 	                </div>	                
                 </div>
 
@@ -305,7 +305,7 @@
                                 <li><a href="mailto:OPL@aicpa.org">Contact</a></li>
                                 <li><a href="http://www.aicpa.org/PrivacyandTerms/Pages/cpyright.aspx">Privacy &amp; Terms</a></li>
                                 <!--<li><a href="">Jobs</a></li>-->
-                                <li class="last"><a href="/tools/howtoguide">Help</a></li>
+                                <li class="last"><a href="<%= ResolveUrl("~/tools/howtoguide") %>">Help</a></li>
                                 <li class="last"><a href="#" onclick="handleLogoutClick()">Logout</a></li>
                             </ul>
                             <ul class="footer_social">
