@@ -29,7 +29,7 @@
 
 </head>
 <body id="application-body" onload="setform();">
-    <form id="lmsform" runat="server" action="/LmsDoc.aspx" method="post">
+    <form id="lmsform" runat="server" action="<%= ResolveUrl("~/LmsDoc.aspx") %>" method="post">
         <input name="targetDoc" type="hidden" />
         <input name="targetPtr" type="hidden"/>
         <input name="Context" type="hidden"/>

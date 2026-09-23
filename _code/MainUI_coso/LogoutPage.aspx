@@ -14,7 +14,7 @@
 
         <!--[if lt IE 9 ]> <script>document.documentElement.className+=' lt-ie9';</script> <![endif]-->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="/favicon.ico"/>
+        <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
         <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>"/>
@@ -37,7 +37,7 @@
                     <div id="header_outer" class="row">
                         <div class="gradient"></div>
                         <div class="header_inner">
-                            <a class="logo" href="/Default"><img src="elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
+                            <a class="logo" href="<%= ResolveUrl("~/Default") %>"><img src="elements/img/logo-aicpa-main.png" alt="AICPA | OPL" /></a>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <div class="leftcol_content clearfix">
                                 <div class="col-sm-12 pad20">
                                     <h2>You have been logged out of the system. </h2>
-                                    <p>To login again, <a href="/login">return to your login page</a>.</p>
+                                    <p>To login again, <a href="<%= ResolveUrl("~/login") %>">return to your login page</a>.</p>
                                     <%--<asp:Literal ID="TempLiteral" runat="server"></asp:Literal>--%>
                                 </div>
                             </div>

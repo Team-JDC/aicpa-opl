@@ -9,7 +9,7 @@
 <head runat="server">
     
     <title>UAT Login</title>
-     <link rel="shortcut icon" href="/favicon.ico"/>
+     <link rel="shortcut icon" href="<%= ResolveUrl("~/favicon.ico") %>"/>
      <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/normalize.css") %>"/>
      <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/bootstrap.min.css") %>"/>
      <link rel="stylesheet" href="<%= Assets.VersionedUrl("~/elements/css/main.css") %>"/>
@@ -25,7 +25,7 @@
         <div id="header_outer" class="row">
             <div class="gradient"></div>
             <div class="header_inner">
-                <a class="logo" href="/default"><img src="/elements/img/logo-aicpa-main.png" alt="AICPA | OPL"></a>
+                <a class="logo" href="<%= ResolveUrl("~/default") %>"><img src="<%= ResolveUrl("~/elements/img/logo-aicpa-main.png") %>" alt="AICPA | OPL"></a>
             </div>
         </div>
     
@@ -61,7 +61,7 @@
                     <li><a href="mailto:OPL@aicpa.org">Contact</a></li>
                     <li><a href="http://www.aicpa.org/PrivacyandTerms/Pages/cpyright.aspx">Privacy &amp; Terms</a></li>
                     <!--<li><a href="">Jobs</a></li>-->
-                    <li class="last"><a href="/tools/howtoguide">Help</a></li>
+                    <li class="last"><a href="<%= ResolveUrl("~/tools/howtoguide") %>">Help</a></li>
                 </ul>
                 <ul class="footer_social">
                     <li><a class="rss" href="" target="_blank" title="RSS"></a></li>
