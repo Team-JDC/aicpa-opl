@@ -19,10 +19,15 @@ namespace MainUI
                 "<li>Try to access OPL using a different browser.</li>" +
                 "</ul><p>If you are still unable to access the Online Professional Library, we may be experiencing technical difficulties. Please contact our Member Service Center at service@aicpa.org or call 888.777.7077, 9 a.m.–6 p.m. ET, Monday–Friday. We are likely aware of the issue and are working to correct it.</p> ";
             string firmLimitErrorMessage = "FIRM LIMIT EXCEEDED - You have exceeded the maximum number of users for your subscription please try again later.";
+            string mcgdyNotAuthorizedMessage = AICPA.Destroyer.User.UserSecurity.AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED;
             string error = Request["ex"];
             if (error.Contains(firmLimitErrorMessage))
             {
                 lblError.Text = firmLimitErrorMessage;
+            }
+            else if (error.Contains(mcgdyNotAuthorizedMessage))
+            {
+                lblError.Text = mcgdyNotAuthorizedMessage;
             }
             else if (error.Contains("An Empty Domain string was returned by the authorization service") || error.Contains("The subscription domain string passed from C2B web service call is empty"))
             {
