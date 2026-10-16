@@ -64,6 +64,16 @@ namespace AICPA.Destroyer.User
         /// </summary>
         public const string CONFIG_MAX_USERS_MASK = "{0}MaxUsers";
 
+        /// <summary>
+        /// Configuration setting: semicolon-separated email domains treated as RSM internal for Mcgdy/Mcgdyasc logins
+        /// </summary>
+        public const string CONFIG_MCGDY_INTERNAL_DOMAINS = "McgdyInternalDomains";
+
+        /// <summary>
+        /// Configuration setting: semicolon-separated external email addresses allowed to log in through Mcgdy/Mcgdyasc
+        /// </summary>
+        public const string CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS = "McgdyExternalAllowedEmails";
+
 
         /// <summary>
         /// </summary>
@@ -117,6 +127,12 @@ namespace AICPA.Destroyer.User
         /// </remarks>
         public const string AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE =
             "ACCESS DENIED - We are unable to verify your username and password. [Reason {0}]. Please close your browser and try to login again. If you receive this message again, please contact support at service@aicpa.org.";
+
+        /// <summary>
+        /// Mcgdy/Mcgdyasc login refused because the email is not on an RSM internal domain or the external allow-list.
+        /// </summary>
+        public const string AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED =
+            "ACCESS DENIED - Your account is not authorized to access the Online Professional Library through RSM. Please contact your RSM administrator.";
 
         /// <summary>
         /// 
@@ -938,6 +954,44 @@ namespace AICPA.Destroyer.User
             } 
         }
 
+        /// <summary>
+        /// Determines if a Mcgdy/Mcgdyasc user may log in: the email domain must be in McgdyInternalDomains
+        /// or the whole email must be in McgdyExternalAllowedEmails. Refuses the login if either setting is missing.
+        /// </summary>
+        private bool IsMcgdyUserAuthorized()
+        {
+            string internalDomains = ConfigurationManager.AppSettings[CONFIG_MCGDY_INTERNAL_DOMAINS];
+            string externalAllowedEmails = ConfigurationManager.AppSettings[CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS];
+
+            foreach (string webConfigKey in new[] { CONFIG_MCGDY_INTERNAL_DOMAINS, CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS })
+            {
+                if (ConfigurationManager.AppSettings[webConfigKey] == null)
+                {
+                    IEvent logEvent = new Event.Event(EventType.Error, DateTime.Now, ERROR_SEVERITY_EXTERNAL_SERVICE,
+                                                        MODULE_USERSECURITY, "IsMcgdyUserAuthorized", "Missing RSM access setting",
+                                                        "Missing RSM access setting. Please add key:" + webConfigKey, user);
+                    logEvent.Save(false);
+                    return false;
+                }
+            }
+
+            string email = (User.EmailAddress ?? string.Empty).Trim();
+            int atIndex = email.LastIndexOf('@');
+            if (atIndex < 0)
+            {
+                return false;
+            }
+            string domain = email.Substring(atIndex + 1);
+
+            char[] separator = new[] { ';' };
+            bool isInternal = internalDomains.Split(separator, StringSplitOptions.RemoveEmptyEntries)
+                                             .Any(d => string.Equals(d.Trim(), domain, StringComparison.OrdinalIgnoreCase));
+            bool isAllowedExternal = externalAllowedEmails.Split(separator, StringSplitOptions.RemoveEmptyEntries)
+                                                          .Any(e => string.Equals(e.Trim(), email, StringComparison.OrdinalIgnoreCase));
+
+            return isInternal || isAllowedExternal;
+        }
+
 
         ///<summary>
         ///  Set the subscription context of a non-c2b user.
@@ -1079,32 +1133,43 @@ namespace AICPA.Destroyer.User
                 else if (User.ReferringSiteValue == ReferringSite.Mcgdy ||
                          User.ReferringSiteValue == ReferringSite.Mcgdyasc)
                 {
-                    // can set authenticated to false if there is an error string in the return xml from
-                    // the c2b web service.
-                    try
-                    {
-                        SetMcgdySubscriptionContext();
-                    }
-                    catch (Exception e)
+                    // only RSM internal domains and the named external users may log in (AIC-98).
+                    // a refused login leaves authenticated == false, so no session is created and no seat is taken.
+                    if (!IsMcgdyUserAuthorized())
                     {
                         authenticated = false;
-                        authenticationError = string.Format(AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE, e.Message);
-                        throw;
+                        authenticationError = AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED;
+                        Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "RSM Access Denied", string.Format("RSM access denied for {0}", User.EmailAddress), User);
                     }
-                    bool userLoggedIn = false;
-                    foreach (IFirm firm in firmCollection)
+                    else
                     {
-                        userLoggedIn |= firm.UserLoggedIn(user.UserId);
-                    }
+                        // can set authenticated to false if there is an error string in the return xml from
+                        // the c2b web service.
+                        try
+                        {
+                            SetMcgdySubscriptionContext();
+                        }
+                        catch (Exception e)
+                        {
+                            authenticated = false;
+                            authenticationError = string.Format(AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE, e.Message);
+                            throw;
+                        }
+                        bool userLoggedIn = false;
+                        foreach (IFirm firm in firmCollection)
+                        {
+                            userLoggedIn |= firm.UserLoggedIn(user.UserId);
+                        }
 
-                    // if the user is in a firm, check the number of concurrent users.
-                    if (authenticated == null && IsFirmCountExceeded() && !userLoggedIn)
-                    {
-                        authenticated = false;
-                        authenticationError = AUTHENTICATION_ERROR_FIRM_SUBSCRIPTION_EXCEEDED;
-                        Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "Firm Exceeded", string.Format("Firm Count Exceeded for {0}", User.ReferringSiteValue.ToString()), User);
-                    }
+                        // if the user is in a firm, check the number of concurrent users.
+                        if (authenticated == null && IsFirmCountExceeded() && !userLoggedIn)
+                        {
+                            authenticated = false;
+                            authenticationError = AUTHENTICATION_ERROR_FIRM_SUBSCRIPTION_EXCEEDED;
+                            Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "Firm Exceeded", string.Format("Firm Count Exceeded for {0}", User.ReferringSiteValue.ToString()), User);
+                        }
 
+                    }
                 }
                 else
                 {
