@@ -1138,6 +1138,7 @@ namespace AICPA.Destroyer.User
                     // AIC-98: Mcgdy is for RSM internal domains and Mcgdyasc is for the named external users.
                     // a named external user who comes in as Mcgdy is moved to Mcgdyasc, so they count against McgdyascMaxUsers.
                     // a refused login leaves authenticated == false, so no session is created and no seat is taken.
+                    bool mcgdyAuthorized = true;
                     if (User.ReferringSiteValue == ReferringSite.Mcgdy && !IsMcgdyInternalUser())
                     {
                         if (IsMcgdyExternalAllowedUser())
@@ -1146,16 +1147,17 @@ namespace AICPA.Destroyer.User
                         }
                         else
                         {
-                            authenticated = false;
+                            mcgdyAuthorized = false;
                         }
                     }
                     else if (User.ReferringSiteValue == ReferringSite.Mcgdyasc && !IsMcgdyExternalAllowedUser())
                     {
-                        authenticated = false;
+                        mcgdyAuthorized = false;
                     }
 
-                    if (authenticated == false)
+                    if (!mcgdyAuthorized)
                     {
+                        authenticated = false;
                         authenticationError = AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED;
                         Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "RSM Access Denied", string.Format("RSM access denied for {0} ({1})", User.EmailAddress, User.ReferringSiteValue.ToString()), User);
                     }
