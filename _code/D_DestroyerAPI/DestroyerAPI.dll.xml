@@ -10091,6 +10091,16 @@
             Mask for Configuration setting for a specific Referring Site Maximum Users
             </summary>
         </member>
+        <member name="F:AICPA.Destroyer.User.UserSecurity.CONFIG_MCGDY_INTERNAL_DOMAINS">
+            <summary>
+            Configuration setting: semicolon-separated email domains treated as RSM internal for Mcgdy/Mcgdyasc logins
+            </summary>
+        </member>
+        <member name="F:AICPA.Destroyer.User.UserSecurity.CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS">
+            <summary>
+            Configuration setting: semicolon-separated external email addresses allowed to log in through Mcgdy/Mcgdyasc
+            </summary>
+        </member>
         <member name="F:AICPA.Destroyer.User.UserSecurity.AUTHENTICATION_ERROR_INVALID_SESSIONID">
             <summary>
             </summary>
@@ -10132,6 +10142,11 @@
             </summary>
             <remarks>
             </remarks>
+        </member>
+        <member name="F:AICPA.Destroyer.User.UserSecurity.AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED">
+            <summary>
+            Mcgdy/Mcgdyasc login refused because the email is not on an RSM internal domain or the external allow-list.
+            </summary>
         </member>
         <member name="F:AICPA.Destroyer.User.UserSecurity.AUTHENTICATION_ERROR_NO_DOMAIN_PASSED">
             <summary>
@@ -10306,6 +10321,21 @@
             <summary>
             Set the Subscription Context for Mcgdy/Mcgdyasc
             Will read the configuration setting that indicates how many concurrent users are allowed on the system.
+            </summary>
+        </member>
+        <member name="M:AICPA.Destroyer.User.UserSecurity.IsMcgdyInternalUser">
+            <summary>
+            Determines if the user's email domain is in McgdyInternalDomains.
+            </summary>
+        </member>
+        <member name="M:AICPA.Destroyer.User.UserSecurity.IsMcgdyExternalAllowedUser">
+            <summary>
+            Determines if the user's email is in McgdyExternalAllowedEmails.
+            </summary>
+        </member>
+        <member name="M:AICPA.Destroyer.User.UserSecurity.GetMcgdyAccessList(System.String)">
+            <summary>
+            Reads a semicolon-separated RSM access setting. Returns null, and logs an error naming the key, if the setting is missing.
             </summary>
         </member>
         <member name="M:AICPA.Destroyer.User.UserSecurity.SetSubscriptionContext">

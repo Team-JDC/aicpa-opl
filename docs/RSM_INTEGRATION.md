@@ -41,8 +41,8 @@ RSM portal
        hidDomain        = mcgladrey
        hidRelayState    = optional page to land on
   3. OPL looks up the D_User row by email + token, logs the user on with the
-     content domain RSM sent, checks the concurrency limit, and redirects
-     to hidRelayState or /default.
+     content domain RSM sent, checks the email against the allow-list, checks
+     the concurrency limit, and redirects to hidRelayState or /default.
 ```
 
 If a user reaches `SeamlessLogin.aspx` without the POST (for example by clicking a plain
@@ -54,7 +54,8 @@ link), they get "you don't have access." That page only works when it receives t
 |---|---|---|
 | Token service | `_code/SingleSignOnHelper/Authentication.svc.cs` | `GetAuthorizationInformationForUser` returns the user's session ID, creating one if needed |
 | User auto-creation | `_code/D_DestroyerAPI/User/UserDalc.cs` `GetSessionByEmail` | **Creates a D_User row for any email it hasn't seen** under that referring site |
-| Login page | `_code/MainUI/MainUI/SeamlessLogin.aspx.cs` | `MCGDY` / `MCGDYASC` branch: builds the user from email + token and calls `LogOn(sessionId, hidDomain)`. No allow-list check |
+| Login page | `_code/MainUI/MainUI/SeamlessLogin.aspx.cs` | `MCGDY` / `MCGDYASC` branch: builds the user from email + token and calls `LogOn(sessionId, hidDomain)`. Shows the error page if `LogOn` throws |
+| Allow-list check | `_code/D_DestroyerAPI/User/UserSecurity.cs` `IsMcgdyInternalUser` / `IsMcgdyExternalAllowedUser`, called first in the `Mcgdy` branch of `AuthenticateUser` | Admits internal-domain `Mcgdy` users, switches allowed external `Mcgdy` users to `Mcgdyasc`, and refuses everyone else (AIC-98) |
 | Concurrency check | `_code/D_DestroyerAPI/User/UserSecurity.cs` `SetMcgdySubscriptionContext` and the `Mcgdy` branch of `AuthenticateUser` | Reads `<ReferringSite>MaxUsers` from Web.config and refuses the login if the firm's active-session count has reached it (unless the user already has a session) |
 | Session storage | `_code/D_DestroyerAPI/User/UserSecurityDalc.cs` `CreateUserSession` | Writes the session with a firm key (ACA/Code). For RSM both are the referring-site string, `Mcgdy` |
 | Active count | Stored proc `dbo.D_GetFirmUserCount(aca, code, sessionTimeout)` | **Not in this repo**. Presumably counts active sessions by ACA/Code within `ApiSessionTimeoutInSeconds` (3600) |
@@ -71,35 +72,62 @@ In `_code/MainUI/Web.config` (the same keys are copied into the ethics and COSO 
 ```xml
 <add key="McgdyMaxUsers" value="100" />
 <add key="McgdyascMaxUsers" value="100" />
+<add key="McgdyInternalDomains" value="rsmus.com" />
+<add key="McgdyExternalAllowedEmails" value="hburgos@rsm.pr;adam.passmore@rsm.ky" />
 ```
 
-The Web.config transforms don't override these, so production uses 100.
+The Web.config transforms don't override these, so production uses these values.
+
+`McgdyInternalDomains` and `McgdyExternalAllowedEmails` are semicolon-separated lists,
+compared case-insensitively. If a key is missing, an error event naming the key is logged
+and nobody qualifies through that list. An empty value also means nobody qualifies.
 
 ## What does and doesn't control access
 
-- **There is no allow-list.** OPL admits any email RSM's portal sends. RSM's portals
-  decide who is an RSM user.
-- **The only limit is concurrent sessions:** 100 people logged in at the same time
-  (a session counts as active until 60 minutes after its last activity,
-  `ApiSessionTimeoutInSeconds` = 3600). It is **not** a cap on named
-  users. Any number of people can rotate through the seats.
-- **RSM staff and Alliance firm users share the same 100 seats.** Both portals send
-  referring site `Mcgdy` and content domain `mcgladrey`, so OPL can't tell which portal a
-  login came from. The **email domain** is the only thing that distinguishes the groups.
-- Changing `McgdyascMaxUsers` does nothing today, because nobody logs in as `Mcgdyasc`.
+- **Allow-list (from Nov 1, 2026, AIC-98).** `Mcgdy` is treated as the RSM internal
+  referring site and `Mcgdyasc` as the external one:
+  - A `Mcgdy` login whose email domain is in `McgdyInternalDomains` continues as before.
+  - A `Mcgdy` login whose whole email is in `McgdyExternalAllowedEmails` is switched to
+    `Mcgdyasc` for that session and continues.
+  - A `Mcgdyasc` login (sent directly, or switched as above) must be in
+    `McgdyExternalAllowedEmails`.
+  - Anyone else sees "ACCESS DENIED - Your account is not authorized to access the Online
+    Professional Library through RSM. Please contact your RSM administrator." A refused
+    login gets no session, so it doesn't take a seat. The refusal is logged with
+    `Name = 'RSM Access Denied'` and the email and referring site in the description
+    (like `Firm Exceeded`, only if log settings allow it).
+
+  The switch happens in memory after `LogOn` has saved the D_User row, so the external
+  users' D_User rows stay under `Mcgdy` and the token service keeps finding them. Only
+  their session's firm key becomes `Mcgdyasc`.
+- **Concurrent sessions:** RSM staff (`Mcgdy`) get 100 seats (`McgdyMaxUsers`) and the
+  external users (`Mcgdyasc`) get their own pool (`McgdyascMaxUsers`, also 100). A
+  session counts as active until 60 minutes after its last activity
+  (`ApiSessionTimeoutInSeconds` = 3600). It is **not** a cap on named users. Any number
+  of people can rotate through the seats.
+- **Both portals send referring site `Mcgdy`** and content domain `mcgladrey`, so OPL
+  can't tell which portal a login came from. The **email domain** is the only thing that
+  distinguishes the groups, which is why the allow-list works on email and the switch to
+  `Mcgdyasc` happens in OPL.
 
 ## RSM vs external email domains
 
 Classify `Mcgdy` users by the part of the email after the `@`.
 
-**RSM (internal):**
+**For access control (AIC-98, from Nov 1, 2026), only `rsmus.com` is internal.** RSM's
+own list of external users makes Puerto Rico (`rsm.pr`) and Cayman (`rsm.ky`) external,
+so only the two named users on those domains are allowed. `mcgladrey.com` is left out
+because no `mcgladrey.com` account had any activity from Sep 2024 to Sep 2026. The table
+below is the AIC-87 classification used for the usage research and queries in this doc.
+
+**RSM (internal, for the AIC-87 research):**
 
 | Domain | Notes |
 |---|---|
 | `rsmus.com` | Current RSM US staff |
 | `mcgladrey.com` | Pre-2015 McGladrey addresses. Many people have a row under both this and `rsmus.com` |
-| `rsm.pr` | RSM Puerto Rico. Treated as RSM in AIC-87; confirm with AICPA if it matters contractually |
-| `rsm.ky` | RSM Cayman Islands |
+| `rsm.pr` | RSM Puerto Rico. Treated as RSM in AIC-87; external for access control (AIC-98) |
+| `rsm.ky` | RSM Cayman Islands. External for access control (AIC-98) |
 | `rsmus.orb` | Typo of `rsmus.com` (2 accounts) |
 
 Also on RSM domains: shared admin accounts such as `allianceadmin@rsmus.com`,
@@ -133,6 +161,7 @@ vasquezcpa.com, watsonrice.com, wolfandco.com, yhbcpa.com
 | Apr to Jul 2025 | Jeff worked with RSM IT (Layton Coombs, Toby Burton, Christine Mattingly, Robert Alers, Jeremy Von Thun) to fix the PS+ link. Logs showed their system never called the token service or posted to SeamlessLogin. RSM never completed the change |
 | May 30, 2025 | Some users were failing because they were stored under the AICPA store referring site instead of `Mcgdy`; Jeff corrected their records |
 | Sep 2026 (AIC-87) | RSM told AICPA it will drop Alliance external users as of Nov 1, 2026, keeping 2 external users. Research in this doc done for Kyle George |
+| Nov 1, 2026 (AIC-98) | Allow-list goes live: only `rsmus.com` plus hburgos@rsm.pr and adam.passmore@rsm.ky can log in, the two named users in the `Mcgdyasc` pool |
 
 ## Usage snapshot (Sep 2024 to Sep 2026)
 
@@ -228,7 +257,7 @@ External users can only get back in once RSM repoints their PS+ integration to
 
 Options 1 and 2 still admit any external user while fewer than N are logged in. Only
 option 3 restricts access to specific people. Each code option is about half a day with
-testing and deploy.
+testing and deploy. **Option 3 was implemented in AIC-98** (see the allow-list above).
 
 ## Testing a login
 

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mainui",
+      "runtimeExecutable": "C:\\Program Files\\IIS Express\\iisexpress.exe",
+      "runtimeArgs": ["/path:G:\\projects\\aicpa\\aicpa-opl\\_code\\MainUI", "/port:55868"],
+      "port": 55868
+    },
+    {
+      "name": "remoteauth",
+      "runtimeExecutable": "C:\\Program Files\\IIS Express\\iisexpress.exe",
+      "runtimeArgs": ["/path:G:\\projects\\aicpa\\aicpa-opl\\_code\\RemoteAuth", "/port:50543"],
+      "port": 50543
+    }
+  ]
+}

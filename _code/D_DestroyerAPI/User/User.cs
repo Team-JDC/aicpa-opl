@@ -218,6 +218,7 @@ namespace AICPA.Destroyer.User
         public ReferringSite ReferringSiteValue
         {
             get { return referringSiteValue; }
+            internal set { referringSiteValue = value; }
         }
 
         public string OktaId { get; set; }

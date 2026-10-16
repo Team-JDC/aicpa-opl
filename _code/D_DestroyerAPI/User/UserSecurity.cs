@@ -64,6 +64,16 @@ namespace AICPA.Destroyer.User
         /// </summary>
         public const string CONFIG_MAX_USERS_MASK = "{0}MaxUsers";
 
+        /// <summary>
+        /// Configuration setting: semicolon-separated email domains treated as RSM internal for Mcgdy/Mcgdyasc logins
+        /// </summary>
+        public const string CONFIG_MCGDY_INTERNAL_DOMAINS = "McgdyInternalDomains";
+
+        /// <summary>
+        /// Configuration setting: semicolon-separated external email addresses allowed to log in through Mcgdy/Mcgdyasc
+        /// </summary>
+        public const string CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS = "McgdyExternalAllowedEmails";
+
 
         /// <summary>
         /// </summary>
@@ -117,6 +127,12 @@ namespace AICPA.Destroyer.User
         /// </remarks>
         public const string AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE =
             "ACCESS DENIED - We are unable to verify your username and password. [Reason {0}]. Please close your browser and try to login again. If you receive this message again, please contact support at service@aicpa.org.";
+
+        /// <summary>
+        /// Mcgdy/Mcgdyasc login refused because the email is not on an RSM internal domain or the external allow-list.
+        /// </summary>
+        public const string AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED =
+            "ACCESS DENIED - Your account is not authorized to access the Online Professional Library through RSM. Please contact your RSM administrator.";
 
         /// <summary>
         /// 
@@ -938,6 +954,46 @@ namespace AICPA.Destroyer.User
             } 
         }
 
+        /// <summary>
+        /// Determines if the user's email domain is in McgdyInternalDomains.
+        /// </summary>
+        private bool IsMcgdyInternalUser()
+        {
+            string[] internalDomains = GetMcgdyAccessList(CONFIG_MCGDY_INTERNAL_DOMAINS);
+            string email = (User.EmailAddress ?? string.Empty).Trim();
+            int atIndex = email.LastIndexOf('@');
+            return internalDomains != null && atIndex >= 0 &&
+                   internalDomains.Contains(email.Substring(atIndex + 1), StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Determines if the user's email is in McgdyExternalAllowedEmails.
+        /// </summary>
+        private bool IsMcgdyExternalAllowedUser()
+        {
+            string[] externalAllowedEmails = GetMcgdyAccessList(CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS);
+            string email = (User.EmailAddress ?? string.Empty).Trim();
+            return externalAllowedEmails != null &&
+                   externalAllowedEmails.Contains(email, StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
+        /// Reads a semicolon-separated RSM access setting. Returns null, and logs an error naming the key, if the setting is missing.
+        /// </summary>
+        private string[] GetMcgdyAccessList(string webConfigKey)
+        {
+            string value = ConfigurationManager.AppSettings[webConfigKey];
+            if (value == null)
+            {
+                IEvent logEvent = new Event.Event(EventType.Error, DateTime.Now, ERROR_SEVERITY_EXTERNAL_SERVICE,
+                                                    MODULE_USERSECURITY, "GetMcgdyAccessList", "Missing RSM access setting",
+                                                    "Missing RSM access setting. Please add key:" + webConfigKey, user);
+                logEvent.Save(false);
+                return null;
+            }
+            return value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(v => v.Trim()).ToArray();
+        }
+
 
         ///<summary>
         ///  Set the subscription context of a non-c2b user.
@@ -1079,32 +1135,61 @@ namespace AICPA.Destroyer.User
                 else if (User.ReferringSiteValue == ReferringSite.Mcgdy ||
                          User.ReferringSiteValue == ReferringSite.Mcgdyasc)
                 {
-                    // can set authenticated to false if there is an error string in the return xml from
-                    // the c2b web service.
-                    try
+                    // AIC-98: Mcgdy is for RSM internal domains and Mcgdyasc is for the named external users.
+                    // a named external user who comes in as Mcgdy is moved to Mcgdyasc, so they count against McgdyascMaxUsers.
+                    // a refused login leaves authenticated == false, so no session is created and no seat is taken.
+                    bool mcgdyAuthorized = true;
+                    if (User.ReferringSiteValue == ReferringSite.Mcgdy && !IsMcgdyInternalUser())
                     {
-                        SetMcgdySubscriptionContext();
+                        if (IsMcgdyExternalAllowedUser())
+                        {
+                            ((User)user).ReferringSiteValue = ReferringSite.Mcgdyasc;
+                        }
+                        else
+                        {
+                            mcgdyAuthorized = false;
+                        }
                     }
-                    catch (Exception e)
+                    else if (User.ReferringSiteValue == ReferringSite.Mcgdyasc && !IsMcgdyExternalAllowedUser())
                     {
-                        authenticated = false;
-                        authenticationError = string.Format(AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE, e.Message);
-                        throw;
-                    }
-                    bool userLoggedIn = false;
-                    foreach (IFirm firm in firmCollection)
-                    {
-                        userLoggedIn |= firm.UserLoggedIn(user.UserId);
-                    }
-
-                    // if the user is in a firm, check the number of concurrent users.
-                    if (authenticated == null && IsFirmCountExceeded() && !userLoggedIn)
-                    {
-                        authenticated = false;
-                        authenticationError = AUTHENTICATION_ERROR_FIRM_SUBSCRIPTION_EXCEEDED;
-                        Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "Firm Exceeded", string.Format("Firm Count Exceeded for {0}", User.ReferringSiteValue.ToString()), User);
+                        mcgdyAuthorized = false;
                     }
 
+                    if (!mcgdyAuthorized)
+                    {
+                        authenticated = false;
+                        authenticationError = AUTHENTICATION_ERROR_MCGDY_NOT_AUTHORIZED;
+                        Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "RSM Access Denied", string.Format("RSM access denied for {0} ({1})", User.EmailAddress, User.ReferringSiteValue.ToString()), User);
+                    }
+                    else
+                    {
+                        // can set authenticated to false if there is an error string in the return xml from
+                        // the c2b web service.
+                        try
+                        {
+                            SetMcgdySubscriptionContext();
+                        }
+                        catch (Exception e)
+                        {
+                            authenticated = false;
+                            authenticationError = string.Format(AUTHENTICATION_MCGDY_SUBSCRIPTION_SERVICE_FAILURE, e.Message);
+                            throw;
+                        }
+                        bool userLoggedIn = false;
+                        foreach (IFirm firm in firmCollection)
+                        {
+                            userLoggedIn |= firm.UserLoggedIn(user.UserId);
+                        }
+
+                        // if the user is in a firm, check the number of concurrent users.
+                        if (authenticated == null && IsFirmCountExceeded() && !userLoggedIn)
+                        {
+                            authenticated = false;
+                            authenticationError = AUTHENTICATION_ERROR_FIRM_SUBSCRIPTION_EXCEEDED;
+                            Log.LogEvent(EventType.Usage, 1, "UserSecurity", "AuthenticateUser", "Firm Exceeded", string.Format("Firm Count Exceeded for {0}", User.ReferringSiteValue.ToString()), User);
+                        }
+
+                    }
                 }
                 else
                 {
