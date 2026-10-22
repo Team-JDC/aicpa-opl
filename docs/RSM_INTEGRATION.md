@@ -55,7 +55,7 @@ link), they get "you don't have access." That page only works when it receives t
 | Token service | `_code/SingleSignOnHelper/Authentication.svc.cs` | `GetAuthorizationInformationForUser` returns the user's session ID, creating one if needed |
 | User auto-creation | `_code/D_DestroyerAPI/User/UserDalc.cs` `GetSessionByEmail` | **Creates a D_User row for any email it hasn't seen** under that referring site |
 | Login page | `_code/MainUI/MainUI/SeamlessLogin.aspx.cs` | `MCGDY` / `MCGDYASC` branch: builds the user from email + token and calls `LogOn(sessionId, hidDomain)`. Shows the error page if `LogOn` throws |
-| Allow-list check | `_code/D_DestroyerAPI/User/UserSecurity.cs` `IsMcgdyInternalUser` / `IsMcgdyExternalAllowedUser`, called first in the `Mcgdy` branch of `AuthenticateUser` | Admits internal-domain `Mcgdy` users, switches allowed external `Mcgdy` users to `Mcgdyasc`, and refuses everyone else (AIC-98) |
+| Allow-list check | `_code/D_DestroyerAPI/User/UserSecurity.cs` `IsMcgdyInternalUser` / `IsMcgdyExternalAllowedUser`, called first in the `Mcgdy` branch of `AuthenticateUser` once `IsMcgdyRestrictionInEffect` says the effective date has arrived | Admits internal-domain `Mcgdy` users, switches allowed external `Mcgdy` users to `Mcgdyasc`, and refuses everyone else (AIC-98, gated by date in AIC-108) |
 | Concurrency check | `_code/D_DestroyerAPI/User/UserSecurity.cs` `SetMcgdySubscriptionContext` and the `Mcgdy` branch of `AuthenticateUser` | Reads `<ReferringSite>MaxUsers` from Web.config and refuses the login if the firm's active-session count has reached it (unless the user already has a session) |
 | Session storage | `_code/D_DestroyerAPI/User/UserSecurityDalc.cs` `CreateUserSession` | Writes the session with a firm key (ACA/Code). For RSM both are the referring-site string, `Mcgdy` |
 | Active count | Stored proc `dbo.D_GetFirmUserCount(aca, code, sessionTimeout)` | **Not in this repo**. Presumably counts active sessions by ACA/Code within `ApiSessionTimeoutInSeconds` (3600) |
@@ -67,13 +67,15 @@ entry point.
 
 ### Configuration
 
-In `_code/MainUI/Web.config` (the same keys are copied into the ethics and COSO configs):
+In `_code/MainUI/Web.config` (the same keys are copied into the ethics and COSO configs,
+except `McgdyRestrictionEffectiveDate`, which is in MainUI only):
 
 ```xml
 <add key="McgdyMaxUsers" value="100" />
 <add key="McgdyascMaxUsers" value="100" />
 <add key="McgdyInternalDomains" value="rsmus.com" />
 <add key="McgdyExternalAllowedEmails" value="hburgos@rsm.pr;adam.passmore@rsm.ky" />
+<add key="McgdyRestrictionEffectiveDate" value="2026-11-01" />
 ```
 
 The Web.config transforms don't override these, so production uses these values.
@@ -82,9 +84,18 @@ The Web.config transforms don't override these, so production uses these values.
 compared case-insensitively. If a key is missing, an error event naming the key is logged
 and nobody qualifies through that list. An empty value also means nobody qualifies.
 
+`McgdyRestrictionEffectiveDate` (AIC-108) is the date the allow-list takes effect, set to
+Nov 1, 2026, in `yyyy-MM-dd` format. It is compared against the web server's local clock
+(no time zone conversion): the allow-list applies from midnight at the start of that date.
+Before then, `Mcgdy` and `Mcgdyasc` logins run as they did before AIC-98, with no
+allow-list check, no switch to `Mcgdyasc` and no `RSM Access Denied` rows. If the key is
+missing or isn't a valid `yyyy-MM-dd` date, the allow-list is enforced and an error event
+with `Name = 'Missing RSM access setting'` naming the key is logged.
+
 ## What does and doesn't control access
 
-- **Allow-list (from Nov 1, 2026, AIC-98).** `Mcgdy` is treated as the RSM internal
+- **Allow-list (from Nov 1, 2026, AIC-98; the date is set by
+  `McgdyRestrictionEffectiveDate`).** `Mcgdy` is treated as the RSM internal
   referring site and `Mcgdyasc` as the external one:
   - A `Mcgdy` login whose email domain is in `McgdyInternalDomains` continues as before.
   - A `Mcgdy` login whose whole email is in `McgdyExternalAllowedEmails` is switched to
@@ -161,6 +172,7 @@ vasquezcpa.com, watsonrice.com, wolfandco.com, yhbcpa.com
 | Apr to Jul 2025 | Jeff worked with RSM IT (Layton Coombs, Toby Burton, Christine Mattingly, Robert Alers, Jeremy Von Thun) to fix the PS+ link. Logs showed their system never called the token service or posted to SeamlessLogin. RSM never completed the change |
 | May 30, 2025 | Some users were failing because they were stored under the AICPA store referring site instead of `Mcgdy`; Jeff corrected their records |
 | Sep 2026 (AIC-87) | RSM told AICPA it will drop Alliance external users as of Nov 1, 2026, keeping 2 external users. Research in this doc done for Kyle George |
+| Oct 2026 (AIC-108) | `McgdyRestrictionEffectiveDate` added so the AIC-98 code can be deployed before Nov 1 and switch on by itself |
 | Nov 1, 2026 (AIC-98) | Allow-list goes live: only `rsmus.com` plus hburgos@rsm.pr and adam.passmore@rsm.ky can log in, the two named users in the `Mcgdyasc` pool |
 
 ## Usage snapshot (Sep 2024 to Sep 2026)
