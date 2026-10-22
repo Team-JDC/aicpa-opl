@@ -2,6 +2,7 @@
 
 using System;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -74,6 +75,16 @@ namespace AICPA.Destroyer.User
         /// </summary>
         public const string CONFIG_MCGDY_EXTERNAL_ALLOWED_EMAILS = "McgdyExternalAllowedEmails";
 
+        /// <summary>
+        /// Configuration setting: date (MCGDY_RESTRICTION_DATE_FORMAT) from which the Mcgdy/Mcgdyasc allow-list is enforced, by the server's local clock
+        /// </summary>
+        public const string CONFIG_MCGDY_RESTRICTION_EFFECTIVE_DATE = "McgdyRestrictionEffectiveDate";
+
+        /// <summary>
+        /// Format of the McgdyRestrictionEffectiveDate setting
+        /// </summary>
+        public const string MCGDY_RESTRICTION_DATE_FORMAT = "yyyy-MM-dd";
+
 
         /// <summary>
         /// </summary>
@@ -101,7 +112,7 @@ namespace AICPA.Destroyer.User
         /// <remarks>
         /// </remarks>
         public const string AUTHENTICATION_ERROR_VALIDATION_FAILURE =
-            "System exception encountered. Description – {0}.  Please contact support at service@aicpa.org.";
+            "System exception encountered. Description â€“ {0}.  Please contact support at service@aicpa.org.";
 
         /// <summary>
         /// </summary>
@@ -994,6 +1005,25 @@ namespace AICPA.Destroyer.User
             return value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(v => v.Trim()).ToArray();
         }
 
+        /// <summary>
+        /// Determines if the RSM allow-list is in effect: the server's local clock is at or after midnight starting McgdyRestrictionEffectiveDate.
+        /// Returns true, and logs an error naming the key, if the setting is missing or not a valid date.
+        /// </summary>
+        private bool IsMcgdyRestrictionInEffect()
+        {
+            string value = ConfigurationManager.AppSettings[CONFIG_MCGDY_RESTRICTION_EFFECTIVE_DATE];
+            DateTime effectiveDate;
+            if (!DateTime.TryParseExact(value, MCGDY_RESTRICTION_DATE_FORMAT, CultureInfo.InvariantCulture, DateTimeStyles.None, out effectiveDate))
+            {
+                IEvent logEvent = new Event.Event(EventType.Error, DateTime.Now, ERROR_SEVERITY_EXTERNAL_SERVICE,
+                                                    MODULE_USERSECURITY, "IsMcgdyRestrictionInEffect", "Missing RSM access setting",
+                                                    "Missing or invalid RSM access setting (expected " + MCGDY_RESTRICTION_DATE_FORMAT + "). Please add key:" + CONFIG_MCGDY_RESTRICTION_EFFECTIVE_DATE, user);
+                logEvent.Save(false);
+                return true;
+            }
+            return DateTime.Now >= effectiveDate;
+        }
+
 
         ///<summary>
         ///  Set the subscription context of a non-c2b user.
@@ -1138,21 +1168,25 @@ namespace AICPA.Destroyer.User
                     // AIC-98: Mcgdy is for RSM internal domains and Mcgdyasc is for the named external users.
                     // a named external user who comes in as Mcgdy is moved to Mcgdyasc, so they count against McgdyascMaxUsers.
                     // a refused login leaves authenticated == false, so no session is created and no seat is taken.
+                    // AIC-108: none of this applies before McgdyRestrictionEffectiveDate; the login then runs as it did before AIC-98.
                     bool mcgdyAuthorized = true;
-                    if (User.ReferringSiteValue == ReferringSite.Mcgdy && !IsMcgdyInternalUser())
+                    if (IsMcgdyRestrictionInEffect())
                     {
-                        if (IsMcgdyExternalAllowedUser())
+                        if (User.ReferringSiteValue == ReferringSite.Mcgdy && !IsMcgdyInternalUser())
                         {
-                            ((User)user).ReferringSiteValue = ReferringSite.Mcgdyasc;
+                            if (IsMcgdyExternalAllowedUser())
+                            {
+                                ((User)user).ReferringSiteValue = ReferringSite.Mcgdyasc;
+                            }
+                            else
+                            {
+                                mcgdyAuthorized = false;
+                            }
                         }
-                        else
+                        else if (User.ReferringSiteValue == ReferringSite.Mcgdyasc && !IsMcgdyExternalAllowedUser())
                         {
                             mcgdyAuthorized = false;
                         }
-                    }
-                    else if (User.ReferringSiteValue == ReferringSite.Mcgdyasc && !IsMcgdyExternalAllowedUser())
-                    {
-                        mcgdyAuthorized = false;
                     }
 
                     if (!mcgdyAuthorized)
